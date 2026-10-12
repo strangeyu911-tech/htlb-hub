@@ -1,0 +1,7 @@
+# 全部文本文件在仓库里统一用 LF。
+# ⚠️ 不加这条的后果：本机（Windows, core.autocrlf=true）会把 fetch-upstream.sh
+#    存成 CRLF，推到 GitHub 后被 Linux runner 执行时报 `\r: command not found`。
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary

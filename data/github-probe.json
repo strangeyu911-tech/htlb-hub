@@ -1,0 +1,544 @@
+{
+ "generatedAt": "2026-10-12T15:16:46.003Z",
+ "samples": 5,
+ "results": [
+  {
+   "id": "gh-html",
+   "label": "GitHub 仓库页（HTML）",
+   "url": "https://github.com/eternity4719/HowToLiveBetter",
+   "kind": "github",
+   "runs": [
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 4732,
+     "ip": "20.29.134.23",
+     "err": null,
+     "bytes": 212985
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 4173,
+     "ip": "20.29.134.23",
+     "err": null,
+     "bytes": 216001
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 18518,
+     "ip": "20.29.134.23",
+     "err": null,
+     "bytes": 212985
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 16086,
+     "ip": "20.29.134.23",
+     "err": null,
+     "bytes": 216002
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 5341,
+     "ip": "20.29.134.23",
+     "err": null,
+     "bytes": 212986
+    }
+   ],
+   "success": 5,
+   "total": 5,
+   "median": 5341,
+   "p90": 18518,
+   "min": 4173,
+   "max": 18518,
+   "spread": 14345,
+   "ips": [
+    "20.29.134.23"
+   ],
+   "bytes": 212985
+  },
+  {
+   "id": "gh-html-sub",
+   "label": "GitHub 子目录页",
+   "url": "https://github.com/eternity4719/HowToLiveBetter/tree/main/book",
+   "kind": "github",
+   "runs": [
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 16871,
+     "ip": "20.29.134.23",
+     "err": null,
+     "bytes": 212986
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 6553,
+     "ip": "172.182.252.133",
+     "err": null,
+     "bytes": 212985
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 3553,
+     "ip": "172.182.252.133",
+     "err": null,
+     "bytes": 215994
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 4138,
+     "ip": "172.182.252.133",
+     "err": null,
+     "bytes": 212985
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 4477,
+     "ip": "172.182.252.133",
+     "err": null,
+     "bytes": 212985
+    }
+   ],
+   "success": 5,
+   "total": 5,
+   "median": 4477,
+   "p90": 16871,
+   "min": 3553,
+   "max": 16871,
+   "spread": 13318,
+   "ips": [
+    "20.29.134.23",
+    "172.182.252.133"
+   ],
+   "bytes": 212986
+  },
+  {
+   "id": "gh-raw",
+   "label": "raw.githubusercontent 单文件",
+   "url": "https://raw.githubusercontent.com/eternity4719/HowToLiveBetter/main/README.md",
+   "kind": "github",
+   "runs": [
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 2752,
+     "ip": "185.199.111.133",
+     "err": null,
+     "bytes": 49209
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 1121,
+     "ip": "185.199.111.133",
+     "err": null,
+     "bytes": 49209
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 1120,
+     "ip": "185.199.111.133",
+     "err": null,
+     "bytes": 49209
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 585,
+     "ip": "185.199.111.133",
+     "err": null,
+     "bytes": 49209
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 930,
+     "ip": "185.199.111.133",
+     "err": null,
+     "bytes": 49209
+    }
+   ],
+   "success": 5,
+   "total": 5,
+   "median": 1120,
+   "p90": 2752,
+   "min": 585,
+   "max": 2752,
+   "spread": 2167,
+   "ips": [
+    "185.199.111.133"
+   ],
+   "bytes": 49209
+  },
+  {
+   "id": "gh-api",
+   "label": "api.github.com",
+   "url": "https://api.github.com/repos/eternity4719/HowToLiveBetter",
+   "kind": "github",
+   "runs": [
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 2489,
+     "ip": "172.182.252.137",
+     "err": null,
+     "bytes": 7668
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 197,
+     "ip": "172.182.252.137",
+     "err": null,
+     "bytes": 7668
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 490,
+     "ip": "172.182.252.137",
+     "err": null,
+     "bytes": 7668
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 429,
+     "ip": "172.182.252.137",
+     "err": null,
+     "bytes": 7668
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 203,
+     "ip": "172.182.252.137",
+     "err": null,
+     "bytes": 7668
+    }
+   ],
+   "success": 5,
+   "total": 5,
+   "median": 429,
+   "p90": 2489,
+   "min": 197,
+   "max": 2489,
+   "spread": 2292,
+   "ips": [
+    "172.182.252.137"
+   ],
+   "bytes": 7668
+  },
+  {
+   "id": "gh-codeload",
+   "label": "codeload 源码包",
+   "url": "https://codeload.github.com/eternity4719/HowToLiveBetter/tar.gz/refs/heads/main",
+   "kind": "github",
+   "runs": [
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 3372,
+     "ip": "140.82.116.10",
+     "err": null,
+     "bytes": 204987
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 15027,
+     "ip": "140.82.116.10",
+     "err": null,
+     "bytes": 204931
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 4566,
+     "ip": "140.82.116.10",
+     "err": null,
+     "bytes": 204819
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 3781,
+     "ip": "140.82.116.10",
+     "err": null,
+     "bytes": 204997
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 4608,
+     "ip": "140.82.116.10",
+     "err": null,
+     "bytes": 214521
+    }
+   ],
+   "success": 5,
+   "total": 5,
+   "median": 4566,
+   "p90": 15027,
+   "min": 3372,
+   "max": 15027,
+   "spread": 11655,
+   "ips": [
+    "140.82.116.10"
+   ],
+   "bytes": 204987
+  },
+  {
+   "id": "gh-pages",
+   "label": "GitHub Pages（上游在线检索页）",
+   "url": "https://eternity4719.github.io/HowToLiveBetter/",
+   "kind": "github",
+   "runs": [
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 4713,
+     "ip": "185.199.111.153",
+     "err": null,
+     "bytes": 104063
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 2197,
+     "ip": "185.199.111.153",
+     "err": null,
+     "bytes": 104063
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 1554,
+     "ip": "185.199.111.153",
+     "err": null,
+     "bytes": 104063
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 2009,
+     "ip": "185.199.111.153",
+     "err": null,
+     "bytes": 104063
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 2418,
+     "ip": "185.199.111.153",
+     "err": null,
+     "bytes": 104063
+    }
+   ],
+   "success": 5,
+   "total": 5,
+   "median": 2197,
+   "p90": 4713,
+   "min": 1554,
+   "max": 4713,
+   "spread": 3159,
+   "ips": [
+    "185.199.111.153"
+   ],
+   "bytes": 104063
+  },
+  {
+   "id": "baseline-cf",
+   "label": "【对照】Cloudflare 站 life.xfun.fun",
+   "url": "https://life.xfun.fun/",
+   "kind": "baseline",
+   "runs": [
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 2714,
+     "ip": "104.21.64.16",
+     "err": null,
+     "bytes": 102596
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 1648,
+     "ip": "104.21.64.16",
+     "err": null,
+     "bytes": 102596
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 2209,
+     "ip": "104.21.64.16",
+     "err": null,
+     "bytes": 102596
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 1769,
+     "ip": "104.21.64.16",
+     "err": null,
+     "bytes": 102596
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 1604,
+     "ip": "104.21.64.16",
+     "err": null,
+     "bytes": 102596
+    }
+   ],
+   "success": 5,
+   "total": 5,
+   "median": 1769,
+   "p90": 2714,
+   "min": 1604,
+   "max": 2714,
+   "spread": 1110,
+   "ips": [
+    "104.21.64.16"
+   ],
+   "bytes": 102596
+  },
+  {
+   "id": "baseline-cn",
+   "label": "【对照】国内 CDN 站 better.aigcwei.cn",
+   "url": "https://better.aigcwei.cn/",
+   "kind": "baseline",
+   "runs": [
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 2019,
+     "ip": "43.174.247.106",
+     "err": null,
+     "bytes": 17368
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 913,
+     "ip": "43.174.247.106",
+     "err": null,
+     "bytes": 17368
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 974,
+     "ip": "43.174.247.106",
+     "err": null,
+     "bytes": 17368
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 999,
+     "ip": "43.174.247.106",
+     "err": null,
+     "bytes": 17368
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 803,
+     "ip": "43.174.247.106",
+     "err": null,
+     "bytes": 17368
+    }
+   ],
+   "success": 5,
+   "total": 5,
+   "median": 974,
+   "p90": 2019,
+   "min": 803,
+   "max": 2019,
+   "spread": 1216,
+   "ips": [
+    "43.174.247.106"
+   ],
+   "bytes": 17368
+  }
+ ],
+ "verdict": {
+  "githubSuccessRate": 1,
+  "githubMedianAvg": 3022,
+  "githubWorst": {
+   "id": "gh-html",
+   "label": "GitHub 仓库页（HTML）",
+   "url": "https://github.com/eternity4719/HowToLiveBetter",
+   "kind": "github",
+   "runs": [
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 4732,
+     "ip": "20.29.134.23",
+     "err": null,
+     "bytes": 212985
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 4173,
+     "ip": "20.29.134.23",
+     "err": null,
+     "bytes": 216001
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 18518,
+     "ip": "20.29.134.23",
+     "err": null,
+     "bytes": 212985
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 16086,
+     "ip": "20.29.134.23",
+     "err": null,
+     "bytes": 216002
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 5341,
+     "ip": "20.29.134.23",
+     "err": null,
+     "bytes": 212986
+    }
+   ],
+   "success": 5,
+   "total": 5,
+   "median": 5341,
+   "p90": 18518,
+   "min": 4173,
+   "max": 18518,
+   "spread": 14345,
+   "ips": [
+    "20.29.134.23"
+   ],
+   "bytes": 212985
+  },
+  "githubMaxSpread": 14345,
+  "baselineMedianAvg": 1372
+ }
+}

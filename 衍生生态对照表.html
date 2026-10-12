@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>高性价比人生指南 · 衍生生态对照表</title>
+<style>
+:root{--bg:#faf9f7;--card:#fff;--line:#e6e3dc;--tx:#2c2c2a;--tx2:#5f5e5a;--tx3:#888780;
+--green:#1d9e75;--greenbg:#e1f5ee;--amber:#ba7517;--amberbg:#faeeda;--red:#a32d2d;--redbg:#fcebeb;--gray:#888780;--graybg:#f1efe8;--blue:#185fa5;--bluebg:#e6f1fb}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:14px/1.7 -apple-system,"Segoe UI","Microsoft YaHei",system-ui,sans-serif}
+.wrap{max-width:1180px;margin:0 auto;padding:40px 24px 64px}
+h1{font-size:26px;font-weight:600;margin:0 0 6px}
+.sub{color:var(--tx2);font-size:13px;margin-bottom:4px}
+.meta{color:var(--tx3);font-size:12.5px;margin-bottom:28px}
+.meta code{background:#f1efe8;padding:1px 5px;border-radius:4px;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-bottom:28px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.card .k{font-size:12.5px;color:var(--tx3);margin-bottom:6px}
+.card .v{font-size:24px;font-weight:600;line-height:1.25}
+.card .n{font-size:12.5px;color:var(--tx2);margin-top:4px}
+.v.g{color:var(--green)}.v.a{color:var(--amber)}.v.r{color:var(--red)}.v.b{color:var(--blue)}
+h2{font-size:17px;font-weight:600;margin:36px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.tw{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;min-width:1000px;font-size:13px}
+th{text-align:left;font-weight:500;color:var(--tx2);padding:11px 14px;border-bottom:1px solid var(--line);white-space:nowrap;background:#fcfbf9}
+td{padding:13px 14px;border-bottom:1px solid #f2f0ec;vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#fdfcfa}
+.c-name{min-width:168px}.c-reach{min-width:158px}.c-fresh{min-width:250px}.c-feat{min-width:300px}.c-gate{min-width:190px}
+.c-name a{color:var(--blue);text-decoration:none;font-weight:500}
+.c-name a:hover{text-decoration:underline}
+.muted{color:var(--tx3);font-size:12px;line-height:1.5}
+.mono{font-family:ui-monospace,Consolas,monospace;font-size:11.5px;color:var(--tx3);margin-top:2px}
+.pill{display:inline-block;padding:2px 9px;border-radius:999px;font-size:12px;font-weight:500;white-space:nowrap}
+.pill.ok{color:var(--green);background:var(--greenbg)}
+.freshline{margin-top:6px;font-size:12.5px}
+.ok{color:var(--green)}.warn{color:var(--amber)}.bad{color:var(--red)}
+.bar-row{display:grid;grid-template-columns:210px 1fr 62px;align-items:center;gap:12px;padding:7px 0}
+.bar-name{font-size:13px;color:var(--tx);text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar-track{background:#efede8;border-radius:6px;height:18px;overflow:hidden}
+.bar-fill{display:block;height:100%;background:var(--amber);border-radius:6px}
+.bar-val{font-size:12.5px;color:var(--tx2);font-variant-numeric:tabular-nums}
+ol{padding-left:22px;color:var(--tx2);font-size:13px}
+ol li{margin-bottom:9px}
+.note{background:var(--bluebg);border:1px solid #b5d4f4;border-radius:10px;padding:14px 18px;font-size:13px;color:#0c447c;margin-bottom:26px}
+.foot{margin-top:40px;color:var(--tx3);font-size:12px;border-top:1px solid var(--line);padding-top:16px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>高性价比人生指南 · 衍生生态对照表</h1>
+<div class="sub">上游 <code>eternity4719/HowToLiveBetter</code> 是 CC BY 4.0 开源书；官方 README 收录了 <b>14 个衍生项目</b>（15 条链接）。本表实测每一项的墙内可达性与内容新鲜度。</div>
+<div class="meta">生成时间 2026/10/12 22:20:56　·　上游当前版本 <b>687 条建议</b>　·　最新提交 <code>df6df704</code>（2026/10/12 18:04:49）　·　上游 60,855 ★ / 5,060 forks</div>
+
+<div class="note"><b>一句话结论：</b>「不翻墙不方便访问」这个前提<b>不成立</b> —— 42 次探活全部 200。真正没人解决的是<b>「不知道哪个站是新的」</b>：10 个能读出条数的项目里只有 2 个追平上游，4 个项目<b>连版本信号都不提供</b>。</div>
+
+<div class="cards">
+<div class="card"><div class="k">墙内可达率</div><div class="v g">42/42</div><div class="n">14 项 × 3 轮探活，全部 200</div></div>
+<div class="card"><div class="k">追平上游 687 条</div><div class="v a">2 项</div><div class="n">占能读出条数的 10 项中的 20%</div></div>
+<div class="card"><div class="k">最大落后量</div><div class="v a">73 条</div><div class="n">BetterLifeApp · 约占上游 10.6%</div></div>
+<div class="card"><div class="k">无版本信号</div><div class="v r">4 项</div><div class="n">读者无从判断内容新旧</div></div>
+<div class="card"><div class="k">用国内 CDN</div><div class="v b">1 项</div><div class="n">6 项挂 Cloudflare，快慢全看运气</div></div>
+</div>
+
+<h2>主表</h2>
+<div class="tw">
+<table>
+<thead><tr><th>项目</th><th>墙内可达性（实测）</th><th>内容新鲜度（对比上游 687 条）</th><th>独有功能</th><th>门槛</th></tr></thead>
+<tbody>
+<tr>
+<td class="c-name"><a href="https://howtolivebetter.net/" target="_blank" rel="noopener">打勾清单</a><div class="muted">网站 · littleben</div></td>
+<td class="c-reach"><span class="pill ok">3/3 通</span><div class="muted">均 6284ms · Cloudflare</div><div class="mono">172.67.173.180</div></td>
+<td class="c-fresh"><span class="pill" style="color:#1D9E75;background:#E1F5EE">已追平上游</span><div class="freshline"><b class="ok">687 / 687</b> · 追平上游</div><div class="muted">条目数与上游一致</div></td>
+<td class="c-feat">加待办、标记做到没有、收藏</td>
+<td class="c-gate">未标注（源码未公开）</td>
+</tr>
+<tr>
+<td class="c-name"><a href="https://life.warpnav.com/" target="_blank" rel="noopener">WarpNav 人生手册</a><div class="muted">网站 · SatoMini</div></td>
+<td class="c-reach"><span class="pill ok">3/3 通</span><div class="muted">均 1053ms · Cloudflare</div><div class="mono">172.67.208.120</div></td>
+<td class="c-fresh"><span class="pill" style="color:#A32D2D;background:#FCEBEB">无法判定</span><div class="freshline"><b class="bad">无法判定</b></div><div class="muted">页面无可读版本信号</div></td>
+<td class="c-feat">按生活场景进入、搜索筛选、收藏导入导出、接着上次读；不用注册；页面有广告</td>
+<td class="c-gate">不用注册 · 页面有广告</td>
+</tr>
+<tr>
+<td class="c-name"><a href="https://life.xfun.fun/" target="_blank" rel="noopener">手绘地图版</a><div class="muted">网站 · sagiriiiiii</div></td>
+<td class="c-reach"><span class="pill ok">3/3 通</span><div class="muted">均 2006ms · Cloudflare</div><div class="mono">104.21.64.16</div></td>
+<td class="c-fresh"><span class="pill" style="color:#BA7517;background:#FAEEDA">落后于上游</span><div class="freshline"><b class="warn">落后 11 条</b>（676 / 687）</div><div class="muted">标题自称 676 张卡片</div></td>
+<td class="c-feat">各节画成可拖动地图，每条是可翻面卡片，支持拼音搜索和生成分享海报</td>
+<td class="c-gate">未标注</td>
+</tr>
+<tr>
+<td class="c-name"><a href="https://how2livebetter.net/" target="_blank" rel="noopener">人生阶段指南</a><div class="muted">网站 · marsbuildlog</div></td>
+<td class="c-reach"><span class="pill ok">3/3 通</span><div class="muted">均 1110ms · Cloudflare</div><div class="mono">172.67.168.29</div></td>
+<td class="c-fresh"><span class="pill" style="color:#BA7517;background:#FAEEDA">落后于上游</span><div class="freshline"><b class="warn">落后 33 条</b>（654 / 687 · 快照 2026-10-03）</div><div class="muted">页面内出现快照日期 2026-10-03</div></td>
+<td class="c-feat">按五个阶段重排；处境自测、行动清单、每日打卡；阅读免费，打卡/复查提醒以后收费</td>
+<td class="c-gate">阅读免费 · 打卡/复查提醒以后收费</td>
+</tr>
+<tr>
+<td class="c-name"><a href="https://better.aigcwei.cn/" target="_blank" rel="noopener">better.aigcwei.cn + MCP</a><div class="muted">网站+MCP · Helioswei</div></td>
+<td class="c-reach"><span class="pill ok">3/3 通</span><div class="muted">均 1882ms · edgeone makers · 国内节点</div><div class="mono">43.174.246.106</div></td>
+<td class="c-fresh"><span class="pill" style="color:#BA7517;background:#FAEEDA">落后于上游</span><div class="freshline"><b class="warn">落后 10 条</b>（677 / 687）</div><div class="muted">★ 唯一在部署信息里标注「上游 commit sha」的项目</div></td>
+<td class="c-feat">按节/按场景读、检索全部条目；MCP 装进 Cursor/Claude Code 后助手回答前先查本书并注明第几节第几条，可按性价比/成本/证据等级/收益筛选；不用注册、没有广告</td>
+<td class="c-gate">不用注册 · 没有广告</td>
+</tr>
+<tr>
+<td class="c-name"><a href="https://qingdan.lazyso.com/" target="_blank" rel="noopener">懒人性价性清单</a><div class="muted">网站 · lazyvip</div></td>
+<td class="c-reach"><span class="pill ok">3/3 通</span><div class="muted">均 1265ms · Cloudflare</div><div class="mono">172.67.133.160</div></td>
+<td class="c-fresh"><span class="pill" style="color:#BA7517;background:#FAEEDA">落后于上游</span><div class="freshline"><b class="warn">落后 10 条</b>（677 / 687）</div><div class="muted">筛选池按 677 条构建</div></td>
+<td class="c-feat">按「0元、不费毅力、收益大、证据A」组合筛选；打勾记进度、每日一条；不用注册、无广告</td>
+<td class="c-gate">不用注册 · 没有广告</td>
+</tr>
+<tr>
+<td class="c-name"><a href="https://livebetter101.com/" target="_blank" rel="noopener">LiveBetter 101</a><div class="muted">网站 · PlatoTheOne</div></td>
+<td class="c-reach"><span class="pill ok">3/3 通</span><div class="muted">均 1315ms · Cloudflare</div><div class="mono">172.67.196.6</div></td>
+<td class="c-fresh"><span class="pill" style="color:#A32D2D;background:#FCEBEB">无法判定</span><div class="freshline"><b class="bad">无法判定</b></div><div class="muted">页面无可读版本信号</div></td>
+<td class="c-feat">闯关游戏：建议改编成生活场景选择题，分急救/钱包/时间/关系/安全几块练；不用注册、无广告</td>
+<td class="c-gate">不用注册 · 没有广告</td>
+</tr>
+<tr>
+<td class="c-name"><a href="https://github.com/HuiTurn/HowToLiveBetter" target="_blank" rel="noopener">微信小程序版</a><div class="muted">小程序 · HuiTurn</div></td>
+<td class="c-reach"><span class="pill ok">3/3 通</span><div class="muted">均 6737ms · github.com</div><div class="mono">172.182.252.133</div></td>
+<td class="c-fresh"><span class="pill" style="color:#1D9E75;background:#E1F5EE">已追平上游</span><div class="freshline"><b class="ok">687 / 687</b> · 追平上游</div><div class="muted">仓库简介与 687 一致，当天仍在提交</div></td>
+<td class="c-feat">分类、收藏、每日一读、全文搜索，离线可用</td>
+<td class="c-gate">微信内访问，无需注册</td>
+</tr>
+<tr>
+<td class="c-name"><a href="https://apps.apple.com/cn/app/id6818596108" target="_blank" rel="noopener">行动版 iOS App</a><div class="muted">iOS App · GUGU VITALITY LIMITED</div></td>
+<td class="c-reach"><span class="pill ok">3/3 通</span><div class="muted">均 18783ms · daiquiri/5</div><div class="mono">151.101.3.6</div></td>
+<td class="c-fresh"><span class="pill" style="color:#BA7517;background:#FAEEDA">落后于上游</span><div class="freshline"><b class="warn">落后 17 条</b>（670 / 687 · 快照 2026-10-09）</div><div class="muted">App Store 页面内出现 670 条</div></td>
+<td class="c-feat">左右滑卡片决定做不做，做一次的进清单，要重复的设打卡，离线可用；免费版清单/打卡有数量限制</td>
+<td class="c-gate">免费版清单/打卡有数量限制</td>
+</tr>
+<tr>
+<td class="c-name"><a href="https://github.com/llzx373/BetterLifeApp" target="_blank" rel="noopener">BetterLifeApp</a><div class="muted">Android App · llzx373</div></td>
+<td class="c-reach"><span class="pill ok">3/3 通</span><div class="muted">均 5784ms · github.com</div><div class="mono">172.182.252.133</div></td>
+<td class="c-fresh"><span class="pill" style="color:#BA7517;background:#FAEEDA">落后于上游</span><div class="freshline"><b class="warn">落后 73 条</b>（614 / 687 · 快照 2026-09-26）</div><div class="muted">作者自述「内置的条目是较早的版本」</div></td>
+<td class="c-feat">按个人情况推荐、每日打卡、条目库；AI 问答要自填 API Key；测试版，内置条目较早</td>
+<td class="c-gate">测试版 · AI 问答需自填 API Key</td>
+</tr>
+<tr>
+<td class="c-name"><a href="https://github.com/mittsommer/daily-life-tip" target="_blank" rel="noopener">今日一条</a><div class="muted">macOS 小组件 · mittsommer</div></td>
+<td class="c-reach"><span class="pill ok">3/3 通</span><div class="muted">均 3803ms · github.com</div><div class="mono">172.182.252.133</div></td>
+<td class="c-fresh"><span class="pill" style="color:#A32D2D;background:#FCEBEB">无法判定</span><div class="freshline"><b class="bad">无法判定</b><br><span class="muted">页面日期 2026-10-09</span></div><div class="muted">README 自称每天自动同步（未能机读验证）</div></td>
+<td class="c-feat">每天一条，可换一条、一键生成带出处分享图，每天自动同步本仓库正文；免费无签名（MIT）</td>
+<td class="c-gate">免费 · 无 Apple 签名，首次需在系统设置放行（MIT）</td>
+</tr>
+<tr>
+<td class="c-name"><a href="https://github.com/sinyu1012/shiye-tab" target="_blank" rel="noopener">拾页 Shiye Tab</a><div class="muted">Chrome 插件 · sinyu1012</div></td>
+<td class="c-reach"><span class="pill ok">3/3 通</span><div class="muted">均 5630ms · github.com</div><div class="mono">172.182.252.133</div></td>
+<td class="c-fresh"><span class="pill" style="color:#A32D2D;background:#FCEBEB">无法判定</span><div class="freshline"><b class="bad">无法判定</b><br><span class="muted">页面日期 2026-10-08</span></div><div class="muted">页面无可读版本信号</div></td>
+<td class="c-feat">新标签页随机显示一条建议，可放 GitHub 周榜和 RSS；不用注册（MIT）</td>
+<td class="c-gate">不用注册（MIT）</td>
+</tr>
+<tr>
+<td class="c-name"><a href="https://github.com/sin0317/htlb-dataset" target="_blank" rel="noopener">结构化数据集</a><div class="muted">数据集 · sin0317</div></td>
+<td class="c-reach"><span class="pill ok">3/3 通</span><div class="muted">均 6083ms · github.com</div><div class="mono">172.182.252.133</div></td>
+<td class="c-fresh"><span class="pill" style="color:#0F6E56;background:#E1F5EE">自动同步（滞后<1天）</span><div class="freshline"><b class="warn">落后 15 条</b>（672 / 687）</div><div class="muted">每日自动同步；最新 commit 记录同步到上游 e4d6db4</div></td>
+<td class="c-feat">全书条目解析成 JSON/CSV/SQLite，每天自动同步（正文 CC BY 4.0，代码 MIT）</td>
+<td class="c-gate">开放数据（正文 CC BY 4.0 / 代码 MIT）</td>
+</tr>
+<tr>
+<td class="c-name"><a href="https://github.com/robiNeo2045/HowToLiveBetter" target="_blank" rel="noopener">四格漫画 PDF</a><div class="muted">漫画 · robiNeo2045</div></td>
+<td class="c-reach"><span class="pill ok">3/3 通</span><div class="muted">均 6912ms · github.com</div><div class="mono">172.182.252.133</div></td>
+<td class="c-fresh"><span class="pill" style="color:#5F5E5A;background:#F1EFE8">固定快照（设计如此）</span><div class="freshline"><b>676</b> 条 · 2026-10-03<br><span class="muted">固定快照：官方声明不自动同步，非缺陷</span></div><div class="muted">官方声明为固定快照、不自动同步（非缺陷）</div></td>
+<td class="c-feat">基于 2026-10-03 PDF 快照，34 章 654 条，固定快照不自动同步（CC BY 4.0）</td>
+<td class="c-gate">免费下载 · 无需注册 · 无广告（CC BY 4.0）</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h2>落后程度排序（条）</h2>
+<div><div class="bar-row"><span class="bar-name">BetterLifeApp</span><span class="bar-track"><span class="bar-fill" style="width:100.0%"></span></span><span class="bar-val">73 条</span></div>
+<div class="bar-row"><span class="bar-name">人生阶段指南</span><span class="bar-track"><span class="bar-fill" style="width:45.2%"></span></span><span class="bar-val">33 条</span></div>
+<div class="bar-row"><span class="bar-name">行动版 iOS App</span><span class="bar-track"><span class="bar-fill" style="width:23.3%"></span></span><span class="bar-val">17 条</span></div>
+<div class="bar-row"><span class="bar-name">结构化数据集</span><span class="bar-track"><span class="bar-fill" style="width:20.5%"></span></span><span class="bar-val">15 条</span></div>
+<div class="bar-row"><span class="bar-name">手绘地图版</span><span class="bar-track"><span class="bar-fill" style="width:15.1%"></span></span><span class="bar-val">11 条</span></div>
+<div class="bar-row"><span class="bar-name">四格漫画 PDF</span><span class="bar-track"><span class="bar-fill" style="width:15.1%"></span></span><span class="bar-val">11 条</span></div>
+<div class="bar-row"><span class="bar-name">better.aigcwei.cn + MCP</span><span class="bar-track"><span class="bar-fill" style="width:13.7%"></span></span><span class="bar-val">10 条</span></div>
+<div class="bar-row"><span class="bar-name">懒人性价性清单</span><span class="bar-track"><span class="bar-fill" style="width:13.7%"></span></span><span class="bar-val">10 条</span></div></div>
+
+<h2>方法与局限</h2>
+<ol>
+<li><b>「最后同步时间」无法直接测。</b>上游不发布时间戳，因此本表用<b>条目数当版本指纹</b>：上游 README 徽章的条目总数，减去各项目页面上自己声明的条目数 = 滞后量。这是<b>间接推断</b>，不是官方声明。</li>
+<li>只有「可达性」「条目数」「IP / CDN」是实测，<b>门槛一列照抄上游 <code>衍生项目.md</code> 的原文口径</b>（标「未标注」= 原文也没标注），非本人核验。</li>
+<li>「无法判定」的 4 项不代表内容旧，只代表<b>它没有提供任何可核验的版本信号</b> —— 这正是本表想暴露的问题。</li>
+<li>可达性是<b>单机单时点</b>结论（出口为福建电信，未开梯子）。Cloudflare 在国内「时通时不通」，3 轮全通只说明<b>此刻</b>通畅，不代表 24 小时稳定。</li>
+<li>条目数采集自页面首屏 HTML 的正则匹配；若某站把条数渲染在 JS 之后，会落进「无法判定」。</li>
+</ol>
+
+<div class="foot">数据由 <code>htlb-hub/collect.mjs</code> 采集、<code>htlb-hub/report.mjs</code> 渲染。重新执行这两条命令即可刷新本表。原始数据：<code>htlb-hub/data/audit.json</code></div>
+</div>
+</body>
+</html>

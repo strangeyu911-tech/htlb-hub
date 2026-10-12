@@ -1,0 +1,13 @@
+# 上游镜像（完整 clone，~18 MB，可重建）
+.cache/
+
+# 构建产物里的 worker 包（由 build-worker.mjs 从 template 生成）
+deploy/worker.js
+
+# 本机凭据（绝不入库）
+.cf-token
+.ingest-secret
+
+node_modules/
+*.log
+.DS_Store

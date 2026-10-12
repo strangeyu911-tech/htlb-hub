@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>高性价比人生指南 · 墙内聚合入口</title>
+<meta name="description" content="把 HowToLiveBetter 的 14 个衍生项目聚在一处，并逐一查证每个同步到了哪一版。">
+<style>
+:root{--bg:#faf9f7;--card:#fff;--line:#e6e3dc;--tx:#2c2c2a;--tx2:#5f5e5a;--tx3:#8a8880;
+--g:#0f6e56;--gbg:#e1f5ee;--a:#8a5300;--abg:#faeeda;--r:#a32d2d;--rbg:#fcebeb;--b:#185fa5;--bbg:#e6f1fb}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.7 -apple-system,"Segoe UI","Microsoft YaHei",system-ui,sans-serif}
+a{color:var(--b)}
+.wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+header.top{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:9}
+.top .in{display:flex;align-items:center;gap:14px;height:56px}
+.brand{font-weight:600;font-size:15px}
+.top .sp{flex:1}
+.top .src{font-size:12.5px;color:var(--tx3);text-align:right}
+.hero{padding:52px 0 34px}
+h1{font-size:31px;line-height:1.32;font-weight:600;margin:0 0 14px;letter-spacing:-.01em}
+.lede{font-size:16px;color:var(--tx2);max-width:790px;margin:0 0 26px}
+.lede b{color:var(--tx)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:12px;margin-bottom:34px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:12px;padding:15px 17px}
+.stat .k{font-size:12.5px;color:var(--tx3);margin-bottom:5px}
+.stat .v{font-size:23px;font-weight:600;line-height:1.25}
+.stat .n{font-size:12px;color:var(--tx2);margin-top:3px}
+.v.g{color:var(--g)}.v.a{color:var(--a)}.v.r{color:var(--r)}.v.b{color:var(--b)}
+h2{font-size:20px;font-weight:600;margin:44px 0 8px}
+.h2n{color:var(--tx2);font-size:14px;margin:0 0 18px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:14px}
+.bar .lbl{font-size:13px;color:var(--tx3);margin-right:2px}
+.chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 13px;font-size:13px;cursor:pointer;color:var(--tx2);font-family:inherit}
+.chip:hover{border-color:#c9c5bc}
+.chip.on{background:var(--tx);color:#fff;border-color:var(--tx)}
+.sorts{display:flex;gap:6px;margin-left:auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:16px;margin-top:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:19px 20px;display:flex;flex-direction:column}
+.chead{display:flex;align-items:baseline;gap:9px;margin-bottom:3px}
+.chead h3{margin:0;font-size:16.5px;font-weight:600}
+.chead h3 a{color:var(--tx);text-decoration:none}
+.chead h3 a:hover{color:var(--b)}
+.kind{font-size:11.5px;color:var(--tx2);background:#f4f2ee;border-radius:5px;padding:2px 7px;white-space:nowrap}
+.byline{font-size:12.5px;color:var(--tx3);margin-bottom:13px}
+.freshbox{border:1px solid;border-radius:10px;padding:11px 13px;margin-bottom:13px}
+.vrow{margin-bottom:6px}
+.pill{font-size:12.5px;font-weight:500}
+.lag{display:block;font-size:14px;font-weight:500}
+.lag.ok{color:var(--g)}.lag.warn{color:var(--a)}.lag.bad{color:var(--r)}.lag.dim2{color:var(--tx2);font-weight:400;font-size:13px}
+.dim{color:var(--tx3);font-weight:400;font-size:12.5px}
+.fnote{font-size:12.5px;color:var(--tx2);margin-top:5px}
+.feat{font-size:13.5px;color:var(--tx2);margin:0 0 12px;flex:1}
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px}
+.tag{font-size:11.5px;color:var(--tx2);background:#f6f4f0;border-radius:5px;padding:2px 7px}
+.foot{display:flex;flex-wrap:wrap;gap:10px;align-items:center;border-top:1px solid #f2f0ec;padding-top:11px;font-size:12.5px}
+.reach.ok{color:var(--g)}.reach.warn{color:var(--a)}
+.gate{color:var(--tx3);font-size:12px;flex-basis:100%}
+.empty{grid-column:1/-1;text-align:center;color:var(--tx3);padding:40px;font-size:14px}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid #f2f0ec;vertical-align:top}
+th{font-weight:500;color:var(--tx2);background:#fcfbf9;font-size:13px}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+td.ok{color:var(--g)}td.warn{color:var(--a)}td.bad{color:var(--r)}
+.ev{font-size:12px;color:var(--tx2);margin-bottom:3px}
+.brow{display:grid;grid-template-columns:250px 240px 1fr;gap:14px;align-items:center;padding:11px 0;border-bottom:1px solid #f2f0ec}
+.bmeta{font-size:13.5px;display:flex;flex-direction:column}
+.bmeta .dim{font-size:12px}
+.bsvg{overflow-x:auto}
+.bsvg svg,.bsvg img{display:block}
+.bcode{font-family:ui-monospace,Consolas,monospace;font-size:11.5px;color:var(--tx2);background:#f6f4f0;padding:5px 9px;border-radius:6px;overflow-x:auto;white-space:nowrap}
+ol,ul{padding-left:21px;color:var(--tx2);font-size:14px}
+li{margin-bottom:9px}
+.note{background:var(--bbg);border:1px solid #b5d4f4;border-radius:12px;padding:15px 19px;font-size:14px;color:#0c447c;margin:0 0 26px}
+.warnbox{background:var(--abg);border:1px solid #f0d9a8;border-radius:12px;padding:15px 19px;font-size:14px;color:#5c3b00;margin:0 0 26px}
+code{background:#f4f2ee;padding:1px 5px;border-radius:4px;font-size:12.5px}
+footer{margin-top:56px;border-top:1px solid var(--line);padding:22px 0 60px;color:var(--tx3);font-size:12.5px}
+@media(max-width:820px){.brow{grid-template-columns:1fr}h1{font-size:25px}}
+</style>
+</head>
+<body>
+<header class="top"><div class="in wrap">
+  <span class="brand">高性价比人生指南 · 墙内聚合</span>
+  <span class="sp"></span>
+  <span class="src">上游 <b id="upn">687</b> 条 · <code>df6df704</code><br>数据 2026/10/13 01:10:12（可实时刷新）</span>
+</div></header>
+
+<div class="wrap">
+
+<section class="hero">
+  <h1>上游有 14 个项目，散在 14 个地方。<br>这里把它们聚在一处，并逐个查证同步到了哪一版。</h1>
+  <p class="lede">这本书 <b>CC BY 4.0</b> 开源，读者做出了 14 个衍生工具：网站、小程序、App、浏览器插件、数据集、漫画。<b>它们唯一的聚合点是 GitHub 上的源仓库</b> —— 而 GitHub 网页在国内中位要等 <b>5.3 秒</b>、最坏 <b>18.5 秒</b>，波动 14 秒，所以很多人干脆一直开着梯子。<br>更难的是：<b>没有任何一个地方告诉你「哪个站是新的」</b>。这个页面就干这两件事。</p>
+
+  <div class="stats">
+    <div class="stat"><div class="k">已收录衍生项目</div><div class="v b">14</div><div class="n">来自上游 README 官方清单</div></div>
+    <div class="stat"><div class="k">墙内可达</div><div class="v g">42/42</div><div class="n">14 项 × 3 轮探活全通（含梯子未开时）</div></div>
+    <div class="stat"><div class="k">能算出同步到哪一版</div><div class="v a">9/14</div><div class="n">实测 5 项 · 仅页面自述 4 项</div></div>
+    <div class="stat"><div class="k">运行时自动跟进</div><div class="v g">2 项</div><div class="n">每次打开直接拉上游，不存在「落后」</div></div>
+    <div class="stat"><div class="k">已追平上游 687 条</div><div class="v a">2 项</div><div class="n">最多落后 33 条（人生阶段指南）</div></div>
+    <div class="stat"><div class="k">无版本信号</div><div class="v r">2 项</div><div class="n">无法核验，只能算「不知道」</div></div>
+  </div>
+
+  <div class="note"><b>怎么用：</b>下面按「你的需求」筛，但不看广告词，只看三件事 —— <b>同步到哪一版</b>、<b>墙内多少毫秒打开</b>、<b>要不要注册 / 有没有广告</b>。可达性与延迟是本页每轮实测的，不是抄来的。</div>
+
+  <div class="warnbox"><b>先说清楚一个坑：</b>本站挂在你自己的 Cloudflare 上。<b>Cloudflare 在国内的访问速度和 GitHub 是同一个量级的问题</b> —— 实测这台机器打开 CF 系站点中位 <b>2.1–3.5 秒</b>、打开 howtolivebetter.net 中位 <b>6.1 秒</b>；本站不会比它们更快。真正的「国内秒开」需要 <b>国内云主机 + ICP 备案</b>（要走 1–2 周实名+备案），那是另一个决定。现在这一版的价值是<b>把信息聚齐并查证</b>，而不是「更快」。</div>
+</section>
+
+<h2>选一个用</h2>
+<p class="h2n">点标签筛选，或按同步新鲜度 / 访问速度排序。共 <span id="cnt">14</span> 项。</p>
+<div class="panel">
+  <div class="bar">
+    <span class="lbl">需求</span>
+    <button class="chip" data-tag="桌面端">桌面端</button>
+    <button class="chip" data-tag="最省时间">最省时间</button>
+    <button class="chip" data-tag="能分享">能分享</button>
+    <button class="chip" data-tag="不用注册">不用注册</button>
+    <button class="chip" data-tag="无广告">无广告</button>
+    <button class="chip" data-tag="能搜索">能搜索</button>
+    <button class="chip" data-tag="给 AI 用">给 AI 用</button>
+    <button class="chip" data-tag="打卡/进度">打卡/进度</button>
+    <button class="chip" data-tag="数据源">数据源</button>
+    <button class="chip" data-tag="手机端">手机端</button>
+    <button class="chip" data-tag="能离线">能离线</button>
+    <button class="chip" data-tag="阶段自测">阶段自测</button>
+    <button class="chip" data-tag="游戏化">游戏化</button>
+    <button class="chip" data-tag="娱乐">娱乐</button>
+    <button class="chip" id="clr">清空</button>
+  </div>
+  <div class="bar">
+    <span class="lbl">排序</span>
+    <div class="sorts">
+      <button class="chip on" data-sort="fresh">同步最新</button>
+      <button class="chip" data-sort="speed">访问最快</button>
+      <button class="chip" data-sort="type">按类型</button>
+      <button class="chip" data-sort="lag">落后最多</button>
+    </div>
+  </div>
+</div>
+<div class="grid" id="grid">
+<article class="card" data-tags="桌面端,最省时间,能分享" data-lag="-1" data-speed="3803" data-type="5">
+  <div class="chead">
+    <h3><a href="https://github.com/mittsommer/daily-life-tip" target="_blank" rel="noopener">今日一条</a></h3>
+    <span class="kind">macOS 小组件</span>
+  </div>
+  <div class="byline">by <a href="https://github.com/mittsommer" target="_blank" rel="noopener">mittsommer</a> · 末次改动 2026-10-10</div>
+  <div class="freshbox" style="border-color:#0f6e5633;background:#e1f5ee">
+    <div class="vrow"><span class="pill" style="color:#0f6e56">运行时自动跟进</span></div>
+    <span class="lag ok">♻️ 运行时拉上游正文 —— 不存在「落后」</span>
+    <div class="fnote">依据：源码级确认：运行时拉上游正文（置信 高）</div>
+  </div>
+  <p class="feat">macOS 桌面小组件，每天只给你一条。</p>
+  <div class="tags"><span class="tag">桌面端</span><span class="tag">最省时间</span><span class="tag">能分享</span></div>
+  <div class="foot">
+    <span class="reach ok">3/3 通 · 3803ms</span>
+    <span class="dim">github.com</span>
+    <span class="gate">免费 · 无 Apple 签名，首次需放行（MIT）</span>
+  </div>
+</article>
+<article class="card" data-tags="桌面端,最省时间,不用注册" data-lag="-1" data-speed="5630" data-type="6">
+  <div class="chead">
+    <h3><a href="https://github.com/sinyu1012/shiye-tab" target="_blank" rel="noopener">拾页 Shiye Tab</a></h3>
+    <span class="kind">Chrome 插件</span>
+  </div>
+  <div class="byline">by <a href="https://github.com/sinyu1012" target="_blank" rel="noopener">sinyu1012</a> · 末次改动 2026-10-09</div>
+  <div class="freshbox" style="border-color:#0f6e5633;background:#e1f5ee">
+    <div class="vrow"><span class="pill" style="color:#0f6e56">运行时自动跟进</span></div>
+    <span class="lag ok">♻️ 运行时拉上游正文 —— 不存在「落后」</span>
+    <div class="fnote">依据：源码级确认：运行时拉上游正文（置信 高）</div>
+  </div>
+  <p class="feat">Chrome 新标签页，顺手看一条。</p>
+  <div class="tags"><span class="tag">桌面端</span><span class="tag">最省时间</span><span class="tag">不用注册</span></div>
+  <div class="foot">
+    <span class="reach ok">3/3 通 · 5630ms</span>
+    <span class="dim">github.com</span>
+    <span class="gate">不用注册（MIT）</span>
+  </div>
+</article>
+<article class="card" data-tags="不用注册,无广告,能搜索,给 AI 用" data-lag="0" data-speed="1882" data-type="0">
+  <div class="chead">
+    <h3><a href="https://better.aigcwei.cn/" target="_blank" rel="noopener">better.aigcwei.cn + MCP</a></h3>
+    <span class="kind">网站+MCP</span>
+  </div>
+  <div class="byline">by <a href="https://github.com/Helioswei" target="_blank" rel="noopener">Helioswei</a> · 末次改动 2026-10-12</div>
+  <div class="freshbox" style="border-color:#0f6e5633;background:#e1f5ee">
+    <div class="vrow"><span class="pill" style="color:#0f6e56">已追平上游</span></div>
+    <span class="lag ok">✅ 追平上游 687 条</span>
+    <div class="fnote">依据：实测：读该项目自己的产物文件，数出真实条数（置信 高） · 内容大约停在 0.3 天前</div>
+  </div>
+  <p class="feat">按性价比排序，并同时提供 MCP 接口给 AI 调用。</p>
+  <div class="tags"><span class="tag">不用注册</span><span class="tag">无广告</span><span class="tag">能搜索</span><span class="tag">给 AI 用</span></div>
+  <div class="foot">
+    <span class="reach ok">3/3 通 · 1882ms</span>
+    <span class="dim">腾讯 EdgeOne · 国内节点</span>
+    <span class="gate">不用注册 · 没有广告</span>
+  </div>
+</article>
+<article class="card" data-tags="打卡/进度" data-lag="0" data-speed="6284" data-type="1">
+  <div class="chead">
+    <h3><a href="https://howtolivebetter.net/" target="_blank" rel="noopener">打勾清单</a></h3>
+    <span class="kind">网站</span>
+  </div>
+  <div class="byline">by <a href="https://github.com/littleben" target="_blank" rel="noopener">littleben</a></div>
+  <div class="freshbox" style="border-color:#0f6e5633;background:#e1f5ee">
+    <div class="vrow"><span class="pill" style="color:#0f6e56">已追平上游</span></div>
+    <span class="lag ok">✅ 追平上游 687 条</span>
+    <div class="fnote">依据：页面自述（弱信号，未实测）（置信 低） · 内容大约停在 0.3 天前</div>
+  </div>
+  <p class="feat">把条目变成待办清单，能勾、能收藏。</p>
+  <div class="tags"><span class="tag">打卡/进度</span></div>
+  <div class="foot">
+    <span class="reach ok">3/3 通 · 6284ms</span>
+    <span class="dim">Cloudflare</span>
+    <span class="gate">未标注（源码未公开）</span>
+  </div>
+</article>
+<article class="card" data-tags="不用注册,无广告,打卡/进度" data-lag="10" data-speed="1265" data-type="1">
+  <div class="chead">
+    <h3><a href="https://qingdan.lazyso.com/" target="_blank" rel="noopener">懒人性价性清单</a></h3>
+    <span class="kind">网站</span>
+  </div>
+  <div class="byline">by <a href="https://github.com/lazyvip" target="_blank" rel="noopener">lazyvip</a></div>
+  <div class="freshbox" style="border-color:#8a530033;background:#faeeda">
+    <div class="vrow"><span class="pill" style="color:#8a5300">落后于上游</span></div>
+    <span class="lag warn">⚠️ 落后 10 条<span class="dim">（677/687）</span></span>
+    <div class="fnote">依据：页面自述（弱信号，未实测）（置信 低） · 内容大约停在 2 天前</div>
+  </div>
+  <p class="feat">极简清单形态，只留可执行的动作。</p>
+  <div class="tags"><span class="tag">不用注册</span><span class="tag">无广告</span><span class="tag">打卡/进度</span></div>
+  <div class="foot">
+    <span class="reach ok">3/3 通 · 1265ms</span>
+    <span class="dim">Cloudflare</span>
+    <span class="gate">不用注册 · 没有广告</span>
+  </div>
+</article>
+<article class="card" data-tags="给 AI 用,数据源" data-lag="10" data-speed="6083" data-type="7">
+  <div class="chead">
+    <h3><a href="https://github.com/sin0317/htlb-dataset" target="_blank" rel="noopener">结构化数据集</a></h3>
+    <span class="kind">数据集</span>
+  </div>
+  <div class="byline">by <a href="https://github.com/sin0317" target="_blank" rel="noopener">sin0317</a> · 末次改动 2026-10-12</div>
+  <div class="freshbox" style="border-color:#8a530033;background:#faeeda">
+    <div class="vrow"><span class="pill" style="color:#8a5300">落后于上游</span></div>
+    <span class="lag warn">⚠️ 落后 10 条<span class="dim">（677/687）</span></span>
+    <div class="fnote">依据：实测：读该项目自己的产物文件，数出真实条数（置信 高） · 内容大约停在 2 天前</div>
+  </div>
+  <p class="feat">全量结构化数据集（JSON/CSV/SQLite），自称每日同步。</p>
+  <div class="tags"><span class="tag">给 AI 用</span><span class="tag">数据源</span></div>
+  <div class="foot">
+    <span class="reach ok">3/3 通 · 6083ms</span>
+    <span class="dim">github.com</span>
+    <span class="gate">开放数据（CC BY 4.0 / MIT）</span>
+  </div>
+</article>
+<article class="card" data-tags="手机端,能搜索,能离线" data-lag="11" data-speed="6737" data-type="2">
+  <div class="chead">
+    <h3><a href="https://github.com/HuiTurn/HowToLiveBetter" target="_blank" rel="noopener">微信小程序版</a></h3>
+    <span class="kind">小程序</span>
+  </div>
+  <div class="byline">by <a href="https://github.com/HuiTurn" target="_blank" rel="noopener">HuiTurn</a> · 末次改动 2026-10-12</div>
+  <div class="freshbox" style="border-color:#8a530033;background:#faeeda">
+    <div class="vrow"><span class="pill" style="color:#8a5300">落后于上游</span></div>
+    <span class="lag warn">⚠️ 落后 11 条<span class="dim">（676/687）</span></span>
+    <div class="fnote">依据：实测：读该项目自己的产物文件，数出真实条数（置信 高） · 内容大约停在 2.9 天前</div>
+  </div>
+  <p class="feat">微信小程序：全文搜索、收藏、离线、每日一读。</p>
+  <div class="tags"><span class="tag">手机端</span><span class="tag">能搜索</span><span class="tag">能离线</span></div>
+  <div class="foot">
+    <span class="reach ok">3/3 通 · 6737ms</span>
+    <span class="dim">github.com</span>
+    <span class="gate">微信内访问，无需注册</span>
+  </div>
+</article>
+<article class="card" data-tags="手机端,打卡/进度,给 AI 用" data-lag="15" data-speed="5784" data-type="4">
+  <div class="chead">
+    <h3><a href="https://github.com/llzx373/BetterLifeApp" target="_blank" rel="noopener">BetterLifeApp</a></h3>
+    <span class="kind">Android App</span>
+  </div>
+  <div class="byline">by <a href="https://github.com/llzx373" target="_blank" rel="noopener">llzx373</a> · 末次改动 2026-10-09</div>
+  <div class="freshbox" style="border-color:#8a530033;background:#faeeda">
+    <div class="vrow"><span class="pill" style="color:#8a5300">落后于上游</span></div>
+    <span class="lag warn">⚠️ 落后 15 条<span class="dim">（672/687）</span></span>
+    <div class="fnote">依据：实测：读该项目自己的产物文件，数出真实条数（置信 高） · 内容大约停在 4.2 天前</div>
+  </div>
+  <p class="feat">安卓测试版，内置 AI 问答。</p>
+  <div class="tags"><span class="tag">手机端</span><span class="tag">打卡/进度</span><span class="tag">给 AI 用</span></div>
+  <div class="foot">
+    <span class="reach ok">3/3 通 · 5784ms</span>
+    <span class="dim">github.com</span>
+    <span class="gate">测试版 · AI 问答需自填 API Key</span>
+  </div>
+</article>
+<article class="card" data-tags="手机端,能离线,打卡/进度" data-lag="17" data-speed="18783" data-type="3">
+  <div class="chead">
+    <h3><a href="https://apps.apple.com/cn/app/id6818596108" target="_blank" rel="noopener">行动版 iOS App</a></h3>
+    <span class="kind">iOS App</span>
+  </div>
+  <div class="byline">by <a href="https://github.com/GUGU VITALITY LIMITED" target="_blank" rel="noopener">GUGU VITALITY LIMITED</a></div>
+  <div class="freshbox" style="border-color:#8a530033;background:#faeeda">
+    <div class="vrow"><span class="pill" style="color:#8a5300">落后于上游</span></div>
+    <span class="lag warn">⚠️ 落后 17 条<span class="dim">（670/687）</span></span>
+    <div class="fnote">依据：页面自述（弱信号，未实测）（置信 低） · 内容大约停在 5.1 天前</div>
+  </div>
+  <p class="feat">iOS 行动版，条目 + 打卡一体。</p>
+  <div class="tags"><span class="tag">手机端</span><span class="tag">能离线</span><span class="tag">打卡/进度</span></div>
+  <div class="foot">
+    <span class="reach ok">3/3 通 · 18783ms</span>
+    <span class="dim">daiquiri/5</span>
+    <span class="gate">免费版清单/打卡有数量限制</span>
+  </div>
+</article>
+<article class="card" data-tags="阶段自测,打卡/进度,能搜索" data-lag="33" data-speed="1110" data-type="1">
+  <div class="chead">
+    <h3><a href="https://how2livebetter.net/" target="_blank" rel="noopener">人生阶段指南</a></h3>
+    <span class="kind">网站</span>
+  </div>
+  <div class="byline">by <a href="https://github.com/marsbuildlog" target="_blank" rel="noopener">marsbuildlog</a></div>
+  <div class="freshbox" style="border-color:#8a530033;background:#faeeda">
+    <div class="vrow"><span class="pill" style="color:#8a5300">落后于上游</span></div>
+    <span class="lag warn">⚠️ 落后 33 条<span class="dim">（654/687）</span></span>
+    <div class="fnote">依据：页面自述（弱信号，未实测）（置信 低） · 内容大约停在 9.1 天前</div>
+  </div>
+  <p class="feat">先做人生阶段自测，再只给你那个阶段该看的条目。</p>
+  <div class="tags"><span class="tag">阶段自测</span><span class="tag">打卡/进度</span><span class="tag">能搜索</span></div>
+  <div class="foot">
+    <span class="reach ok">3/3 通 · 1110ms</span>
+    <span class="dim">Cloudflare</span>
+    <span class="gate">阅读免费 · 打卡/复查提醒以后收费</span>
+  </div>
+</article>
+<article class="card" data-tags="不用注册,无广告,游戏化" data-lag="-1" data-speed="1315" data-type="1">
+  <div class="chead">
+    <h3><a href="https://livebetter101.com/" target="_blank" rel="noopener">LiveBetter 101</a></h3>
+    <span class="kind">网站</span>
+  </div>
+  <div class="byline">by <a href="https://github.com/PlatoTheOne" target="_blank" rel="noopener">PlatoTheOne</a></div>
+  <div class="freshbox" style="border-color:#8a530033;background:#faeeda">
+    <div class="vrow"><span class="pill" style="color:#8a5300">落后于上游</span></div>
+    <span class="lag bad">❓ 找不到任何可核验的版本信号</span>
+    <div class="fnote">依据：没有任何可核验的版本信号（置信 低） · 内容大约停在 7.4 天前</div>
+  </div>
+  <p class="feat">把条目拆成 101 天挑战，打卡式推进。</p>
+  <div class="tags"><span class="tag">不用注册</span><span class="tag">无广告</span><span class="tag">游戏化</span></div>
+  <div class="foot">
+    <span class="reach ok">3/3 通 · 1315ms</span>
+    <span class="dim">Cloudflare</span>
+    <span class="gate">不用注册 · 没有广告</span>
+  </div>
+</article>
+<article class="card" data-tags="不用注册,能搜索" data-lag="-1" data-speed="1053" data-type="1">
+  <div class="chead">
+    <h3><a href="https://life.warpnav.com/" target="_blank" rel="noopener">WarpNav 人生手册</a></h3>
+    <span class="kind">网站</span>
+  </div>
+  <div class="byline">by <a href="https://github.com/SatoMini" target="_blank" rel="noopener">SatoMini</a></div>
+  <div class="freshbox" style="border-color:#a32d2d33;background:#fcebeb">
+    <div class="vrow"><span class="pill" style="color:#a32d2d">无版本信号</span></div>
+    <span class="lag bad">❓ 找不到任何可核验的版本信号</span>
+    <div class="fnote">依据：没有任何可核验的版本信号（置信 无）</div>
+  </div>
+  <p class="feat">按场景重新编排的阅读版手册。</p>
+  <div class="tags"><span class="tag">不用注册</span><span class="tag">能搜索</span></div>
+  <div class="foot">
+    <span class="reach ok">3/3 通 · 1053ms</span>
+    <span class="dim">Cloudflare</span>
+    <span class="gate">不用注册 · 页面有广告</span>
+  </div>
+</article>
+<article class="card" data-tags="能搜索,能分享" data-lag="-1" data-speed="2006" data-type="1">
+  <div class="chead">
+    <h3><a href="https://life.xfun.fun/" target="_blank" rel="noopener">手绘地图版</a></h3>
+    <span class="kind">网站</span>
+  </div>
+  <div class="byline">by <a href="https://github.com/sagiriiiiii" target="_blank" rel="noopener">sagiriiiiii</a></div>
+  <div class="freshbox" style="border-color:#a32d2d33;background:#fcebeb">
+    <div class="vrow"><span class="pill" style="color:#a32d2d">无版本信号</span></div>
+    <span class="lag bad">❓ 找不到任何可核验的版本信号</span>
+    <div class="fnote">依据：没有任何可核验的版本信号（置信 无）</div>
+  </div>
+  <p class="feat">把每条建议画成一张生活卡片，可滑动浏览。</p>
+  <div class="tags"><span class="tag">能搜索</span><span class="tag">能分享</span></div>
+  <div class="foot">
+    <span class="reach ok">3/3 通 · 2006ms</span>
+    <span class="dim">Cloudflare</span>
+    <span class="gate">未标注</span>
+  </div>
+</article>
+<article class="card" data-tags="能离线,娱乐" data-lag="11" data-speed="6912" data-type="8">
+  <div class="chead">
+    <h3><a href="https://github.com/robiNeo2045/HowToLiveBetter" target="_blank" rel="noopener">四格漫画 PDF</a></h3>
+    <span class="kind">漫画</span>
+  </div>
+  <div class="byline">by <a href="https://github.com/robiNeo2045" target="_blank" rel="noopener">robiNeo2045</a> · 末次改动 2026-10-10</div>
+  <div class="freshbox" style="border-color:#5f5e5a33;background:#f1efe8">
+    <div class="vrow"><span class="pill" style="color:#5f5e5a">固定快照</span></div>
+    <span class="lag dim2">快照 676 条 · 作者声明不打算自动同步</span>
+    <div class="fnote">依据：实测：读该项目自己的产物文件，数出真实条数（置信 高） · 内容大约停在 2.9 天前</div>
+  </div>
+  <p class="feat">四格漫画 PDF，把条目画出来。</p>
+  <div class="tags"><span class="tag">能离线</span><span class="tag">娱乐</span></div>
+  <div class="foot">
+    <span class="reach ok">3/3 通 · 6912ms</span>
+    <span class="dim">github.com</span>
+    <span class="gate">免费下载 · 无需注册 · 无广告</span>
+  </div>
+</article>
+</div>
+
+<h2>逐项查证明细</h2>
+<p class="h2n">每一行都标清了<b>依据</b>：<b>实测产物</b> = 读该项目自己的产物文件（小程序 bundle、App 的 entries.json、数据集的 stats.json…）数出来的真实条数；<b>页面自述</b> = 只是它自己在页面上写的数字，属弱信号，不能与实测混为一谈；<b>运行时拉取</b> = 它每次打开直接拉上游正文，因此不存在「落后」这个概念。右侧是这台机器抓到的原始证据。</p>
+<div class="panel" style="overflow-x:auto">
+<table>
+<thead><tr><th>项目</th><th>估算依据</th><th>条数</th><th>落后</th><th>抓到的原始证据</th></tr></thead>
+<tbody>
+<tr>
+  <td><b>今日一条</b><div class="dim">macOS 小组件 · mittsommer</div></td>
+  <td>运行时拉取<div class="dim">置信 高</div></td>
+  <td class="num">—</td>
+  <td class="num">跟随</td>
+  <td><div class="ev">RemoteBook.swift 源码级确认：运行时打 api.github.com/repos/eternity4719/... 与 raw.../book/ 拉最新书稿</div><div class="ev">源码注释原文：「内置的那份数据是编译时快照，永远能出内容。这里只负责『书更新了，跟上去』」→ 不存在「落后」</div><div class="ev">产物文件：Sources/RemoteBook.swift</div></td>
+</tr>
+<tr>
+  <td><b>拾页 Shiye Tab</b><div class="dim">Chrome 插件 · sinyu1012</div></td>
+  <td>运行时拉取<div class="dim">置信 高</div></td>
+  <td class="num">—</td>
+  <td class="num">跟随</td>
+  <td><div class="ev">src/sources.js 里 LIFE_REPO 指向 raw.githubusercontent.com/eternity4719/HowToLiveBetter，fetchText() 运行时拉正文并按 `### ` 解析 → 不存在「落后」</div><div class="ev">该仓库 docs/VERIFICATION.md 自证：「真实网络曾读取 HowToLiveBetter 原文」（按需拉订阅章节，非全量）</div><div class="ev">产物文件：src/sources.js</div></td>
+</tr>
+<tr>
+  <td><b>better.aigcwei.cn + MCP</b><div class="dim">网站+MCP · Helioswei</div></td>
+  <td>实测产物 <span class="dim">(另有页面自述 677)</span><div class="dim">置信 高</div></td>
+  <td class="num">687</td>
+  <td class="num">0 ✅</td>
+  <td><div class="ev">sync/fingerprint.json 自带 commit=df6df704、count=687，另有逐条哈希 687 条</div><div class="ev">它的 commit 与上游当前 HEAD（df6df704）完全一致 → 逐条内容已对齐，不存在「落后」</div><div class="ev">仓库同时带 tools/check_drift.py 与 tools/check_verbatim.py —— 该项目自带上游漂移检测与逐字校验</div></td>
+</tr>
+<tr>
+  <td><b>打勾清单</b><div class="dim">网站 · littleben</div></td>
+  <td>页面自述 <span class="dim">（弱）</span><div class="dim">置信 低</div></td>
+  <td class="num">687</td>
+  <td class="num">0 ✅</td>
+  <td><div class="ev">sitemap.xml：418 个 URL，lastmod 2026-10-11</div><div class="ev">页面文案自述 687 条（全文出现的其他数字：687）—— 仅作交叉参考，不是实测</div><div class="ev">该条数首次出现在上游是 48754739（2026-10-12 10:48）→ 若内容停在那里，则落后约 0.3 天</div></td>
+</tr>
+<tr>
+  <td><b>懒人性价性清单</b><div class="dim">网站 · lazyvip</div></td>
+  <td>页面自述 <span class="dim">（弱）</span><div class="dim">置信 低</div></td>
+  <td class="num">677</td>
+  <td class="num">10 ⚠️</td>
+  <td><div class="ev">sitemap.xml：712 个 URL（无 lastmod）</div><div class="ev">页面文案自述 677 条（全文出现的其他数字：677）—— 仅作交叉参考，不是实测</div><div class="ev">该条数首次出现在上游是 769dfc62（2026-10-10 17:52）→ 若内容停在那里，则落后约 2 天</div></td>
+</tr>
+<tr>
+  <td><b>结构化数据集</b><div class="dim">数据集 · sin0317</div></td>
+  <td>实测产物 <span class="dim">(非页面自述)</span><div class="dim">置信 高</div></td>
+  <td class="num">677</td>
+  <td class="num">10 ⚠️</td>
+  <td><div class="ev">data/stats.json 自带 upstream_commit=e4d6db45、synced_at=2026-10-12T01:18:59Z、entries=677（34 节）</div><div class="ev">产物文件：data/stats.json</div><div class="ev">仓库最后提交 2026-10-12T01:18</div></td>
+</tr>
+<tr>
+  <td><b>微信小程序版</b><div class="dim">小程序 · HuiTurn</div></td>
+  <td>实测产物 <span class="dim">(非页面自述)</span><div class="dim">置信 高</div></td>
+  <td class="num">676</td>
+  <td class="num">11 ⚠️</td>
+  <td><div class="ev">data/steps.js（978 KB）里 "title" 字段 676 个、"index" 676 个 → 实际收录 676 条</div><div class="ev">产物文件：pagesA/data/steps.js</div><div class="ev">仓库最后提交 2026-10-12T08:30</div></td>
+</tr>
+<tr>
+  <td><b>BetterLifeApp</b><div class="dim">Android App · llzx373</div></td>
+  <td>实测产物 <span class="dim">(非页面自述)</span><div class="dim">置信 高</div></td>
+  <td class="num">672</td>
+  <td class="num">15 ⚠️</td>
+  <td><div class="ev">entries.json 顶部自带 contentVersion=0cec2b3、generatedAt=2026-10-08T07:03:18+00:00；34 节，各节条数合计 672 条</div><div class="ev">产物文件：app/src/main/assets/entries.json</div><div class="ev">仓库最后提交 2026-10-09T11:15</div></td>
+</tr>
+<tr>
+  <td><b>行动版 iOS App</b><div class="dim">iOS App · GUGU VITALITY LIMITED</div></td>
+  <td>页面自述 <span class="dim">（弱）</span><div class="dim">置信 低</div></td>
+  <td class="num">670</td>
+  <td class="num">17 ⚠️</td>
+  <td><div class="ev">页面文案自述 670 条（全文出现的其他数字：670）—— 仅作交叉参考，不是实测</div><div class="ev">该条数首次出现在上游是 72927368（2026-10-07 15:43）→ 若内容停在那里，则落后约 5.1 天</div></td>
+</tr>
+<tr>
+  <td><b>人生阶段指南</b><div class="dim">网站 · marsbuildlog</div></td>
+  <td>页面自述 <span class="dim">（弱）</span><div class="dim">置信 低</div></td>
+  <td class="num">654</td>
+  <td class="num">33 ⚠️</td>
+  <td><div class="ev">sitemap.xml：714 个 URL（无 lastmod）</div><div class="ev">页面文案自述 654 条（全文出现的其他数字：654 / 1566 / 121 / 258 / 267 / 211 / 167 / 630）—— 仅作交叉参考，不是实测</div><div class="ev">该条数首次出现在上游是 54620be2（2026-10-03 15:45）→ 若内容停在那里，则落后约 9.1 天</div></td>
+</tr>
+<tr>
+  <td><b>LiveBetter 101</b><div class="dim">网站 · PlatoTheOne</div></td>
+  <td>—<div class="dim">置信 低</div></td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td><div class="ev">sitemap.xml：1 个 URL，lastmod 2026-10-05</div></td>
+</tr>
+<tr>
+  <td><b>WarpNav 人生手册</b><div class="dim">网站 · SatoMini</div></td>
+  <td>—<div class="dim">置信 无</div></td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td><div class="ev">sitemap.xml: HTTP 404</div></td>
+</tr>
+<tr>
+  <td><b>手绘地图版</b><div class="dim">网站 · sagiriiiiii</div></td>
+  <td>—<div class="dim">置信 无</div></td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td><div class="ev">sitemap.xml 是 SPA 的 HTML 兜底（不是真 sitemap）</div></td>
+</tr>
+<tr>
+  <td><b>四格漫画 PDF</b><div class="dim">漫画 · robiNeo2045</div></td>
+  <td>实测产物 <span class="dim">(非页面自述)</span><div class="dim">置信 高</div></td>
+  <td class="num">676</td>
+  <td class="num">快照</td>
+  <td><div class="ev">它是上游的 fork（parent = eternity4719/HowToLiveBetter），book/ 是完整转存：34/34 个文件取到，按官方口径数出 ### 标题 676 条</div><div class="ev">该条数首次出现在上游是 5a36eaf8（2026-10-09 19:40）→ 若内容停在那里，则落后约 2.9 天</div></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h2>同步状态 badge（动态接口）</h2>
+<p class="h2n">这是本项目想推给整个生态的东西：一个<b>可机器核验</b>的「我同步到哪一版」标记。<b>目前 14 个项目里有 3 个自带可核验的版本号</b> —— better.aigcwei.cn 的 <code>sync/fingerprint.json</code> 直接写了上游 commit 与逐条哈希、BetterLifeApp 的 <code>entries.json</code> 带 <code>contentVersion</code>、htlb-dataset 的 <code>stats.json</code> 带 <code>upstream_commit</code>。这说明<b>「自报版本」的习惯在生态里已经存在，缺的只是统一格式和现成的读取工具</b>，而不是要去 12 个仓库挨个提需求。下面每一条都能直接贴进 README —— 它指向本站的<b>动态接口</b>，上游一更新、数字自动变，不用谁去手动改。</p>
+<div class="panel">
+<div class="brow">
+  <div class="bmeta"><b>今日一条</b><span class="dim">挂上说明是运行时跟随</span></div>
+  <div class="bsvg"><img src="/badge/mittsommer-daily-life-tip.svg" alt="今日一条 同步状态" loading="lazy" height="20"></div>
+  <code class="bcode">![同步状态](https://htlb.strangeyu.xyz/badge/mittsommer-daily-life-tip.svg)</code>
+</div>
+<div class="brow">
+  <div class="bmeta"><b>拾页 Shiye Tab</b><span class="dim">挂上说明是运行时跟随</span></div>
+  <div class="bsvg"><img src="/badge/sinyu1012-shiye-tab.svg" alt="拾页 Shiye Tab 同步状态" loading="lazy" height="20"></div>
+  <code class="bcode">![同步状态](https://htlb.strangeyu.xyz/badge/sinyu1012-shiye-tab.svg)</code>
+</div>
+<div class="brow">
+  <div class="bmeta"><b>better.aigcwei.cn + MCP</b><span class="dim">建议挂：显示已同步</span></div>
+  <div class="bsvg"><img src="/badge/better-aigcwei-cn.svg" alt="better.aigcwei.cn + MCP 同步状态" loading="lazy" height="20"></div>
+  <code class="bcode">![同步状态](https://htlb.strangeyu.xyz/badge/better-aigcwei-cn.svg)</code>
+</div>
+<div class="brow">
+  <div class="bmeta"><b>打勾清单</b><span class="dim">建议挂：显示已同步</span></div>
+  <div class="bsvg"><img src="/badge/howtolivebetter-net.svg" alt="打勾清单 同步状态" loading="lazy" height="20"></div>
+  <code class="bcode">![同步状态](https://htlb.strangeyu.xyz/badge/howtolivebetter-net.svg)</code>
+</div>
+<div class="brow">
+  <div class="bmeta"><b>懒人性价性清单</b><span class="dim">挂上会暴露落后，慎用</span></div>
+  <div class="bsvg"><img src="/badge/qingdan-lazyso-com.svg" alt="懒人性价性清单 同步状态" loading="lazy" height="20"></div>
+  <code class="bcode">![同步状态](https://htlb.strangeyu.xyz/badge/qingdan-lazyso-com.svg)</code>
+</div>
+<div class="brow">
+  <div class="bmeta"><b>结构化数据集</b><span class="dim">挂上会暴露落后，慎用</span></div>
+  <div class="bsvg"><img src="/badge/sin0317-htlb-dataset.svg" alt="结构化数据集 同步状态" loading="lazy" height="20"></div>
+  <code class="bcode">![同步状态](https://htlb.strangeyu.xyz/badge/sin0317-htlb-dataset.svg)</code>
+</div>
+<div class="brow">
+  <div class="bmeta"><b>微信小程序版</b><span class="dim">挂上会暴露落后，慎用</span></div>
+  <div class="bsvg"><img src="/badge/huiturn-howtolivebetter.svg" alt="微信小程序版 同步状态" loading="lazy" height="20"></div>
+  <code class="bcode">![同步状态](https://htlb.strangeyu.xyz/badge/huiturn-howtolivebetter.svg)</code>
+</div>
+<div class="brow">
+  <div class="bmeta"><b>BetterLifeApp</b><span class="dim">挂上会暴露落后，慎用</span></div>
+  <div class="bsvg"><img src="/badge/llzx373-betterlifeapp.svg" alt="BetterLifeApp 同步状态" loading="lazy" height="20"></div>
+  <code class="bcode">![同步状态](https://htlb.strangeyu.xyz/badge/llzx373-betterlifeapp.svg)</code>
+</div>
+<div class="brow">
+  <div class="bmeta"><b>行动版 iOS App</b><span class="dim">挂上会暴露落后，慎用</span></div>
+  <div class="bsvg"><img src="/badge/apps-apple-com-id6818596108.svg" alt="行动版 iOS App 同步状态" loading="lazy" height="20"></div>
+  <code class="bcode">![同步状态](https://htlb.strangeyu.xyz/badge/apps-apple-com-id6818596108.svg)</code>
+</div>
+<div class="brow">
+  <div class="bmeta"><b>人生阶段指南</b><span class="dim">挂上会暴露落后，慎用</span></div>
+  <div class="bsvg"><img src="/badge/how2livebetter-net.svg" alt="人生阶段指南 同步状态" loading="lazy" height="20"></div>
+  <code class="bcode">![同步状态](https://htlb.strangeyu.xyz/badge/how2livebetter-net.svg)</code>
+</div>
+<div class="brow">
+  <div class="bmeta"><b>LiveBetter 101</b><span class="dim">挂上会暴露落后，慎用</span></div>
+  <div class="bsvg"><img src="/badge/livebetter101-com.svg" alt="LiveBetter 101 同步状态" loading="lazy" height="20"></div>
+  <code class="bcode">![同步状态](https://htlb.strangeyu.xyz/badge/livebetter101-com.svg)</code>
+</div>
+<div class="brow">
+  <div class="bmeta"><b>WarpNav 人生手册</b><span class="dim">无同步声明</span></div>
+  <div class="bsvg"><img src="/badge/life-warpnav-com.svg" alt="WarpNav 人生手册 同步状态" loading="lazy" height="20"></div>
+  <code class="bcode">![同步状态](https://htlb.strangeyu.xyz/badge/life-warpnav-com.svg)</code>
+</div>
+<div class="brow">
+  <div class="bmeta"><b>手绘地图版</b><span class="dim">无同步声明</span></div>
+  <div class="bsvg"><img src="/badge/life-xfun-fun.svg" alt="手绘地图版 同步状态" loading="lazy" height="20"></div>
+  <code class="bcode">![同步状态](https://htlb.strangeyu.xyz/badge/life-xfun-fun.svg)</code>
+</div>
+<div class="brow">
+  <div class="bmeta"><b>四格漫画 PDF</b><span class="dim">挂上说明是快照</span></div>
+  <div class="bsvg"><img src="/badge/robineo2045-comics.svg" alt="四格漫画 PDF 同步状态" loading="lazy" height="20"></div>
+  <code class="bcode">![同步状态](https://htlb.strangeyu.xyz/badge/robineo2045-comics.svg)</code>
+</div>
+</div>
+<p class="h2n" style="margin-top:14px">接口形态：<code>/badge/&lt;项目 slug&gt;.svg</code> · 机器可读：<code>/api/status.json</code> · 数据接口每次请求会去上游取一次最新条目数（边缘缓存 10 分钟），所以 badge 上的数字是<b>活的</b>。</p>
+
+<h2>为什么需要这个页面：GitHub 墙内实测</h2>
+<p class="h2n">本机裸连（未开梯子）各通道各 5 轮取中位数。5 轮样本，2026-10-12 采集。</p>
+<div class="panel">
+<table>
+<thead><tr><th>通道</th><th>成功率</th><th>中位延迟</th><th>p90</th><th>波动（max−min）</th></tr></thead>
+<tbody>
+<tr><td>GitHub 仓库页（HTML）</td><td class="num">5/5</td><td class="num warn">5341 ms</td><td class="num">18518 ms</td><td class="num bad">14345 ms</td></tr>
+<tr><td>GitHub 子目录页</td><td class="num">5/5</td><td class="num warn">4477 ms</td><td class="num">16871 ms</td><td class="num bad">13318 ms</td></tr>
+<tr><td>raw.githubusercontent 单文件</td><td class="num">5/5</td><td class="num ok">1120 ms</td><td class="num">2752 ms</td><td class="num ">2167 ms</td></tr>
+<tr><td>api.github.com</td><td class="num">5/5</td><td class="num ok">429 ms</td><td class="num">2489 ms</td><td class="num ">2292 ms</td></tr>
+<tr><td>codeload 源码包</td><td class="num">5/5</td><td class="num warn">4566 ms</td><td class="num">15027 ms</td><td class="num bad">11655 ms</td></tr>
+<tr><td>GitHub Pages（上游在线检索页）</td><td class="num">5/5</td><td class="num ok">2197 ms</td><td class="num">4713 ms</td><td class="num ">3159 ms</td></tr>
+<tr><td>【对照】Cloudflare 站 life.xfun.fun</td><td class="num">5/5</td><td class="num ok">1769 ms</td><td class="num">2714 ms</td><td class="num ">1110 ms</td></tr>
+<tr><td>【对照】国内 CDN 站 better.aigcwei.cn</td><td class="num">5/5</td><td class="num ok">974 ms</td><td class="num">2019 ms</td><td class="num ">1216 ms</td></tr>
+</tbody>
+</table>
+<p class="h2n" style="margin:14px 0 0">读法：<b>成功率全是 100%</b> —— 所以问题不是「打不开」，而是<b>「打开要等多久、以及每次都不一样」</b>。网页通道（普通人唯一的入口）中位 5.3 秒、最坏 18.5 秒、波动 14.3 秒；开发者通道（api / raw）反而很快。这就是「能上，但习惯开梯子」的物理原因。</p>
+</div>
+
+<h2>方法与局限（先读这段再信上面的表）</h2>
+<ol>
+<li><b>只用四条「能落地」的路子，不猜。</b>① <b>实测产物</b>：读项目自己的产物文件（小程序 bundle、App 的 <code>entries.json</code>、数据集的 <code>stats.json</code>…），按上游官方口径（<code>book/*.md</code> 里的 <code>###</code> 标题数）数出真实条数；② <b>fork 对比</b>：它若是上游 fork，直接逐文件数它的 <code>book/*.md</code>；③ <b>sitemap</b>：读 <code>sitemap.xml</code> 的 <code>lastmod</code> 与 URL 数（弱信号）；④ <b>运行时</b>：源码级确认它每次打开直接拉上游原文 → 不存在「落后」，从落后名单里剔除。每行的依据都写在表里，<b>实测与页面自述严格分开</b>。</li>
+<li><b>内容级探针试过了，结论是这条路不通，如实报告。</b>我们用上游最近 14 次提交新增的 33 条条目标题原文，去各站实际内容里做精确匹配，13/14 项 <b>0 命中</b>。定向诊断查出两个互相独立的原因：① 衍生站普遍<b>改写标题</b>（上游「家里老人遛狗，把牵绳握在手心……」在站上只剩「家里老人」能匹配）；② 更根本的是<b>正文压根不在页面或主 bundle 里</b> —— howtolivebetter.net 的 638 KB bundle 对上游前 60 条老条目 <b>0/60 命中</b>，说明它按需分块或运行时拉取，抓 <code>&lt;script src&gt;</code> 根本碰不到正文。<b>所以本页不拿探针当证据。</b></li>
+<li><b>「落后多少条」用官方口径复算过。</b>上游条目数由 <code>git log -p -- book/</code> 逐次累积统计得出（本机复算 <b>687 条</b>，共 398 次提交），再与各项目的实测/自述条数相减。两个输入都能独立复核。</li>
+<li><b>「落后 N 天」有粒度盲区。</b>687 条是某天某一刻达到的，但当天很多提交只改文档、不改条目数。准确说法是：<b>「若内容停在达到 N 条的那次提交，则内容落后 N 天」</b>。要更准只能逐站 diff 正文，本轮没做。</li>
+<li><b>「运行时自动跟进」不是我们替它保证的，是读了源码。</b>例如 daily-life-tip 的 <code>RemoteBook.swift</code> 里写着「内置的那份数据是编译时快照，永远能出内容。这里只负责『书更新了，跟上去』」；shiye-tab 的 <code>src/sources.js</code> 每次打开拉 <code>raw.githubusercontent.com/eternity4719/…</code> 并按 <code>### </code> 解析。这类项目<b>不该被算作「落后」</b>。</li>
+<li><b>「无版本信号」不代表内容旧。</b>它只代表该站<b>没有提供任何可核验的版本信号</b> —— 这本身就是本页要暴露的问题。</li>
+<li>「门槛」一列<b>照抄上游 <code>衍生项目.md</code> 的原文口径</b>，标「未标注」= 原文也没写，<b>非本站核验</b>。可达性、延迟、CDN、条目数均为实测。</li>
+<li>可达性是<b>单机单时点</b>结论。Cloudflare 站在国内「时通时不通」，探活全通只说明<b>此刻</b>通畅。本站不托管任何正文，只做指路。</li>
+<li>本页<b>不转载正文、不开评论区</b>。正文版权归上游及各衍生作者，有出入时以 <a href="https://github.com/eternity4719/HowToLiveBetter" target="_blank" rel="noopener">上游中文原文</a> 为准（CC BY 4.0）。</li>
+<li><b>数据是活的，但不是秒级。</b>本站 Worker 每次请求会去上游取一次最新条目数（边缘缓存 10 分钟）；完整的逐项重算由 <b>GitHub Actions 每天跑一次</b>，结果回灌进本站的 KV，页脚会显示上次重算时间。</li>
+</ol>
+
+<footer>
+上游：<a href="https://github.com/eternity4719/HowToLiveBetter" target="_blank" rel="noopener">eternity4719/HowToLiveBetter</a> · CC BY 4.0 · 60,855 ★ / 5,060 forks · 最新提交 <code>df6df704</code>（2026/10/12 18:04:49）<br>
+本站由 <code>fetch-upstream.sh</code>（取上游 git 历史）→ <code>verify-upstream.mjs</code> / <code>verify-ecosystem.mjs</code>（查证）→ <code>build-site.mjs</code>（渲染）→ <code>deploy.mjs</code>（部署到 Cloudflare Worker）串成，生成于 2026/10/13 01:10:12。<br>
+逐项重算由 GitHub Actions 每日自动执行并回灌本站数据层；最近一次：<b id="crawlAt">（随 /api/status.json 实时填入）</b>。聚合与查证由 Strange 维护。
+</footer>
+</div>
+
+<script>
+(function(){
+  var grid=document.getElementById('grid');
+  var cards=Array.prototype.slice.call(grid.querySelectorAll('.card'));
+  var cnt=document.getElementById('cnt');
+  var activeTags=[];
+  var sortKey='fresh';
+
+  function apply(){
+    var shown=0;
+    cards.forEach(function(c){
+      var tags=(c.getAttribute('data-tags')||'').split(',').filter(Boolean);
+      var okTag=activeTags.every(function(t){return tags.indexOf(t)>=0;});
+      c.style.display=okTag?'':'none';
+      if(okTag)shown++;
+    });
+    cnt.textContent=shown;
+    var vis=cards.slice().sort(function(a,b){
+      if(sortKey==='speed')return (+a.dataset.speed)-(+b.dataset.speed);
+      if(sortKey==='type')return (+a.dataset.type)-(+b.dataset.type);
+      if(sortKey==='lag'){var x=+a.dataset.lag,y=+b.dataset.lag;if(x<0)x=-2;if(y<0)y=-2;return y-x;}
+      var x=+a.dataset.lag,y=+b.dataset.lag;
+      if(x<0)x=9999;if(y<0)y=9999;
+      return x-y;
+    });
+    vis.forEach(function(c){grid.appendChild(c);});
+  }
+
+  Array.prototype.slice.call(document.querySelectorAll('.chip[data-tag]')).forEach(function(b){
+    b.addEventListener('click',function(){
+      var t=b.getAttribute('data-tag');
+      var i=activeTags.indexOf(t);
+      if(i>=0){activeTags.splice(i,1);b.classList.remove('on');}
+      else{activeTags.push(t);b.classList.add('on');}
+      apply();
+    });
+  });
+  document.getElementById('clr').addEventListener('click',function(){
+    activeTags=[];
+    Array.prototype.slice.call(document.querySelectorAll('.chip[data-tag]')).forEach(function(b){b.classList.remove('on');});
+    apply();
+  });
+  Array.prototype.slice.call(document.querySelectorAll('.chip[data-sort]')).forEach(function(b){
+    b.addEventListener('click',function(){
+      Array.prototype.slice.call(document.querySelectorAll('.chip[data-sort]')).forEach(function(x){x.classList.remove('on');});
+      b.classList.add('on');
+      sortKey=b.getAttribute('data-sort');
+      apply();
+    });
+  });
+  apply();
+
+  // 动态数据：拿到实时上游条目数后回填（失败则保持构建期的快照值）
+  fetch('/api/status.json').then(function(r){return r.json();}).then(function(d){
+    if(!d)return;
+    var n=document.querySelector('#upn');
+    if(n&&d.upstream)n.textContent=d.upstream.entries;
+    var c=document.querySelector('#crawlAt');
+    if(c)c.textContent=d.lastCrawlAt?new Date(d.lastCrawlAt).toLocaleString('zh-CN',{hour12:false}):'尚未回灌，当前显示的是部署时快照';
+  }).catch(function(){});
+})();
+</script>
+</body>
+</html>

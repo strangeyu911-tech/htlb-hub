@@ -1,0 +1,656 @@
+{
+ "generatedAt": "2026-10-12T14:20:56.779Z",
+ "upstream": {
+  "stars": 60855,
+  "forks": 5060,
+  "license": "CC-BY-4.0",
+  "created": "2026-09-07T01:53:36Z",
+  "pushed": "2026-10-12T10:07:32Z",
+  "size": 17818,
+  "homepage": "https://eternity4719.github.io/HowToLiveBetter/",
+  "latestSha": "df6df704c8f364b936528ae1e1e22e47e4f0b274",
+  "latestCommitAt": "2026-10-12T10:04:49Z",
+  "latestCommitMsg": "检索页加「我的情况」筛选，81 条标上适用人群（#122）",
+  "derivativesMdChars": 2637,
+  "derivativesMdLinks": 28,
+  "fingerprint": {
+   "条目数": "687",
+   "证据分级": null,
+   "原始文献": null,
+   "章节数": 3
+  }
+ },
+ "derived": [
+  {
+   "id": "howtolivebetter.net",
+   "name": "打勾清单",
+   "author": "littleben",
+   "kind": "网站",
+   "gh": null,
+   "url": "https://howtolivebetter.net/",
+   "note": "加待办、标记做到没有、收藏",
+   "probes": [
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 7262,
+     "ip": "172.67.173.180",
+     "cdn": "Cloudflare",
+     "bytes": 402093
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 5586,
+     "ip": "172.67.173.180",
+     "cdn": "Cloudflare",
+     "bytes": 402093
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 6004,
+     "ip": "172.67.173.180",
+     "cdn": "Cloudflare",
+     "bytes": 402093
+    }
+   ],
+   "signals": [
+    "条目数出现: 687 条",
+    "页面日期: 2026-10-01 / 2026-10-12",
+    "title: 高性价比人生指南",
+    "含「证据」字段"
+   ]
+  },
+  {
+   "id": "life.warpnav.com",
+   "name": "WarpNav 人生手册",
+   "author": "SatoMini",
+   "kind": "网站",
+   "url": "https://life.warpnav.com/",
+   "note": "按生活场景进入、搜索筛选、收藏导入导出、接着上次读；不用注册；页面有广告",
+   "probes": [
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 1435,
+     "ip": "172.67.208.120",
+     "cdn": "Cloudflare",
+     "bytes": 31898
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 921,
+     "ip": "172.67.208.120",
+     "cdn": "Cloudflare",
+     "bytes": 31898
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 802,
+     "ip": "172.67.208.120",
+     "cdn": "Cloudflare",
+     "bytes": 31898
+    }
+   ],
+   "gh": null,
+   "signals": [
+    "title: WarpNav 人生手册｜高性价比人生指南阅读与实用生活建议"
+   ]
+  },
+  {
+   "id": "life.xfun.fun",
+   "name": "手绘地图版",
+   "author": "sagiriiiiii",
+   "kind": "网站",
+   "url": "https://life.xfun.fun/",
+   "note": "各节画成可拖动地图，每条是可翻面卡片，支持拼音搜索和生成分享海报",
+   "probes": [
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 2733,
+     "ip": "104.21.64.16",
+     "cdn": "Cloudflare",
+     "bytes": 102963
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 1728,
+     "ip": "104.21.64.16",
+     "cdn": "Cloudflare",
+     "bytes": 102963
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 1557,
+     "ip": "104.21.64.16",
+     "cdn": "Cloudflare",
+     "bytes": 102963
+    }
+   ],
+   "gh": null,
+   "signals": [
+    "title: 高性价比人生指南 · 676 张人生卡片",
+    "含「证据」字段",
+    "★ 含上游证据分级计数 A450/B190/C47"
+   ]
+  },
+  {
+   "id": "how2livebetter.net",
+   "name": "人生阶段指南",
+   "author": "marsbuildlog",
+   "kind": "网站",
+   "url": "https://how2livebetter.net/",
+   "note": "按五个阶段重排；处境自测、行动清单、每日打卡；阅读免费，打卡/复查提醒以后收费",
+   "probes": [
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 1629,
+     "ip": "172.67.168.29",
+     "cdn": "Cloudflare",
+     "bytes": 25413
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 614,
+     "ip": "172.67.168.29",
+     "cdn": "Cloudflare",
+     "bytes": 25413
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 1088,
+     "ip": "172.67.168.29",
+     "cdn": "Cloudflare",
+     "bytes": 25413
+    }
+   ],
+   "gh": null,
+   "signals": [
+    "条目数出现: 654 条 / 1566 条 / 121 条 / 258 条 / 267 条 / 211 条",
+    "页面日期: 2026-10-03",
+    "title: 高性价比人生指南 · 人生阶段版 — 按你的人生阶段, 只看最有用的建议",
+    "含「证据」字段"
+   ]
+  },
+  {
+   "id": "better.aigcwei.cn",
+   "name": "better.aigcwei.cn + MCP",
+   "author": "Helioswei",
+   "kind": "网站+MCP",
+   "url": "https://better.aigcwei.cn/",
+   "ghRepo": "Helioswei/HowToLiveBetter-Kit",
+   "note": "按节/按场景读、检索全部条目；MCP 装进 Cursor/Claude Code 后助手回答前先查本书并注明第几节第几条，可按性价比/成本/证据等级/收益筛选；不用注册、没有广告",
+   "probes": [
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 3833,
+     "ip": "43.174.246.106",
+     "cdn": "edgeone makers",
+     "bytes": 17368
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 446,
+     "ip": "43.174.246.106",
+     "cdn": "edgeone makers",
+     "bytes": 17368
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 1366,
+     "ip": "43.174.246.106",
+     "cdn": "edgeone makers",
+     "bytes": 17368
+    }
+   ],
+   "gh": {
+    "stars": 1,
+    "forks": 0,
+    "pushed_at": "2026-10-12T11:48:06Z",
+    "created_at": "2026-10-08T16:57:46Z",
+    "archived": false,
+    "license": "MIT",
+    "desc": "《高性价比人生指南》的 MCP 服务：让 AI 助手先查这本书的近 700 条循证建议再回答，并注明出自第几节第几条。附国内可访问的静态站工具与自动同步上游。代码 MIT，正文 CC BY 4.0 原样转载（未作改动）。",
+    "lastCommitAt": "2026-10-12T11:48:05Z",
+    "lastCommitMsg": "chore(deploy): 触发 Makers 重新构建（产物已更新，上游 df6df704c8）"
+   },
+   "signals": [
+    "条目数出现: 677 条 / 114 条",
+    "title: 高性价比人生指南 · 按性价比排序的 677 条建议",
+    "含「证据」字段"
+   ]
+  },
+  {
+   "id": "qingdan.lazyso.com",
+   "name": "懒人性价性清单",
+   "author": "lazyvip",
+   "kind": "网站",
+   "url": "https://qingdan.lazyso.com/",
+   "note": "按「0元、不费毅力、收益大、证据A」组合筛选；打勾记进度、每日一条；不用注册、无广告",
+   "probes": [
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 2432,
+     "ip": "172.67.133.160",
+     "cdn": "Cloudflare",
+     "bytes": 12028
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 873,
+     "ip": "172.67.133.160",
+     "cdn": "Cloudflare",
+     "bytes": 12028
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 489,
+     "ip": "172.67.133.160",
+     "cdn": "Cloudflare",
+     "bytes": 12028
+    }
+   ],
+   "gh": null,
+   "signals": [
+    "条目数出现: 677 条",
+    "title: 性价比人生·懒人清单 · 高性价比人生指南衍生站",
+    "含「证据」字段"
+   ]
+  },
+  {
+   "id": "livebetter101.com",
+   "name": "LiveBetter 101",
+   "author": "PlatoTheOne",
+   "kind": "网站",
+   "url": "https://livebetter101.com/",
+   "note": "闯关游戏：建议改编成生活场景选择题，分急救/钱包/时间/关系/安全几块练；不用注册、无广告",
+   "probes": [
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 2533,
+     "ip": "172.67.196.6",
+     "cdn": "Cloudflare",
+     "bytes": 21065
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 690,
+     "ip": "172.67.196.6",
+     "cdn": "Cloudflare",
+     "bytes": 21065
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 721,
+     "ip": "172.67.196.6",
+     "cdn": "Cloudflare",
+     "bytes": 21065
+    }
+   ],
+   "gh": null,
+   "signals": [
+    "title: 高性价比人生指南：真实生活技能挑战｜LiveBetter 101"
+   ]
+  },
+  {
+   "id": "HuiTurn/HowToLiveBetter",
+   "name": "微信小程序版",
+   "author": "HuiTurn",
+   "kind": "小程序",
+   "ghRepo": "HuiTurn/HowToLiveBetter",
+   "note": "分类、收藏、每日一读、全文搜索，离线可用",
+   "probes": [
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 15389,
+     "ip": "172.182.252.133",
+     "cdn": "github.com",
+     "bytes": 332989
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 2673,
+     "ip": "172.182.252.133",
+     "cdn": "github.com",
+     "bytes": 332989
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 2149,
+     "ip": "172.182.252.133",
+     "cdn": "github.com",
+     "bytes": 332985
+    }
+   ],
+   "gh": {
+    "stars": 110,
+    "forks": 8,
+    "pushed_at": "2026-10-12T08:30:23Z",
+    "created_at": "2026-09-29T10:23:45Z",
+    "archived": false,
+    "license": "CC-BY-4.0",
+    "desc": "人生指南库 · 高性价比人生指南小程序版；收录《高性价比人生指南》687 条循证建议，支持全文搜索、收藏、离线阅读、每日一读",
+    "lastCommitAt": "2026-10-12T08:29:33Z",
+    "lastCommitMsg": "chore(mine): 隐藏赞助小程序入口（tip-panel / pay 逻辑保留，便于日后恢复）"
+   },
+   "signals": [
+    "条目数出现: 687 条",
+    "页面日期: 2026-09-29",
+    "title: GitHub - HuiTurn/HowToLiveBetter: 人生指南库 · 高性价比人生指南小程序版；收录《高性价比人生指南》687 条循证建议，支持全文搜索、收藏、离线阅读、每日一读 · GitHub",
+    "含「证据」字段"
+   ]
+  },
+  {
+   "id": "apps.apple.com/id6818596108",
+   "name": "行动版 iOS App",
+   "author": "GUGU VITALITY LIMITED",
+   "kind": "iOS App",
+   "url": "https://apps.apple.com/cn/app/id6818596108",
+   "note": "左右滑卡片决定做不做，做一次的进清单，要重复的设打卡，离线可用；免费版清单/打卡有数量限制",
+   "probes": [
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 8247,
+     "ip": "151.101.3.6",
+     "cdn": "daiquiri/5",
+     "bytes": 409600
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 9632,
+     "ip": "151.101.3.6",
+     "cdn": "daiquiri/5",
+     "bytes": 409600
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 38470,
+     "ip": "151.101.3.6",
+     "cdn": "daiquiri/5",
+     "bytes": 418368
+    }
+   ],
+   "gh": null,
+   "signals": [
+    "条目数出现: 670条 / 670 条",
+    "页面日期: 2026-10-07 / 2026-10-08 / 2026-10-09",
+    "title: ‎高性价比人生指南行动版 App - App Store"
+   ]
+  },
+  {
+   "id": "llzx373/BetterLifeApp",
+   "name": "BetterLifeApp",
+   "author": "llzx373",
+   "kind": "Android App",
+   "ghRepo": "llzx373/BetterLifeApp",
+   "note": "按个人情况推荐、每日打卡、条目库；AI 问答要自填 API Key；测试版，内置条目较早",
+   "probes": [
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 8460,
+     "ip": "172.182.252.133",
+     "cdn": "github.com",
+     "bytes": 303030
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 4669,
+     "ip": "172.182.252.133",
+     "cdn": "github.com",
+     "bytes": 303030
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 4224,
+     "ip": "172.182.252.133",
+     "cdn": "github.com",
+     "bytes": 303026
+    }
+   ],
+   "gh": {
+    "stars": 82,
+    "forks": 9,
+    "pushed_at": "2026-10-09T11:15:28Z",
+    "created_at": "2026-09-26T07:20:14Z",
+    "archived": false,
+    "license": null,
+    "desc": "高性价比人生助手:基于《高性价比人生指南》建议的 Android 原生 App——个性化推荐、今日任务打卡、番茄钟专注计时、Health Connect 步数、AI 问答(自带 Key)",
+    "lastCommitAt": "2026-10-09T11:15:21Z",
+    "lastCommitMsg": "fix: 长文入口改 preview-safe——条目库四个截图测试补 onOpenArticle 参数,UI 层 repo 取用改安全转换(截图渲染环境 Application "
+   },
+   "signals": [
+    "条目数出现: 614 条",
+    "页面日期: 2026-09-26",
+    "含「证据」字段"
+   ]
+  },
+  {
+   "id": "mittsommer/daily-life-tip",
+   "name": "今日一条",
+   "author": "mittsommer",
+   "kind": "macOS 小组件",
+   "ghRepo": "mittsommer/daily-life-tip",
+   "note": "每天一条，可换一条、一键生成带出处分享图，每天自动同步本仓库正文；免费无签名（MIT）",
+   "probes": [
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 4582,
+     "ip": "172.182.252.133",
+     "cdn": "github.com",
+     "bytes": 296557
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 3494,
+     "ip": "172.182.252.133",
+     "cdn": "github.com",
+     "bytes": 296557
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 3332,
+     "ip": "172.182.252.133",
+     "cdn": "github.com",
+     "bytes": 296557
+    }
+   ],
+   "gh": {
+    "stars": 3,
+    "forks": 0,
+    "pushed_at": "2026-10-10T08:46:13Z",
+    "created_at": "2026-10-09T05:35:09Z",
+    "archived": false,
+    "license": "MIT",
+    "desc": "macOS 桌面小组件：每天一条《高性价比人生指南》的建议",
+    "lastCommitAt": "2026-10-10T08:45:30Z",
+    "lastCommitMsg": "手机版预览：能编译、能渲染四个页面"
+   },
+   "signals": [
+    "页面日期: 2026-10-09",
+    "title: GitHub - mittsommer/daily-life-tip: macOS 桌面小组件：每天一条《高性价比人生指南》的建议 · GitHub",
+    "含「证据」字段"
+   ]
+  },
+  {
+   "id": "sinyu1012/shiye-tab",
+   "name": "拾页 Shiye Tab",
+   "author": "sinyu1012",
+   "kind": "Chrome 插件",
+   "ghRepo": "sinyu1012/shiye-tab",
+   "note": "新标签页随机显示一条建议，可放 GitHub 周榜和 RSS；不用注册（MIT）",
+   "probes": [
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 8043,
+     "ip": "172.182.252.133",
+     "cdn": "github.com",
+     "bytes": 326114
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 4533,
+     "ip": "172.182.252.133",
+     "cdn": "github.com",
+     "bytes": 326114
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 4315,
+     "ip": "172.182.252.133",
+     "cdn": "github.com",
+     "bytes": 326114
+    }
+   ],
+   "gh": {
+    "stars": 3,
+    "forks": 0,
+    "pushed_at": "2026-10-09T03:20:31Z",
+    "created_at": "2026-10-08T06:35:03Z",
+    "archived": false,
+    "license": "MIT",
+    "desc": "拾页 · Shiye Tab：本地优先的 Chrome 新标签页，聚合生活灵感、GitHub 周榜、App Store 榜单与 RSS / JSON 订阅。",
+    "lastCommitAt": "2026-10-09T03:20:29Z",
+    "lastCommitMsg": "docs: 记录 0.1.1 商店提审回执"
+   },
+   "signals": [
+    "页面日期: 2026-10-08",
+    "title: GitHub - sinyu1012/shiye-tab: 拾页 · Shiye Tab：本地优先的 Chrome 新标签页，聚合生活灵感、GitHub 周榜、App Store 榜单与 RSS / JSON 订阅。 · GitHub",
+    "含「证据」字段"
+   ]
+  },
+  {
+   "id": "sin0317/htlb-dataset",
+   "name": "结构化数据集",
+   "author": "sin0317",
+   "kind": "数据集",
+   "ghRepo": "sin0317/htlb-dataset",
+   "note": "全书条目解析成 JSON/CSV/SQLite，每天自动同步（正文 CC BY 4.0，代码 MIT）",
+   "probes": [
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 6115,
+     "ip": "172.182.252.133",
+     "cdn": "github.com",
+     "bytes": 301340
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 4884,
+     "ip": "172.182.252.133",
+     "cdn": "github.com",
+     "bytes": 301340
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 7251,
+     "ip": "172.182.252.133",
+     "cdn": "github.com",
+     "bytes": 301340
+    }
+   ],
+   "gh": {
+    "stars": 2,
+    "forks": 0,
+    "pushed_at": "2026-10-12T01:19:01Z",
+    "created_at": "2026-10-08T10:10:19Z",
+    "archived": false,
+    "license": "NOASSERTION",
+    "desc": "《高性价比人生指南》全量结构化数据集：JSON / CSV / SQLite，每日自动同步上游，作为所有衍生工具的统一数据源",
+    "lastCommitAt": "2026-10-12T01:18:59Z",
+    "lastCommitMsg": "chore: 同步上游 e4d6db4"
+   },
+   "signals": [
+    "条目数出现: 672 条",
+    "页面日期: 2026-10-08",
+    "title: GitHub - sin0317/htlb-dataset: 《高性价比人生指南》全量结构化数据集：JSON / CSV / SQLite，每日自动同步上游，作为所有衍生工具的统一数据源 · GitHub",
+    "含「证据」字段"
+   ]
+  },
+  {
+   "id": "robiNeo2045/comics",
+   "name": "四格漫画 PDF",
+   "author": "robiNeo2045",
+   "kind": "漫画",
+   "ghRepo": "robiNeo2045/HowToLiveBetter",
+   "note": "基于 2026-10-03 PDF 快照，34 章 654 条，固定快照不自动同步（CC BY 4.0）",
+   "probes": [
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 7061,
+     "ip": "172.182.252.133",
+     "cdn": "github.com",
+     "bytes": 411265
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 7214,
+     "ip": "172.182.252.133",
+     "cdn": "github.com",
+     "bytes": 425977
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 6460,
+     "ip": "172.182.252.133",
+     "cdn": "github.com",
+     "bytes": 425980
+    }
+   ],
+   "gh": {
+    "stars": 0,
+    "forks": 0,
+    "pushed_at": "2026-10-10T07:40:38Z",
+    "created_at": "2026-10-10T07:39:23Z",
+    "archived": false,
+    "license": "CC-BY-4.0",
+    "desc": "高性价比人生指南: 长寿防病、急救、省钱理财、法律红线、失业与工伤、医保社保、恋爱婚育、怀孕育儿、创业与做平台合规、出国与技能。每条写明成本、收益、证据等级和原始出处，只引期刊论文与官方文件。",
+    "lastCommitAt": "2026-10-10T07:28:46Z",
+    "lastCommitMsg": "衍生项目加人生阶段指南 how2livebetter.net（#68，广告已下掉）"
+   },
+   "signals": [
+    "条目数出现: 676 条 / 439 条 / 114 条 / 182 条 / 303 条 / 259 条",
+    "页面日期: 2026-10-10",
+    "含「证据」字段"
+   ]
+  }
+ ]
+}

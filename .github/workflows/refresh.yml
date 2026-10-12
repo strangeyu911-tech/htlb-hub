@@ -1,0 +1,88 @@
+name: Refresh ecosystem status
+
+# L1 方案：只把「谁落后于上游」这件事每天重算一次并回灌到站点。
+# 不通知任何人、不开 issue、不往衍生仓库提 PR —— 只是让站上的标注保持准确。
+#
+# 为什么放 GitHub Actions 而不是 Cloudflare Cron Trigger：
+#   重算要跑 git log 全量历史 + 逐个抓 14 个衍生项目的产物文件，
+#   远超 Workers 免费版 10 ms CPU/次的限制（官方文档口径）。
+#   Worker 只负责「轻活 + 对外接口」，重活交给 Actions。
+
+on:
+  schedule:
+    # 19:17 UTC = 次日 03:17 北京时间。避开整点（Actions 高峰会延迟甚至丢单）
+    - cron: '17 19 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-ecosystem
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # 上游是 blobless clone，git log -p 会按需懒加载 blob —— 缓存住就别重复拉
+      - name: 缓存上游镜像
+        uses: actions/cache@v4
+        with:
+          path: .cache/upstream
+          key: upstream-${{ github.run_id }}
+          restore-keys: |
+            upstream-
+
+      - name: 取上游 git 历史
+        run: bash fetch-upstream.sh
+
+      - name: 构建「条目数 → commit」时间线
+        run: node verify-upstream.mjs
+
+      - name: 逐项查证衍生项目同步边界
+        run: node verify-ecosystem.mjs
+
+      - name: 生成站点与规范数据集
+        run: node build-site.mjs
+
+      - name: 回灌到站点 KV
+        env:
+          INGEST_SECRET: ${{ secrets.HTLB_INGEST_SECRET }}
+        run: |
+          set -euo pipefail
+          if [ -z "${INGEST_SECRET}" ]; then
+            echo "::error::缺少 secrets.HTLB_INGEST_SECRET"
+            exit 1
+          fi
+          code=$(curl -sS -o /tmp/resp.json -w '%{http_code}' \
+            -X POST https://htlb.strangeyu.xyz/api/ingest \
+            -H 'content-type: application/json' \
+            -H "x-ingest-secret: ${INGEST_SECRET}" \
+            --data-binary @data/projects.json)
+          echo "HTTP ${code}"
+          cat /tmp/resp.json; echo
+          if [ "${code}" != "200" ]; then
+            echo "::error::回灌失败"
+            exit 1
+          fi
+
+      - name: 提交状态快照
+        run: |
+          set -euo pipefail
+          git config user.name 'htlb-refresh-bot'
+          git config user.email 'htlb-refresh-bot@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo "本次无变化"
+          else
+            git commit -m "chore(refresh): $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git push
+          fi
