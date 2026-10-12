@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-12T17:17:04.220Z",
+ "generatedAt": "2026-10-12T17:18:41.024Z",
  "definition": "条目数 = book/*.md 里的 ### 标题数（上游 tools/sync-stats.mjs 官方口径）；实际条数优先取该项目自己的产物文件，其次 sitemap/页面自述。",
  "upstream": {
   "repo": "eternity4719/HowToLiveBetter",
