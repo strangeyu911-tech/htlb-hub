@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-12T19:47:36.346Z",
+ "generatedAt": "2026-10-12T19:49:09.489Z",
  "upstream": {
   "repo": "eternity4719/HowToLiveBetter",
   "readmeRaw": "https://raw.githubusercontent.com/eternity4719/HowToLiveBetter/main/README.md",
@@ -518,7 +518,7 @@
    "sitemapLastmod": null,
    "sitemapUrls": null,
    "evidence": [
-    "sitemap.xml 是 SPA 的 HTML 兜底（不是真 sitemap）"
+    "sitemap.xml: HTTP 403"
    ],
    "ok": 3,
    "total": 3,

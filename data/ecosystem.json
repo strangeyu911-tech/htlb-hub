@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-12T19:47:35.320Z",
+ "generatedAt": "2026-10-12T19:49:09.362Z",
  "definition": "条目数 = book/*.md 里的 ### 标题数（上游 tools/sync-stats.mjs 官方口径）；实际条数优先取该项目自己的产物文件，其次 sitemap/页面自述。",
  "upstream": {
   "repo": "eternity4719/HowToLiveBetter",
@@ -124,7 +124,7 @@
    "contentMatch": null,
    "runtimeFetch": false,
    "evidence": [
-    "sitemap.xml 是 SPA 的 HTML 兜底（不是真 sitemap）"
+    "sitemap.xml: HTTP 403"
    ],
    "ownVersionDate": null,
    "lagEntries": null,
