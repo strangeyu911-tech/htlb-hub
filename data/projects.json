@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-12T17:17:04.932Z",
+ "generatedAt": "2026-10-12T17:15:32.303Z",
  "upstream": {
   "repo": "eternity4719/HowToLiveBetter",
   "readmeRaw": "https://raw.githubusercontent.com/eternity4719/HowToLiveBetter/main/README.md",
@@ -18,8 +18,8 @@
   "withOwnVersion": 3,
   "runtime": 2,
   "sync": 2,
-  "lagging": 7,
-  "unknown": 2
+  "lagging": 6,
+  "unknown": 3
  },
  "projects": [
   {
@@ -447,46 +447,6 @@
    "lastEdit": ""
   },
   {
-   "id": "livebetter101.com",
-   "name": "LiveBetter 101",
-   "slug": "livebetter101-com",
-   "author": "PlatoTheOne",
-   "kind": "网站",
-   "url": "https://livebetter101.com/",
-   "ghRepo": null,
-   "note": "把条目拆成 101 天挑战，打卡式推进。",
-   "tags": [
-    "不用注册",
-    "无广告",
-    "游戏化"
-   ],
-   "gate": "不用注册 · 没有广告",
-   "status": "lag",
-   "basis": "none",
-   "confidence": "low",
-   "actualEntries": null,
-   "selfDeclared": null,
-   "selfDeclaredFrom": null,
-   "lag": null,
-   "lagEntries": null,
-   "lagDays": 7.4,
-   "runtimeFetch": false,
-   "ownVersion": null,
-   "ownVersionShort": null,
-   "ownVersionDate": null,
-   "ownGeneratedAt": null,
-   "sitemapLastmod": "2026-10-05",
-   "sitemapUrls": 1,
-   "evidence": [
-    "sitemap.xml：1 个 URL，lastmod 2026-10-05"
-   ],
-   "ok": 3,
-   "total": 3,
-   "avg": 1315,
-   "cdn": "Cloudflare",
-   "lastEdit": ""
-  },
-  {
    "id": "life.warpnav.com",
    "name": "WarpNav 人生手册",
    "slug": "life-warpnav-com",
@@ -556,11 +516,51 @@
    "sitemapLastmod": null,
    "sitemapUrls": null,
    "evidence": [
-    "sitemap.xml: HTTP 403"
+    "sitemap.xml 是 SPA 的 HTML 兜底（不是真 sitemap）"
    ],
    "ok": 3,
    "total": 3,
    "avg": 2006,
+   "cdn": "Cloudflare",
+   "lastEdit": ""
+  },
+  {
+   "id": "livebetter101.com",
+   "name": "LiveBetter 101",
+   "slug": "livebetter101-com",
+   "author": "PlatoTheOne",
+   "kind": "网站",
+   "url": "https://livebetter101.com/",
+   "ghRepo": null,
+   "note": "把条目拆成 101 天挑战，打卡式推进。",
+   "tags": [
+    "不用注册",
+    "无广告",
+    "游戏化"
+   ],
+   "gate": "不用注册 · 没有广告",
+   "status": "unknown",
+   "basis": "none",
+   "confidence": "low",
+   "actualEntries": null,
+   "selfDeclared": null,
+   "selfDeclaredFrom": null,
+   "lag": null,
+   "lagEntries": null,
+   "lagDays": 7.4,
+   "runtimeFetch": false,
+   "ownVersion": null,
+   "ownVersionShort": null,
+   "ownVersionDate": null,
+   "ownGeneratedAt": null,
+   "sitemapLastmod": "2026-10-05",
+   "sitemapUrls": 1,
+   "evidence": [
+    "sitemap.xml：1 个 URL，lastmod 2026-10-05"
+   ],
+   "ok": 3,
+   "total": 3,
+   "avg": 1315,
    "cdn": "Cloudflare",
    "lastEdit": ""
   },

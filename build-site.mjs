@@ -67,17 +67,19 @@ const rows = audit.derived.map((x) => {
   const c = CURATED[x.id] || { tags: [], gate: '—', note: x.note || '' };
   const e = ECO_BY_ID[x.id] || {};
 
-  // ── 同步判定顺序：人工覆盖 → 运行时跟随 → 实测/自述条数 → 无信号 ──
-  let verdict;
-  if (c.verdict) verdict = c.verdict;
-  else if (e.runtimeFetch || e.status === 'runtime') verdict = 'runtime';
-  else if (e.status === 'sync') verdict = 'sync';
-  else if (e.status === 'lag') verdict = 'lag';
-  else verdict = 'unknown';
-
   const measured = e.actualEntries != null ? e.actualEntries : null;
   const declared = measured != null ? measured : e.selfDeclared != null ? e.selfDeclared : null;
   const lag = declared == null ? null : Math.max(0, UP_COUNT - declared);
+
+  // ── 同步判定：人工覆盖 → 运行时跟随 → 有「条数」才算落后 → 其余算「无版本信号」──
+  // ⚠️ 只有 sitemap lastmod、却没有条数的项目**不标落后** —— 否则「落后于上游」这个标签
+  //    会落在一个其实算不出落差的项目上。Worker 侧同样只认条数，两边口径必须一致。
+  let verdict;
+  if (c.verdict) verdict = c.verdict;
+  else if (e.runtimeFetch || e.status === 'runtime') verdict = 'runtime';
+  else if (declared == null) verdict = 'unknown';
+  else if (lag === 0) verdict = 'sync';
+  else verdict = 'lag';
 
   const okRuns = x.probes.filter((p) => p.ok && p.status === 200);
   const lat = okRuns.map((p) => p.ms);

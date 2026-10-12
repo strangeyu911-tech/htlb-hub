@@ -168,6 +168,18 @@ const check = (name, cond, extra = '') => {
   check('回灌带上 lastCrawlAt', !!j.lastCrawlAt, 'lastCrawlAt=' + j.lastCrawlAt);
   const rt = j.projects.filter((p) => p.status === 'runtime').length;
   check('运行时项目被单独归类', rt >= 1, 'runtime=' + rt);
+  const fx = j.projects.filter((p) => p.status === 'fixed').length;
+  check('固定快照项目被单独归类（不被算作落后）', fx >= 1, 'fixed=' + fx);
+  check('未知 slug 不会出现在 /api/status.json 里', j.projects.every((p) => p.slug && p.name));
+}
+{
+  // 徽章文案：固定快照 / 运行时 / 未标注 三种都必须与「落后」区分开
+  const r1 = await fetch(base + '/badge/robineo2045-comics.svg');
+  const t1 = await r1.text();
+  check('固定快照 badge 文案', /固定快照/.test(t1), t1.replace(/<[^>]+>/g, '|').replace(/\|+/g, ' ').trim().slice(0, 60));
+  const r2 = await fetch(base + '/badge/mittsommer-daily-life-tip.svg');
+  const t2 = await r2.text();
+  check('运行时 badge 文案', /运行时跟随上游/.test(t2), t2.replace(/<[^>]+>/g, '|').replace(/\|+/g, ' ').trim().slice(0, 60));
 }
 
 await new Promise((r) => server.close(r));

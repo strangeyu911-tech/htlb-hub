@@ -73,9 +73,14 @@ async function getData(env) {
   return { upstream: DATA.upstream, projects: DATA.projects, generatedAt: DATA.generatedAt, source: 'embedded', pushedAt: null };
 }
 
-/** 算「落后多少条」：实测优先，自述次之；用实时上游条目数重算 */
+/** 算「落后多少条」：实测优先，自述次之；用实时上游条目数重算。
+ *  ⚠️ 三种非条数型状态必须在这里显式短路，否则会被当成「未标注」：
+ *     runtime = 运行时拉上游（不存在落后）；fixed = 作者声明固定快照。 */
 function statusOf(p, upEntries) {
   if (p.status === 'runtime') return { kind: 'runtime', lag: null, n: null };
+  if (p.status === 'fixed') {
+    return { kind: 'fixed', lag: null, n: p.actualEntries != null ? p.actualEntries : p.selfDeclared != null ? p.selfDeclared : null };
+  }
   const n = p.actualEntries != null ? p.actualEntries : p.selfDeclared != null ? p.selfDeclared : null;
   if (n == null) return { kind: 'unknown', lag: null, n: null };
   const lag = Math.max(0, upEntries - n);
@@ -85,6 +90,7 @@ function statusOf(p, upEntries) {
 function badgeFor(p, upEntries) {
   const s = statusOf(p, upEntries);
   if (s.kind === 'runtime') return badge('高性价比人生指南', '运行时跟随上游', '#1d9e75');
+  if (s.kind === 'fixed') return badge('高性价比人生指南', '固定快照 ' + s.n + ' 条', '#888780');
   if (s.kind === 'unknown') return badge('高性价比人生指南', '版本未标注', '#a32d2d');
   if (s.kind === 'sync') return badge('高性价比人生指南', '已同步 · ' + s.n + ' 条', '#1d9e75');
   return badge('高性价比人生指南', '落后 ' + s.lag + ' 条 · ' + s.n + '/' + upEntries, '#ba7517');
@@ -213,6 +219,7 @@ function statusPayload(data, live) {
       measured: norm.filter((p) => p.actualEntries != null).length,
       selfDeclaredOnly: norm.filter((p) => p.actualEntries == null && p.selfDeclared != null).length,
       runtime: norm.filter((p) => p.status === 'runtime').length,
+      fixed: norm.filter((p) => p.status === 'fixed').length,
       synced: norm.filter((p) => p.status === 'sync').length,
       lagging: norm.filter((p) => p.status === 'lag').length,
       unknown: norm.filter((p) => p.status === 'unknown').length,
@@ -229,7 +236,10 @@ function badgeIndex(data, live) {
     .map((p) => {
       const s = statusOf(p, upEntries);
       const label =
-        s.kind === 'runtime' ? '运行时跟随上游' : s.kind === 'unknown' ? '未标注版本' : s.lag === 0 ? '已追平' : '落后 ' + s.lag + ' 条';
+        s.kind === 'runtime' ? '运行时跟随上游'
+          : s.kind === 'fixed' ? '固定快照（作者声明不自动同步）'
+            : s.kind === 'unknown' ? '未标注版本'
+              : s.kind === 'sync' ? '已追平' : '落后 ' + s.lag + ' 条';
       return (
         '<li><img src="/badge/' + p.slug + '.svg" height="20" alt="' + esc(p.name) + '"> ' +
         '<a href="' + esc(p.url) + '">' + esc(p.name) + '</a> <code>' + esc(p.slug) + '</code> · ' + label +
