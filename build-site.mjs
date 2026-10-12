@@ -206,7 +206,7 @@ const cards = rows
             : r.lag === 0
               ? `<span class="lag ok">✅ 追平上游 ${UP_COUNT} 条</span>`
               : `<span class="lag warn">⚠️ 落后 ${r.lag} 条<span class="dim">（${r.declared}/${UP_COUNT}）</span></span>`;
-    const dn = r.lagDays != null ? ` · 内容大约停在 ${Math.round(r.lagDays * 10) / 10} 天前` : '';
+    const dn = r.lagDays == null ? '' : r.lagDays <= 0.05 ? ' · 内容时间 ≈ 上游最新' : ` · 内容大约停在 ${Math.round(r.lagDays * 10) / 10} 天前`;
     return `<article class="card" data-tags="${r.tags.join(',')}" data-lag="${r.lag === null ? -1 : r.lag}" data-speed="${r.avg}" data-type="${r.typeIdx}">
   <div class="chead">
     <h3><a href="${r.url}" target="_blank" rel="noopener">${r.name}</a></h3>
@@ -431,9 +431,9 @@ ${ghRows}
 <h2>方法与局限（先读这段再信上面的表）</h2>
 <ol>
 <li><b>只用四条「能落地」的路子，不猜。</b>① <b>实测产物</b>：读项目自己的产物文件（小程序 bundle、App 的 <code>entries.json</code>、数据集的 <code>stats.json</code>…），按上游官方口径（<code>book/*.md</code> 里的 <code>###</code> 标题数）数出真实条数；② <b>fork 对比</b>：它若是上游 fork，直接逐文件数它的 <code>book/*.md</code>；③ <b>sitemap</b>：读 <code>sitemap.xml</code> 的 <code>lastmod</code> 与 URL 数（弱信号）；④ <b>运行时</b>：源码级确认它每次打开直接拉上游原文 → 不存在「落后」，从落后名单里剔除。每行的依据都写在表里，<b>实测与页面自述严格分开</b>。</li>
-<li><b>内容级探针试过了，结论是这条路不通，如实报告。</b>我们用上游最近 14 次提交新增的 33 条条目标题原文，去各站实际内容里做精确匹配，13/14 项 <b>0 命中</b>。定向诊断查出两个互相独立的原因：① 衍生站普遍<b>改写标题</b>（上游「家里老人遛狗，把牵绳握在手心……」在站上只剩「家里老人」能匹配）；② 更根本的是<b>正文压根不在页面或主 bundle 里</b> —— howtolivebetter.net 的 638 KB bundle 对上游前 60 条老条目 <b>0/60 命中</b>，说明它按需分块或运行时拉取，抓 <code>&lt;script src&gt;</code> 根本碰不到正文。<b>所以本页不拿探针当证据。</b></li>
+<li><b>内容级探针试过了：路走不通，但原因跟我一开始说的不一样。</b>我们用上游最近 14 次提交新增的 33 条条目标题原文去各站做精确匹配，13/14 项 <b>0 命中</b>。我先前归因于「标题被改写 + 正文不在页面里」——<b>后半句是错的，这里更正</b>：复查发现 <code>howtolivebetter.net</code> 的正文完整放在另一个 <code>modulepreload</code> chunk 里（<code>book-index-*.js</code>，174 KB，对上游标题 <b>684/685 = 99.9% 命中</b>），而我当时只抓了 <code>&lt;script src&gt;</code> 那两个资源，漏掉了它 <b>42 个 <code>modulepreload</code> 链接</b>。所以真实原因是<b>「靠猜资源路径」本身不可靠</b>，而不是人家没有正文。① 改写标题这条仍然成立。<b>本页不拿探针当证据。</b></li>
 <li><b>「落后多少条」用官方口径复算过。</b>上游条目数由 <code>git log -p -- book/</code> 逐次累积统计得出（本机复算 <b>${UP_COUNT} 条</b>，共 ${UP.totalCommits} 次提交），再与各项目的实测/自述条数相减。两个输入都能独立复核。</li>
-<li><b>「落后 N 天」有粒度盲区。</b>${UP_COUNT} 条是某天某一刻达到的，但当天很多提交只改文档、不改条目数。准确说法是：<b>「若内容停在达到 N 条的那次提交，则内容落后 N 天」</b>。要更准只能逐站 diff 正文，本轮没做。</li>
+<li><b>「落后 N 天」有粒度盲区。</b>${UP_COUNT} 条是某天某一刻达到的，但当天很多提交只改文档、不改条目数。准确说法是：<b>「若内容停在达到 N 条的那次提交，则内容落后 N 天」</b>。能拿到站点自己的构建时间（sitemap <code>lastmod</code>）时，优先用它。⚠️ 但必须取<b>全量 lastmod 的最大值</b> —— 取第一个会判错：<code>howtolivebetter.net</code> 有 62 个 lastmod，第一个是 10-11、最大值才是 10-12，我一开始就是在这栽的。要更准只能逐站 diff 正文。</li>
 <li><b>「运行时自动跟进」不是我们替它保证的，是读了源码。</b>例如 daily-life-tip 的 <code>RemoteBook.swift</code> 里写着「内置的那份数据是编译时快照，永远能出内容。这里只负责『书更新了，跟上去』」；shiye-tab 的 <code>src/sources.js</code> 每次打开拉 <code>raw.githubusercontent.com/eternity4719/…</code> 并按 <code>### </code> 解析。这类项目<b>不该被算作「落后」</b>。</li>
 <li><b>「无版本信号」不代表内容旧。</b>它只代表该站<b>没有提供任何可核验的版本信号</b> —— 这本身就是本页要暴露的问题。</li>
 <li>「门槛」一列<b>照抄上游 <code>衍生项目.md</code> 的原文口径</b>，标「未标注」= 原文也没写，<b>非本站核验</b>。可达性、延迟、CDN、条目数均为实测。</li>

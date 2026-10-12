@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-12T17:18:41.565Z",
+ "generatedAt": "2026-10-12T19:47:36.346Z",
  "upstream": {
   "repo": "eternity4719/HowToLiveBetter",
   "readmeRaw": "https://raw.githubusercontent.com/eternity4719/HowToLiveBetter/main/README.md",
@@ -13,8 +13,8 @@
  },
  "stats": {
   "total": 14,
-  "measured": 5,
-  "selfDeclaredOnly": 4,
+  "measured": 6,
+  "selfDeclaredOnly": 3,
   "withOwnVersion": 3,
   "runtime": 2,
   "sync": 2,
@@ -132,20 +132,20 @@
    "selfDeclaredFrom": "页面文案首个「N 条」",
    "lag": 0,
    "lagEntries": 0,
-   "lagDays": 0.3,
+   "lagDays": 0.4,
    "runtimeFetch": false,
    "ownVersion": "df6df704c8f364b936528ae1e1e22e47e4f0b274",
    "ownVersionShort": "df6df704",
    "ownVersionDate": "2026-10-12 18:04:49 +0800",
    "ownGeneratedAt": null,
-   "sitemapLastmod": "2026-10-12",
+   "sitemapLastmod": "2026-10-12T00:00:00.000Z",
    "sitemapUrls": 726,
    "evidence": [
     "sync/fingerprint.json 自带 commit=df6df704、count=687，另有逐条哈希 687 条",
     "它的 commit 与上游当前 HEAD（df6df704）完全一致 → 逐条内容已对齐，不存在「落后」",
     "仓库同时带 tools/check_drift.py 与 tools/check_verbatim.py —— 该项目自带上游漂移检测与逐字校验",
     "产物文件：sync/fingerprint.json",
-    "sitemap.xml：726 个 URL，lastmod 2026-10-12"
+    "sitemap.xml：726 个 URL，lastmod 最新 2026-10-12（共 726 个 lastmod，已取最大值）"
    ],
    "ok": 3,
    "total": 3,
@@ -167,25 +167,27 @@
    ],
    "gate": "未标注（源码未公开）",
    "status": "sync",
-   "basis": "self-declared",
-   "confidence": "low",
-   "actualEntries": null,
+   "basis": "measured",
+   "confidence": "high",
+   "actualEntries": 687,
    "selfDeclared": 687,
    "selfDeclaredFrom": "页面文案首个「N 条」",
    "lag": 0,
    "lagEntries": 0,
-   "lagDays": 0.3,
+   "lagDays": 0,
    "runtimeFetch": false,
    "ownVersion": null,
    "ownVersionShort": null,
    "ownVersionDate": null,
    "ownGeneratedAt": null,
-   "sitemapLastmod": "2026-10-11",
+   "sitemapLastmod": "2026-10-12T15:28:10.892Z",
    "sitemapUrls": 418,
    "evidence": [
-    "sitemap.xml：418 个 URL，lastmod 2026-10-11",
-    "页面文案自述 687 条（全文出现的其他数字：687）—— 仅作交叉参考，不是实测",
-    "该条数首次出现在上游是 48754739（2026-10-12 10:48）→ 若内容停在那里，则落后约 0.3 天"
+    "首页 SSR 内联数据自带 total=687、chapterCount=34（TanStack Start 的 hydration payload）",
+    "数据 chunk book-index-Ba3jCLKk.js（174 KB）逐条比对上游标题：684/685 = 99.9% → 正文是**构建期全量打包**，不是运行时拉取",
+    "全站 JS 里没有任何 raw.githubusercontent / api.github.com 引用，也没有 /api/book、/api/entries 这类正文接口（404）→ 排除「运行时拉上游」",
+    "sitemap.xml：418 个 URL，lastmod 最新 2026-10-12（共 62 个 lastmod，已取最大值）",
+    "页面文案自述 687 条（全文出现的其他数字：687）—— 仅作交叉参考，不是实测"
    ],
    "ok": 3,
    "total": 3,
@@ -227,7 +229,7 @@
    "evidence": [
     "sitemap.xml：712 个 URL（无 lastmod）",
     "页面文案自述 677 条（全文出现的其他数字：677）—— 仅作交叉参考，不是实测",
-    "该条数首次出现在上游是 769dfc62（2026-10-10 17:52）→ 若内容停在那里，则落后约 2 天"
+    "该条数首次出现在上游是 769dfc62（2026-10-10 17:52）"
    ],
    "ok": 3,
    "total": 3,
@@ -269,7 +271,7 @@
     "data/stats.json 自带 upstream_commit=e4d6db45、synced_at=2026-10-12T01:18:59Z、entries=677（34 节）",
     "产物文件：data/stats.json",
     "仓库最后提交 2026-10-12T01:18",
-    "该条数首次出现在上游是 769dfc62（2026-10-10 17:52）→ 若内容停在那里，则落后约 2 天"
+    "该条数首次出现在上游是 769dfc62（2026-10-10 17:52）"
    ],
    "ok": 3,
    "total": 3,
@@ -312,7 +314,7 @@
     "data/steps.js（978 KB）里 \"title\" 字段 676 个、\"index\" 676 个 → 实际收录 676 条",
     "产物文件：pagesA/data/steps.js",
     "仓库最后提交 2026-10-12T08:30",
-    "该条数首次出现在上游是 5a36eaf8（2026-10-09 19:40）→ 若内容停在那里，则落后约 2.9 天"
+    "该条数首次出现在上游是 5a36eaf8（2026-10-09 19:40）"
    ],
    "ok": 3,
    "total": 3,
@@ -355,7 +357,7 @@
     "entries.json 顶部自带 contentVersion=0cec2b3、generatedAt=2026-10-08T07:03:18+00:00；34 节，各节条数合计 672 条",
     "产物文件：app/src/main/assets/entries.json",
     "仓库最后提交 2026-10-09T11:15",
-    "该条数首次出现在上游是 0cec2b3d（2026-10-08 13:20）→ 若内容停在那里，则落后约 4.2 天"
+    "该条数首次出现在上游是 0cec2b3d（2026-10-08 13:20）"
    ],
    "ok": 3,
    "total": 3,
@@ -396,7 +398,7 @@
    "sitemapUrls": null,
    "evidence": [
     "页面文案自述 670 条（全文出现的其他数字：670）—— 仅作交叉参考，不是实测",
-    "该条数首次出现在上游是 72927368（2026-10-07 15:43）→ 若内容停在那里，则落后约 5.1 天"
+    "该条数首次出现在上游是 72927368（2026-10-07 15:43）"
    ],
    "ok": 3,
    "total": 3,
@@ -438,7 +440,7 @@
    "evidence": [
     "sitemap.xml：714 个 URL（无 lastmod）",
     "页面文案自述 654 条（全文出现的其他数字：654 / 1566 / 121 / 258 / 267 / 211 / 167 / 630）—— 仅作交叉参考，不是实测",
-    "该条数首次出现在上游是 54620be2（2026-10-03 15:45）→ 若内容停在那里，则落后约 9.1 天"
+    "该条数首次出现在上游是 54620be2（2026-10-03 15:45）"
    ],
    "ok": 3,
    "total": 3,
@@ -516,7 +518,7 @@
    "sitemapLastmod": null,
    "sitemapUrls": null,
    "evidence": [
-    "sitemap.xml: HTTP 403"
+    "sitemap.xml 是 SPA 的 HTML 兜底（不是真 sitemap）"
    ],
    "ok": 3,
    "total": 3,
@@ -553,10 +555,10 @@
    "ownVersionShort": null,
    "ownVersionDate": null,
    "ownGeneratedAt": null,
-   "sitemapLastmod": "2026-10-05",
+   "sitemapLastmod": "2026-10-05T00:00:00.000Z",
    "sitemapUrls": 1,
    "evidence": [
-    "sitemap.xml：1 个 URL，lastmod 2026-10-05"
+    "sitemap.xml：1 个 URL，lastmod 最新 2026-10-05"
    ],
    "ok": 3,
    "total": 3,
@@ -596,7 +598,7 @@
    "sitemapUrls": null,
    "evidence": [
     "它是上游的 fork（parent = eternity4719/HowToLiveBetter），book/ 是完整转存：34/34 个文件取到，按官方口径数出 ### 标题 676 条",
-    "该条数首次出现在上游是 5a36eaf8（2026-10-09 19:40）→ 若内容停在那里，则落后约 2.9 天"
+    "该条数首次出现在上游是 5a36eaf8（2026-10-09 19:40）"
    ],
    "ok": 3,
    "total": 3,

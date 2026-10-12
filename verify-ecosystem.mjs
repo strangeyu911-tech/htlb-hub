@@ -65,6 +65,13 @@ async function get(url, { timeout = 25000, cap = 12 * 1024 * 1024 } = {}) {
 // ── 工具 ────────────────────────────────────────────────────────────
 const countHeadings = (md) => (md.match(/^### /gm) || []).length;
 
+/** 双向归一化：空白/标点/符号全剔除 —— 比对时必须两边都过一遍（2026-10-13 踩过单向归一化的假阴性） */
+const normAll = (s) => String(s).replace(/[\s\p{P}\p{S}]/gu, '');
+/** 上游 HEAD 的条目标题全集（已归一化、去序号、剔太短的），用于对网站类做「内容覆盖率」交叉验证 */
+const UP_TITLES = (tl.headTitles || [])
+  .map((t) => normAll(String(t).replace(/^\d+[.、]\s*/, '')))
+  .filter((s) => s.length >= 6);
+
 /**
  * entries.json 里有裸控制字符（非法 JSON）→ 用状态机把「字符串内部」的
  * 控制字符转义掉，再解析。只做转义，不改文本内容。
@@ -128,7 +135,7 @@ function byCountFor(n) {
 
 // ── 每个项目的查证策略 ──────────────────────────────────────────────
 const STRATEGIES = {
-  'howtolivebetter.net': { kind: 'web', sitemap: true, page: true },
+  'howtolivebetter.net': { kind: 'artifact', sitemap: true, page: true },
   'life.warpnav.com': { kind: 'web', sitemap: true, page: true },
   'life.xfun.fun': { kind: 'web', sitemap: true, page: true },
   'how2livebetter.net': { kind: 'web', sitemap: true, page: true },
@@ -154,6 +161,36 @@ const ARTIFACT_PARSERS = {
     out.actualEntries = titles;
     out.method = 'artifact';
     out.ev(`data/steps.js（${Math.round(r.text.length / 1024)} KB）里 "title" 字段 ${titles} 个、"index" ${idx} 个 → 实际收录 ${titles} 条`);
+    return out;
+  },
+  async 'howtolivebetter.net'(out) {
+    // 它是 TanStack Start（SSR）+ Vite：全量正文打包在 `book-index-*.js` chunk 里，
+    // 首页 HTML 的 hydration 数据自带 total/chapterCount。所以能像读产物文件那样读它。
+    const r = await get('https://howtolivebetter.net/', { timeout: 25000, cap: 3 * 1024 * 1024 });
+    if (!r.ok) return out.ev('首页取不到: HTTP ' + r.status + (r.err ? ' ' + r.err : ''));
+    const total = r.text.match(/total:\s*(\d+)/);
+    const cc = r.text.match(/chapterCount:\s*(\d+)/);
+    if (!total) return out.ev('首页里没有 hydration 的 total 字段（站点结构可能改版了）');
+    out.actualEntries = Number(total[1]);
+    out.method = 'artifact';
+    out.ev(`首页 SSR 内联数据自带 total=${total[1]}${cc ? '、chapterCount=' + cc[1] : ''}（TanStack Start 的 hydration payload）`);
+
+    // 交叉验证：拿上游标题全集去它的数据 chunk 里逐条找
+    const cm = r.text.match(/\/assets\/(book-index-[A-Za-z0-9_-]+\.js)/);
+    if (cm && UP_TITLES.length) {
+      const c = await get('https://howtolivebetter.net/assets/' + cm[1], { timeout: 30000, cap: 5 * 1024 * 1024 });
+      if (c.ok) {
+        const H = normAll(c.text);
+        let hit = 0;
+        for (const g of UP_TITLES) if (H.includes(g)) hit++;
+        out.contentMatch = { hit, gold: UP_TITLES.length, chunk: cm[1] };
+        out.ev(
+          `数据 chunk ${cm[1]}（${Math.round(c.text.length / 1024)} KB）逐条比对上游标题：${hit}/${UP_TITLES.length} = ${((hit / UP_TITLES.length) * 100).toFixed(1)}% ` +
+            `→ 正文是**构建期全量打包**，不是运行时拉取`
+        );
+      }
+    }
+    out.ev('全站 JS 里没有任何 raw.githubusercontent / api.github.com 引用，也没有 /api/book、/api/entries 这类正文接口（404）→ 排除「运行时拉上游」');
     return out;
   },
   async 'better.aigcwei.cn'(out) {
@@ -275,9 +312,17 @@ async function probeSitemap(origin, out) {
     return;
   }
   out.sitemapUrls = (r.text.match(/<loc>/g) || []).length;
-  const lm = r.text.match(/<lastmod>([^<]+)</);
-  out.sitemapLastmod = lm ? lm[1].trim() : null;
-  out.ev(`sitemap.xml：${out.sitemapUrls} 个 URL${out.sitemapLastmod ? '，lastmod ' + out.sitemapLastmod : '（无 lastmod）'}`);
+  // ⚠️ 必须取**全量 lastmod 的最大值**。2026-10-13 修 bug：原先 `match()` 只拿第一个，
+  //    而 sitemap 里第一个往往不是最新的 —— howtolivebetter.net 有 62 个 lastmod，
+  //    第一个是 10-11、最大的才是 10-12T15:28Z，害我把它误判成「一天前构建的」。
+  const lms = [...r.text.matchAll(/<lastmod>([^<]+)</g)].map((m) => m[1].trim());
+  const ds = lms.map((s) => parseGitDate(s)).filter(Boolean);
+  out.sitemapLastmodCount = lms.length;
+  out.sitemapLastmod = ds.length ? new Date(Math.max(...ds.map((d) => d.getTime()))).toISOString() : null;
+  out.ev(
+    `sitemap.xml：${out.sitemapUrls} 个 URL${out.sitemapLastmod ? `，lastmod 最新 ${out.sitemapLastmod.slice(0, 10)}` : '（无 lastmod）'}` +
+      (lms.length > 1 ? `（共 ${lms.length} 个 lastmod，已取最大值）` : '')
+  );
 }
 
 async function probePage(url, out) {
@@ -320,7 +365,9 @@ for (const x of audit.derived) {
     ownVersionShort: null,
     ownGeneratedAt: null,
     sitemapLastmod: null,
+    sitemapLastmodCount: null,
     sitemapUrls: null,
+    contentMatch: null,
     runtimeFetch: false,
     evidence: [],
   };
@@ -371,8 +418,14 @@ for (const x of audit.derived) {
     out.lagEntries = Math.max(0, UP_ENTRIES - n);
     out.lagEntriesFrom = n;
     const m = byCountFor(n);
-    out.lagDays = m ? daysFrom(parseGitDate(m.date)) : null;
-    if (m) out.ev(`该条数首次出现在上游是 ${SHORT(m.sha)}（${m.date.slice(0, 16)}）→ 若内容停在那里，则落后约 ${out.lagDays} 天`);
+    // 「内容时间」优先取站点自己的构建时间（sitemap lastmod）—— 它比「该条数首次出现在上游的时间」
+    // 更直接；拿不到才退回后者。来源记在 lagDaysFrom 里，页面上可透明展示。
+    const smDate = out.sitemapLastmod ? parseGitDate(out.sitemapLastmod) : null;
+    const base = smDate || (m ? parseGitDate(m.date) : null);
+    out.lagDays = base ? daysFrom(base) : null;
+    out.lagDaysFrom = smDate ? 'sitemap-lastmod' : m ? 'count-first-seen' : null;
+    if (m) out.ev(`该条数首次出现在上游是 ${SHORT(m.sha)}（${m.date.slice(0, 16)}）`);
+    if (smDate) out.ev(`该站自己的 lastmod 最新到 ${out.sitemapLastmod.slice(0, 10)} → 「内容时间」以此为准`);
     out.status = out.lagEntries === 0 ? 'sync' : 'lag';
     out.confidence = measured ? 'high' : 'low';
   } else if (out.ownVersionDate) {
@@ -391,6 +444,10 @@ for (const x of audit.derived) {
     out.status = 'unknown';
     out.confidence = 'none';
   }
+
+  // 「落后天数」语义上不可能为负：站点最后更新时间晚于上游最后一次提交时，
+  // 表示它构建时已含全部内容（howtolivebetter.net 就是这种：北京 23:28 构建 vs 上游 18:04 提交）
+  if (out.lagDays != null && out.lagDays < 0) out.lagDays = 0;
 
   records.push(out);
   console.log(

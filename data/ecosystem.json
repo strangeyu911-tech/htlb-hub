@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-12T17:18:41.024Z",
+ "generatedAt": "2026-10-12T19:47:35.320Z",
  "definition": "条目数 = book/*.md 里的 ### 标题数（上游 tools/sync-stats.mjs 官方口径）；实际条数优先取该项目自己的产物文件，其次 sitemap/页面自述。",
  "upstream": {
   "repo": "eternity4719/HowToLiveBetter",
@@ -17,13 +17,13 @@
  },
  "stats": {
   "total": 14,
-  "measured": 5,
+  "measured": 6,
   "withOwnVersion": 3,
   "runtime": 2,
   "sync": 2,
   "lagging": 8,
   "unknown": 2,
-  "highConfidence": 7,
+  "highConfidence": 8,
   "hasSitemapLastmod": 3
  },
  "projects": [
@@ -34,30 +34,41 @@
    "author": "littleben",
    "url": "https://howtolivebetter.net/",
    "ghRepo": null,
-   "method": "page",
-   "actualEntries": null,
+   "method": "artifact",
+   "actualEntries": 687,
    "selfDeclared": 687,
    "selfDeclaredFrom": "页面文案首个「N 条」",
-   "basis": "self-declared",
-   "confidence": "low",
+   "basis": "measured",
+   "confidence": "high",
    "pageCounts": [
     687
    ],
    "ownVersion": null,
    "ownVersionShort": null,
    "ownGeneratedAt": null,
-   "sitemapLastmod": "2026-10-11",
+   "sitemapLastmod": "2026-10-12T15:28:10.892Z",
+   "sitemapLastmodCount": 62,
    "sitemapUrls": 418,
+   "contentMatch": {
+    "hit": 684,
+    "gold": 685,
+    "chunk": "book-index-Ba3jCLKk.js"
+   },
    "runtimeFetch": false,
    "evidence": [
-    "sitemap.xml：418 个 URL，lastmod 2026-10-11",
+    "首页 SSR 内联数据自带 total=687、chapterCount=34（TanStack Start 的 hydration payload）",
+    "数据 chunk book-index-Ba3jCLKk.js（174 KB）逐条比对上游标题：684/685 = 99.9% → 正文是**构建期全量打包**，不是运行时拉取",
+    "全站 JS 里没有任何 raw.githubusercontent / api.github.com 引用，也没有 /api/book、/api/entries 这类正文接口（404）→ 排除「运行时拉上游」",
+    "sitemap.xml：418 个 URL，lastmod 最新 2026-10-12（共 62 个 lastmod，已取最大值）",
     "页面文案自述 687 条（全文出现的其他数字：687）—— 仅作交叉参考，不是实测",
-    "该条数首次出现在上游是 48754739（2026-10-12 10:48）→ 若内容停在那里，则落后约 0.3 天"
+    "该条数首次出现在上游是 48754739（2026-10-12 10:48）",
+    "该站自己的 lastmod 最新到 2026-10-12 → 「内容时间」以此为准"
    ],
    "ownVersionDate": null,
    "lagEntries": 0,
    "lagEntriesFrom": 687,
-   "lagDays": 0.3,
+   "lagDays": 0,
+   "lagDaysFrom": "sitemap-lastmod",
    "status": "sync"
   },
   {
@@ -78,7 +89,9 @@
    "ownVersionShort": null,
    "ownGeneratedAt": null,
    "sitemapLastmod": null,
+   "sitemapLastmodCount": null,
    "sitemapUrls": null,
+   "contentMatch": null,
    "runtimeFetch": false,
    "evidence": [
     "sitemap.xml: HTTP 404"
@@ -106,10 +119,12 @@
    "ownVersionShort": null,
    "ownGeneratedAt": null,
    "sitemapLastmod": null,
+   "sitemapLastmodCount": null,
    "sitemapUrls": null,
+   "contentMatch": null,
    "runtimeFetch": false,
    "evidence": [
-    "sitemap.xml: HTTP 403"
+    "sitemap.xml 是 SPA 的 HTML 兜底（不是真 sitemap）"
    ],
    "ownVersionDate": null,
    "lagEntries": null,
@@ -143,17 +158,20 @@
    "ownVersionShort": null,
    "ownGeneratedAt": null,
    "sitemapLastmod": null,
+   "sitemapLastmodCount": 0,
    "sitemapUrls": 714,
+   "contentMatch": null,
    "runtimeFetch": false,
    "evidence": [
     "sitemap.xml：714 个 URL（无 lastmod）",
     "页面文案自述 654 条（全文出现的其他数字：654 / 1566 / 121 / 258 / 267 / 211 / 167 / 630）—— 仅作交叉参考，不是实测",
-    "该条数首次出现在上游是 54620be2（2026-10-03 15:45）→ 若内容停在那里，则落后约 9.1 天"
+    "该条数首次出现在上游是 54620be2（2026-10-03 15:45）"
    ],
    "ownVersionDate": null,
    "lagEntries": 33,
    "lagEntriesFrom": 654,
    "lagDays": 9.1,
+   "lagDaysFrom": "count-first-seen",
    "status": "lag"
   },
   {
@@ -176,23 +194,27 @@
    "ownVersion": "df6df704c8f364b936528ae1e1e22e47e4f0b274",
    "ownVersionShort": "df6df704",
    "ownGeneratedAt": null,
-   "sitemapLastmod": "2026-10-12",
+   "sitemapLastmod": "2026-10-12T00:00:00.000Z",
+   "sitemapLastmodCount": 726,
    "sitemapUrls": 726,
+   "contentMatch": null,
    "runtimeFetch": false,
    "evidence": [
     "sync/fingerprint.json 自带 commit=df6df704、count=687，另有逐条哈希 687 条",
     "它的 commit 与上游当前 HEAD（df6df704）完全一致 → 逐条内容已对齐，不存在「落后」",
     "仓库同时带 tools/check_drift.py 与 tools/check_verbatim.py —— 该项目自带上游漂移检测与逐字校验",
     "产物文件：sync/fingerprint.json",
-    "sitemap.xml：726 个 URL，lastmod 2026-10-12",
+    "sitemap.xml：726 个 URL，lastmod 最新 2026-10-12（共 726 个 lastmod，已取最大值）",
     "页面文案自述 677 条（全文出现的其他数字：677 / 114）—— 仅作交叉参考，不是实测",
     "仓库最后提交 2026-10-12T11:48",
-    "该条数首次出现在上游是 48754739（2026-10-12 10:48）→ 若内容停在那里，则落后约 0.3 天"
+    "该条数首次出现在上游是 48754739（2026-10-12 10:48）",
+    "该站自己的 lastmod 最新到 2026-10-12 → 「内容时间」以此为准"
    ],
    "ownVersionDate": "2026-10-12 18:04:49 +0800",
    "lagEntries": 0,
    "lagEntriesFrom": 687,
-   "lagDays": 0.3,
+   "lagDays": 0.4,
+   "lagDaysFrom": "sitemap-lastmod",
    "status": "sync"
   },
   {
@@ -215,17 +237,20 @@
    "ownVersionShort": null,
    "ownGeneratedAt": null,
    "sitemapLastmod": null,
+   "sitemapLastmodCount": 0,
    "sitemapUrls": 712,
+   "contentMatch": null,
    "runtimeFetch": false,
    "evidence": [
     "sitemap.xml：712 个 URL（无 lastmod）",
     "页面文案自述 677 条（全文出现的其他数字：677）—— 仅作交叉参考，不是实测",
-    "该条数首次出现在上游是 769dfc62（2026-10-10 17:52）→ 若内容停在那里，则落后约 2 天"
+    "该条数首次出现在上游是 769dfc62（2026-10-10 17:52）"
    ],
    "ownVersionDate": null,
    "lagEntries": 10,
    "lagEntriesFrom": 677,
    "lagDays": 2,
+   "lagDaysFrom": "count-first-seen",
    "status": "lag"
   },
   {
@@ -245,11 +270,13 @@
    "ownVersion": null,
    "ownVersionShort": null,
    "ownGeneratedAt": null,
-   "sitemapLastmod": "2026-10-05",
+   "sitemapLastmod": "2026-10-05T00:00:00.000Z",
+   "sitemapLastmodCount": 1,
    "sitemapUrls": 1,
+   "contentMatch": null,
    "runtimeFetch": false,
    "evidence": [
-    "sitemap.xml：1 个 URL，lastmod 2026-10-05"
+    "sitemap.xml：1 个 URL，lastmod 最新 2026-10-05"
    ],
    "ownVersionDate": null,
    "lagDays": 7.4,
@@ -274,18 +301,21 @@
    "ownVersionShort": null,
    "ownGeneratedAt": null,
    "sitemapLastmod": null,
+   "sitemapLastmodCount": null,
    "sitemapUrls": null,
+   "contentMatch": null,
    "runtimeFetch": false,
    "evidence": [
     "data/steps.js（978 KB）里 \"title\" 字段 676 个、\"index\" 676 个 → 实际收录 676 条",
     "产物文件：pagesA/data/steps.js",
     "仓库最后提交 2026-10-12T08:30",
-    "该条数首次出现在上游是 5a36eaf8（2026-10-09 19:40）→ 若内容停在那里，则落后约 2.9 天"
+    "该条数首次出现在上游是 5a36eaf8（2026-10-09 19:40）"
    ],
    "ownVersionDate": null,
    "lagEntries": 11,
    "lagEntriesFrom": 676,
    "lagDays": 2.9,
+   "lagDaysFrom": "count-first-seen",
    "status": "lag"
   },
   {
@@ -308,16 +338,19 @@
    "ownVersionShort": null,
    "ownGeneratedAt": null,
    "sitemapLastmod": null,
+   "sitemapLastmodCount": null,
    "sitemapUrls": null,
+   "contentMatch": null,
    "runtimeFetch": false,
    "evidence": [
     "页面文案自述 670 条（全文出现的其他数字：670）—— 仅作交叉参考，不是实测",
-    "该条数首次出现在上游是 72927368（2026-10-07 15:43）→ 若内容停在那里，则落后约 5.1 天"
+    "该条数首次出现在上游是 72927368（2026-10-07 15:43）"
    ],
    "ownVersionDate": null,
    "lagEntries": 17,
    "lagEntriesFrom": 670,
    "lagDays": 5.1,
+   "lagDaysFrom": "count-first-seen",
    "status": "lag"
   },
   {
@@ -338,18 +371,21 @@
    "ownVersionShort": "0cec2b3",
    "ownGeneratedAt": "2026-10-08T07:03:18+00:00",
    "sitemapLastmod": null,
+   "sitemapLastmodCount": null,
    "sitemapUrls": null,
+   "contentMatch": null,
    "runtimeFetch": false,
    "evidence": [
     "entries.json 顶部自带 contentVersion=0cec2b3、generatedAt=2026-10-08T07:03:18+00:00；34 节，各节条数合计 672 条",
     "产物文件：app/src/main/assets/entries.json",
     "仓库最后提交 2026-10-09T11:15",
-    "该条数首次出现在上游是 0cec2b3d（2026-10-08 13:20）→ 若内容停在那里，则落后约 4.2 天"
+    "该条数首次出现在上游是 0cec2b3d（2026-10-08 13:20）"
    ],
    "ownVersionDate": "2026-10-08 13:20:31 +0800",
    "lagEntries": 15,
    "lagEntriesFrom": 672,
    "lagDays": 4.2,
+   "lagDaysFrom": "count-first-seen",
    "status": "lag"
   },
   {
@@ -370,7 +406,9 @@
    "ownVersionShort": null,
    "ownGeneratedAt": null,
    "sitemapLastmod": null,
+   "sitemapLastmodCount": null,
    "sitemapUrls": null,
+   "contentMatch": null,
    "runtimeFetch": true,
    "evidence": [
     "RemoteBook.swift 源码级确认：运行时打 api.github.com/repos/eternity4719/... 与 raw.../book/ 拉最新书稿",
@@ -402,7 +440,9 @@
    "ownVersionShort": null,
    "ownGeneratedAt": null,
    "sitemapLastmod": null,
+   "sitemapLastmodCount": null,
    "sitemapUrls": null,
+   "contentMatch": null,
    "runtimeFetch": true,
    "evidence": [
     "src/sources.js 里 LIFE_REPO 指向 raw.githubusercontent.com/eternity4719/HowToLiveBetter，fetchText() 运行时拉正文并按 `### ` 解析 → 不存在「落后」",
@@ -434,18 +474,21 @@
    "ownVersionShort": "e4d6db45",
    "ownGeneratedAt": "2026-10-12T01:18:59Z",
    "sitemapLastmod": null,
+   "sitemapLastmodCount": null,
    "sitemapUrls": null,
+   "contentMatch": null,
    "runtimeFetch": false,
    "evidence": [
     "data/stats.json 自带 upstream_commit=e4d6db45、synced_at=2026-10-12T01:18:59Z、entries=677（34 节）",
     "产物文件：data/stats.json",
     "仓库最后提交 2026-10-12T01:18",
-    "该条数首次出现在上游是 769dfc62（2026-10-10 17:52）→ 若内容停在那里，则落后约 2 天"
+    "该条数首次出现在上游是 769dfc62（2026-10-10 17:52）"
    ],
    "ownVersionDate": "2026-10-12 08:58:46 +0800",
    "lagEntries": 10,
    "lagEntriesFrom": 677,
    "lagDays": 2,
+   "lagDaysFrom": "count-first-seen",
    "status": "lag"
   },
   {
@@ -466,16 +509,19 @@
    "ownVersionShort": null,
    "ownGeneratedAt": null,
    "sitemapLastmod": null,
+   "sitemapLastmodCount": null,
    "sitemapUrls": null,
+   "contentMatch": null,
    "runtimeFetch": false,
    "evidence": [
     "它是上游的 fork（parent = eternity4719/HowToLiveBetter），book/ 是完整转存：34/34 个文件取到，按官方口径数出 ### 标题 676 条",
-    "该条数首次出现在上游是 5a36eaf8（2026-10-09 19:40）→ 若内容停在那里，则落后约 2.9 天"
+    "该条数首次出现在上游是 5a36eaf8（2026-10-09 19:40）"
    ],
    "ownVersionDate": null,
    "lagEntries": 11,
    "lagEntriesFrom": 676,
    "lagDays": 2.9,
+   "lagDaysFrom": "count-first-seen",
    "status": "lag"
   }
  ]
