@@ -141,6 +141,7 @@ const rows = audit.derived.map((x) => {
     ownGeneratedAt: e.ownGeneratedAt || null,
     sitemapLastmod: e.sitemapLastmod || null,
     sitemapUrls: e.sitemapUrls != null ? e.sitemapUrls : null,
+    carriedFrom: e.carriedFrom || null,
     evidence: e.evidence || [],
     // 可达性（来自 audit.json）
     signals: x.signals || [],
@@ -214,6 +215,7 @@ function badgeFor(r, upCount = UP_COUNT) {
 
 const BASIS_LABEL = {
   measured: '实测：读该项目自己的产物文件，数出真实条数',
+  carried: '上次实测值（本轮探针被该站 WAF 挡掉，未能复核）',
   'self-declared': '商店/页面自述（未实测）',
   runtime: '源码确认：运行时直接拉上游正文',
   none: '无版本信号',
@@ -244,7 +246,7 @@ const cards = rows
   <div class="freshbox" style="border-color:${v.color}33;background:${v.bg}">
     <div class="vrow"><span class="pill" style="color:${v.color}">${v.label}</span></div>
     ${lagBadge}
-    <div class="fnote">${BASIS_LABEL[r.basis] || BASIS_LABEL.none}（置信 ${CONF_LABEL[r.confidence] || '无'}）${dn}</div>
+    <div class="fnote">${BASIS_LABEL[r.basis] || BASIS_LABEL.none}（置信 ${CONF_LABEL[r.confidence] || '无'}）${dn}${r.carriedFrom ? ` · 上次核实 ${String(r.carriedFrom).slice(0, 10)}` : ''}</div>
   </div>
   <p class="feat">${r.note}</p>
   <div class="tags">${r.tags.map((t) => `<span class="tag">${t}</span>`).join('')}</div>
@@ -274,9 +276,10 @@ const detailRows = rows
   .map((r) => {
     const basisTxt =
       r.basis === 'measured' ? `实测产物<span class="dim">（读它自己发布的文件数出来的）</span>`
-        : r.basis === 'self-declared' ? `商店/页面自述<span class="dim">（弱信号）</span>`
-          : r.basis === 'runtime' ? '运行时拉取<span class="dim">（无需版本号）</span>'
-            : '—';
+        : r.basis === 'carried' ? `实测产物<span class="dim">（上一次的实测值，本轮探针被该站 WAF 挡掉）</span>`
+          : r.basis === 'self-declared' ? `商店/页面自述<span class="dim">（弱信号）</span>`
+            : r.basis === 'runtime' ? '运行时拉取<span class="dim">（无需版本号）</span>'
+              : '—';
     const nTxt = r.declared != null ? String(r.declared) : '—';
     const lagTxt = r.verdict === 'runtime' ? '跟随' : r.verdict === 'fixed' ? '快照' : r.lag == null ? '—' : r.lag === 0 ? '0 ✅' : r.lag + ' ⚠️';
     return `<tr>
@@ -606,6 +609,7 @@ const dataset = {
     ownGeneratedAt: r.ownGeneratedAt,
     sitemapLastmod: r.sitemapLastmod,
     sitemapUrls: r.sitemapUrls,
+    carriedFrom: r.carriedFrom,
     evidence: (r.evidence || []).slice(0, 5).map((e) => String(e).slice(0, 220)),
     // —— 可达性（audit.json，由采集阶段每轮实测）——
     ok: r.ok,

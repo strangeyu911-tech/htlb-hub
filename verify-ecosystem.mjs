@@ -37,6 +37,21 @@ const DIR = path.dirname(fileURLToPath(import.meta.url));
 const audit = JSON.parse(fs.readFileSync(path.join(DIR, 'data', 'audit.json'), 'utf8'));
 const tl = JSON.parse(fs.readFileSync(path.join(DIR, 'data', 'upstream-timeline.json'), 'utf8'));
 
+/**
+ * 上一轮的产物（CI 里 = 仓库里上一次提交的版本）。
+ * 用途：本轮探针被 WAF / 网络挡掉时，**沿用上次实测值**而不是把项目降级成「无版本信号」。
+ * 实测场景：life.xfun.fun 对 GitHub Actions 的云出口 IP 直接回 403（同一时刻本机 200），
+ * 换浏览器 UA 也没用 —— 这是站点的反爬策略，不是我们的取数错误。
+ */
+let PREV = null;
+try {
+  const p0 = path.join(DIR, 'data', 'ecosystem.json');
+  if (fs.existsSync(p0)) PREV = JSON.parse(fs.readFileSync(p0, 'utf8'));
+} catch {
+  /* 首次运行没有上一版，正常 */
+}
+const PREV_BY_ID = Object.fromEntries(((PREV && PREV.projects) || []).map((p) => [p.id, p]));
+
 const UP_ENTRIES = tl.headEntries;
 const UP_HEAD_SHA = tl.headSha;
 /** git 的 %ci 形如 `2026-10-12 18:04:49 +0800` —— 注意它自带时区，不能再拼 +08:00 */
@@ -608,6 +623,7 @@ for (const x of audit.derived) {
     ownGeneratedAt: null,
     ownBuildTime: null, // 站点自己的构建/修订时间（优先于 sitemap lastmod 作为「内容时间」）
     ownBuildTimeFrom: null,
+    carriedFrom: null, // 本轮探针被挡时，沿用值来自哪一次运行
     sitemapLastmod: null,
     sitemapLastmodCount: null,
     sitemapUrls: null,
@@ -644,10 +660,24 @@ for (const x of audit.derived) {
   out.ownVersionShort = out.ownVersion ? SHORT(out.ownVersion) : null;
   out.ownVersionDate = out.ownVersion ? (shaDate(out.ownVersion) || null) : null;
 
+  // ── 探针被挡 → 沿用上次实测值（不降级成「无版本信号」）──
+  const probeBlocked =
+    out.actualEntries == null && out.evidence.some((e) => /取不到: HTTP (0|403|429|5\d\d)/.test(e));
+  const prevRec = PREV_BY_ID[out.id];
+  let carried = false;
+  if (probeBlocked && prevRec && prevRec.actualEntries != null) {
+    out.actualEntries = prevRec.actualEntries;
+    out.carriedFrom = prevRec.generatedAt || (PREV && PREV.generatedAt) || null;
+    carried = true;
+    out.ev(
+      `⚠️ 本轮探针被挡（WAF / 网络），**沿用上次实测值 ${prevRec.actualEntries} 条**（来自 ${String(out.carriedFrom).slice(0, 19)} 那次运行）`
+    );
+  }
+
   // ① 有没有「实测」出来的条数？
   const measured = out.actualEntries != null;
   // ② 没有实测时，退回页面自述（明确标 basis，不冒充实测）
-  const basis = measured ? 'measured' : out.selfDeclared != null ? 'self-declared' : 'none';
+  const basis = carried ? 'carried' : measured ? 'measured' : out.selfDeclared != null ? 'self-declared' : 'none';
   const n = measured ? out.actualEntries : out.selfDeclared ?? null;
 
   out.basis = basis;
@@ -674,7 +704,7 @@ for (const x of audit.derived) {
     if (ownDate) out.ev(`站点自己的构建/修订时间 ${String(out.ownBuildTime).slice(0, 16)}（来源：${out.lagDaysFrom}）→ 「内容时间」以此为准`);
     else if (smDate) out.ev(`该站自己的 lastmod 最新到 ${out.sitemapLastmod.slice(0, 10)} → 「内容时间」以此为准`);
     out.status = out.lagEntries === 0 ? 'sync' : 'lag';
-    out.confidence = measured ? 'high' : 'low';
+    out.confidence = carried ? 'medium' : measured ? 'high' : 'low';
   } else if (out.ownVersionDate) {
     out.lagDays = daysFrom(out.ownVersionDate);
     out.lagEntries = null;
@@ -725,11 +755,13 @@ const out = {
     artifact: '读它自己的产物文件（含 SSR hydration 内联数据、静态数据 chunk、逐条页清单），用官方口径数实际条数，或读它自带的版本号',
     fork: '它是上游 fork，逐文件数 book/*.md 的 ### 并与上游对比',
     runtime: '源码级确认运行时拉上游 → 不存在「落后」',
+    carried: '本轮探针被 WAF / 网络挡掉 → 沿用上一次的实测值（会在依据里标明来源时间）',
     page: '只有 sitemap lastmod / 页面自述（弱信号）',
   },
   stats: {
     total: records.length,
     measured: records.filter((r) => r.actualEntries != null).length,
+    carried: records.filter((r) => r.basis === 'carried').length,
     withOwnVersion: records.filter((r) => r.ownVersion).length,
     runtime: records.filter((r) => r.runtimeFetch).length,
     sync: records.filter((r) => r.status === 'sync').length,
@@ -744,5 +776,5 @@ const out = {
 fs.writeFileSync(path.join(DIR, 'data', 'ecosystem.json'), JSON.stringify(out, null, 1), 'utf8');
 console.log('\n已写出: data/ecosystem.json');
 console.log(
-  `统计：实测条数 ${out.stats.measured}/${out.stats.total}｜自带版本号 ${out.stats.withOwnVersion}｜运行时拉取 ${out.stats.runtime}｜高置信 ${out.stats.highConfidence}｜追平 ${out.stats.sync}｜落后 ${out.stats.lagging}｜未判定 ${out.stats.unknown}`
+  `统计：实测条数 ${out.stats.measured}/${out.stats.total}（其中沿用上次 ${out.stats.carried}）｜自带版本号 ${out.stats.withOwnVersion}｜运行时拉取 ${out.stats.runtime}｜高置信 ${out.stats.highConfidence}｜追平 ${out.stats.sync}｜落后 ${out.stats.lagging}｜未判定 ${out.stats.unknown}`
 );

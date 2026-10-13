@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-13T04:55:46.595Z",
+ "generatedAt": "2026-10-13T04:59:41.858Z",
  "upstream": {
   "repo": "eternity4719/HowToLiveBetter",
   "readmeRaw": "https://raw.githubusercontent.com/eternity4719/HowToLiveBetter/main/README.md",
@@ -13,13 +13,13 @@
  },
  "stats": {
   "total": 14,
-  "measured": 10,
+  "measured": 11,
   "selfDeclaredOnly": 1,
   "withOwnVersion": 4,
   "runtime": 2,
   "sync": 0,
-  "lagging": 10,
-  "unknown": 1
+  "lagging": 11,
+  "unknown": 0
  },
  "projects": [
   {
@@ -54,6 +54,7 @@
    "ownGeneratedAt": null,
    "sitemapLastmod": null,
    "sitemapUrls": null,
+   "carriedFrom": null,
    "evidence": [
     "RemoteBook.swift 源码级确认：运行时打 api.github.com/repos/eternity4719/... 与 raw.../book/ 拉最新书稿",
     "源码注释原文：「内置的那份数据是编译时快照，永远能出内容。这里只负责『书更新了，跟上去』」→ 不存在「落后」",
@@ -98,6 +99,7 @@
    "ownGeneratedAt": null,
    "sitemapLastmod": null,
    "sitemapUrls": null,
+   "carriedFrom": null,
    "evidence": [
     "src/sources.js 里 LIFE_REPO 指向 raw.githubusercontent.com/eternity4719/HowToLiveBetter，fetchText() 运行时拉正文并按 `### ` 解析 → 不存在「落后」",
     "该仓库 docs/VERIFICATION.md 自证：「真实网络曾读取 HowToLiveBetter 原文」（按需拉订阅章节，非全量）",
@@ -140,6 +142,7 @@
    "ownGeneratedAt": null,
    "sitemapLastmod": "2026-10-12T15:28:10.892Z",
    "sitemapUrls": 418,
+   "carriedFrom": null,
    "evidence": [
     "首页 SSR 内联数据自带 total=689、chapterCount=34（TanStack Start 的 hydration payload）",
     "数据 chunk book-index-D7qKIj2W.js（175 KB）逐条比对上游标题：687/688 = 99.9% → 正文是**构建期全量打包**，不是运行时拉取",
@@ -186,6 +189,7 @@
    "ownGeneratedAt": null,
    "sitemapLastmod": "2026-10-13T00:00:00.000Z",
    "sitemapUrls": 738,
+   "carriedFrom": null,
    "evidence": [
     "sync/fingerprint.json 自带 commit=df6df704、count=687，另有逐条哈希 687 条",
     "仓库同时带 tools/check_drift.py 与 tools/check_verbatim.py —— 该项目自带上游漂移检测与逐字校验",
@@ -231,6 +235,7 @@
    "ownGeneratedAt": null,
    "sitemapLastmod": null,
    "sitemapUrls": 712,
+   "carriedFrom": null,
    "evidence": [
     "sitemap（/sitemap.xml）共 712 个 URL，其中「条目 /e/<id>」逐条页 677 个",
     "首页内联 window.__TOTAL__ = 677 条",
@@ -275,6 +280,7 @@
    "ownGeneratedAt": "2026-10-12T01:18:59Z",
    "sitemapLastmod": null,
    "sitemapUrls": null,
+   "carriedFrom": null,
    "evidence": [
     "data/stats.json 自带 upstream_commit=e4d6db45、synced_at=2026-10-12T01:18:59Z、entries=677（34 节）",
     "产物文件：data/stats.json",
@@ -286,6 +292,50 @@
    "avg": 6083,
    "cdn": "github.com",
    "lastEdit": "2026-10-12"
+  },
+  {
+   "id": "life.xfun.fun",
+   "name": "手绘地图版",
+   "slug": "life-xfun-fun",
+   "author": "sagiriiiiii",
+   "kind": "网站",
+   "url": "https://life.xfun.fun/",
+   "linkLabel": "打开网站",
+   "ghRepo": null,
+   "note": "把每条建议画成一张生活卡片，可滑动浏览。",
+   "tags": [
+    "能搜索",
+    "能分享"
+   ],
+   "gate": "未标注",
+   "status": "lag",
+   "basis": "measured",
+   "confidence": "high",
+   "actualEntries": 676,
+   "selfDeclared": null,
+   "selfDeclaredFrom": null,
+   "lag": 14,
+   "lagEntries": 14,
+   "lagDays": 3.7,
+   "runtimeFetch": false,
+   "ownVersion": null,
+   "ownVersionShort": null,
+   "ownVersionDate": null,
+   "ownGeneratedAt": null,
+   "sitemapLastmod": null,
+   "sitemapUrls": null,
+   "carriedFrom": null,
+   "evidence": [
+    "首页自述「676 张人生卡片」；逐关张数相加（15 关）= 272",
+    "自述与逐关合计不一致，仅采信自述",
+    "全站只有 5 个 Astro 小 chunk（合计 <10 KB），HTML/JS 里没有任何 raw.githubusercontent、api.github.com 或上游拉取代码，逐条内容已在构建期预渲染 → 属静态快照，不是运行时拉取",
+    "该条数首次出现在上游是 5a36eaf8（2026-10-09 19:40）"
+   ],
+   "ok": 3,
+   "total": 3,
+   "avg": 2006,
+   "cdn": "Cloudflare",
+   "lastEdit": ""
   },
   {
    "id": "HuiTurn/HowToLiveBetter",
@@ -319,6 +369,7 @@
    "ownGeneratedAt": null,
    "sitemapLastmod": null,
    "sitemapUrls": null,
+   "carriedFrom": null,
    "evidence": [
     "data/match-index.js（76 KB，自动生成）文件头写明「条目数：676」，逐条数组行实测 676 行",
     "两条信号一致（头部声明 = 逐行计数 = 676）",
@@ -364,6 +415,7 @@
    "ownGeneratedAt": "2026-10-08T07:03:18+00:00",
    "sitemapLastmod": null,
    "sitemapUrls": null,
+   "carriedFrom": null,
    "evidence": [
     "entries.json 顶部自带 contentVersion=0cec2b3、generatedAt=2026-10-08T07:03:18+00:00；34 节，各节条数合计 672 条",
     "产物文件：app/src/main/assets/entries.json",
@@ -408,6 +460,7 @@
    "ownGeneratedAt": "2026-10-09T19:45:44Z",
    "sitemapLastmod": null,
    "sitemapUrls": null,
+   "carriedFrom": null,
    "evidence": [
     "App Store 官方接口：当前版本 v1.0.4，2026-10-09 发布（首次上架 2026-10-07）",
     "更新说明：• 清单里长按一条，可以在「坚持做」和「做一次」之间拖动，也能调整顺序 • 可以自己加一条每天要做的目标 • 右滑的建议都能放进清单。同时能坚持 3 个，做一次能放 5 条 • 这一版里滑动满 50 次，或做完 5 次「做一次」，或打卡满 3 次，会请你给个系统评分…",
@@ -452,6 +505,7 @@
    "ownGeneratedAt": null,
    "sitemapLastmod": "2026-10-09T00:00:00.000Z",
    "sitemapUrls": 706,
+   "carriedFrom": null,
    "evidence": [
     "sitemap-0.xml 共 706 个 URL：逐条页 /tips/tip-<hash>/ 654 个 + 具名条页 9 个 = **663 条**；另有 34 个章节页（与上游 34 节吻合）",
     "它自己的「更新记录」页写明：导入 34 章、663 条上游建议，并「建立快照指纹」",
@@ -497,6 +551,7 @@
    "ownGeneratedAt": null,
    "sitemapLastmod": "2026-10-05T00:00:00.000Z",
    "sitemapUrls": 1,
+   "carriedFrom": null,
    "evidence": [
     "题库文件（188 KB）自带 total=658；分项 counts 合计 658；条目数组实长 658",
     "三重交叉一致（total = 分项合计 = 数组长度）",
@@ -542,6 +597,7 @@
    "ownGeneratedAt": null,
    "sitemapLastmod": null,
    "sitemapUrls": 714,
+   "carriedFrom": null,
    "evidence": [
     "sitemap（/sitemap.xml）共 714 个 URL，其中「条目 /q/<id>/」逐条页 654 个",
     "首页自述「654 条建议分 34 章」",
@@ -552,47 +608,6 @@
    "ok": 3,
    "total": 3,
    "avg": 1110,
-   "cdn": "Cloudflare",
-   "lastEdit": ""
-  },
-  {
-   "id": "life.xfun.fun",
-   "name": "手绘地图版",
-   "slug": "life-xfun-fun",
-   "author": "sagiriiiiii",
-   "kind": "网站",
-   "url": "https://life.xfun.fun/",
-   "linkLabel": "打开网站",
-   "ghRepo": null,
-   "note": "把每条建议画成一张生活卡片，可滑动浏览。",
-   "tags": [
-    "能搜索",
-    "能分享"
-   ],
-   "gate": "未标注",
-   "status": "unknown",
-   "basis": "none",
-   "confidence": "none",
-   "actualEntries": null,
-   "selfDeclared": null,
-   "selfDeclaredFrom": null,
-   "lag": null,
-   "lagEntries": null,
-   "lagDays": null,
-   "runtimeFetch": false,
-   "ownVersion": null,
-   "ownVersionShort": null,
-   "ownVersionDate": null,
-   "ownGeneratedAt": null,
-   "sitemapLastmod": null,
-   "sitemapUrls": null,
-   "evidence": [
-    "首页取不到: HTTP 403",
-    "页面取不到: HTTP 403"
-   ],
-   "ok": 3,
-   "total": 3,
-   "avg": 2006,
    "cdn": "Cloudflare",
    "lastEdit": ""
   },
@@ -627,6 +642,7 @@
    "ownGeneratedAt": null,
    "sitemapLastmod": null,
    "sitemapUrls": null,
+   "carriedFrom": null,
    "evidence": [
     "它是上游的 fork（parent = eternity4719/HowToLiveBetter），book/ 是完整转存：34/34 个文件取到，按官方口径数出 ### 标题 676 条",
     "该条数首次出现在上游是 5a36eaf8（2026-10-09 19:40）"
