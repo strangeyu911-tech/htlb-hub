@@ -54,13 +54,26 @@ const BOOK_FILES = tl.bookFiles || [];
 const RAW = (repo, p, ref = 'HEAD') => `https://raw.githubusercontent.com/${repo}/${ref}/${p}`;
 
 // ── 网络 ────────────────────────────────────────────────────────────
-async function get(url, { timeout = 25000, cap = 12 * 1024 * 1024 } = {}) {
+/**
+ * ⚠️ 必须用**普通浏览器 UA**。用 `htlb-hub/2.0 (ecosystem verifier)` 这种自报家门的 UA 时，
+ * Cloudflare 会对 GitHub Actions 的云出口 IP 直接回 **403**（同一 URL 在本机却正常）。
+ * 2026-10-13 实测：提交后由 runner 重跑，life.xfun.fun 被判成「无版本信号」，
+ * 原始证据就一行「首页取不到: HTTP 403」——本机同一时刻是 676 条。
+ */
+const BROWSER_UA =
+  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36';
+
+async function fetchOnce(url, { timeout, cap }) {
   const ctrl = new AbortController();
   const t = setTimeout(() => ctrl.abort(), timeout);
   try {
     const r = await fetch(url, {
       signal: ctrl.signal,
-      headers: { 'user-agent': 'htlb-hub/2.0 (ecosystem verifier)', 'accept-language': 'zh-CN,zh;q=0.9' },
+      headers: {
+        'user-agent': BROWSER_UA,
+        'accept-language': 'zh-CN,zh;q=0.9',
+        accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+      },
     });
     if (!r.ok) return { ok: false, status: r.status, text: '' };
     const text = await r.text();
@@ -70,6 +83,24 @@ async function get(url, { timeout = 25000, cap = 12 * 1024 * 1024 } = {}) {
   } finally {
     clearTimeout(t);
   }
+}
+
+/**
+ * 带重试的取数：403 / 429 / 5xx 与网络错误都重试 2 次（退避 1.2s、2.4s）。
+ * 云 runner 的出口本来就不稳，一次失败不该把一个已经查实的项目打成「未判定」。
+ */
+async function get(url, opts = {}) {
+  const timeout = opts.timeout ?? 25000;
+  const cap = opts.cap ?? 12 * 1024 * 1024;
+  let last;
+  for (let i = 0; i < 3; i++) {
+    last = await fetchOnce(url, { timeout, cap });
+    if (last.ok) return last;
+    const retriable = last.status === 0 || last.status === 403 || last.status === 429 || last.status >= 500;
+    if (!retriable) return last;
+    if (i < 2) await new Promise((r) => setTimeout(r, 1200 * (i + 1)));
+  }
+  return last;
 }
 
 // ── 工具 ────────────────────────────────────────────────────────────
