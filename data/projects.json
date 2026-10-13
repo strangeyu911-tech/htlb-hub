@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-13T04:46:23.247Z",
+ "generatedAt": "2026-10-13T04:48:50.094Z",
  "upstream": {
   "repo": "eternity4719/HowToLiveBetter",
   "readmeRaw": "https://raw.githubusercontent.com/eternity4719/HowToLiveBetter/main/README.md",
@@ -13,13 +13,13 @@
  },
  "stats": {
   "total": 14,
-  "measured": 11,
+  "measured": 10,
   "selfDeclaredOnly": 1,
   "withOwnVersion": 4,
   "runtime": 2,
   "sync": 0,
-  "lagging": 11,
-  "unknown": 0
+  "lagging": 10,
+  "unknown": 1
  },
  "projects": [
   {
@@ -288,49 +288,6 @@
    "lastEdit": "2026-10-12"
   },
   {
-   "id": "life.xfun.fun",
-   "name": "手绘地图版",
-   "slug": "life-xfun-fun",
-   "author": "sagiriiiiii",
-   "kind": "网站",
-   "url": "https://life.xfun.fun/",
-   "linkLabel": "打开网站",
-   "ghRepo": null,
-   "note": "把每条建议画成一张生活卡片，可滑动浏览。",
-   "tags": [
-    "能搜索",
-    "能分享"
-   ],
-   "gate": "未标注",
-   "status": "lag",
-   "basis": "measured",
-   "confidence": "high",
-   "actualEntries": 676,
-   "selfDeclared": null,
-   "selfDeclaredFrom": null,
-   "lag": 14,
-   "lagEntries": 14,
-   "lagDays": 3.7,
-   "runtimeFetch": false,
-   "ownVersion": null,
-   "ownVersionShort": null,
-   "ownVersionDate": null,
-   "ownGeneratedAt": null,
-   "sitemapLastmod": null,
-   "sitemapUrls": null,
-   "evidence": [
-    "首页自述「676 张人生卡片」；逐关张数相加（15 关）= 272",
-    "自述与逐关合计不一致，仅采信自述",
-    "全站只有 5 个 Astro 小 chunk（合计 <10 KB），HTML/JS 里没有任何 raw.githubusercontent、api.github.com 或上游拉取代码，逐条内容已在构建期预渲染 → 属静态快照，不是运行时拉取",
-    "该条数首次出现在上游是 5a36eaf8（2026-10-09 19:40）"
-   ],
-   "ok": 3,
-   "total": 3,
-   "avg": 2006,
-   "cdn": "Cloudflare",
-   "lastEdit": ""
-  },
-  {
    "id": "HuiTurn/HowToLiveBetter",
    "name": "微信小程序版",
    "slug": "huiturn-howtolivebetter",
@@ -595,6 +552,46 @@
    "ok": 3,
    "total": 3,
    "avg": 1110,
+   "cdn": "Cloudflare",
+   "lastEdit": ""
+  },
+  {
+   "id": "life.xfun.fun",
+   "name": "手绘地图版",
+   "slug": "life-xfun-fun",
+   "author": "sagiriiiiii",
+   "kind": "网站",
+   "url": "https://life.xfun.fun/",
+   "linkLabel": "打开网站",
+   "ghRepo": null,
+   "note": "把每条建议画成一张生活卡片，可滑动浏览。",
+   "tags": [
+    "能搜索",
+    "能分享"
+   ],
+   "gate": "未标注",
+   "status": "unknown",
+   "basis": "none",
+   "confidence": "none",
+   "actualEntries": null,
+   "selfDeclared": null,
+   "selfDeclaredFrom": null,
+   "lag": null,
+   "lagEntries": null,
+   "lagDays": null,
+   "runtimeFetch": false,
+   "ownVersion": null,
+   "ownVersionShort": null,
+   "ownVersionDate": null,
+   "ownGeneratedAt": null,
+   "sitemapLastmod": null,
+   "sitemapUrls": null,
+   "evidence": [
+    "首页取不到: HTTP 403"
+   ],
+   "ok": 3,
+   "total": 3,
+   "avg": 2006,
    "cdn": "Cloudflare",
    "lastEdit": ""
   },
