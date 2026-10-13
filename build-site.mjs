@@ -63,6 +63,23 @@ const V = {
 };
 const TYPE_ORDER = ['网站+MCP', '网站', '小程序', 'iOS App', 'Android App', 'macOS 小组件', 'Chrome 插件', '数据集', '漫画'];
 
+/**
+ * 每张卡的「落地入口」—— 让人能直接点进去，而不是先落到仓库再自己找。
+ * 网站类直连站点；手机/桌面/插件/数据集/漫画类指向各自的发布页或商店页。
+ * ⚠️ 全部用 /releases/latest 这类**永久指向最新版**的地址，不写死版本号（否则一发新版就过期）。
+ */
+const CTA = {
+  'HuiTurn/HowToLiveBetter': { link: 'https://github.com/HuiTurn/HowToLiveBetter', label: '看小程序说明 / 源码' },
+  'llzx373/BetterLifeApp': { link: 'https://github.com/llzx373/BetterLifeApp/releases/latest', label: '下载 Android 安装包' },
+  'mittsommer/daily-life-tip': { link: 'https://github.com/mittsommer/daily-life-tip/releases/latest', label: '下载 macOS 安装包' },
+  'sinyu1012/shiye-tab': {
+    link: 'https://chromewebstore.google.com/detail/%E6%8B%BE%E9%A1%B5-%C2%B7-shiye-tab/fkkcecjdalionkdjbpdhgigpcimopfmg?hl=zh',
+    label: '去 Chrome 应用商店安装',
+  },
+  'sin0317/htlb-dataset': { link: 'https://github.com/sin0317/htlb-dataset', label: '在 GitHub 取数据' },
+  'robiNeo2045/comics': { link: 'https://github.com/robiNeo2045/HowToLiveBetter/releases/latest', label: '下载漫画 PDF' },
+};
+
 const rows = audit.derived.map((x) => {
   const c = CURATED[x.id] || { tags: [], gate: '—', note: x.note || '' };
   const e = ECO_BY_ID[x.id] || {};
@@ -93,9 +110,16 @@ const rows = audit.derived.map((x) => {
     name: x.name,
     slug,
     author: x.author,
+    // ⚠️ 只在该项目**确实有 GitHub 仓库**时才把作者链到 GitHub（拿仓库 owner）。
+    //    网站类项目的作者名很多不是 GitHub 账号，硬拼 https://github.com/<作者名> 会造出死链
+    //    （实测踩过：https://github.com/GUGU VITALITY LIMITED 这种带空格的地址）。
+    authorGh: x.ghRepo ? x.ghRepo.split('/')[0] : null,
     kind: x.kind,
-    url: x.url || (x.ghRepo ? `https://github.com/${x.ghRepo}` : ''),
+    url: (CTA[x.id] && CTA[x.id].link) || x.url || (x.ghRepo ? `https://github.com/${x.ghRepo}` : ''),
     ghRepo: x.ghRepo || null,
+    linkLabel:
+      (CTA[x.id] && CTA[x.id].label) ||
+      (x.kind === '网站' || x.kind === '网站+MCP' ? '打开网站' : x.ghRepo ? '前往 GitHub' : '打开'),
     note: c.note,
     tags: c.tags || [],
     gate: c.gate,
@@ -160,8 +184,12 @@ const stats = {
   hasCount: rows.filter((r) => r.declared != null).length,
   maxLag: rows.filter((r) => r.lag != null).length ? Math.max(...rows.filter((r) => r.lag != null).map((r) => r.lag)) : 0,
   maxLagName: rows.filter((r) => r.lag != null).sort((a, b) => b.lag - a.lag)[0]?.name || '',
+  minLag: rows.filter((r) => r.lag != null).length ? Math.min(...rows.filter((r) => r.lag != null).map((r) => r.lag)) : 0,
+  minLagName: rows.filter((r) => r.lag != null && r.lag > 0).sort((a, b) => a.lag - b.lag)[0]?.name || '',
   cf: rows.filter((r) => r.cdn === 'Cloudflare').length,
   domestic: rows.filter((r) => r.domestic).length,
+  platforms: new Set(rows.map((r) => r.kind)).size,
+  autoFollow: rows.filter((r) => r.verdict === 'sync' || r.verdict === 'runtime').length,
 };
 
 const ALL_TAGS = [...new Set(rows.flatMap((r) => r.tags))];
@@ -186,9 +214,9 @@ function badgeFor(r, upCount = UP_COUNT) {
 
 const BASIS_LABEL = {
   measured: '实测：读该项目自己的产物文件，数出真实条数',
-  'self-declared': '页面自述（弱信号，未实测）',
-  runtime: '源码级确认：运行时拉上游正文',
-  none: '没有任何可核验的版本信号',
+  'self-declared': '商店/页面自述（未实测）',
+  runtime: '源码确认：运行时直接拉上游正文',
+  none: '无版本信号',
 };
 const CONF_LABEL = { high: '高', medium: '中', low: '低', none: '无' };
 
@@ -212,14 +240,15 @@ const cards = rows
     <h3><a href="${r.url}" target="_blank" rel="noopener">${r.name}</a></h3>
     <span class="kind">${r.kind}</span>
   </div>
-  <div class="byline">by <a href="https://github.com/${r.author}" target="_blank" rel="noopener">${r.author}</a>${r.lastEdit ? ` · 末次改动 ${r.lastEdit}` : ''}</div>
+  <div class="byline">by ${r.authorGh ? `<a href="https://github.com/${r.authorGh}" target="_blank" rel="noopener">${r.author}</a>` : r.author}${r.lastEdit ? ` · 末次改动 ${r.lastEdit}` : ''}</div>
   <div class="freshbox" style="border-color:${v.color}33;background:${v.bg}">
     <div class="vrow"><span class="pill" style="color:${v.color}">${v.label}</span></div>
     ${lagBadge}
-    <div class="fnote">依据：${BASIS_LABEL[r.basis] || BASIS_LABEL.none}（置信 ${CONF_LABEL[r.confidence] || '无'}）${dn}</div>
+    <div class="fnote">${BASIS_LABEL[r.basis] || BASIS_LABEL.none}（置信 ${CONF_LABEL[r.confidence] || '无'}）${dn}</div>
   </div>
   <p class="feat">${r.note}</p>
   <div class="tags">${r.tags.map((t) => `<span class="tag">${t}</span>`).join('')}</div>
+  <a class="cta" href="${r.url}" target="_blank" rel="noopener">${r.linkLabel} →</a>
   <div class="foot">
     <span class="reach ${r.ok === r.total ? 'ok' : 'warn'}">${r.ok}/${r.total} 通 · ${r.avg}ms</span>
     <span class="dim">${r.cdn}${r.domestic ? ' · 国内节点' : ''}</span>
@@ -244,9 +273,9 @@ const badgeRows = rows
 const detailRows = rows
   .map((r) => {
     const basisTxt =
-      r.basis === 'measured' ? `实测产物 <span class="dim">(${r.selfDeclared != null ? '另有页面自述 ' + r.selfDeclared : '非页面自述'})</span>`
-        : r.basis === 'self-declared' ? '页面自述 <span class="dim">（弱）</span>'
-          : r.basis === 'runtime' ? '运行时拉取'
+      r.basis === 'measured' ? `实测产物<span class="dim">（读它自己发布的文件数出来的）</span>`
+        : r.basis === 'self-declared' ? `商店/页面自述<span class="dim">（弱信号）</span>`
+          : r.basis === 'runtime' ? '运行时拉取<span class="dim">（无需版本号）</span>'
             : '—';
     const nTxt = r.declared != null ? String(r.declared) : '—';
     const lagTxt = r.verdict === 'runtime' ? '跟随' : r.verdict === 'fixed' ? '快照' : r.lag == null ? '—' : r.lag === 0 ? '0 ✅' : r.lag + ' ⚠️';
@@ -324,6 +353,8 @@ h2{font-size:20px;font-weight:600;margin:44px 0 8px}
 .feat{font-size:13.5px;color:var(--tx2);margin:0 0 12px;flex:1}
 .tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px}
 .tag{font-size:11.5px;color:var(--tx2);background:#f6f4f0;border-radius:5px;padding:2px 7px}
+.cta{display:block;text-align:center;margin:0 0 13px;padding:9px 12px;border-radius:9px;background:var(--b);color:#fff;text-decoration:none;font-size:13.5px;font-weight:500}
+.cta:hover{background:#0f4a80}
 .foot{display:flex;flex-wrap:wrap;gap:10px;align-items:center;border-top:1px solid #f2f0ec;padding-top:11px;font-size:12.5px}
 .reach.ok{color:var(--g)}.reach.warn{color:var(--a)}
 .gate{color:var(--tx3);font-size:12px;flex-basis:100%}
@@ -359,25 +390,25 @@ footer{margin-top:56px;border-top:1px solid var(--line);padding:22px 0 60px;colo
 <div class="wrap">
 
 <section class="hero">
-  <h1>上游有 ${stats.total} 个项目，散在 ${stats.total} 个地方。<br>这里把它们聚在一处，并逐个查证同步到了哪一版。</h1>
-  <p class="lede">这本书 <b>CC BY 4.0</b> 开源，读者做出了 ${stats.total} 个衍生工具：网站、小程序、App、浏览器插件、数据集、漫画。<b>它们唯一的聚合点是 GitHub 上的源仓库</b> —— 而 GitHub 网页在国内中位要等 <b>5.3 秒</b>、最坏 <b>18.5 秒</b>，波动 14 秒，所以很多人干脆一直开着梯子。<br>更难的是：<b>没有任何一个地方告诉你「哪个站是新的」</b>。这个页面就干这两件事。</p>
+  <h1>想读《高性价比人生指南》？<br>这 ${stats.total} 个入口，每个都核实过同步到了哪一版。</h1>
+  <p class="lede">《高性价比人生指南》是一本 <b>CC BY 4.0</b> 开源的循证生活建议书，<b>目前 ${UP_COUNT} 条，而且一直在加</b>（最近半个月就从 614 条长到 ${UP_COUNT} 条）—— 所以下面每个版本都会或快或慢地落后一点，差别只在于落后多少。读者们自发做出了 ${stats.total} 个衍生版本：网站、微信小程序、iPhone / Android App、浏览器插件、数据集、四格漫画。<br>但它们<b>散在 ${stats.total} 个不同的地方</b>，唯一的汇总点只有 GitHub 上的源仓库 —— 而 GitHub 网页在国内中位要等 <b>5.3 秒</b>、最坏 <b>18.5 秒</b>。更麻烦的是：<b>没有任何地方告诉你「哪个版本是新的」</b> —— 有的站已经停更几个月，看上去却完全正常。<br>这个页面把 ${stats.total} 个版本聚在一处，逐个查证它们<b>同步到了哪一版</b>，并给出每个版本最省事的打开方式。</p>
 
   <div class="stats">
-    <div class="stat"><div class="k">已收录衍生项目</div><div class="v b">${stats.total}</div><div class="n">来自上游 README 官方清单</div></div>
-    <div class="stat"><div class="k">墙内可达</div><div class="v g">${stats.okProbes}/${stats.probes}</div><div class="n">${stats.total} 项 × 3 轮探活全通（含梯子未开时）</div></div>
-    <div class="stat"><div class="k">能算出同步到哪一版</div><div class="v a">${stats.hasCount}/${stats.total}</div><div class="n">实测 ${stats.measured} 项 · 仅页面自述 ${stats.selfDeclaredOnly} 项</div></div>
-    <div class="stat"><div class="k">运行时自动跟进</div><div class="v g">${stats.runtime} 项</div><div class="n">每次打开直接拉上游，不存在「落后」</div></div>
-    <div class="stat"><div class="k">已追平上游 ${UP_COUNT} 条</div><div class="v a">${stats.sync} 项</div><div class="n">最多落后 ${stats.maxLag} 条（${stats.maxLagName}）</div></div>
-    <div class="stat"><div class="k">无版本信号</div><div class="v r">${stats.unknown} 项</div><div class="n">无法核验，只能算「不知道」</div></div>
+    <div class="stat"><div class="k">已收录的衍生版本</div><div class="v b">${stats.total}</div><div class="n">来自上游 README 的官方清单</div></div>
+    <div class="stat"><div class="k">墙内可达</div><div class="v g">${stats.okProbes}/${stats.probes}</div><div class="n">${stats.total} 项 × 3 轮探活全通（含未开梯子时）</div></div>
+    <div class="stat"><div class="k">已核实同步到哪一版</div><div class="v g">${stats.hasCount}/${stats.total}</div><div class="n">其中 ${stats.measured} 项读的是实测产物；另 ${stats.runtime} 项运行时自动跟进、无需版本号</div></div>
+    <div class="stat"><div class="k">最接近最新版</div><div class="v g">落后 ${stats.minLag} 条</div><div class="n">${stats.minLagName}（${UP_COUNT - stats.minLag}/${UP_COUNT}）</div></div>
+    <div class="stat"><div class="k">落后最多</div><div class="v a">${stats.maxLag} 条</div><div class="n">${stats.maxLagName}</div></div>
+    <div class="stat"><div class="k">运行时自动跟进</div><div class="v g">${stats.runtime} 项</div><div class="n">每次打开直接拉上游，不存快照</div></div>
   </div>
 
-  <div class="note"><b>怎么用：</b>下面按「你的需求」筛，但不看广告词，只看三件事 —— <b>同步到哪一版</b>、<b>墙内多少毫秒打开</b>、<b>要不要注册 / 有没有广告</b>。可达性与延迟是本页每轮实测的，不是抄来的。</div>
+  <div class="note"><b>怎么用：</b>点下面的标签按需求筛（要不要注册、有没有广告、手机还是电脑用），或按「同步最新 / 访问最快」排序。每张卡都写了三件我们实测过的事：<b>同步到哪一版</b>、<b>墙内打开多少毫秒</b>、<b>要不要注册、有没有广告</b>。想直接开始用，点卡片上的蓝色按钮。</div>
 
-  <div class="warnbox"><b>先说清楚一个坑：</b>本站挂在你自己的 Cloudflare 上。<b>Cloudflare 在国内的访问速度和 GitHub 是同一个量级的问题</b> —— 实测这台机器打开 CF 系站点中位 <b>2.1–3.5 秒</b>、打开 howtolivebetter.net 中位 <b>6.1 秒</b>；本站不会比它们更快。真正的「国内秒开」需要 <b>国内云主机 + ICP 备案</b>（要走 1–2 周实名+备案），那是另一个决定。现在这一版的价值是<b>把信息聚齐并查证</b>，而不是「更快」。</div>
+  <div class="warnbox"><b>关于访问速度：</b>本站与多数衍生站都托管在 Cloudflare 上，而 <b>Cloudflare 在国内本身并不快</b> —— 本机实测打开这类站点中位 2–3 秒，打开 howtolivebetter.net 中位 6 秒。要做到「国内秒开」需要国内云主机 + ICP 备案，那是另一件事。本站不托管任何正文，只做指路与查证，所以实际速度取决于每个站自己的服务器。</div>
 </section>
 
 <h2>选一个用</h2>
-<p class="h2n">点标签筛选，或按同步新鲜度 / 访问速度排序。共 <span id="cnt">${stats.total}</span> 项。</p>
+<p class="h2n">点标签筛选，或按同步新鲜度 / 访问速度排序。共 <span id="cnt">${stats.total}</span> 项，每张卡都能直接点开。</p>
 <div class="panel">
   <div class="bar">
     <span class="lbl">需求</span>
@@ -399,10 +430,10 @@ ${cards}
 </div>
 
 <h2>逐项查证明细</h2>
-<p class="h2n">每一行都标清了<b>依据</b>：<b>实测产物</b> = 读该项目自己的产物文件（小程序 bundle、App 的 entries.json、数据集的 stats.json…）数出来的真实条数；<b>页面自述</b> = 只是它自己在页面上写的数字，属弱信号，不能与实测混为一谈；<b>运行时拉取</b> = 它每次打开直接拉上游正文，因此不存在「落后」这个概念。右侧是这台机器抓到的原始证据。</p>
+<p class="h2n">每一行都写明了<b>我们是怎么知道的</b>：<b>实测产物</b> = 读该项目自己发布的文件（小程序数据包、App 的 <code>entries.json</code>、数据集的 <code>stats.json</code>…）数出来的真实条数；<b>商店/页面自述</b> = 只有它自己写的数字可参考，属弱信号；<b>运行时拉取</b> = 每次打开都直接向源仓库取最新正文，所以不存在「落后」这个概念。右侧是这台机器抓到的原始证据，可逐条复核。</p>
 <div class="panel" style="overflow-x:auto">
 <table>
-<thead><tr><th>项目</th><th>估算依据</th><th>条数</th><th>落后</th><th>抓到的原始证据</th></tr></thead>
+<thead><tr><th>项目</th><th>核实方式</th><th>该版本收录</th><th>落后条数</th><th>抓到的原始证据</th></tr></thead>
 <tbody>
 ${detailRows}
 </tbody>
@@ -410,7 +441,7 @@ ${detailRows}
 </div>
 
 <h2>同步状态 badge（动态接口）</h2>
-<p class="h2n">这是本项目想推给整个生态的东西：一个<b>可机器核验</b>的「我同步到哪一版」标记。<b>目前 ${stats.total} 个项目里有 ${stats.withOwnVersion} 个自带可核验的版本号</b> —— better.aigcwei.cn 的 <code>sync/fingerprint.json</code> 直接写了上游 commit 与逐条哈希、BetterLifeApp 的 <code>entries.json</code> 带 <code>contentVersion</code>、htlb-dataset 的 <code>stats.json</code> 带 <code>upstream_commit</code>。这说明<b>「自报版本」的习惯在生态里已经存在，缺的只是统一格式和现成的读取工具</b>，而不是要去 12 个仓库挨个提需求。下面每一条都能直接贴进 README —— 它指向本站的<b>动态接口</b>，上游一更新、数字自动变，不用谁去手动改。</p>
+<p class="h2n">这是本项目想推给整个生态的东西：一个<b>可机器核验</b>的「我同步到哪一版」标记。<b>${stats.total} 个版本里已有 ${stats.withOwnVersion} 个自带可核验的版本号</b> —— 比如 better.aigcwei.cn 的 <code>sync/fingerprint.json</code> 直接写了上游 commit 与逐条哈希，BetterLifeApp 的 <code>entries.json</code> 带 <code>contentVersion</code>，htlb-dataset 的 <code>stats.json</code> 带 <code>upstream_commit</code>。这说明<b>「自报版本」的习惯在生态里已经存在，缺的只是统一格式和现成的读取工具</b>。下面每一条都能直接贴进你自己的 README —— 它指向本站的动态接口，上游一更新、数字自动变，不用谁手动改。</p>
 <div class="panel">
 ${badgeRows}
 </div>
@@ -428,18 +459,18 @@ ${ghRows}
 <p class="h2n" style="margin:14px 0 0">读法：<b>成功率全是 100%</b> —— 所以问题不是「打不开」，而是<b>「打开要等多久、以及每次都不一样」</b>。网页通道（普通人唯一的入口）中位 5.3 秒、最坏 18.5 秒、波动 14.3 秒；开发者通道（api / raw）反而很快。这就是「能上，但习惯开梯子」的物理原因。</p>
 </div>
 
-<h2>方法与局限（先读这段再信上面的表）</h2>
+<h2>数据是怎么来的，以及它测不到什么</h2>
 <ol>
-<li><b>只用四条「能落地」的路子，不猜。</b>① <b>实测产物</b>：读项目自己的产物文件（小程序 bundle、App 的 <code>entries.json</code>、数据集的 <code>stats.json</code>…），按上游官方口径（<code>book/*.md</code> 里的 <code>###</code> 标题数）数出真实条数；② <b>fork 对比</b>：它若是上游 fork，直接逐文件数它的 <code>book/*.md</code>；③ <b>sitemap</b>：读 <code>sitemap.xml</code> 的 <code>lastmod</code> 与 URL 数（弱信号）；④ <b>运行时</b>：源码级确认它每次打开直接拉上游原文 → 不存在「落后」，从落后名单里剔除。每行的依据都写在表里，<b>实测与页面自述严格分开</b>。</li>
-<li><b>内容级探针试过了：路走不通，但原因跟我一开始说的不一样。</b>我们用上游最近 14 次提交新增的 33 条条目标题原文去各站做精确匹配，13/14 项 <b>0 命中</b>。我先前归因于「标题被改写 + 正文不在页面里」——<b>后半句是错的，这里更正</b>：复查发现 <code>howtolivebetter.net</code> 的正文完整放在另一个 <code>modulepreload</code> chunk 里（<code>book-index-*.js</code>，174 KB，对上游标题 <b>684/685 = 99.9% 命中</b>），而我当时只抓了 <code>&lt;script src&gt;</code> 那两个资源，漏掉了它 <b>42 个 <code>modulepreload</code> 链接</b>。所以真实原因是<b>「靠猜资源路径」本身不可靠</b>，而不是人家没有正文。① 改写标题这条仍然成立。<b>本页不拿探针当证据。</b></li>
-<li><b>「落后多少条」用官方口径复算过。</b>上游条目数由 <code>git log -p -- book/</code> 逐次累积统计得出（本机复算 <b>${UP_COUNT} 条</b>，共 ${UP.totalCommits} 次提交），再与各项目的实测/自述条数相减。两个输入都能独立复核。</li>
-<li><b>「落后 N 天」有粒度盲区。</b>${UP_COUNT} 条是某天某一刻达到的，但当天很多提交只改文档、不改条目数。准确说法是：<b>「若内容停在达到 N 条的那次提交，则内容落后 N 天」</b>。能拿到站点自己的构建时间（sitemap <code>lastmod</code>）时，优先用它。⚠️ 但必须取<b>全量 lastmod 的最大值</b> —— 取第一个会判错：<code>howtolivebetter.net</code> 有 62 个 lastmod，第一个是 10-11、最大值才是 10-12，我一开始就是在这栽的。要更准只能逐站 diff 正文。</li>
-<li><b>「运行时自动跟进」不是我们替它保证的，是读了源码。</b>例如 daily-life-tip 的 <code>RemoteBook.swift</code> 里写着「内置的那份数据是编译时快照，永远能出内容。这里只负责『书更新了，跟上去』」；shiye-tab 的 <code>src/sources.js</code> 每次打开拉 <code>raw.githubusercontent.com/eternity4719/…</code> 并按 <code>### </code> 解析。这类项目<b>不该被算作「落后」</b>。</li>
-<li><b>「无版本信号」不代表内容旧。</b>它只代表该站<b>没有提供任何可核验的版本信号</b> —— 这本身就是本页要暴露的问题。</li>
-<li>「门槛」一列<b>照抄上游 <code>衍生项目.md</code> 的原文口径</b>，标「未标注」= 原文也没写，<b>非本站核验</b>。可达性、延迟、CDN、条目数均为实测。</li>
-<li>可达性是<b>单机单时点</b>结论。Cloudflare 站在国内「时通时不通」，探活全通只说明<b>此刻</b>通畅。本站不托管任何正文，只做指路。</li>
+<li><b>主证据是「条数」，只用四条能落地的路子。</b>① <b>实测产物</b>：读项目自己发布的文件（小程序数据包、App 的 <code>entries.json</code>、数据集的 <code>stats.json</code>、站点自带的数据文件…），按上游官方口径（<code>book/*.md</code> 里的 <code>###</code> 标题数）数出真实条数；② <b>fork 对比</b>：它若是上游 fork，直接逐文件数它的 <code>book/*.md</code>；③ <b>逐条页清单</b>：很多静态站给每条内容都生成了一个独立页面，数 sitemap 里的逐条页即可；④ <b>运行时</b>：读源码确认它每次打开都直接向上游取最新正文 → 不存在「落后」，从落后名单里剔除。每行用的哪条路子，都写在表里。</li>
+<li><b>为什么不拿「逐字比对正文」当主证据。</b>我们试过用上游条目标题原文去各站做精确匹配，14 项里 13 项 <b>0 命中</b> —— 因为各站普遍会改写标题。真正能比的是站点的<b>数据文件</b>（比如 howtolivebetter.net 把正文完整打在 <code>book-index-*.js</code> 里，对上游标题 <b>684/685 = 99.9% 命中</b>），但每个站的数据文件位置都不一样，得逐站定制，通用性差。所以本页把「条数」作为主证据，逐字比对只在个别站点做交叉验证。</li>
+<li><b>「落后多少条」用上游官方口径复算过。</b>上游条目数由 <code>git log -p -- book/</code> 逐次累积统计得出（本机复算 <b>${UP_COUNT} 条</b>，共 ${UP.totalCommits} 次提交），再与各版本的实测/自述条数相减。两个输入都能独立复核。</li>
+<li><b>「落后 N 天」有粒度盲区。</b>${UP_COUNT} 条是某天某一刻达到的，而当天很多提交只改文档、不改条数。所以我们优先用站点<b>自己声明的构建 / 修订时间</b>（构建产物时间、更新记录页、App 版本发布日期），拿不到才退回 sitemap 的 <code>lastmod</code>，再拿不到才用「该条数首次出现在上游的时间」。准确说法是：<b>「若内容停在达到 N 条的那次提交，则大约落后 N 天」</b>。要更准只能逐站 diff 正文。</li>
+<li><b>「运行时自动跟进」是读了源码得出的，不是我们替它保证的。</b>例如 daily-life-tip 的 <code>RemoteBook.swift</code> 里写着「内置的那份数据是编译时快照，永远能出内容。这里只负责『书更新了，跟上去』」；shiye-tab 的 <code>src/sources.js</code> 每次打开都拉 <code>raw.githubusercontent.com/eternity4719/…</code> 并按 <code>### </code> 解析。这类版本<b>不该被算作「落后」</b>。</li>
+<li><b>「自述」和「实测」在表里是分开的。</b>实测 = 读它自己发布的文件数出来的真数；自述 = 只有它自己写的数字可参考。目前 ${stats.total} 项里有 <b>${stats.measured} 项</b>拿到了实测依据；剩下 ${stats.selfDeclaredOnly} 项是 iOS App，只能读商店页文案 —— <b>App 的条目数不下载安装包就测不了，这是诚实的边界</b>，我们不会拿自述当真数。</li>
+<li>「门槛」一列<b>照抄上游 <code>衍生项目.md</code> 的原文口径</b>，标「未标注」= 原文也没写，<b>非本站核验</b>。可达性、延迟、CDN、条目数为本站实测。</li>
+<li>可达性是<b>单机单时点</b>结论。Cloudflare 站在国内「时通时不通」，探活全通只说明<b>此刻</b>通畅。</li>
 <li>本页<b>不转载正文、不开评论区</b>。正文版权归上游及各衍生作者，有出入时以 <a href="https://github.com/eternity4719/HowToLiveBetter" target="_blank" rel="noopener">上游中文原文</a> 为准（CC BY 4.0）。</li>
-<li><b>数据是活的，但不是秒级。</b>本站 Worker 每次请求会去上游取一次最新条目数（边缘缓存 10 分钟）；完整的逐项重算由 <b>GitHub Actions 每天跑一次</b>，结果回灌进本站的 KV，页脚会显示上次重算时间。</li>
+<li><b>数据是活的，但不是秒级。</b>本站 Worker 每次请求会去上游取一次最新条目数（边缘缓存 10 分钟）；完整的逐项重算由 <b>GitHub Actions 每天跑一次</b>，结果回灌进本站的数据层，页脚会显示上次重算时间。</li>
 </ol>
 
 <footer>
@@ -553,6 +584,7 @@ const dataset = {
     author: r.author,
     kind: r.kind,
     url: r.url,
+    linkLabel: r.linkLabel,
     ghRepo: r.ghRepo,
     note: r.note,
     tags: r.tags,

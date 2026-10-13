@@ -24,24 +24,42 @@
 
 | 方法 | 做法 | 置信 |
 |---|---|---|
-| `artifact` | 读项目自己的产物文件（小程序 bundle、App 的 `entries.json`、数据集的 `stats.json`…），按官方口径数出真实条数 | 高 |
+| `artifact` | 读项目自己的产物文件（小程序数据包、App 的 `entries.json`、数据集的 `stats.json`、站点自带的数据文件、SSR 的 hydration 内联数据…），按官方口径数出真实条数 | 高 |
 | `fork` | 它若是上游 fork，直接逐文件数它的 `book/*.md` | 高 |
+| `sitemap` | 很多静态站给每条内容都生成了一个独立页面 → 数 sitemap 里的**逐条页**个数 | 高 |
 | `runtime` | 源码级确认它每次打开直接拉上游正文 → **不存在「落后」**，从落后名单剔除 | 高 |
 | `page` | 只有 `sitemap.xml` 的 `lastmod` 或页面自述数字 | 低 |
 
 ⚠️ **页面自述的数字只作交叉参考，绝不冒充实测** —— 数据结构里 `actualEntries`（实测）与
 `selfDeclared`（自述）是两个字段，页面上也分开标注。
 
-### 一条被证伪的路，如实记下来
+当前 14 项里 **11 项拿到实测依据**，1 项（iOS App）只能读商店页文案 —— App 的条目数不下载安装包就测不了，
+这是诚实的边界。**「无版本信号」已降为 0 项**。
 
-最初想用「内容级探针」：拿上游最近 14 次提交新增的 33 条条目标题原文，去各站内容里做精确匹配。
-结果 **13/14 项 0 命中**。定向诊断出两个互相独立的原因：
+### 三条铁律（都踩过坑）
 
-1. 衍生站普遍**改写标题** —— 上游「家里老人遛狗，把牵绳握在手心……」在站上只剩「家里老人」能匹配；
-2. 更根本的是**正文压根不在页面或主 bundle 里** —— howtolivebetter.net 的 638 KB bundle 对上游前 60 条老条目
-   **0/60 命中**，说明它按需分块或运行时拉取，抓 `<script src>` 根本碰不到正文。
+1. **归一化必须双向**：比对的两边都要过同一套 `normAll()`（剔空白/标点/符号），单向会产生假阴性。
+2. **`sitemap` 的 `lastmod` 要取全量最大值**，不能只拿第一个 —— howtolivebetter.net 有 62 个 `lastmod`，
+   第一个是 10-11、最大值才是 10-12。
+3. **「内容时间」优先用站点自己的构建/修订时间**（HTTP `Last-Modified`、更新记录页、App 版本发布日期），
+   其次才是 `sitemap` 的 `lastmod`，最后才是「该条数首次出现在上游的时间」。
 
-所以本项目**不拿探针当证据**，只留「条目数 → 上游提交」这一条可独立复核的硬链路。
+### 一条被部分证伪的路，如实记下来（含自我更正）
+
+最初想用「内容级探针」：拿上游最近新增的条目标题原文，去各站内容里做精确匹配。结果 **13/14 项 0 命中**。
+
+原因有两层：
+
+1. 衍生站普遍**改写标题** —— 这条仍然成立（例如 life.xfun.fun 把「每天睡 7 小时」写成「每晚睡 7 小时左右，作息固定」）；
+2. ~~正文压根不在页面或主 bundle 里~~ —— **这条当时判断错了，这里更正**。复查发现
+   [howtolivebetter.net](https://howtolivebetter.net/) 的正文完整打在另一个 `modulepreload` chunk
+   （`book-index-*.js`，174 KB）里，对上游标题 **684/685 = 99.9% 命中**。当时只抓了 `<script src>` 那两个资源，
+   **漏掉了它 42 个 `modulepreload` 链接**。所以真实原因是「**靠猜资源路径本身不可靠**」，
+   而不是人家没有正文。
+
+现在做覆盖交叉验证时，会**遍历页面里所有资源引用**（`script src` + `modulepreload` + `link href` + `import()`），
+不再猜路径。同时，「逐条页清单」（数 sitemap 里的逐条页）成了 `artifact` 之外第二条高置信路子 ——
+`life.warpnav.com`、`how2livebetter.net`、`qingdan.lazyso.com` 三项就是靠它从「无版本信号」升到「实测」的。
 
 ## 目录
 
@@ -69,7 +87,7 @@ node verify-upstream.mjs      # 需要 fetch 的产物
 node verify-ecosystem.mjs     # 需要 audit.json（仓库里已有）+ 上一步产物
 node build-site.mjs
 node build-worker.mjs
-node selftest.mjs             # 应输出「通过 28 / 失败 0」
+node selftest.mjs             # 应输出「通过 32 / 失败 0」
 ```
 
 ### 部署

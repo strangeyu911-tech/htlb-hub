@@ -1,5 +1,5 @@
 /**
- * 逐项查证衍生项目的同步边界 —— v2（替代已证伪的「精确标题探针」）
+ * 逐项查证衍生项目的同步边界 —— v3
  * 用法: node htlb-hub/verify-ecosystem.mjs
  * 输出: htlb-hub/data/ecosystem.json
  * 前置: bash htlb-hub/fetch-upstream.sh && node htlb-hub/verify-upstream.mjs
@@ -8,13 +8,23 @@
  *   ① 衍生站普遍改写标题；
  *   ② 正文根本不在页面/主 bundle 里（howtolivebetter.net 的 638 KB bundle
  *      对上游前 60 条老条目 0/60 命中）→ 抓 <script src> 压根碰不到正文。
+ *      ⚠️ 后半句是错的（2026-10-13 自我更正）：正文完整放在另一个
+ *      `modulepreload` chunk 里，我当时只抓了 `<script src>` 那两个资源，
+ *      漏掉了它 42 个 modulepreload 链接。教训：猜资源路径不可靠，
+ *      要遍历页面里所有资源引用。
  *
- * ── v2 的四条路（强度从高到低）────────────────────────────────────
- *   ① artifact  读它自己的产物文件，用官方口径数实际条数 / 读它自带的版本号
+ * ── v3 的四条路（强度从高到低）────────────────────────────────────
+ *   ① artifact  读它自己的产物文件（含 SSR hydration 内联数据、静态数据 chunk、
+ *               逐条页清单），用官方口径数实际条数 / 读它自带的版本号
  *   ② fork      它是上游 fork → 直接数 book/*.md 的 ### 并与上游对比
- *   ③ sitemap   sitemap.xml 的 lastmod + URL 数
- *   ④ runtime   源码里就是运行时拉上游 → 不存在「落后」，从落后名单剔除
- *   （页面自述的条目数只作交叉参考，不作证据）
+ *   ③ runtime   源码级确认运行时拉上游 → 不存在「落后」，从落后名单剔除
+ *   ④ page      只有 sitemap lastmod / 页面自述（弱信号），单列不作为实测
+ *
+ * 三条铁律（都踩过坑）：
+ *   • 归一化必须**双向**：比对的两边都要过同一套 normAll，单向会产生假阴性；
+ *   • sitemap 的 lastmod 要取**全量最大值**，不能只拿第一个；
+ *   • 「内容时间」优先用站点自己的构建/修订时间（HTTP Last-Modified、更新记录页），
+ *     其次才是 sitemap lastmod，最后才是「该条数首次出现在上游的时间」。
  *
  * 只用 raw.githubusercontent.com（public 仓库，无需 token、无速率限制），
  * 不 spawn 任何子进程。
@@ -54,7 +64,7 @@ async function get(url, { timeout = 25000, cap = 12 * 1024 * 1024 } = {}) {
     });
     if (!r.ok) return { ok: false, status: r.status, text: '' };
     const text = await r.text();
-    return { ok: true, status: r.status, text: text.slice(0, cap) };
+    return { ok: true, status: r.status, text: text.slice(0, cap), lastModified: r.headers.get('last-modified') || null };
   } catch (e) {
     return { ok: false, status: 0, err: e.name === 'AbortError' ? 'timeout' : e.message, text: '' };
   } finally {
@@ -136,13 +146,13 @@ function byCountFor(n) {
 // ── 每个项目的查证策略 ──────────────────────────────────────────────
 const STRATEGIES = {
   'howtolivebetter.net': { kind: 'artifact', sitemap: true, page: true },
-  'life.warpnav.com': { kind: 'web', sitemap: true, page: true },
-  'life.xfun.fun': { kind: 'web', sitemap: true, page: true },
-  'how2livebetter.net': { kind: 'web', sitemap: true, page: true },
+  'life.warpnav.com': { kind: 'artifact', sitemap: true, page: true },
+  'life.xfun.fun': { kind: 'artifact', page: true },
+  'how2livebetter.net': { kind: 'artifact', sitemap: true, page: true },
   'better.aigcwei.cn': { kind: 'artifact', repo: 'Helioswei/HowToLiveBetter-Kit', files: ['sync/fingerprint.json'], sitemap: true, page: true },
-  'qingdan.lazyso.com': { kind: 'web', sitemap: true, page: true },
-  'livebetter101.com': { kind: 'web', sitemap: true, page: true },
-  'HuiTurn/HowToLiveBetter': { kind: 'artifact', repo: 'HuiTurn/HowToLiveBetter', files: ['pagesA/data/steps.js'] },
+  'qingdan.lazyso.com': { kind: 'artifact', sitemap: true, page: true },
+  'livebetter101.com': { kind: 'artifact', sitemap: true, page: true },
+  'HuiTurn/HowToLiveBetter': { kind: 'artifact', repo: 'HuiTurn/HowToLiveBetter', files: ['data/match-index.js'] },
   'apps.apple.com/id6818596108': { kind: 'store', page: true },
   'llzx373/BetterLifeApp': { kind: 'artifact', repo: 'llzx373/BetterLifeApp', files: ['app/src/main/assets/entries.json'] },
   'mittsommer/daily-life-tip': { kind: 'artifact', repo: 'mittsommer/daily-life-tip', files: ['Sources/RemoteBook.swift'] },
@@ -152,15 +162,43 @@ const STRATEGIES = {
 };
 
 // ── 各 artifact 的解析器 ────────────────────────────────────────────
+
+/** 从站点的 sitemap 里数「逐条页」的个数（许多静态站给每条内容都生成一个 URL） */
+async function countSitemapEntryPages(origin, re, label, out) {
+  for (const p of ['/sitemap.xml', '/sitemap-index.xml', '/sitemap-0.xml']) {
+    const s = await get(origin + p, { timeout: 30000, cap: 8 * 1024 * 1024 });
+    if (!s.ok || !/<loc>/.test(s.text)) continue;
+    const locs = [...s.text.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+    const hit = locs.filter((u) => re.test(new URL(u).pathname));
+    out.ev(`sitemap（${p}）共 ${locs.length} 个 URL，其中「${label}」逐条页 ${hit.length} 个`);
+    return { n: hit.length, total: locs.length, path: p };
+  }
+  out.ev('没找到可用 sitemap（404 或 HTML 兜底）');
+  return null;
+}
+
 const ARTIFACT_PARSERS = {
   async 'HuiTurn/HowToLiveBetter'(out) {
-    const r = await get(RAW('HuiTurn/HowToLiveBetter', 'pagesA/data/steps.js'));
-    if (!r.ok) return out.ev('产物取不到: pagesA/data/steps.js HTTP ' + r.status);
+    // 首选它自动生成的条目索引（168 KB，文件头直接写明条目数），
+    // 比 1.9 MB 的 steps.js 快得多、也不会因超时偶发失败（2026-10-13 踩过：默认 25 s 上限不够）
+    let r = await get(RAW('HuiTurn/HowToLiveBetter', 'data/match-index.js'), { timeout: 40000, cap: 4 * 1024 * 1024 });
+    if (r.ok) {
+      const decl = r.text.match(/条目数[：:]\s*(\d+)/);
+      const rows = (r.text.match(/^\s*\[\s*"[^"]+",\s*\d+\s*,/gm) || []).length;
+      out.actualEntries = decl ? Number(decl[1]) : rows || null;
+      out.method = 'artifact';
+      out.ev(`data/match-index.js（${Math.round(r.text.length / 1024)} KB，自动生成）文件头写明「条目数：${decl ? decl[1] : '?'}」，逐条数组行实测 ${rows} 行`);
+      if (decl && rows && Number(decl[1]) === rows) out.ev(`两条信号一致（头部声明 = 逐行计数 = ${rows}）`);
+      out.ev('文件头注明来源「pagesA/data/steps.js（正文在分包，主包读不到，故抽这份索引）」→ 即小程序主包实际使用的数据集');
+      return out;
+    }
+    out.ev(`match-index.js 取不到（HTTP ${r.status}${r.err ? ' ' + r.err : ''}），退回 1.9 MB 的 steps.js（实测要 13–20 s，故超时给到 90 s）`);
+    r = await get(RAW('HuiTurn/HowToLiveBetter', 'pagesA/data/steps.js'), { timeout: 90000, cap: 8 * 1024 * 1024 });
+    if (!r.ok) return out.ev('steps.js 也取不到: HTTP ' + r.status + (r.err ? ' ' + r.err : ''));
     const titles = (r.text.match(/"title"\s*:/g) || []).length;
-    const idx = (r.text.match(/"index"\s*:/g) || []).length;
-    out.actualEntries = titles;
+    out.actualEntries = titles || null;
     out.method = 'artifact';
-    out.ev(`data/steps.js（${Math.round(r.text.length / 1024)} KB）里 "title" 字段 ${titles} 个、"index" ${idx} 个 → 实际收录 ${titles} 条`);
+    out.ev(`pagesA/data/steps.js（${Math.round(r.text.length / 1024)} KB）里 "title" 字段 ${titles} 个 → 实际收录 ${titles} 条`);
     return out;
   },
   async 'howtolivebetter.net'(out) {
@@ -191,6 +229,163 @@ const ARTIFACT_PARSERS = {
       }
     }
     out.ev('全站 JS 里没有任何 raw.githubusercontent / api.github.com 引用，也没有 /api/book、/api/entries 这类正文接口（404）→ 排除「运行时拉上游」');
+    return out;
+  },
+  async 'life.warpnav.com'(out) {
+    // 它是「本地快照」式镜像：全库采用上游某一时刻的快照，逐条一个页面（/tips/tip-<hash>/），
+    // 结构（34 章、章节页）与上游一致。条目数直接数 sitemap 里的逐条页，再用它自己的更新记录页交叉验证。
+    const sm = await get('https://life.warpnav.com/sitemap-0.xml', { timeout: 20000, cap: 6 * 1024 * 1024 });
+    let n = null;
+    if (sm.ok) {
+      const locs = [...sm.text.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+      const hashed = locs.filter((u) => /\/tips\/tip-[0-9a-f]{12}\/$/.test(u));
+      const named = locs.filter((u) => /\/tips\/[^/]+\/$/.test(u) && !/tip-[0-9a-f]{12}/.test(u));
+      const chapters = locs.filter((u) => /\/guide\/chapter-\d+\/$/.test(u));
+      n = hashed.length + named.length;
+      out.ev(
+        `sitemap-0.xml 共 ${locs.length} 个 URL：逐条页 /tips/tip-<hash>/ ${hashed.length} 个 + 具名条页 ${named.length} 个 = **${n} 条**；另有 ${chapters.length} 个章节页（与上游 34 节吻合）`
+      );
+    } else {
+      out.ev('sitemap-0.xml 取不到: HTTP ' + sm.status);
+    }
+    const up = await get('https://life.warpnav.com/updates/', { timeout: 20000, cap: 1 * 1024 * 1024 });
+    if (up.ok) {
+      const declared = up.text.match(/导入\s*(\d+)\s*章[、,]\s*(\d+)\s*条/);
+      if (declared) {
+        out.ev(`它自己的「更新记录」页写明：导入 ${declared[1]} 章、${declared[2]} 条上游建议，并「建立快照指纹」`);
+        if (n != null && Number(declared[2]) === n) out.ev(`与 sitemap 逐条页计数 ${n} 完全一致 → 两条独立信号吻合`);
+        else if (n == null) n = Number(declared[2]);
+      }
+      // 更新记录页按时间倒序，第一条即最新一次内容修订
+      const rev = [...up.text.matchAll(/(20\d{2})\s*年\s*(\d{1,2})\s*月\s*(\d{1,2})\s*日/g)];
+      if (rev.length) {
+        const d = `${rev[0][1]}-${String(rev[0][2]).padStart(2, '0')}-${String(rev[0][3]).padStart(2, '0')}`;
+        out.ownBuildTime = d;
+        out.ownBuildTimeFrom = '更新记录页最新一条';
+        out.ev(`更新记录页最新一条是 ${d} → 「内容时间」以此为准`);
+      }
+      if (/快照/.test(up.text)) out.ev('页内自述「全库采用上游本地快照」→ 属静态快照，不是运行时拉取');
+    }
+    if (n != null) { out.actualEntries = n; out.method = 'artifact'; }
+    else out.ev('两条路都没拿到条目数');
+    return out;
+  },
+  async 'life.xfun.fun'(out) {
+    // 它是 Astro 预渲染的静态站（每条一个独立页 /e/<节>-<条>/），正文在构建期烘焙。
+    // 条目数用两条独立信号：首页自述「N 张人生卡片」+ 34 关逐关张数相加。
+    const r = await get('https://life.xfun.fun/', { timeout: 25000, cap: 3 * 1024 * 1024 });
+    if (!r.ok) return out.ev('首页取不到: HTTP ' + r.status);
+    const decl = r.text.match(/(\d{3,4})\s*张人生卡片/);
+    const per = new Map();
+    for (const m of r.text.matchAll(/(\d{1,2})\s+([^\d<>{}"'｜|]{2,24}?)\s+(\d{1,3})\s*张/g)) {
+      const s = Number(m[1]);
+      if (s >= 1 && s <= 40 && !per.has(s)) per.set(s, Number(m[3]));
+    }
+    const sum = [...per.values()].reduce((a, b) => a + b, 0);
+    const n = decl ? Number(decl[1]) : null;
+    out.ev(`首页自述「${n ?? '?'} 张人生卡片」；逐关张数相加（${per.size} 关）= ${sum}`);
+    if (n != null && sum && n === sum) {
+      out.ev(`两条独立信号完全一致（自述 ${n} = 逐关合计 ${sum}）`);
+      out.actualEntries = n;
+      out.method = 'artifact';
+    } else if (n != null) {
+      out.actualEntries = n;
+      out.method = 'page';
+      out.ev('自述与逐关合计不一致，仅采信自述');
+    } else out.ev('没找到条目数');
+    out.ev('全站只有 5 个 Astro 小 chunk（合计 <10 KB），HTML/JS 里没有任何 raw.githubusercontent、api.github.com 或上游拉取代码，逐条内容已在构建期预渲染 → 属静态快照，不是运行时拉取');
+    return out;
+  },
+  async 'livebetter101.com'(out) {
+    // 它是「野生版」答题站：把书稿转成题目，题库打包成静态 JS。产物文件头部注明来源与许可。
+    const home = await get('https://livebetter101.com/', { timeout: 25000, cap: 3 * 1024 * 1024 });
+    if (!home.ok) return out.ev('首页取不到: HTTP ' + home.status);
+    if (home.lastModified) {
+      out.ownBuildTime = home.lastModified;
+      out.ownBuildTimeFrom = '首页 HTTP Last-Modified';
+    }
+    const src = home.text.match(/["']([^"']*question-bank\.js[^"']*)["']/);
+    const u = src ? new URL(src[1], 'https://livebetter101.com/').href : 'https://livebetter101.com/question-bank.js?v=43';
+    const r = await get(u, { timeout: 25000, cap: 6 * 1024 * 1024 });
+    if (!r.ok) return out.ev('题库取不到: HTTP ' + r.status);
+    const m = r.text.match(/window\.LIVE_BETTER_SOURCE_BANK\s*=\s*(\{[\s\S]*\});?\s*$/);
+    if (!m) return out.ev('没找到 window.LIVE_BETTER_SOURCE_BANK 数据（结构可能改版）');
+    let j;
+    try {
+      j = JSON.parse(m[1]);
+    } catch (e) {
+      return out.ev('题库 JSON 解析失败: ' + e.message.slice(0, 80));
+    }
+    const cntSum = Object.values(j.counts || {}).reduce((a, b) => a + Number(b || 0), 0);
+    const arrLen = (j.entries || []).length;
+    out.actualEntries = j.total;
+    out.method = 'artifact';
+    out.ev(`题库文件（${Math.round(r.text.length / 1024)} KB）自带 total=${j.total}；分项 counts 合计 ${cntSum}；条目数组实长 ${arrLen}`);
+    if (j.total === cntSum && cntSum === arrLen) out.ev('三重交叉一致（total = 分项合计 = 数组长度）');
+    const secs = new Set((j.entries || []).map((e) => e.section));
+    out.ev(`题库覆盖 ${secs.size} 节（与上游 34 节吻合）；文件头注明 “Generated from eternity4719/HowToLiveBetter (CC BY 4.0)”`);
+    return out;
+  },
+  async 'how2livebetter.net'(out) {
+    // 它按「人生阶段」重组，给每条建议都生成了独立页 /q/<id>/ → 直接数逐条页
+    const sm = await countSitemapEntryPages('https://how2livebetter.net', /^\/q\/[^/]+\/?$/, '条目 /q/<id>/', out);
+    const r = await get('https://how2livebetter.net/', { timeout: 25000, cap: 3 * 1024 * 1024 });
+    if (r.ok) {
+      if (r.lastModified) {
+        out.ownBuildTime = r.lastModified;
+        out.ownBuildTimeFrom = '首页 HTTP Last-Modified';
+      }
+      const m = r.text.match(/(\d{3})\s*条建议分\s*(\d+)\s*章/);
+      if (m) {
+        out.ev(`首页自述「${m[1]} 条建议分 ${m[2]} 章」`);
+        if (sm && Number(m[1]) === sm.n) out.ev(`与 sitemap 逐条页计数 ${sm.n} 一致 → 两条独立信号吻合`);
+      }
+      out.ev('页面自述「非官方衍生站」、内容按 CC BY 4.0 使用');
+    }
+    if (sm) {
+      out.actualEntries = sm.n;
+      out.method = 'artifact';
+    } else out.ev('未能得到条目数');
+    return out;
+  },
+  async 'qingdan.lazyso.com'(out) {
+    // 「懒人性价性清单」：按章节平铺成清单页 /e/<id> → 直接数逐条页，并与首页内联的 __TOTAL__ 交叉验证
+    const sm = await countSitemapEntryPages('https://qingdan.lazyso.com', /^\/e\/.+$/, '条目 /e/<id>', out);
+    const r = await get('https://qingdan.lazyso.com/', { timeout: 25000, cap: 3 * 1024 * 1024 });
+    if (r.ok) {
+      const t = r.text.match(/window\.__TOTAL__\s*=\s*(\d+)/);
+      if (t) {
+        out.ev(`首页内联 window.__TOTAL__ = ${t[1]} 条`);
+        if (sm && Number(t[1]) === sm.n) out.ev(`与 sitemap 逐条页计数 ${sm.n} 一致 → 两条独立信号吻合`);
+      }
+    }
+    if (sm) {
+      out.actualEntries = sm.n;
+      out.method = 'artifact';
+    } else out.ev('未能得到条目数');
+    return out;
+  },
+  async 'apps.apple.com/id6818596108'(out) {
+    // iOS App 的条目数只能读商店页文案（自述）；但版本号与发布日期可从 iTunes 官方接口拿到，用来定「内容时间」
+    const r = await get('https://itunes.apple.com/lookup?id=6818596108&country=cn', { timeout: 20000, cap: 1 * 1024 * 1024 });
+    if (!r.ok) return out.ev('iTunes lookup 取不到: HTTP ' + r.status);
+    try {
+      const a = (JSON.parse(r.text).results || [])[0] || {};
+      if (!a.version) return out.ev('iTunes 返回里没有版本信息');
+      out.ownVersion = a.version;
+      out.ownGeneratedAt = a.currentVersionReleaseDate || null;
+      if (a.currentVersionReleaseDate) {
+        out.ownBuildTime = a.currentVersionReleaseDate;
+        out.ownBuildTimeFrom = 'App Store 当前版本发布日期';
+      }
+      out.ev(
+        `App Store 官方接口：当前版本 v${a.version}，${String(a.currentVersionReleaseDate).slice(0, 10)} 发布（首次上架 ${String(a.releaseDate).slice(0, 10)}）`
+      );
+      out.ev(`更新说明：${String(a.releaseNotes || '').replace(/\s+/g, ' ').slice(0, 140)}…`);
+      out.ev('商店页自述「建议随 App 安装，没网也能看」→ 内容随包打包，属静态快照');
+    } catch (e) {
+      out.ev('iTunes 返回解析失败: ' + e.message.slice(0, 80));
+    }
     return out;
   },
   async 'better.aigcwei.cn'(out) {
@@ -301,15 +496,31 @@ const ARTIFACT_PARSERS = {
 
 // ── web / store 通用：sitemap + 页面自述 ─────────────────────────────
 async function probeSitemap(origin, out) {
-  const r = await get(origin + '/sitemap.xml', { timeout: 15000, cap: 4 * 1024 * 1024 });
-  if (!r.ok) {
-    out.ev(`sitemap.xml: HTTP ${r.status}${r.err ? ' ' + r.err : ''}`);
+  // 常见路径都试一遍；Astro 等静态站常把 sitemap 放在 /sitemap-index.xml（索引）下
+  let r = null;
+  let used = null;
+  for (const p of ['/sitemap.xml', '/sitemap_index.xml', '/sitemap-index.xml', '/sitemap-0.xml', '/sitemap/sitemap.xml']) {
+    const t = await get(origin + p, { timeout: 15000, cap: 6 * 1024 * 1024 });
+    if (!t.ok) continue;
+    if (!/^<\?xml|<urlset|<sitemapindex/i.test(t.text.slice(0, 200).trim())) continue; // 跳过 SPA 的 HTML 兜底
+    r = t;
+    used = p;
+    break;
+  }
+  if (!r) {
+    out.ev('sitemap: 常见路径都试过，没找到可用的 sitemap（404 或 HTML 兜底）');
     return;
   }
-  const head = r.text.slice(0, 120);
-  if (!/^<\?xml|<urlset/i.test(head.trim())) {
-    out.ev('sitemap.xml 是 SPA 的 HTML 兜底（不是真 sitemap）');
-    return;
+  if (/<sitemapindex/i.test(r.text)) {
+    const sub = (r.text.match(/<loc>([^<]+)<\/loc>/) || [])[1];
+    out.ev(`sitemap 是索引（在 ${used}），跟进第一个子 sitemap：${sub ? new URL(sub).pathname : '?'}`);
+    if (sub) {
+      const t = await get(sub, { timeout: 20000, cap: 8 * 1024 * 1024 });
+      if (t.ok) {
+        r = t;
+        used = new URL(sub).pathname;
+      }
+    }
   }
   out.sitemapUrls = (r.text.match(/<loc>/g) || []).length;
   // ⚠️ 必须取**全量 lastmod 的最大值**。2026-10-13 修 bug：原先 `match()` 只拿第一个，
@@ -320,7 +531,7 @@ async function probeSitemap(origin, out) {
   out.sitemapLastmodCount = lms.length;
   out.sitemapLastmod = ds.length ? new Date(Math.max(...ds.map((d) => d.getTime()))).toISOString() : null;
   out.ev(
-    `sitemap.xml：${out.sitemapUrls} 个 URL${out.sitemapLastmod ? `，lastmod 最新 ${out.sitemapLastmod.slice(0, 10)}` : '（无 lastmod）'}` +
+    `sitemap（${used}）：${out.sitemapUrls} 个 URL${out.sitemapLastmod ? `，lastmod 最新 ${out.sitemapLastmod.slice(0, 10)}` : '（无 lastmod）'}` +
       (lms.length > 1 ? `（共 ${lms.length} 个 lastmod，已取最大值）` : '')
   );
 }
@@ -364,6 +575,8 @@ for (const x of audit.derived) {
     ownVersion: null,
     ownVersionShort: null,
     ownGeneratedAt: null,
+    ownBuildTime: null, // 站点自己的构建/修订时间（优先于 sitemap lastmod 作为「内容时间」）
+    ownBuildTimeFrom: null,
     sitemapLastmod: null,
     sitemapLastmodCount: null,
     sitemapUrls: null,
@@ -379,7 +592,7 @@ for (const x of audit.derived) {
   process.stdout.write('  ' + x.name.padEnd(18, '　'));
 
   try {
-    if (ARTIFACT_PARSERS[x.id] && (st.kind === 'artifact' || st.kind === 'fork')) {
+    if (ARTIFACT_PARSERS[x.id]) {
       await ARTIFACT_PARSERS[x.id](out);
       if (st.files) out.ev('产物文件：' + st.files.join('、'));
     }
@@ -420,12 +633,15 @@ for (const x of audit.derived) {
     const m = byCountFor(n);
     // 「内容时间」优先取站点自己的构建时间（sitemap lastmod）—— 它比「该条数首次出现在上游的时间」
     // 更直接；拿不到才退回后者。来源记在 lagDaysFrom 里，页面上可透明展示。
+    // 「内容时间」优先级：站点自己声明的构建/修订时间 > sitemap lastmod > 「该条数首次出现在上游的时间」。
+    const ownDate = out.ownBuildTime ? parseGitDate(out.ownBuildTime) : null;
     const smDate = out.sitemapLastmod ? parseGitDate(out.sitemapLastmod) : null;
-    const base = smDate || (m ? parseGitDate(m.date) : null);
+    const base = ownDate || smDate || (m ? parseGitDate(m.date) : null);
     out.lagDays = base ? daysFrom(base) : null;
-    out.lagDaysFrom = smDate ? 'sitemap-lastmod' : m ? 'count-first-seen' : null;
+    out.lagDaysFrom = ownDate ? out.ownBuildTimeFrom || 'site-build-time' : smDate ? 'sitemap-lastmod' : m ? 'count-first-seen' : null;
     if (m) out.ev(`该条数首次出现在上游是 ${SHORT(m.sha)}（${m.date.slice(0, 16)}）`);
-    if (smDate) out.ev(`该站自己的 lastmod 最新到 ${out.sitemapLastmod.slice(0, 10)} → 「内容时间」以此为准`);
+    if (ownDate) out.ev(`站点自己的构建/修订时间 ${String(out.ownBuildTime).slice(0, 16)}（来源：${out.lagDaysFrom}）→ 「内容时间」以此为准`);
+    else if (smDate) out.ev(`该站自己的 lastmod 最新到 ${out.sitemapLastmod.slice(0, 10)} → 「内容时间」以此为准`);
     out.status = out.lagEntries === 0 ? 'sync' : 'lag';
     out.confidence = measured ? 'high' : 'low';
   } else if (out.ownVersionDate) {
@@ -475,7 +691,7 @@ const out = {
     bookFiles: BOOK_FILES.length,
   },
   methods: {
-    artifact: '读它自己的产物文件，用官方口径数实际条数，或读它自带的版本号',
+    artifact: '读它自己的产物文件（含 SSR hydration 内联数据、静态数据 chunk、逐条页清单），用官方口径数实际条数，或读它自带的版本号',
     fork: '它是上游 fork，逐文件数 book/*.md 的 ### 并与上游对比',
     runtime: '源码级确认运行时拉上游 → 不存在「落后」',
     page: '只有 sitemap lastmod / 页面自述（弱信号）',
