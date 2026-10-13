@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-13T04:53:53.064Z",
+ "generatedAt": "2026-10-13T04:55:45.673Z",
  "definition": "条目数 = book/*.md 里的 ### 标题数（上游 tools/sync-stats.mjs 官方口径）；实际条数优先取该项目自己的产物文件，其次 sitemap/页面自述。",
  "upstream": {
   "repo": "eternity4719/HowToLiveBetter",
@@ -17,13 +17,13 @@
  },
  "stats": {
   "total": 14,
-  "measured": 11,
+  "measured": 10,
   "withOwnVersion": 4,
   "runtime": 2,
   "sync": 0,
-  "lagging": 12,
-  "unknown": 0,
-  "highConfidence": 13,
+  "lagging": 11,
+  "unknown": 1,
+  "highConfidence": 12,
   "hasSitemapLastmod": 4
  },
  "projects": [
@@ -123,11 +123,11 @@
    "url": "https://life.xfun.fun/",
    "ghRepo": null,
    "method": "page",
-   "actualEntries": 676,
+   "actualEntries": null,
    "selfDeclared": null,
    "selfDeclaredFrom": null,
-   "basis": "measured",
-   "confidence": "high",
+   "basis": "none",
+   "confidence": "none",
    "pageCounts": [],
    "ownVersion": null,
    "ownVersionShort": null,
@@ -140,17 +140,13 @@
    "contentMatch": null,
    "runtimeFetch": false,
    "evidence": [
-    "首页自述「676 张人生卡片」；逐关张数相加（15 关）= 272",
-    "自述与逐关合计不一致，仅采信自述",
-    "全站只有 5 个 Astro 小 chunk（合计 <10 KB），HTML/JS 里没有任何 raw.githubusercontent、api.github.com 或上游拉取代码，逐条内容已在构建期预渲染 → 属静态快照，不是运行时拉取",
-    "该条数首次出现在上游是 5a36eaf8（2026-10-09 19:40）"
+    "首页取不到: HTTP 403",
+    "页面取不到: HTTP 403"
    ],
    "ownVersionDate": null,
-   "lagEntries": 14,
-   "lagEntriesFrom": 676,
-   "lagDays": 3.7,
-   "lagDaysFrom": "count-first-seen",
-   "status": "lag"
+   "lagEntries": null,
+   "lagDays": null,
+   "status": "unknown"
   },
   {
    "id": "how2livebetter.net",
