@@ -9,10 +9,13 @@
 
 ## 它解决什么
 
-这本书有 14 个衍生形态：网站、微信小程序、iOS/Android App、macOS 小组件、Chrome 插件、数据集、四格漫画。
+这本书有 17 个衍生形态：网站、微信小程序、iOS/Android App、macOS 小组件、Chrome 插件、数据集、四格漫画。
 它们的**唯一聚合点是 GitHub 源仓库**，而 GitHub 网页在国内中位要等 5 秒多、最坏 18 秒，波动十几秒。
 
 更麻烦的是：**没有任何一个地方告诉你「哪个站是新的」**。这个项目干两件事 —— 聚齐入口 + 查证新鲜度。
+
+⚠️ 收录范围**以上游 `衍生项目.md` 为唯一准绳**：上游收了我们才收。所以每次上游收新项目，
+本地清单必须跟着补，否则页面会对外报一个偏小的总数（2026-10-13 就这样漏过 3 项：循证建议地图、渐好、阅读版）。
 
 ## 查证方法论（这是本项目的主要产出）
 
@@ -33,20 +36,37 @@
 ⚠️ **页面自述的数字只作交叉参考，绝不冒充实测** —— 数据结构里 `actualEntries`（实测）与
 `selfDeclared`（自述）是两个字段，页面上也分开标注。
 
-当前 14 项里 **11 项拿到实测依据**，1 项（iOS App）只能读商店页文案 —— App 的条目数不下载安装包就测不了，
-这是诚实的边界。**「无版本信号」已降为 0 项**。
+当前 17 项里 **14 项拿到实测依据**：1 项（iOS App）只能读商店页文案 —— App 的条目数不下载安装包就测不了，
+这是诚实的边界；另 2 项（macOS 小组件、Chrome 插件）是源码确认的「运行时拉上游」，本就不该算作落后。
+**「无版本信号」保持 0 项。**
 
-### 三条铁律（都踩过坑）
+### 四条铁律（都踩过坑）
 
 1. **归一化必须双向**：比对的两边都要过同一套 `normAll()`（剔空白/标点/符号），单向会产生假阴性。
 2. **`sitemap` 的 `lastmod` 要取全量最大值**，不能只拿第一个 —— howtolivebetter.net 有 62 个 `lastmod`，
    第一个是 10-11、最大值才是 10-12。
 3. **「内容时间」优先用站点自己的构建/修订时间**（HTTP `Last-Modified`、更新记录页、App 版本发布日期），
    其次才是 `sitemap` 的 `lastmod`，最后才是「该条数首次出现在上游的时间」。
+4. **可达性探针的超时不能按「快站」设。** 一开始给 9 s，把 WorkBuddy 托管的一个站误判成「打不开」——
+   它首包要 14–19 s（冷启动），复测时第 2、3 轮只要 1.3 s。可达性问的是「**能不能打开**」，
+   不是「快不快」；**速度由 `ms` 字段单独记录**。现阈值 18 s。
+
+### 三个「读产物文件」的实战例子（2026-10-13 新增）
+
+同一件事有几种完全不同的落点，正好说明为什么不能只靠一种模式：
+
+- **循证建议地图**：单页站，构建期把全站索引打进 `data/home.json`（70 KB）→ 读 `stats.items`；
+  首页 `title` / `meta description` / 正文首段三处自述同一个数，与之吻合。
+- **渐好**：静态 SPA，全量内容在 `content.json`（3.9 MB）里 → `manifest.entryCount`
+  = `entries` 数组实长 = `revisions` 实长，两条独立信号一致。它还把**上游 commit 与源仓库地址写进 manifest**，
+  是这个生态里少见的「可机器核验同步点」做法，本站据此算出精确落后量。
+- **阅读版（7 语言）**：多语言静态站，sitemap 有 5200 个 URL。中文原文**不带语言前缀**，
+  剔掉 6 个语言前缀、再扣掉 `/guides/*` 说明页，剩下的 689 条才是它的正文条目数 ——
+  与页面自述「搜索 689 条建议」一致。
 
 ### 一条被部分证伪的路，如实记下来（含自我更正）
 
-最初想用「内容级探针」：拿上游最近新增的条目标题原文，去各站内容里做精确匹配。结果 **13/14 项 0 命中**。
+最初想用「内容级探针」：拿上游最近新增的条目标题原文，去各站内容里做精确匹配。结果当时 14 项里 **13 项 0 命中**。
 
 原因有两层：
 
@@ -61,12 +81,18 @@
 不再猜路径。同时，「逐条页清单」（数 sitemap 里的逐条页）成了 `artifact` 之外第二条高置信路子 ——
 `life.warpnav.com`、`how2livebetter.net`、`qingdan.lazyso.com` 三项就是靠它从「无版本信号」升到「实测」的。
 
+## 页面结构
+
+首屏只放「卡片 + 统计」，读者一眼看到 17 个入口、每个都能点进去。
+四段技术内容 —— 逐项查证明细表、badge 接口、GitHub 墙内实测、方法边界 ——
+统一收进一个 `<details>` 区块，**默认折叠**，想复核的读者主动点开才展开。
+
 ## 目录
 
 ```
 fetch-upstream.sh      # 取上游 git 历史 → .cache/（git 只能在 shell 里跑，见下）
 verify-upstream.mjs    # 解析 book/ 全量 diff → 条目数时间线 + 条目数→commit 映射
-verify-ecosystem.mjs   # 逐项查证 14 个衍生项目的同步边界 → data/ecosystem.json
+verify-ecosystem.mjs   # 逐项查证 17 个衍生项目的同步边界 → data/ecosystem.json
 build-site.mjs         # 渲染单文件 HTML + badge + data/projects.json
 build-worker.mjs       # 把 HTML/DATA 注入 worker.template.js → deploy/worker.js
 worker.template.js     # Cloudflare Worker：聚合站 + 动态 badge + KV 数据层 + /api/ingest
@@ -90,30 +116,36 @@ node build-worker.mjs
 node selftest.mjs             # 应输出「通过 32 / 失败 0」
 ```
 
+> `selftest.mjs` 里期望的项目数**从 `data/projects.json` 读**，不写死 ——
+> 写死过一次，上游一收新项目就假失败。
+
 ### 部署
 
 ```bash
 CLOUDFLARE_API_TOKEN=xxx node deploy.mjs
 ```
 
-⚠️ 两个坑，都踩过：
+⚠️ 三个坑，都踩过：
 
 1. **`PUT /accounts/{id}/workers/scripts/{name}` 是全量替换** —— `bindings` 必须每次都带全
    （KV + secret），否则已有的绑定会被静默抹掉。`deploy.mjs` 已经这么做了。
-2. **`fetch-upstream.sh` 不能用 `--filter=blob:none`**。仓库总共才 ~18 MB，而 blobless 会让
+2. **Worker 优先读 KV**，所以只重新部署脚本**不够** —— 页面 HTML 换了新数据、`/api/status.json`
+   还在吐 KV 里的旧数据，两边会对不上。改完数据要**顺手 `POST /api/ingest` 回灌一次**。
+3. **`fetch-upstream.sh` 不能用 `--filter=blob:none`**。仓库总共才 ~18 MB，而 blobless 会让
    `git log -p -- book/` 触发「逐 blob 按需 fetch」，实测挂十几分钟、且产出的 patch 是**截断的**
    —— 时间线会被静默写坏（累积条目数只剩 614）。完整 clone 只要几秒。
 
 ## 为什么不把重活放 Cloudflare Cron Trigger
 
 Cloudflare Workers 免费版 CPU 上限是 **10 ms/次**（Cron Trigger 同样 10 ms；官方文档口径），
-而「跑 git 全量历史 + 抓 14 个项目的产物文件」远超这个量级。
+而「跑 git 全量历史 + 抓 17 个项目的产物文件」远超这个量级。
 
 所以分工是：**GitHub Actions 干重活**（每天重算一次），**Worker 干轻活**（对外接口 + 实时取上游条目数），
 两者用 `POST /api/ingest` 连接 —— Actions 把结果写进 KV，Worker 读 KV。
 
 （另外 GitHub Actions 的 `schedule` 在 public 仓库**60 天无活动会被自动停用且静默失败**，
-所以 workflow 每天都在仓库里 commit 状态快照，既留痕也防停用。）
+所以 workflow 每天都在仓库里 commit 状态快照，既留痕也防停用。这也意味着 **push 前要先 `fetch` + `rebase`**，
+冲突只会落在生成物上。）
 
 ## 数据是活的，但不是秒级
 
@@ -123,6 +155,8 @@ Cloudflare Workers 免费版 CPU 上限是 **10 ms/次**（Cron Trigger 同样 1
 ## 边界
 
 - 本项目**不转载正文、不开评论区**。版权归上游及各衍生作者，有出入时以上游中文原文为准（CC BY 4.0）。
+- 收录范围以上游 `衍生项目.md` 为准；**不含原书正文的独立作品（如「下行周期补丁包」）单列一节「另见」**，
+  明确标注它不参与同步对比、不计入版本总数，避免读者误以为那些判断也出自本书。
 - 可达性结论是**单机单时点**的：Cloudflare 站在国内「时通时不通」，探活全通只说明此刻通畅。
 - 「门槛」一列照抄上游 `衍生项目.md` 的原文口径，非本项目核验。
 - 「落后 N 天」有粒度盲区：条目数是某天某一刻达到的，而当天很多提交只改文档不改条目数。
