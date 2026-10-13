@@ -44,6 +44,9 @@ const CURATED = {
   'better.aigcwei.cn': { tags: ['不用注册', '无广告', '能搜索', '给 AI 用'], gate: '不用注册 · 没有广告', note: '按性价比排序，并同时提供 MCP 接口给 AI 调用。' },
   'qingdan.lazyso.com': { tags: ['不用注册', '无广告', '打卡/进度'], gate: '不用注册 · 没有广告', note: '极简清单形态，只留可执行的动作。' },
   'livebetter101.com': { tags: ['不用注册', '无广告', '游戏化'], gate: '不用注册 · 没有广告', note: '把条目拆成 101 天挑战，打卡式推进。' },
+  'howtolivebetter-92110.app.workbuddy.host': { tags: ['不用注册', '能搜索', '能分享'], gate: '不登录也能用 · 微信登录可把清单存到云端', note: '把全书摊成一张可探索的地图：词云 + 条目关系图，挑中的条目能生成分享卡片。' },
+  'www.howtolivebetter.cn': { tags: ['不用注册', '能搜索'], gate: '不用注册 · 记录存在浏览器里，可导出备份', note: '按主题或原书章节读，能把想试的建议写成小行动、按周回顾。' },
+  'life.hcju.com': { tags: ['不用注册', '无广告', '能搜索'], gate: '不用注册 · 没有广告 · 外语版为非官方翻译', note: '每条一个网址的阅读站，另配 6 个语言版；外语版按当地情况补了急救、劳动、租房、医保等要点。' },
   'HuiTurn/HowToLiveBetter': { tags: ['手机端', '能搜索', '能离线'], gate: '微信内访问，无需注册', note: '微信小程序：全文搜索、收藏、离线、每日一读。' },
   'apps.apple.com/id6818596108': { tags: ['手机端', '能离线', '打卡/进度'], gate: '免费版清单/打卡有数量限制', note: 'iOS 行动版，条目 + 打卡一体。' },
   'llzx373/BetterLifeApp': { tags: ['手机端', '打卡/进度', '给 AI 用'], gate: '测试版 · AI 问答需自填 API Key', note: '安卓测试版，内置 AI 问答。' },
@@ -379,6 +382,16 @@ li{margin-bottom:9px}
 .note{background:var(--bbg);border:1px solid #b5d4f4;border-radius:12px;padding:15px 19px;font-size:14px;color:#0c447c;margin:0 0 26px}
 .warnbox{background:var(--abg);border:1px solid #f0d9a8;border-radius:12px;padding:15px 19px;font-size:14px;color:#5c3b00;margin:0 0 26px}
 code{background:#f4f2ee;padding:1px 5px;border-radius:4px;font-size:12.5px}
+details.more{margin:44px 0 0;border:1px solid var(--line);border-radius:14px;background:#fff}
+details.more>summary{cursor:pointer;padding:15px 20px;font-size:15.5px;font-weight:600;list-style:none;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+details.more>summary::-webkit-details-marker{display:none}
+details.more>summary::before{content:'▸';color:var(--tx3);font-size:13px;display:inline-block}
+details.more[open]>summary::before{content:'▾'}
+details.more>summary:hover{color:var(--b)}
+details.more>summary .sm{font-weight:400;color:var(--tx3);font-size:13px}
+details.more .morebody{padding:0 20px 24px;border-top:1px solid var(--line)}
+details.more .morebody h2:first-child{margin-top:24px}
+.aside-tag{display:inline-block;font-size:11.5px;color:var(--tx2);background:#f4f2ee;border-radius:5px;padding:2px 7px;margin-left:6px}
 footer{margin-top:56px;border-top:1px solid var(--line);padding:22px 0 60px;color:var(--tx3);font-size:12.5px}
 @media(max-width:820px){.brow{grid-template-columns:1fr}h1{font-size:25px}}
 </style>
@@ -394,7 +407,7 @@ footer{margin-top:56px;border-top:1px solid var(--line);padding:22px 0 60px;colo
 
 <section class="hero">
   <h1>想读《高性价比人生指南》？<br>这 ${stats.total} 个入口，每个都核实过同步到了哪一版。</h1>
-  <p class="lede">《高性价比人生指南》是一本 <b>CC BY 4.0</b> 开源的循证生活建议书，<b>目前 ${UP_COUNT} 条，而且一直在加</b>（最近半个月就从 614 条长到 ${UP_COUNT} 条）—— 所以下面每个版本都会或快或慢地落后一点，差别只在于落后多少。读者们自发做出了 ${stats.total} 个衍生版本：网站、微信小程序、iPhone / Android App、浏览器插件、数据集、四格漫画。<br>但它们<b>散在 ${stats.total} 个不同的地方</b>，唯一的汇总点只有 GitHub 上的源仓库 —— 而 GitHub 网页在国内中位要等 <b>5.3 秒</b>、最坏 <b>18.5 秒</b>。更麻烦的是：<b>没有任何地方告诉你「哪个版本是新的」</b> —— 有的站已经停更几个月，看上去却完全正常。<br>这个页面把 ${stats.total} 个版本聚在一处，逐个查证它们<b>同步到了哪一版</b>，并给出每个版本最省事的打开方式。</p>
+  <p class="lede">《高性价比人生指南》是一本 <b>CC BY 4.0</b> 开源的循证生活建议书，<b>目前 ${UP_COUNT} 条，而且一直在加</b>（最近半个月就从 614 条长到 ${UP_COUNT} 条）—— 所以下面每个版本都会或快或慢地落后一点，差别只在于落后多少。读者们自发做出了 ${stats.total} 个衍生版本：网站、微信小程序、iPhone / Android App、浏览器插件、数据集、四格漫画。<br>但它们<b>散在 ${stats.total} 个不同的地方</b>，唯一的汇总点只有 GitHub 上的源仓库 —— 而 GitHub 网页在国内中位要等 <b>5.3 秒</b>、最坏 <b>18.5 秒</b>。更麻烦的是：<b>没有任何地方告诉你「哪个版本是新的」</b> —— 有的站已经停更几个月，看上去却完全正常。<br>这个页面就是<b>衍生项目的墙内聚合</b>（民间自建、非官方，不收正文、不接广告）：把散在各处的 ${stats.total} 个版本聚到一处，逐个查证它们<b>同步到了哪一版</b>，并给出每个版本最省事的打开方式 —— 不用翻墙，一次看完。</p>
 
   <div class="stats">
     <div class="stat"><div class="k">已收录的衍生版本</div><div class="v b">${stats.total}</div><div class="n">来自上游 README 的官方清单</div></div>
@@ -431,6 +444,22 @@ footer{margin-top:56px;border-top:1px solid var(--line);padding:22px 0 60px;colo
 <div class="grid" id="grid">
 ${cards}
 </div>
+
+<h2>另见：一份「下行周期」增补</h2>
+<p class="h2n">下面这条<b>不是本书的衍生阅读版</b> —— 它不收录原书正文，所以不参与上面的同步对比，也不计入「${stats.total} 个版本」。单独列出来，只是因为主题相关。</p>
+<div class="panel">
+  <div class="bmeta">
+    <b><a href="https://mirror.strangeyu.xyz/patch" target="_blank" rel="noopener">衰退时代补丁包：33 条下行周期要改的账</a></b>
+    <span class="dim">独立增补 · 不含原书正文 · 与本书并列的独立作品（不是本书的某一版）</span>
+  </div>
+  <p class="feat" style="margin:12px 0 0;flex:none">原书讲的是「正常时代怎么活」，这份只讲<b>衰退期哪些账会变</b>：升级 / 反转 / 新增 / 降级四类，每条写明成本、换回什么、证据档和适用人群，另按「情形档位」与证伪信号决定要不要加码。</p>
+  <p class="dim" style="margin:8px 0 0">它没有收录、复制或改动原书任何一条正文，是作者依据自己的研究另写的独立作品，文字与代码以 CC BY-NC-SA 4.0 开源。作者 Strange。</p>
+  <a class="cta" style="margin:14px 0 0;max-width:300px" href="https://mirror.strangeyu.xyz/patch" target="_blank" rel="noopener">打开补丁包 →</a>
+</div>
+
+<details class="more">
+<summary>逐项查证依据 · badge 接口 · GitHub 墙内实测 · 测不到什么<span class="sm">（技术细节，默认收起）</span></summary>
+<div class="morebody">
 
 <h2>逐项查证明细</h2>
 <p class="h2n">每一行都写明了<b>我们是怎么知道的</b>：<b>实测产物</b> = 读该项目自己发布的文件（小程序数据包、App 的 <code>entries.json</code>、数据集的 <code>stats.json</code>…）数出来的真实条数；<b>商店/页面自述</b> = 只有它自己写的数字可参考，属弱信号；<b>运行时拉取</b> = 每次打开都直接向源仓库取最新正文，所以不存在「落后」这个概念。右侧是这台机器抓到的原始证据，可逐条复核。</p>
@@ -475,6 +504,9 @@ ${ghRows}
 <li>本页<b>不转载正文、不开评论区</b>。正文版权归上游及各衍生作者，有出入时以 <a href="https://github.com/eternity4719/HowToLiveBetter" target="_blank" rel="noopener">上游中文原文</a> 为准（CC BY 4.0）。</li>
 <li><b>数据是活的，但不是秒级。</b>本站 Worker 每次请求会去上游取一次最新条目数（边缘缓存 10 分钟）；完整的逐项重算由 <b>GitHub Actions 每天跑一次</b>，结果回灌进本站的数据层，页脚会显示上次重算时间。</li>
 </ol>
+
+</div>
+</details>
 
 <footer>
 上游：<a href="https://github.com/eternity4719/HowToLiveBetter" target="_blank" rel="noopener">eternity4719/HowToLiveBetter</a> · CC BY 4.0 · ${UP.stars ? UP.stars.toLocaleString() : '—'} ★ / ${UP.forks ? UP.forks.toLocaleString() : '—'} forks · 最新提交 <code>${String(UP.headSha).slice(0, 8)}</code>（${UP.headDate ? new Date(UP.headDate).toLocaleString('zh-CN', { hour12: false, timeZone: 'Asia/Shanghai' }) : '—'}）<br>

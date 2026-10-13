@@ -198,6 +198,9 @@ const STRATEGIES = {
   'better.aigcwei.cn': { kind: 'artifact', repo: 'Helioswei/HowToLiveBetter-Kit', files: ['sync/fingerprint.json'], sitemap: true, page: true },
   'qingdan.lazyso.com': { kind: 'artifact', sitemap: true, page: true },
   'livebetter101.com': { kind: 'artifact', sitemap: true, page: true },
+  'howtolivebetter-92110.app.workbuddy.host': { kind: 'artifact', page: true },
+  'www.howtolivebetter.cn': { kind: 'artifact', page: true },
+  'life.hcju.com': { kind: 'artifact', page: true },
   'HuiTurn/HowToLiveBetter': { kind: 'artifact', repo: 'HuiTurn/HowToLiveBetter', files: ['data/match-index.js'] },
   'apps.apple.com/id6818596108': { kind: 'store', page: true },
   'llzx373/BetterLifeApp': { kind: 'artifact', repo: 'llzx373/BetterLifeApp', files: ['app/src/main/assets/entries.json'] },
@@ -277,6 +280,100 @@ const ARTIFACT_PARSERS = {
     out.ev('全站 JS 里没有任何 raw.githubusercontent / api.github.com 引用，也没有 /api/book、/api/entries 这类正文接口（404）→ 排除「运行时拉上游」');
     return out;
   },
+  async 'howtolivebetter-92110.app.workbuddy.host'(out) {
+    // 单页站（WorkBuddy 托管）：构建期把全站索引打包成 data/home.json（约 70 KB），
+    // 里面 stats.items 就是条目总数；首页 title / meta 描述 / 正文 lede 三处自述同一个数。
+    // 所以既能读到「产物文件里的真数」，又有页面自述可交叉 → 两条独立信号。
+    const r = await get('https://howtolivebetter-92110.app.workbuddy.host/data/home.json', {
+      timeout: 25000,
+      cap: 4 * 1024 * 1024,
+    });
+    if (!r.ok) return out.ev('data/home.json 取不到: HTTP ' + r.status + (r.err ? ' ' + r.err : ''));
+    let j = null;
+    try {
+      j = JSON.parse(r.text);
+    } catch (e) {
+      return out.ev('data/home.json 不是合法 JSON: ' + e.message.slice(0, 60));
+    }
+    const items = j && j.stats && j.stats.items;
+    if (typeof items !== 'number') return out.ev('data/home.json 里没有 stats.items 字段（站点可能改版）');
+    out.actualEntries = items;
+    out.method = 'artifact';
+    const s = j.stats;
+    out.ev(
+      `读它自己的构建产物 data/home.json（${Math.round(r.text.length / 1024)} KB）：stats.items = ${items}` +
+        (typeof s.sections === 'number' ? `、stats.sections = ${s.sections}（章节数与上游 34 节吻合）` : '')
+    );
+    out.ev(`同一文件另给：stats.sources = ${s.sources} 条原始出处、stats.who = ${s.who} 条标了「适用人群」`);
+    out.ev('首页 title / meta 描述 / 正文首段三处都自述同一个数 → 与产物文件一致');
+    return out;
+  },
+
+  async 'www.howtolivebetter.cn'(out) {
+    // 「渐好」：静态 SPA，全量内容打在 3.9 MB 的 content.json 里。
+    // manifest 不是只写个条数 —— 它直接记了源仓库地址 + 上游 commit sha，
+    // 是这个生态里少见的「可机器核验同步点」做法。
+    const r = await get('https://www.howtolivebetter.cn/content.json', { timeout: 60000, cap: 16 * 1024 * 1024 });
+    if (!r.ok) return out.ev('content.json 取不到: HTTP ' + r.status + (r.err ? ' ' + r.err : ''));
+    let j = null;
+    try {
+      j = JSON.parse(r.text);
+    } catch (e) {
+      return out.ev('content.json 不是合法 JSON: ' + e.message.slice(0, 60));
+    }
+    const m = j.manifest || {};
+    const n = m.entryCount;
+    if (typeof n !== 'number') return out.ev('content.json 里没有 manifest.entryCount 字段');
+    const len = Array.isArray(j.entries) ? j.entries.length : null;
+    const revLen = Array.isArray(j.revisions) ? j.revisions.length : null;
+    out.actualEntries = n;
+    out.method = 'artifact';
+    out.ev(
+      `读它自己的构建产物 content.json（${Math.round(r.text.length / 1024)} KB）：manifest.entryCount = ${n}` +
+        (len != null ? `，entries 数组实长 ${len}` : '') +
+        (revLen != null ? `、revisions 实长 ${revLen}` : '')
+    );
+    if (len === n) out.ev(`两条信号一致（manifest.entryCount = entries.length = ${n}）`);
+    if (typeof m.chapterCount === 'number') out.ev(`manifest.chapterCount = ${m.chapterCount}（与上游 34 节吻合）`);
+    if (m.commit) {
+      out.ownVersion = m.commit;
+      out.ev(
+        `★ 它把上游 commit 与源仓库地址直接写进 manifest：${String(m.commit).slice(0, 8)}` +
+          `（导入于 ${String(m.importedAt || '').slice(0, 16)}）—— 生态里少见的可核验做法`
+      );
+    }
+    out.ownBuildTime = m.importedAt || null;
+    out.ownBuildTimeFrom = 'content.json 的 manifest.importedAt';
+    return out;
+  },
+
+  async 'life.hcju.com'(out) {
+    // 「阅读版」（多语言静态站）：中文原文不带语言前缀，逐条页形如 /<主题>/<slug>。
+    // sitemap 里先剔掉 6 种语言前缀，再扣掉 /guides/* 说明页，剩下的就是中文逐条页。
+    const sm = await get('https://life.hcju.com/sitemap.xml', { timeout: 40000, cap: 8 * 1024 * 1024 });
+    if (!sm.ok) return out.ev('sitemap.xml 取不到: HTTP ' + sm.status);
+    const locs = [...sm.text.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+    const LANGS = ['zh-tw', 'en', 'ja', 'ko', 'es', 'de'];
+    const paths = locs.map((u) => new URL(u).pathname);
+    const noLang = paths.filter((p) => !LANGS.includes(p.split('/').filter(Boolean)[0]));
+    const d2 = noLang.filter((p) => p.split('/').filter(Boolean).length === 2);
+    const guides = d2.filter((p) => p.startsWith('/guides/')).length;
+    const entries = d2.length - guides;
+    const topics = new Set(d2.filter((p) => !p.startsWith('/guides/')).map((p) => p.split('/').filter(Boolean)[0]));
+    out.actualEntries = entries;
+    out.method = 'artifact';
+    out.sitemapUrls = locs.length;
+    out.ev(
+      `sitemap.xml 共 ${locs.length} 个 URL（含 ${LANGS.length} 个语言版 + 中文原文）；中文原文不带语言前缀，` +
+        `其中逐条页 /<主题>/<slug> 共 ${d2.length} 个，扣除 /guides/* 的 ${guides} 个说明页 = **${entries} 条**`
+    );
+    out.ev(`中文原文一级主题 ${topics.size} 个，与上游 34 节吻合`);
+    // sitemap lastmod 顺带当「内容时间」
+    const lms = [...sm.text.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)].map((m) => m[1]).sort();
+    if (lms.length) out.sitemapLastmod = lms[lms.length - 1];
+    return out;
+  },
+
   async 'life.warpnav.com'(out) {
     // 它是「本地快照」式镜像：全库采用上游某一时刻的快照，逐条一个页面（/tips/tip-<hash>/），
     // 结构（34 章、章节页）与上游一致。条目数直接数 sitemap 里的逐条页，再用它自己的更新记录页交叉验证。

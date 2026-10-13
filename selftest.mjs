@@ -5,7 +5,13 @@
  */
 import http from 'node:http';
 import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import worker from './deploy/worker.js';
+
+// ⚠️ 期望的项目数一律从数据文件读，别写死 —— 上游 衍生项目.md 加一项就假失败一次
+const DIR = path.dirname(fileURLToPath(import.meta.url));
+const N = JSON.parse(fs.readFileSync(path.join(DIR, 'data', 'projects.json'), 'utf8')).projects.length;
 
 // 假的 KV + 回灌密钥：让 ingest 这条链路能在本地被真正跑通
 const KVSTORE = new Map();
@@ -67,7 +73,7 @@ const check = (name, cond, extra = '') => {
   const t = await r.text();
   check('GET / → 200', r.status === 200, 'status=' + r.status);
   check('首页含标题', /高性价比人生指南/.test(t));
-  check('首页含 14 个项目卡片', (t.match(/<article class="card"/g) || []).length === 14, '实际 ' + (t.match(/<article class="card"/g) || []).length);
+  check(`首页含 ${N} 个项目卡片`, (t.match(/<article class="card"/g) || []).length === N, '实际 ' + (t.match(/<article class="card"/g) || []).length);
   check('首页无占位符残留', !/undefined|NaN|\[object Object\]/.test(t));
 }
 
@@ -93,7 +99,7 @@ const check = (name, cond, extra = '') => {
 {
   const r = await fetch(base + '/badge/');
   const t = await r.text();
-  check('GET /badge/ → 200 且有 14 个 img', r.status === 200 && (t.match(/<img /g) || []).length === 14);
+  check(`GET /badge/ → 200 且有 ${N} 个 img`, r.status === 200 && (t.match(/<img /g) || []).length === N);
 }
 
 // 3) API
@@ -102,7 +108,7 @@ const check = (name, cond, extra = '') => {
   const j = await r.json();
   check('GET /api/status.json → 200', r.status === 200);
   check('CORS 头存在', r.headers.get('access-control-allow-origin') === '*');
-  check('projects 数 = 14', j.projects.length === 14, '实际 ' + j.projects.length);
+  check(`projects 数 = ${N}`, j.projects.length === N, '实际 ' + j.projects.length);
   check('含 upstream.entries', Number.isFinite(j.upstream.entries), 'entries=' + j.upstream.entries);
   check('实时取值标记', j.upstream.entriesLive === true || j.upstream.entriesLive === false, 'entriesLive=' + j.upstream.entriesLive);
   const lag = j.projects.filter((p) => p.status === 'lag').length;
@@ -164,7 +170,7 @@ const check = (name, cond, extra = '') => {
   const r = await fetch(base + '/api/status.json');
   const j = await r.json();
   check('回灌后数据源切到 kv', j.dataSource === 'kv', 'dataSource=' + j.dataSource);
-  check('回灌后仍 14 个项目', j.projects.length === 14, '实际 ' + j.projects.length);
+  check(`回灌后仍 ${N} 个项目`, j.projects.length === N, '实际 ' + j.projects.length);
   check('回灌带上 lastCrawlAt', !!j.lastCrawlAt, 'lastCrawlAt=' + j.lastCrawlAt);
   const rt = j.projects.filter((p) => p.status === 'runtime').length;
   check('运行时项目被单独归类', rt >= 1, 'runtime=' + rt);

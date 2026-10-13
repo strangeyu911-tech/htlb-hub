@@ -1,12 +1,15 @@
 {
- "generatedAt": "2026-10-13T05:01:17.327Z",
+ "generatedAt": "2026-10-13T08:33:48.576Z",
  "source": "本地克隆上游仓库 + book/ 全量历史 diff 累积统计",
  "definition": "条目数 = book/*.md 里的 ### 标题数（上游 tools/sync-stats.mjs 官方口径）",
  "headSha": "1b411b89e4fe523c93ffc1855c6c7c9e212e7fb9",
  "headEntries": 690,
- "totalCommits": 406,
- "totalCommitsAll": 406,
+ "totalCommits": 409,
+ "totalCommitsAll": 409,
  "allCommits": {
+  "ac31b76bd139597a38beb22c9435b9bba9b1564f": "2026-10-13 13:42:03 +0800",
+  "7983f5d686cdba969cb9fdd098dbad947259568e": "2026-10-13 13:41:57 +0800",
+  "bdf3be21185ae040e3ed87e6b5d964d42de25a2a": "2026-10-13 12:37:41 +0800",
   "1b411b89e4fe523c93ffc1855c6c7c9e212e7fb9": "2026-10-13 12:05:20 +0800",
   "490e5f49dc252a8219c6881ddd292342997542ef": "2026-10-13 10:05:24 +0800",
   "ef4b1e401ae004b99c2ea53de3dcdaea15b8a7d7": "2026-10-13 09:56:25 +0800",

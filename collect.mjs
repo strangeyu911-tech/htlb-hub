@@ -15,7 +15,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUT = path.join(__dirname, 'data', 'audit.json');
 const UPSTREAM = 'eternity4719/HowToLiveBetter';
 
-function req(url, { timeout = 9000, maxRedirect = 4, method = 'GET' } = {}) {
+function req(url, { timeout = 18000, maxRedirect = 4, method = 'GET' } = {}) {
   return new Promise((resolve) => {
     const t0 = Date.now();
     let done = false;
@@ -123,6 +123,9 @@ const DERIVED = [
   { id: 'better.aigcwei.cn', name: 'better.aigcwei.cn + MCP', author: 'Helioswei', kind: '网站+MCP', url: 'https://better.aigcwei.cn/', ghRepo: 'Helioswei/HowToLiveBetter-Kit', note: '按节/按场景读、检索全部条目；MCP 装进 Cursor/Claude Code 后助手回答前先查本书并注明第几节第几条，可按性价比/成本/证据等级/收益筛选；不用注册、没有广告' },
   { id: 'qingdan.lazyso.com', name: '懒人性价性清单', author: 'lazyvip', kind: '网站', url: 'https://qingdan.lazyso.com/', note: '按「0元、不费毅力、收益大、证据A」组合筛选；打勾记进度、每日一条；不用注册、无广告' },
   { id: 'livebetter101.com', name: 'LiveBetter 101', author: 'PlatoTheOne', kind: '网站', url: 'https://livebetter101.com/', note: '闯关游戏：建议改编成生活场景选择题，分急救/钱包/时间/关系/安全几块练；不用注册、无广告' },
+  { id: 'howtolivebetter-92110.app.workbuddy.host', name: '循证建议地图', author: 'felixlee0608', kind: '网站', url: 'https://howtolivebetter-92110.app.workbuddy.host/', note: '有词云和条目关系图，挑条目进清单，能生成分享卡片图；不登录也能用，用微信登录可以把清单存到云端' },
+  { id: 'www.howtolivebetter.cn', name: '渐好', author: 'Fitem', kind: '网站', url: 'https://www.howtolivebetter.cn/', note: '按生活主题或原书章节读、全文搜索、收藏和记笔记；把想试的建议写成小行动，再按周回顾有没有用；不用注册，记录存在浏览器里，能导出备份' },
+  { id: 'life.hcju.com', name: '阅读版（7 语言）', author: 'fantadust', kind: '网站', url: 'https://life.hcju.com/', note: '每条一个网址，按节、按生活场景和适用人群浏览，支持拼音搜索；另有繁体、英、日、韩、西、德 6 个语言版，外语版按当地官方资料补了急救电话、劳动、租房、医保等当地要点' },
   { id: 'HuiTurn/HowToLiveBetter', name: '微信小程序版', author: 'HuiTurn', kind: '小程序', ghRepo: 'HuiTurn/HowToLiveBetter', note: '分类、收藏、每日一读、全文搜索，离线可用' },
   { id: 'apps.apple.com/id6818596108', name: '行动版 iOS App', author: 'GUGU VITALITY LIMITED', kind: 'iOS App', url: 'https://apps.apple.com/cn/app/id6818596108', note: '左右滑卡片决定做不做，做一次的进清单，要重复的设打卡，离线可用；免费版清单/打卡有数量限制' },
   { id: 'llzx373/BetterLifeApp', name: 'BetterLifeApp', author: 'llzx373', kind: 'Android App', ghRepo: 'llzx373/BetterLifeApp', note: '按个人情况推荐、每日打卡、条目库；AI 问答要自填 API Key；测试版，内置条目较早' },
