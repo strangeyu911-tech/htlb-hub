@@ -4,18 +4,20 @@ name: Refresh ecosystem status
 # 不通知任何人、不开 issue、不往衍生仓库提 PR —— 只是让站上的标注保持准确。
 #
 # 为什么放 GitHub Actions 而不是 Cloudflare Cron Trigger：
-#   重算要跑 git log 全量历史 + 逐个抓 14 个衍生项目的产物文件，
+#   重算要跑 git log 全量历史 + 逐个抓 18 个衍生项目的产物文件，
 #   远超 Workers 免费版 10 ms CPU/次的限制（官方文档口径）。
 #   Worker 只负责「轻活 + 对外接口」，重活交给 Actions。
+#
+# 2026-10-14 起的分工（国内可达性）：
+#   静态页 → GitHub Pages（Fastly），域名 htlb.strangeyu.xyz（CF 侧灰云 CNAME）
+#   动态接口 → Cloudflare Worker，域名 htlb-api.strangeyu.xyz
+#   所以下面的回灌地址必须走 api 子域，不能再写主域（主域已不是 Worker）。
 
 on:
   schedule:
     # 19:17 UTC = 次日 03:17 北京时间。避开整点（Actions 高峰会延迟甚至丢单）
     - cron: '17 19 * * *'
   workflow_dispatch:
-
-permissions:
-  contents: write
 
 concurrency:
   group: refresh-ecosystem
@@ -25,6 +27,8 @@ jobs:
   refresh:
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
 
@@ -63,7 +67,7 @@ jobs:
             exit 1
           fi
           code=$(curl -sS -o /tmp/resp.json -w '%{http_code}' \
-            -X POST https://htlb.strangeyu.xyz/api/ingest \
+            -X POST https://htlb-api.strangeyu.xyz/api/ingest \
             -H 'content-type: application/json' \
             -H "x-ingest-secret: ${INGEST_SECRET}" \
             --data-binary @data/projects.json)
@@ -86,3 +90,26 @@ jobs:
             git commit -m "chore(refresh): $(date -u +'%Y-%m-%d %H:%M UTC')"
             git push
           fi
+
+      # ⚠️ 必须在本 job 里就把 site/ 打成 artifact：后面的 deploy job 用
+      #    actions/checkout 只会拿到「触发本次 workflow 的那个 commit」，
+      #    拿不到上面 bot 刚 push 的新 commit（GITHUB_TOKEN 推的提交不会回头触发工作流）。
+      - name: 打包静态站
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  # 静态页发布到 GitHub Pages（Fastly CDN）—— 国内可达性远好于 Cloudflare
+  deploy-pages:
+    needs: refresh
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: 发布到 GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

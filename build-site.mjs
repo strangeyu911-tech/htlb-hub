@@ -27,6 +27,21 @@ const UP = Object.assign({}, eco.upstream, {
 });
 const UP_COUNT = UP.entries;
 
+/**
+ * 双域名分工（2026-10-14 定的国内可达性方案，与 mirror.strangeyu.xyz 同一套思路）
+ *
+ * 背景：原先整站挂在 Cloudflare Worker 上，`CF-RAY` 实测落点是 **LAX 洛杉矶** ——
+ * 国内每次请求都要跨太平洋往返，全国拨测 CF 4.975 s vs GitHub Pages 0.765 s。
+ * 所以把**静态页**搬到 GitHub Pages（Fastly CDN，与 CF 完全不同的厂商），
+ * **动态接口**留在 Cloudflare Worker。CF 侧 DNS 必须设成**灰云（DNS only）**，
+ * 否则流量仍会回到 CF —— 这一步不做等于没搬（mirror 项目已实测过）。
+ *
+ *   SITE_ORIGIN = 静态页 + 静态徽章（GitHub Pages，每日 Actions 重建）
+ *   API_ORIGIN  = 活的接口 + 活的徽章（Cloudflare Worker）
+ */
+const SITE_ORIGIN = 'https://htlb.strangeyu.xyz';
+const API_ORIGIN = 'https://htlb-api.strangeyu.xyz';
+
 const ECO_BY_ID = Object.fromEntries(eco.projects.map((p) => [p.id, p]));
 
 /**
@@ -271,7 +286,7 @@ const badgeRows = rows
     r.verdict === 'sync' ? '建议挂：显示已同步' : r.verdict === 'runtime' ? '挂上说明是运行时跟随' : r.verdict === 'lag' ? '挂上会暴露落后，慎用' : r.verdict === 'fixed' ? '挂上说明是快照' : '无同步声明'
   }</span></div>
   <div class="bsvg"><img src="/badge/${r.slug}.svg" alt="${r.name} 同步状态" loading="lazy" height="20"></div>
-  <code class="bcode">![同步状态](https://htlb.strangeyu.xyz/badge/${r.slug}.svg)</code>
+  <code class="bcode">![同步状态](${API_ORIGIN}/badge/${r.slug}.svg)</code>
 </div>`
   )
   .join('\n');
@@ -421,8 +436,42 @@ footer{margin-top:56px;border-top:1px solid var(--line);padding:22px 0 60px;colo
 
   <div class="note"><b>怎么用：</b>点下面的标签按需求筛（要不要注册、有没有广告、手机还是电脑用），或按「同步最新 / 访问最快」排序。每张卡都写了三件我们实测过的事：<b>同步到哪一版</b>、<b>墙内打开多少毫秒</b>、<b>要不要注册、有没有广告</b>。想直接开始用，点卡片上的蓝色按钮。</div>
 
-  <div class="warnbox"><b>关于访问速度：</b>本站与多数衍生站都托管在 Cloudflare 上，而 <b>Cloudflare 在国内本身并不快</b> —— 本机实测打开这类站点中位 2–3 秒，打开 howtolivebetter.net 中位 6 秒。要做到「国内秒开」需要国内云主机 + ICP 备案，那是另一件事。本站不托管任何正文，只做指路与查证，所以实际速度取决于每个站自己的服务器。</div>
+  <div class="warnbox"><b>关于访问速度：</b>本站的静态页已经<b>从 Cloudflare 搬到 GitHub Pages（Fastly CDN）</b> —— 全国拨测 0.765 s vs Cloudflare 4.975 s，因为 Cloudflare 免费版的国内落点会到洛杉矶/阿姆斯特丹，而 Fastly 是另一家 CDN。但<b>多数衍生站自己仍托管在 Cloudflare 上</b>：本机实测打开这类站点中位 2–3 秒，打开 howtolivebetter.net 中位 6 秒。要让每个站都「国内秒开」，得各站自己上国内云主机 + ICP 备案，那是另一件事。本站不托管任何正文，只做指路与查证，所以卡片上的速度取决于每个站自己的服务器。</div>
 </section>
+
+<h2>先看官方原站<span class="aside-tag">这本书本身，不是衍生版本</span></h2>
+<p class="h2n">下面那些卡片是读者做的衍生版本；这一条才是<b>作者自己发布的在线阅读版</b> —— 它就是本书正文，仓库每次更新都会重新构建一次，所以不存在「落后」这回事（当前 <b>${UP_COUNT} 条</b>）。国内不翻墙也能直接读，不用先落到 GitHub 仓库页等上 5 秒多。</p>
+<div class="panel" style="border-color:#cfe3d8;background:linear-gradient(180deg,#f4faf7,#fff)">
+  <div class="bmeta">
+    <b><a href="https://eternity4719.github.io/HowToLiveBetter/" target="_blank" rel="noopener">高性价比人生指南 · 官方在线阅读版</a></b>
+    <span class="dim">作者 eternity4719 出品 · 正文 CC BY 4.0 · GitHub Pages（Fastly）</span>
+  </div>
+  <p class="feat" style="margin:12px 0 0;flex:none">按 34 节从头读到尾，就是原文本身，没有任何中间层 —— 每条写明成本、收益、证据等级和原始出处，只引期刊论文与官方文件。</p>
+  <p class="dim" style="margin:8px 0 0">它<b>不参与下面 ${stats.total} 个版本的同步对比</b>：其余版本是「抄了这本书」的产物，它是这本书。要判断哪个衍生站更新，请往下看卡片。</p>
+  <a class="cta" style="margin:14px 0 0;max-width:330px" href="https://eternity4719.github.io/HowToLiveBetter/" target="_blank" rel="noopener">打开官方原站 →</a>
+</div>
+
+<h2>另见：本站维护者自己的两个站点<span class="aside-tag">与本书无关 · 未被上游清单收录</span></h2>
+<div class="warnbox" style="border-style:dashed;border-color:#e0dcd2;background:#fbfaf6"><b>先把话说清楚：</b>下面两条是<b>本站维护者 Strange 自己的作品</b>，与《高性价比人生指南》<b>没有任何内容或版本关系</b>，也不在上游 <code>衍生项目.md</code> 的收录范围里。它们<b>不参与任何同步对比，也不计入下面这 ${stats.total} 个版本</b> —— 列在这里只是因为主题相邻、读者可能感兴趣。（想判断衍生站谁更新，请继续往下看卡片。）</div>
+<div class="panel" style="border-style:dashed;border-color:#e0dcd2;background:#fcfbf8">
+  <div class="bmeta">
+    <b><a href="https://mirror.strangeyu.xyz/" target="_blank" rel="noopener">以日为鉴：衰退时代普通人生存指南（增补版）</a></b>
+    <span class="dim">讲的是另一本书 · 与本书无任何内容交集 · 本站维护者自己的作品</span>
+  </div>
+  <p class="feat" style="margin:12px 0 0;flex:none">灵感源自 Boden《以日为鉴》，以日本「失去三十年」为镜，综合 20 余位中日与国际学者的观点与 2026 年最新数据，直接给出结论、置信度与分人群行动。</p>
+  <p class="dim" style="margin:8px 0 0">它<strong>没有使用《高性价比人生指南》的任何内容</strong>，与本书之间没有版本关系 —— 它既不是本书的某一版，本书也不是它的某一版。作者 Strange。</p>
+  <a class="cta" style="margin:14px 0 0;max-width:330px" href="https://mirror.strangeyu.xyz/" target="_blank" rel="noopener">打开增补版 →</a>
+
+  <hr style="border:0;border-top:1px solid #f2f0ec;margin:20px 0">
+
+  <div class="bmeta">
+    <b><a href="https://mirror.strangeyu.xyz/patch" target="_blank" rel="noopener">衰退时代补丁包：33 条下行周期要改的账</a></b>
+    <span class="dim">《以日为鉴》的独立增补 · 不含该书正文 · 本站维护者自己的作品</span>
+  </div>
+  <p class="feat" style="margin:12px 0 0;flex:none">《以日为鉴》讲的是「正常时代怎么活」，这份只讲<b>衰退期哪些账会变</b>：升级 / 反转 / 新增 / 降级四类，每条写明成本、换回什么、证据档和适用人群，另按「情形档位」与证伪信号决定要不要加码。</p>
+  <p class="dim" style="margin:8px 0 0">它<b>没有收录、复制或改动《以日为鉴》任何一条正文</b>，是作者依据自己的研究另写的独立作品，与那本书并列而非它的某一版。文字与代码以 CC BY-NC-SA 4.0 开源。作者 Strange。</p>
+  <a class="cta" style="margin:14px 0 0;max-width:330px" href="https://mirror.strangeyu.xyz/patch" target="_blank" rel="noopener">打开补丁包 →</a>
+</div>
 
 <h2>选一个用</h2>
 <p class="h2n">点标签筛选，或按同步新鲜度 / 访问速度排序。共 <span id="cnt">${stats.total}</span> 项，每张卡都能直接点开。</p>
@@ -444,28 +493,6 @@ footer{margin-top:56px;border-top:1px solid var(--line);padding:22px 0 60px;colo
 </div>
 <div class="grid" id="grid">
 ${cards}
-</div>
-
-<h2>另见：本站维护者的其它站点<span class="aside-tag">未被收录进衍生项目清单</span></h2>
-<p class="h2n">下面两个都<b>不是</b>《高性价比人生指南》的衍生版本，<b>也不在上游 <code>衍生项目.md</code> 的收录范围里</b> —— 所以它们不参与上面的同步对比，也不计入「${stats.total} 个版本」。单独列在这里，只是因为主题相邻、内容完全独立，感兴趣的读者可以自己看看。</p>
-<div class="panel">
-  <div class="bmeta">
-    <b><a href="https://mirror.strangeyu.xyz/" target="_blank" rel="noopener">以日为鉴：衰退时代普通人生存指南（增补版）</a></b>
-    <span class="dim">讲的是另一本书 · 与本书无任何内容交集 · 未被收录进衍生项目清单</span>
-  </div>
-  <p class="feat" style="margin:12px 0 0;flex:none">灵感源自 Boden《以日为鉴》，以日本「失去三十年」为镜，综合 20 余位中日与国际学者的观点与 2026 年最新数据，直接给出结论、置信度与分人群行动。</p>
-  <p class="dim" style="margin:8px 0 0">它<strong>没有使用《高性价比人生指南》的任何内容</strong>，与上面的 ${stats.total} 个版本之间没有版本关系 —— 换句话说，它既不是本书的某一版，本书也不是它的某一版。作者 Strange。</p>
-  <a class="cta" style="margin:14px 0 0;max-width:330px" href="https://mirror.strangeyu.xyz/" target="_blank" rel="noopener">打开增补版 →</a>
-
-  <hr style="border:0;border-top:1px solid #f2f0ec;margin:20px 0">
-
-  <div class="bmeta">
-    <b><a href="https://mirror.strangeyu.xyz/patch" target="_blank" rel="noopener">衰退时代补丁包：33 条下行周期要改的账</a></b>
-    <span class="dim">独立增补 · 不含原书正文 · 未被收录进衍生项目清单</span>
-  </div>
-  <p class="feat" style="margin:12px 0 0;flex:none">原书讲的是「正常时代怎么活」，这份只讲<b>衰退期哪些账会变</b>：升级 / 反转 / 新增 / 降级四类，每条写明成本、换回什么、证据档和适用人群，另按「情形档位」与证伪信号决定要不要加码。</p>
-  <p class="dim" style="margin:8px 0 0">它<b>没有收录、复制或改动原书任何一条正文</b>，是作者依据自己的研究另写的独立作品，与本书并列而非它的某一版。文字与代码以 CC BY-NC-SA 4.0 开源。作者 Strange。</p>
-  <a class="cta" style="margin:14px 0 0;max-width:330px" href="https://mirror.strangeyu.xyz/patch" target="_blank" rel="noopener">打开补丁包 →</a>
 </div>
 
 <h2>另见：与本书有关、但还没进上游清单的两件<span class="aside-tag">未被收录进衍生项目清单</span></h2>
@@ -511,7 +538,7 @@ ${detailRows}
 <div class="panel">
 ${badgeRows}
 </div>
-<p class="h2n" style="margin-top:14px">接口形态：<code>/badge/&lt;项目 slug&gt;.svg</code> · 机器可读：<code>/api/status.json</code> · 数据接口每次请求会去上游取一次最新条目数（边缘缓存 10 分钟），所以 badge 上的数字是<b>活的</b>。</p>
+<p class="h2n" style="margin-top:14px">下面是可直接粘贴的<b>动态接口</b>地址：<code>${API_ORIGIN}/badge/&lt;项目 slug&gt;.svg</code> · 机器可读：<code>${API_ORIGIN}/api/status.json</code> · 该接口每次请求会去上游取一次最新条目数（边缘缓存 10 分钟），所以 badge 上的数字是<b>活的</b>，不用谁手动改。<br>⚠️ 页面上你看到的那几张徽章走的是<b>本站静态副本</b>（<code>${SITE_ORIGIN}/badge/&lt;slug&gt;.svg</code>），它跟着本站每日重算一起更新 —— 所以本页自身不依赖那个动态接口，加载更快；要<b>实时</b>数字请用上面的动态地址。</p>
 
 <h2>为什么需要这个页面：GitHub 墙内实测</h2>
 <p class="h2n">本机裸连（未开梯子）各通道各 5 轮取中位数。${ghProbe.samples} 轮样本，${ghProbe.generatedAt.slice(0, 10)} 采集。</p>
@@ -545,7 +572,7 @@ ${ghRows}
 <footer>
 上游：<a href="https://github.com/eternity4719/HowToLiveBetter" target="_blank" rel="noopener">eternity4719/HowToLiveBetter</a> · CC BY 4.0 · ${UP.stars ? UP.stars.toLocaleString() : '—'} ★ / ${UP.forks ? UP.forks.toLocaleString() : '—'} forks · 最新提交 <code>${String(UP.headSha).slice(0, 8)}</code>（${UP.headDate ? new Date(UP.headDate).toLocaleString('zh-CN', { hour12: false, timeZone: 'Asia/Shanghai' }) : '—'}）<br>
 本站由 <code>fetch-upstream.sh</code>（取上游 git 历史）→ <code>verify-upstream.mjs</code> / <code>verify-ecosystem.mjs</code>（查证）→ <code>build-site.mjs</code>（渲染）→ <code>deploy.mjs</code>（部署到 Cloudflare Worker）串成，生成于 ${genAt}。<br>
-逐项重算由 GitHub Actions 每日自动执行并回灌本站数据层；最近一次：<b id="crawlAt">${'（随 /api/status.json 实时填入）'}</b>。聚合与查证由 Strange 维护。
+逐项重算由 GitHub Actions 每日自动执行并回灌本站数据层；本页构建于：<b id="crawlAt">${genAt}</b>。聚合与查证由 Strange 维护。
 </footer>
 </div>
 
@@ -601,13 +628,14 @@ ${ghRows}
   });
   apply();
 
-  // 动态数据：拿到实时上游条目数后回填（失败则保持构建期的快照值）
-  fetch('/api/status.json').then(function(r){return r.json();}).then(function(d){
+  // 静态页在 GitHub Pages 上，所以这里要写**绝对**地址指向 Worker 上的动态接口。
+  // 异步、失败就保持构建期的快照值，不阻塞渲染。
+  fetch('${API_ORIGIN}/api/status.json').then(function(r){return r.json();}).then(function(d){
     if(!d)return;
     var n=document.querySelector('#upn');
     if(n&&d.upstream)n.textContent=d.upstream.entries;
     var c=document.querySelector('#crawlAt');
-    if(c)c.textContent=d.lastCrawlAt?new Date(d.lastCrawlAt).toLocaleString('zh-CN',{hour12:false}):'尚未回灌，当前显示的是部署时快照';
+    if(c)c.textContent=(d.lastCrawlAt?new Date(d.lastCrawlAt).toLocaleString('zh-CN',{hour12:false}):'尚未回灌')+'（实时值）';
   }).catch(function(){});
 })();
 </script>

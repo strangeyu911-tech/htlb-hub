@@ -3,13 +3,31 @@
 把 [HowToLiveBetter](https://github.com/eternity4719/HowToLiveBetter)（CC BY 4.0 的开源生活指南）散落在各处的
 衍生项目聚到一处，并**逐个查证它同步到了上游哪一版**，把「谁落后了」这件事变成公开可见的。
 
-- 线上地址：<https://htlb.strangeyu.xyz/>
-- 动态徽章：`https://htlb.strangeyu.xyz/badge/<slug>.svg`
-- 机器可读：<https://htlb.strangeyu.xyz/api/status.json>
+- 线上地址（静态页）：<https://htlb.strangeyu.xyz/> —— **GitHub Pages / Fastly**
+- 静态徽章：`https://htlb.strangeyu.xyz/badge/<slug>.svg`（跟站点每日一起重建）
+- 动态接口：`https://htlb-api.strangeyu.xyz/` —— **Cloudflare Worker**
+  - 活的徽章：`https://htlb-api.strangeyu.xyz/badge/<slug>.svg`（上游一更新数字就变）
+  - 机器可读：<https://htlb-api.strangeyu.xyz/api/status.json>
+  - 存活：<https://htlb-api.strangeyu.xyz/health>
+
+### 为什么拆成两个域名（国内可达性）
+
+原先把整站挂在 Cloudflare Worker 上，实测 `CF-RAY` 落点是 **LAX 洛杉矶** —— 国内每次请求都跨太平洋往返。
+所以照 `mirror.strangeyu.xyz` 那套做法：**静态页搬到 GitHub Pages（Fastly，另一个 CDN 厂商）**，
+动态接口留在 Worker。全国拨测对照：GitHub Pages **0.765 s** vs Cloudflare **4.975 s**。
+
+🔴 **关键前提：CF 侧 DNS 必须是「灰云 / DNS only」**。开着橙云代理的话流量仍会回到 CF，等于没搬。
+
+| 角色 | 域名 | 托管 | CF 侧 DNS |
+|---|---|---|---|
+| 静态页 + 静态徽章 | `htlb.strangeyu.xyz` | GitHub Pages（Fastly） | CNAME → `strangeyu911-tech.github.io`，**灰云** |
+| 动态接口 + 活徽章 | `htlb-api.strangeyu.xyz` | Cloudflare Worker | 橙云（Worker 自定义域） |
+
+发布：`pages.yml`（push 到 main 且 `site/**` 变化时）+ `refresh.yml` 每日重算后自动发布。
 
 ## 它解决什么
 
-这本书有 17 个衍生形态：网站、微信小程序、iOS/Android App、macOS 小组件、Chrome 插件、数据集、四格漫画。
+这本书有 18 个衍生形态：网站、微信小程序、iOS/Android App、macOS 小组件、Chrome 插件、数据集、四格漫画。
 它们的**唯一聚合点是 GitHub 源仓库**，而 GitHub 网页在国内中位要等 5 秒多、最坏 18 秒，波动十几秒。
 
 更麻烦的是：**没有任何一个地方告诉你「哪个站是新的」**。这个项目干两件事 —— 聚齐入口 + 查证新鲜度。
@@ -36,7 +54,7 @@
 ⚠️ **页面自述的数字只作交叉参考，绝不冒充实测** —— 数据结构里 `actualEntries`（实测）与
 `selfDeclared`（自述）是两个字段，页面上也分开标注。
 
-当前 17 项里 **14 项拿到实测依据**：1 项（iOS App）只能读商店页文案 —— App 的条目数不下载安装包就测不了，
+当前 18 项里 **15 项拿到实测依据**：1 项（iOS App）只能读商店页文案 —— App 的条目数不下载安装包就测不了，
 这是诚实的边界；另 2 项（macOS 小组件、Chrome 插件）是源码确认的「运行时拉上游」，本就不该算作落后。
 **「无版本信号」保持 0 项。**
 
@@ -83,7 +101,7 @@
 
 ## 页面结构
 
-首屏只放「卡片 + 统计」，读者一眼看到 17 个入口、每个都能点进去。
+首屏只放「卡片 + 统计」，读者一眼看到 18 个入口、每个都能点进去。
 四段技术内容 —— 逐项查证明细表、badge 接口、GitHub 墙内实测、方法边界 ——
 统一收进一个 `<details>` 区块，**默认折叠**，想复核的读者主动点开才展开。
 
@@ -92,7 +110,7 @@
 ```
 fetch-upstream.sh      # 取上游 git 历史 → .cache/（git 只能在 shell 里跑，见下）
 verify-upstream.mjs    # 解析 book/ 全量 diff → 条目数时间线 + 条目数→commit 映射
-verify-ecosystem.mjs   # 逐项查证 17 个衍生项目的同步边界 → data/ecosystem.json
+verify-ecosystem.mjs   # 逐项查证 18 个衍生项目的同步边界 → data/ecosystem.json
 build-site.mjs         # 渲染单文件 HTML + badge + data/projects.json
 build-worker.mjs       # 把 HTML/DATA 注入 worker.template.js → deploy/worker.js
 worker.template.js     # Cloudflare Worker：聚合站 + 动态 badge + KV 数据层 + /api/ingest
@@ -138,7 +156,7 @@ CLOUDFLARE_API_TOKEN=xxx node deploy.mjs
 ## 为什么不把重活放 Cloudflare Cron Trigger
 
 Cloudflare Workers 免费版 CPU 上限是 **10 ms/次**（Cron Trigger 同样 10 ms；官方文档口径），
-而「跑 git 全量历史 + 抓 17 个项目的产物文件」远超这个量级。
+而「跑 git 全量历史 + 抓 18 个项目的产物文件」远超这个量级。
 
 所以分工是：**GitHub Actions 干重活**（每天重算一次），**Worker 干轻活**（对外接口 + 实时取上游条目数），
 两者用 `POST /api/ingest` 连接 —— Actions 把结果写进 KV，Worker 读 KV。

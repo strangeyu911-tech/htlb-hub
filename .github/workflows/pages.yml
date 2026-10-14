@@ -1,0 +1,52 @@
+name: Deploy static site to GitHub Pages
+
+# 只干一件事：把仓库里已经构建好的 site/（index.html + badge/*.svg）发到 GitHub Pages。
+# 它是「国内可达性」方案的关键一步 —— GitHub Pages 走 Fastly CDN，与 Cloudflare
+# 是完全不同的厂商，实测全国拨测 0.765 s vs CF 4.975 s。
+#
+# 数据重建不在这里做（那是 refresh.yml 的活），这里只负责发布：
+#   · push 到 main 且 site/ 有变化 → 自动发
+#   · 也可以在 Actions 页面手动 workflow_dispatch
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'site/**'
+      - '.github/workflows/pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 与 refresh.yml 里的 deploy-pages 共用同一个 group，避免两个工作流同时发布
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 预检 → site/index.html 存在
+        run: |
+          set -euo pipefail
+          test -f site/index.html || { echo "::error::site/index.html 不存在"; exit 1; }
+          echo "index.html $(wc -c < site/index.html) B，徽章 $(ls site/badge/*.svg | wc -l) 个"
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: 发布
+        id: deployment
+        uses: actions/deploy-pages@v4

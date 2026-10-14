@@ -23,7 +23,9 @@ const HTML = /*__HTML__*/ '';
 const DATA = /*__DATA__*/ { upstream: {}, projects: [] };
 
 const CACHE_SECONDS = 600;
-const ORIGIN = 'https://htlb.strangeyu.xyz';
+// 静态页已搬到 GitHub Pages（Fastly），Worker 只负责动态接口 → 这里写 api 子域。
+// 它出现在：上游请求的 User-Agent、/api/status.json 里各项目的 badge 地址、以及兜底页的用法提示。
+const ORIGIN = 'https://htlb-api.strangeyu.xyz';
 const KV_KEY = 'ecosystem';
 
 const README_URL = DATA.upstream.readmeRaw;

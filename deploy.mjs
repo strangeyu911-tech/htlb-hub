@@ -1,6 +1,6 @@
 /**
  * 部署 htlb-hub 到 Cloudflare Workers + 绑定自定义域名
- * 用法: CLOUDFLARE_API_TOKEN=xxx node htlb-hub/deploy.mjs [--domain htlb.strangeyu.xyz]
+ * 用法: CLOUDFLARE_API_TOKEN=xxx node htlb-hub/deploy.mjs [--domain htlb-api.strangeyu.xyz]
  *
  * 步骤：
  *   1) PUT /accounts/{a}/workers/scripts/htlb-hub         上传 worker.js（multipart）
@@ -28,7 +28,7 @@ const pick = (envName, localName, fallback) => {
 };
 const DOMAIN = (() => {
   const i = process.argv.indexOf('--domain');
-  return i >= 0 && process.argv[i + 1] ? process.argv[i + 1] : 'htlb.strangeyu.xyz';
+  return i >= 0 && process.argv[i + 1] ? process.argv[i + 1] : 'htlb-api.strangeyu.xyz';
 })();
 
 const TOKEN = pick('CLOUDFLARE_API_TOKEN', '.cf-token', 'D:/全局项目库/.workbuddy/tmp/cf-token.txt');
