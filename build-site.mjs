@@ -499,7 +499,7 @@ ${cards}
 </div>
 
 <h2>另见：与本书有关、但还没进上游清单的两件<span class="aside-tag">未被收录进衍生项目清单</span></h2>
-<p class="h2n"><b>上表这 ${stats.total} 个衍生项目的收录准绳，是只收上游 <code>衍生项目.md</code> 里已经列出的项目</b>。下面这两件不在那份清单里，所以<b>不参与上面的同步对比，也不计入「${stats.total} 个版本」</b>。放在这里只是因为它们确实与本书相关、也确有其用。</p>
+<p class="h2n"><b>本站收录的这 ${stats.total} 个衍生项目，准绳是只收上游 <code>衍生项目.md</code> 里已经列出的项目</b>。下面这两件不在那份清单里，所以<b>不参与本页的同步对比，也不计入「${stats.total} 个版本」</b>。放在这里只是因为它们确实与本书相关、也确有其用。</p>
 <div class="panel">
   <div class="bmeta">
     <b><a href="https://nicecao.github.io/HowToWorkBetter/" target="_blank" rel="noopener">高性价比工作指南</a></b>
@@ -516,10 +516,10 @@ ${cards}
     <span class="dim">把本书与《工作指南》放一起的检索/问答工具 · 未被收录进衍生项目清单</span>
   </div>
   <p class="feat" style="margin:12px 0 0;flex:none">同一位作者做的小工具：<b>每天推 3 条</b>（标明出自哪一本）、可按关键词和章节搜、也可以直接提问 —— 答案只依据两本书里的条目，并列出依据是第几章第几条；书里查不到的会直说答不上来。免费、无广告。</p>
-  <p class="dim" style="margin:8px 0 0">⚠️ 它<b>确实会读到本书条目</b>，但页面上没有标注自己同步到了哪一版，本站<b>核实不出它的内容版本</b>，所以没有把它放进上表参与同步对比 —— 这是「测不出来」，不是「它旧」。作者同样把它的出处与许可写明在<a href="https://github.com/NiceCao/HowToWorkBetter" target="_blank" rel="noopener">自己的仓库</a>里。</p>
+  <p class="dim" style="margin:8px 0 0">⚠️ 它<b>确实会读到本书条目</b>，但页面上没有标注自己同步到了哪一版，本站<b>核实不出它的内容版本</b>，所以没有把它放进本站的同步对比里 —— 这是「测不出来」，不是「它旧」。作者同样把它的出处与许可写明在<a href="https://github.com/NiceCao/HowToWorkBetter" target="_blank" rel="noopener">自己的仓库</a>里。</p>
   <a class="cta" style="margin:14px 0 0;max-width:330px" href="https://shangbanbao.com/" target="_blank" rel="noopener">打开上班宝 →</a>
 </div>
-<p class="dim" style="margin:12px 0 0">这两件的作者曾向本书提交过收录申请，维护者以「第三方工具栏已经列得比较长了」为由暂未收进清单 —— 所以上表里没有它们。原申请与答复可在上游仓库查到。</p>
+<p class="dim" style="margin:12px 0 0">这两件的作者曾向本书提交过收录申请，维护者以「第三方工具栏已经列得比较长了」为由暂未收进清单 —— 所以本站收录的这 ${stats.total} 个版本里没有它们。原申请与答复可在上游仓库查到。</p>
 
 <details class="more">
 <summary>逐项查证依据 · badge 接口 · GitHub 墙内实测 · 测不到什么<span class="sm">（技术细节，默认收起）</span></summary>
