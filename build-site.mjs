@@ -454,28 +454,6 @@ footer{margin-top:56px;border-top:1px solid var(--line);padding:22px 0 60px;colo
 
 <a class="officialbar" href="https://eternity4719.github.io/HowToLiveBetter/" target="_blank" rel="noopener"><b>📖 官方原站</b><span class="dim">本书正文本身，不是衍生版本</span><span class="go">打开 →</span></a>
 
-<h2>另见：本站维护者自己的两个站点<span class="aside-tag">与本书无关 · 未被上游清单收录</span></h2>
-<div class="warnbox" style="border-style:dashed;border-color:#e0dcd2;background:#fbfaf6"><b>先把话说清楚：</b>下面两条是<b>本站维护者 Strange 自己的作品</b>，与《高性价比人生指南》<b>没有任何内容或版本关系</b>，也不在上游 <code>衍生项目.md</code> 的收录范围里。它们<b>不参与任何同步对比，也不计入下面这 ${stats.total} 个版本</b> —— 列在这里只是因为主题相邻、读者可能感兴趣。（想判断衍生站谁更新，请继续往下看卡片。）</div>
-<div class="panel" style="border-style:dashed;border-color:#e0dcd2;background:#fcfbf8">
-  <div class="bmeta">
-    <b><a href="https://mirror.strangeyu.xyz/" target="_blank" rel="noopener">以日为鉴：衰退时代普通人生存指南（增补版）</a></b>
-    <span class="dim">讲的是另一本书 · 与本书无任何内容交集 · 本站维护者自己的作品</span>
-  </div>
-  <p class="feat" style="margin:12px 0 0;flex:none">灵感源自 Boden《以日为鉴》，以日本「失去三十年」为镜，综合 20 余位中日与国际学者的观点与 2026 年最新数据，直接给出结论、置信度与分人群行动。</p>
-  <p class="dim" style="margin:8px 0 0">它<strong>没有使用《高性价比人生指南》的任何内容</strong>，与本书之间没有版本关系 —— 它既不是本书的某一版，本书也不是它的某一版。作者 Strange。</p>
-  <a class="cta" style="margin:14px 0 0;max-width:330px" href="https://mirror.strangeyu.xyz/" target="_blank" rel="noopener">打开增补版 →</a>
-
-  <hr style="border:0;border-top:1px solid #f2f0ec;margin:20px 0">
-
-  <div class="bmeta">
-    <b><a href="https://mirror.strangeyu.xyz/patch" target="_blank" rel="noopener">衰退时代补丁包：33 条下行周期要改的账</a></b>
-    <span class="dim">《以日为鉴》的独立增补 · 不含该书正文 · 本站维护者自己的作品</span>
-  </div>
-  <p class="feat" style="margin:12px 0 0;flex:none">《以日为鉴》讲的是「正常时代怎么活」，这份只讲<b>衰退期哪些账会变</b>：升级 / 反转 / 新增 / 降级四类，每条写明成本、换回什么、证据档和适用人群，另按「情形档位」与证伪信号决定要不要加码。</p>
-  <p class="dim" style="margin:8px 0 0">它<b>没有收录、复制或改动《以日为鉴》任何一条正文</b>，是作者依据自己的研究另写的独立作品，与那本书并列而非它的某一版。文字与代码以 CC BY-NC-SA 4.0 开源。作者 Strange。</p>
-  <a class="cta" style="margin:14px 0 0;max-width:330px" href="https://mirror.strangeyu.xyz/patch" target="_blank" rel="noopener">打开补丁包 →</a>
-</div>
-
 <h2>选一个用</h2>
 <p class="h2n">点标签筛选，或按同步新鲜度 / 访问速度排序。共 <span id="cnt">${stats.total}</span> 项，每张卡都能直接点开。</p>
 <div class="panel">
@@ -496,6 +474,28 @@ footer{margin-top:56px;border-top:1px solid var(--line);padding:22px 0 60px;colo
 </div>
 <div class="grid" id="grid">
 ${cards}
+</div>
+
+<h2>另见：本站维护者自己的两个站点<span class="aside-tag">与本书无关 · 未被上游清单收录</span></h2>
+<div class="warnbox" style="border-style:dashed;border-color:#e0dcd2;background:#fbfaf6"><b>先把话说清楚：</b>下面两条是<b>本站维护者 Strange 自己的作品</b>，与《高性价比人生指南》<b>没有任何内容或版本关系</b>，也不在上游 <code>衍生项目.md</code> 的收录范围里。它们<b>不参与任何同步对比，也不计入上面这 ${stats.total} 个版本</b> —— 列在这里只是因为主题相邻、读者可能感兴趣。（想判断衍生站谁更新，请看上面的卡片。）</div>
+<div class="panel" style="border-style:dashed;border-color:#e0dcd2;background:#fcfbf8">
+  <div class="bmeta">
+    <b><a href="https://mirror.strangeyu.xyz/" target="_blank" rel="noopener">以日为鉴：衰退时代普通人生存指南（增补版）</a></b>
+    <span class="dim">讲的是另一本书 · 与本书无任何内容交集 · 本站维护者自己的作品</span>
+  </div>
+  <p class="feat" style="margin:12px 0 0;flex:none">灵感源自 Boden《以日为鉴》，以日本「失去三十年」为镜，综合 20 余位中日与国际学者的观点与 2026 年最新数据，直接给出结论、置信度与分人群行动。</p>
+  <p class="dim" style="margin:8px 0 0">它<strong>没有使用《高性价比人生指南》的任何内容</strong>，与本书之间没有版本关系 —— 它既不是本书的某一版，本书也不是它的某一版。作者 Strange。</p>
+  <a class="cta" style="margin:14px 0 0;max-width:330px" href="https://mirror.strangeyu.xyz/" target="_blank" rel="noopener">打开增补版 →</a>
+
+  <hr style="border:0;border-top:1px solid #f2f0ec;margin:20px 0">
+
+  <div class="bmeta">
+    <b><a href="https://mirror.strangeyu.xyz/patch" target="_blank" rel="noopener">衰退时代补丁包：33 条下行周期要改的账</a></b>
+    <span class="dim">《以日为鉴》的独立增补 · 不含该书正文 · 本站维护者自己的作品</span>
+  </div>
+  <p class="feat" style="margin:12px 0 0;flex:none">《以日为鉴》讲的是「正常时代怎么活」，这份只讲<b>衰退期哪些账会变</b>：升级 / 反转 / 新增 / 降级四类，每条写明成本、换回什么、证据档和适用人群，另按「情形档位」与证伪信号决定要不要加码。</p>
+  <p class="dim" style="margin:8px 0 0">它<b>没有收录、复制或改动《以日为鉴》任何一条正文</b>，是作者依据自己的研究另写的独立作品，与那本书并列而非它的某一版。文字与代码以 CC BY-NC-SA 4.0 开源。作者 Strange。</p>
+  <a class="cta" style="margin:14px 0 0;max-width:330px" href="https://mirror.strangeyu.xyz/patch" target="_blank" rel="noopener">打开补丁包 →</a>
 </div>
 
 <h2>另见：与本书有关、但还没进上游清单的两件<span class="aside-tag">未被收录进衍生项目清单</span></h2>
