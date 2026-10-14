@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-14T18:27:02.987Z",
+ "generatedAt": "2026-10-14T22:19:32.987Z",
  "upstream": {
   "repo": "eternity4719/HowToLiveBetter",
   "readmeRaw": "https://raw.githubusercontent.com/eternity4719/HowToLiveBetter/main/README.md",
@@ -507,11 +507,11 @@
    "ownGeneratedAt": null,
    "sitemapLastmod": null,
    "sitemapUrls": null,
-   "carriedFrom": "2026-10-14T15:31:59.565Z",
+   "carriedFrom": "2026-10-14T16:00:17.783Z",
    "evidence": [
     "首页取不到: HTTP 403",
     "页面取不到: HTTP 403",
-    "⚠️ 本轮探针被挡（WAF / 网络），**沿用上次实测值 676 条**（来自 2026-10-14T15:31:59 那次运行）",
+    "⚠️ 本轮探针被挡（WAF / 网络），**沿用上次实测值 676 条**（来自 2026-10-14T16:00:17 那次运行）",
     "该条数首次出现在上游是 5a36eaf8（2026-10-09 19:40）"
    ],
    "ok": 3,
