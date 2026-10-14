@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-14T15:44:21.253Z",
+ "generatedAt": "2026-10-14T16:00:17.886Z",
  "upstream": {
   "repo": "eternity4719/HowToLiveBetter",
   "readmeRaw": "https://raw.githubusercontent.com/eternity4719/HowToLiveBetter/main/README.md",
@@ -492,8 +492,8 @@
    ],
    "gate": "未标注",
    "status": "lag",
-   "basis": "measured",
-   "confidence": "high",
+   "basis": "carried",
+   "confidence": "medium",
    "actualEntries": 676,
    "selfDeclared": null,
    "selfDeclaredFrom": null,
@@ -507,11 +507,11 @@
    "ownGeneratedAt": null,
    "sitemapLastmod": null,
    "sitemapUrls": null,
-   "carriedFrom": null,
+   "carriedFrom": "2026-10-14T15:31:59.565Z",
    "evidence": [
-    "首页自述「676 张人生卡片」；逐关张数相加（15 关）= 272",
-    "自述与逐关合计不一致，仅采信自述",
-    "全站只有 5 个 Astro 小 chunk（合计 <10 KB），HTML/JS 里没有任何 raw.githubusercontent、api.github.com 或上游拉取代码，逐条内容已在构建期预渲染 → 属静态快照，不是运行时拉取",
+    "首页取不到: HTTP 403",
+    "页面取不到: HTTP 403",
+    "⚠️ 本轮探针被挡（WAF / 网络），**沿用上次实测值 676 条**（来自 2026-10-14T15:31:59 那次运行）",
     "该条数首次出现在上游是 5a36eaf8（2026-10-09 19:40）"
    ],
    "ok": 3,

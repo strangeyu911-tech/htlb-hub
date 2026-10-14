@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-14T15:31:59.565Z",
+ "generatedAt": "2026-10-14T16:00:17.783Z",
  "definition": "条目数 = book/*.md 里的 ### 标题数（上游 tools/sync-stats.mjs 官方口径）；实际条数优先取该项目自己的产物文件，其次 sitemap/页面自述。",
  "upstream": {
   "repo": "eternity4719/HowToLiveBetter",
@@ -19,13 +19,13 @@
  "stats": {
   "total": 18,
   "measured": 15,
-  "carried": 0,
+  "carried": 1,
   "withOwnVersion": 5,
   "runtime": 2,
   "sync": 3,
   "lagging": 13,
   "unknown": 0,
-  "highConfidence": 17,
+  "highConfidence": 16,
   "hasSitemapLastmod": 5
  },
  "projects": [
@@ -130,24 +130,24 @@
    "actualEntries": 676,
    "selfDeclared": null,
    "selfDeclaredFrom": null,
-   "basis": "measured",
-   "confidence": "high",
+   "basis": "carried",
+   "confidence": "medium",
    "pageCounts": [],
    "ownVersion": null,
    "ownVersionShort": null,
    "ownGeneratedAt": null,
    "ownBuildTime": null,
    "ownBuildTimeFrom": null,
-   "carriedFrom": null,
+   "carriedFrom": "2026-10-14T15:31:59.565Z",
    "sitemapLastmod": null,
    "sitemapLastmodCount": null,
    "sitemapUrls": null,
    "contentMatch": null,
    "runtimeFetch": false,
    "evidence": [
-    "首页自述「676 张人生卡片」；逐关张数相加（15 关）= 272",
-    "自述与逐关合计不一致，仅采信自述",
-    "全站只有 5 个 Astro 小 chunk（合计 <10 KB），HTML/JS 里没有任何 raw.githubusercontent、api.github.com 或上游拉取代码，逐条内容已在构建期预渲染 → 属静态快照，不是运行时拉取",
+    "首页取不到: HTTP 403",
+    "页面取不到: HTTP 403",
+    "⚠️ 本轮探针被挡（WAF / 网络），**沿用上次实测值 676 条**（来自 2026-10-14T15:31:59 那次运行）",
     "该条数首次出现在上游是 5a36eaf8（2026-10-09 19:40）"
    ],
    "ownVersionDate": null,
