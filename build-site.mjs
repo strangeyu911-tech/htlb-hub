@@ -338,6 +338,15 @@ header.top{background:#fff;border-bottom:1px solid var(--line);position:sticky;t
 .brand{font-weight:600;font-size:15px}
 .top .sp{flex:1}
 .top .src{font-size:12.5px;color:var(--tx3);text-align:right}
+/* 顶栏里的官方原站入口 —— 顶栏是 sticky，滚动时一直可见，所以这是全页曝光最高的位置。
+   做成胶囊按钮 + 「官方」字样，是为了让它一眼区别于普通导航锚点（它是外链、会离开本站）。 */
+.top .official{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:#fff;background:var(--g);padding:5px 13px;border-radius:999px;text-decoration:none;white-space:nowrap}
+.top .official em{font-style:normal;font-weight:400;font-size:11.5px;color:#cfeadf}
+/* 正文里那一行同名入口 —— 极简的一条，不是区块，所以只用左侧色条 */
+.officialbar{display:flex;align-items:center;gap:10px;margin:0 0 26px;padding:10px 14px;border-left:3px solid var(--g);background:#f6faf8;text-decoration:none;color:var(--tx)}
+.officialbar b{font-size:15px}
+.officialbar .dim{flex:1;font-size:13px}
+.officialbar .go{color:var(--b);font-weight:600;font-size:14px;white-space:nowrap}
 .hero{padding:52px 0 34px}
 h1{font-size:31px;line-height:1.32;font-weight:600;margin:0 0 14px;letter-spacing:-.01em}
 .lede{font-size:16px;color:var(--tx2);max-width:790px;margin:0 0 26px}
@@ -410,11 +419,16 @@ details.more .morebody h2:first-child{margin-top:24px}
 .aside-tag{display:inline-block;font-size:11.5px;color:var(--tx2);background:#f4f2ee;border-radius:5px;padding:2px 7px;margin-left:6px}
 footer{margin-top:56px;border-top:1px solid var(--line);padding:22px 0 60px;color:var(--tx3);font-size:12.5px}
 @media(max-width:820px){.brow{grid-template-columns:1fr}h1{font-size:25px}}
+/* 窄屏顶栏放不下三样东西（站名 / 官方入口 / 上游数据）—— 隐掉胶囊按钮，
+   正文里那一行 .officialbar 仍在，读者不会找不到官方原站。 */
+@media(max-width:760px){.top .official{display:none}}
 </style>
 </head>
 <body>
 <header class="top"><div class="in wrap">
   <span class="brand">高性价比人生指南 · 墙内聚合</span>
+  <span class="sp"></span>
+  <a class="official" href="https://eternity4719.github.io/HowToLiveBetter/" target="_blank" rel="noopener">📖 官方原站 <em>本书正文</em> ↗</a>
   <span class="sp"></span>
   <span class="src">上游 <b id="upn">${UP_COUNT}</b> 条 · <code>${String(UP.headSha).slice(0, 8)}</code><br>数据 ${genAt}（可实时刷新）</span>
 </div></header>
@@ -436,20 +450,9 @@ footer{margin-top:56px;border-top:1px solid var(--line);padding:22px 0 60px;colo
 
   <div class="note"><b>怎么用：</b>点下面的标签按需求筛（要不要注册、有没有广告、手机还是电脑用），或按「同步最新 / 访问最快」排序。每张卡都写了三件我们实测过的事：<b>同步到哪一版</b>、<b>墙内打开多少毫秒</b>、<b>要不要注册、有没有广告</b>。想直接开始用，点卡片上的蓝色按钮。</div>
 
-  <div class="warnbox"><b>关于访问速度：</b>本站的静态页已经<b>从 Cloudflare 搬到 GitHub Pages（Fastly CDN）</b> —— 全国拨测 0.765 s vs Cloudflare 4.975 s，因为 Cloudflare 免费版的国内落点会到洛杉矶/阿姆斯特丹，而 Fastly 是另一家 CDN。但<b>多数衍生站自己仍托管在 Cloudflare 上</b>：本机实测打开这类站点中位 2–3 秒，打开 howtolivebetter.net 中位 6 秒。要让每个站都「国内秒开」，得各站自己上国内云主机 + ICP 备案，那是另一件事。本站不托管任何正文，只做指路与查证，所以卡片上的速度取决于每个站自己的服务器。</div>
 </section>
 
-<h2>先看官方原站<span class="aside-tag">这本书本身，不是衍生版本</span></h2>
-<p class="h2n">下面那些卡片是读者做的衍生版本；这一条才是<b>作者自己发布的在线阅读版</b> —— 它就是本书正文，仓库每次更新都会重新构建一次，所以不存在「落后」这回事（当前 <b>${UP_COUNT} 条</b>）。国内不翻墙也能直接读，不用先落到 GitHub 仓库页等上 5 秒多。</p>
-<div class="panel" style="border-color:#cfe3d8;background:linear-gradient(180deg,#f4faf7,#fff)">
-  <div class="bmeta">
-    <b><a href="https://eternity4719.github.io/HowToLiveBetter/" target="_blank" rel="noopener">高性价比人生指南 · 官方在线阅读版</a></b>
-    <span class="dim">作者 eternity4719 出品 · 正文 CC BY 4.0 · GitHub Pages（Fastly）</span>
-  </div>
-  <p class="feat" style="margin:12px 0 0;flex:none">按 34 节从头读到尾，就是原文本身，没有任何中间层 —— 每条写明成本、收益、证据等级和原始出处，只引期刊论文与官方文件。</p>
-  <p class="dim" style="margin:8px 0 0">它<b>不参与下面 ${stats.total} 个版本的同步对比</b>：其余版本是「抄了这本书」的产物，它是这本书。要判断哪个衍生站更新，请往下看卡片。</p>
-  <a class="cta" style="margin:14px 0 0;max-width:330px" href="https://eternity4719.github.io/HowToLiveBetter/" target="_blank" rel="noopener">打开官方原站 →</a>
-</div>
+<a class="officialbar" href="https://eternity4719.github.io/HowToLiveBetter/" target="_blank" rel="noopener"><b>📖 官方原站</b><span class="dim">本书正文本身，不是衍生版本</span><span class="go">打开 →</span></a>
 
 <h2>另见：本站维护者自己的两个站点<span class="aside-tag">与本书无关 · 未被上游清单收录</span></h2>
 <div class="warnbox" style="border-style:dashed;border-color:#e0dcd2;background:#fbfaf6"><b>先把话说清楚：</b>下面两条是<b>本站维护者 Strange 自己的作品</b>，与《高性价比人生指南》<b>没有任何内容或版本关系</b>，也不在上游 <code>衍生项目.md</code> 的收录范围里。它们<b>不参与任何同步对比，也不计入下面这 ${stats.total} 个版本</b> —— 列在这里只是因为主题相邻、读者可能感兴趣。（想判断衍生站谁更新，请继续往下看卡片。）</div>
@@ -496,7 +499,7 @@ ${cards}
 </div>
 
 <h2>另见：与本书有关、但还没进上游清单的两件<span class="aside-tag">未被收录进衍生项目清单</span></h2>
-<p class="h2n">本站的收录准绳是<b>只收上游 <code>衍生项目.md</code> 里已经列出的项目</b>。下面这两件不在那份清单里，所以<b>不参与上面的同步对比，也不计入「${stats.total} 个版本」</b>。放在这里只是因为它们确实与本书相关、也确有其用 —— 判断依据是「上游清单里有没有」，不是「它们好不好」。</p>
+<p class="h2n"><b>上表这 ${stats.total} 个衍生项目的收录准绳，是只收上游 <code>衍生项目.md</code> 里已经列出的项目</b>。下面这两件不在那份清单里，所以<b>不参与上面的同步对比，也不计入「${stats.total} 个版本」</b>。放在这里只是因为它们确实与本书相关、也确有其用。</p>
 <div class="panel">
   <div class="bmeta">
     <b><a href="https://nicecao.github.io/HowToWorkBetter/" target="_blank" rel="noopener">高性价比工作指南</a></b>
@@ -550,6 +553,7 @@ ${ghRows}
 </tbody>
 </table>
 <p class="h2n" style="margin:14px 0 0">读法：<b>成功率全是 100%</b> —— 所以问题不是「打不开」，而是<b>「打开要等多久、以及每次都不一样」</b>。网页通道（普通人唯一的入口）中位 5.3 秒、最坏 18.5 秒、波动 14.3 秒；开发者通道（api / raw）反而很快。这就是「能上，但习惯开梯子」的物理原因。</p>
+<p class="h2n" style="margin:14px 0 0"><b>本页自己不在上面这一列。</b>本站的静态页放在 <b>GitHub Pages</b>（走 Fastly，<code>*.github.io</code>），跟 <code>github.com</code> 的网页不是同一条链路；动态接口（活的徽章、<code>/api/status.json</code>）留在 <code>htlb-api.strangeyu.xyz</code>。所以下面这些卡片的「打开多快」，取决于各站自己的服务器，而不是本站。</p>
 </div>
 
 <h2>数据是怎么来的，以及它测不到什么</h2>
