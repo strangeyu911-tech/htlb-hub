@@ -1,20 +1,20 @@
 {
- "generatedAt": "2026-10-13T08:37:53.444Z",
+ "generatedAt": "2026-10-14T15:20:20.410Z",
  "upstream": {
-  "stars": 61595,
-  "forks": 5141,
+  "stars": 62780,
+  "forks": 5291,
   "license": "CC-BY-4.0",
   "created": "2026-09-07T01:53:36Z",
-  "pushed": "2026-10-13T05:42:26Z",
-  "size": 18649,
+  "pushed": "2026-10-14T09:17:23Z",
+  "size": 19545,
   "homepage": "https://eternity4719.github.io/HowToLiveBetter/",
-  "latestSha": "ac31b76bd139597a38beb22c9435b9bba9b1564f",
-  "latestCommitAt": "2026-10-13T05:42:03Z",
-  "latestCommitMsg": "衍生项目：阅读版那一行补许可，注明外语版以中文原文为准",
-  "derivativesMdChars": 3213,
-  "derivativesMdLinks": 34,
+  "latestSha": "4540c90a23bb311ff146d2d653cafc23c1b0b01e",
+  "latestCommitAt": "2026-10-14T09:16:24Z",
+  "latestCommitMsg": "第 1 节第 48 条成本栏补上难在哪：泡多了舍不得倒，有些人家习惯自己做酸汤子",
+  "derivativesMdChars": 3567,
+  "derivativesMdLinks": 37,
   "fingerprint": {
-   "条目数": "690",
+   "条目数": "699",
    "证据分级": null,
    "原始文献": null,
    "章节数": 3
@@ -33,31 +33,31 @@
     {
      "ok": true,
      "status": 200,
-     "ms": 3825,
-     "ip": "172.67.173.180",
+     "ms": 6996,
+     "ip": "104.21.63.254",
      "cdn": "Cloudflare",
-     "bytes": 402093
+     "bytes": 403540
     },
     {
      "ok": true,
      "status": 200,
-     "ms": 2914,
-     "ip": "172.67.173.180",
+     "ms": 3499,
+     "ip": "104.21.63.254",
      "cdn": "Cloudflare",
-     "bytes": 402093
+     "bytes": 403540
     },
     {
      "ok": true,
      "status": 200,
-     "ms": 3547,
-     "ip": "172.67.173.180",
+     "ms": 5896,
+     "ip": "104.21.63.254",
      "cdn": "Cloudflare",
-     "bytes": 402093
+     "bytes": 403540
     }
    ],
    "signals": [
-    "条目数出现: 689 条",
-    "页面日期: 2026-10-01 / 2026-10-13",
+    "条目数出现: 690 条",
+    "页面日期: 2026-10-01 / 2026-10-14",
     "title: 高性价比人生指南",
     "含「证据」字段"
    ]
@@ -73,24 +73,24 @@
     {
      "ok": true,
      "status": 200,
-     "ms": 4379,
-     "ip": "172.67.208.120",
+     "ms": 3084,
+     "ip": "104.21.23.31",
      "cdn": "Cloudflare",
      "bytes": 31898
     },
     {
      "ok": true,
      "status": 200,
-     "ms": 1183,
-     "ip": "172.67.208.120",
+     "ms": 1627,
+     "ip": "104.21.23.31",
      "cdn": "Cloudflare",
      "bytes": 31898
     },
     {
      "ok": true,
      "status": 200,
-     "ms": 1404,
-     "ip": "172.67.208.120",
+     "ms": 1560,
+     "ip": "104.21.23.31",
      "cdn": "Cloudflare",
      "bytes": 31898
     }
@@ -111,24 +111,24 @@
     {
      "ok": true,
      "status": 200,
-     "ms": 1707,
-     "ip": "104.21.64.16",
+     "ms": 3041,
+     "ip": "172.67.174.27",
      "cdn": "Cloudflare",
      "bytes": 102932
     },
     {
      "ok": true,
      "status": 200,
-     "ms": 596,
-     "ip": "104.21.64.16",
+     "ms": 2192,
+     "ip": "172.67.174.27",
      "cdn": "Cloudflare",
      "bytes": 102932
     },
     {
      "ok": true,
      "status": 200,
-     "ms": 923,
-     "ip": "104.21.64.16",
+     "ms": 1675,
+     "ip": "172.67.174.27",
      "cdn": "Cloudflare",
      "bytes": 102932
     }
@@ -151,26 +151,26 @@
     {
      "ok": true,
      "status": 200,
-     "ms": 1130,
+     "ms": 2348,
      "ip": "172.67.168.29",
      "cdn": "Cloudflare",
-     "bytes": 26511
+     "bytes": 38625
     },
     {
      "ok": true,
      "status": 200,
-     "ms": 1133,
+     "ms": 782,
      "ip": "172.67.168.29",
      "cdn": "Cloudflare",
-     "bytes": 26511
+     "bytes": 38625
     },
     {
      "ok": true,
      "status": 200,
-     "ms": 609,
+     "ms": 1134,
      "ip": "172.67.168.29",
      "cdn": "Cloudflare",
-     "bytes": 26511
+     "bytes": 38625
     }
    ],
    "gh": null,
@@ -193,42 +193,42 @@
     {
      "ok": true,
      "status": 200,
-     "ms": 1415,
-     "ip": "43.174.246.106",
+     "ms": 2123,
+     "ip": "43.174.247.106",
      "cdn": "edgeone makers",
-     "bytes": 17549
+     "bytes": 17550
     },
     {
      "ok": true,
      "status": 200,
-     "ms": 456,
-     "ip": "43.174.246.106",
+     "ms": 438,
+     "ip": "43.174.247.106",
      "cdn": "edgeone makers",
-     "bytes": 17549
+     "bytes": 17550
     },
     {
      "ok": true,
      "status": 200,
-     "ms": 206,
-     "ip": "43.174.246.106",
+     "ms": 1035,
+     "ip": "43.174.247.106",
      "cdn": "edgeone makers",
-     "bytes": 17549
+     "bytes": 17550
     }
    ],
    "gh": {
     "stars": 1,
     "forks": 0,
-    "pushed_at": "2026-10-13T03:07:59Z",
+    "pushed_at": "2026-10-14T09:24:31Z",
     "created_at": "2026-10-08T16:57:46Z",
     "archived": false,
     "license": "MIT",
     "desc": "《高性价比人生指南》的 MCP 服务：让 AI 助手先查这本书的近 700 条循证建议再回答，并注明出自第几节第几条。附国内可访问的静态站工具与自动同步上游。代码 MIT，正文 CC BY 4.0 原样转载（未作改动）。",
-    "lastCommitAt": "2026-10-13T03:07:58Z",
-    "lastCommitMsg": "chore(deploy): 触发 Makers 重新构建（产物已更新，上游 490e5f49dc）"
+    "lastCommitAt": "2026-10-14T09:24:30Z",
+    "lastCommitMsg": "chore(deploy): 触发 Makers 重新构建（产物已更新，上游 4540c90a23）"
    },
    "signals": [
-    "条目数出现: 689 条 / 117 条",
-    "title: 高性价比人生指南 · 按性价比排序的 689 条建议",
+    "条目数出现: 699 条 / 117 条",
+    "title: 高性价比人生指南 · 按性价比排序的 699 条建议",
     "含「证据」字段"
    ]
   },
@@ -243,7 +243,7 @@
     {
      "ok": true,
      "status": 200,
-     "ms": 1732,
+     "ms": 2926,
      "ip": "172.67.133.160",
      "cdn": "Cloudflare",
      "bytes": 12028
@@ -251,7 +251,7 @@
     {
      "ok": true,
      "status": 200,
-     "ms": 191,
+     "ms": 404,
      "ip": "172.67.133.160",
      "cdn": "Cloudflare",
      "bytes": 12028
@@ -259,7 +259,7 @@
     {
      "ok": true,
      "status": 200,
-     "ms": 403,
+     "ms": 427,
      "ip": "172.67.133.160",
      "cdn": "Cloudflare",
      "bytes": 12028
@@ -283,7 +283,7 @@
     {
      "ok": true,
      "status": 200,
-     "ms": 2092,
+     "ms": 5383,
      "ip": "104.21.21.29",
      "cdn": "Cloudflare",
      "bytes": 21098
@@ -291,7 +291,7 @@
     {
      "ok": true,
      "status": 200,
-     "ms": 888,
+     "ms": 2390,
      "ip": "104.21.21.29",
      "cdn": "Cloudflare",
      "bytes": 21098
@@ -299,7 +299,7 @@
     {
      "ok": true,
      "status": 200,
-     "ms": 675,
+     "ms": 1744,
      "ip": "104.21.21.29",
      "cdn": "Cloudflare",
      "bytes": 21098
@@ -321,7 +321,7 @@
     {
      "ok": true,
      "status": 200,
-     "ms": 2082,
+     "ms": 5659,
      "ip": "49.233.240.214",
      "cdn": "CloudStudio Gateway",
      "bytes": 9724
@@ -329,7 +329,7 @@
     {
      "ok": true,
      "status": 200,
-     "ms": 924,
+     "ms": 940,
      "ip": "49.233.240.214",
      "cdn": "CloudStudio Gateway",
      "bytes": 9724
@@ -337,7 +337,7 @@
     {
      "ok": true,
      "status": 200,
-     "ms": 704,
+     "ms": 1175,
      "ip": "49.233.240.214",
      "cdn": "CloudStudio Gateway",
      "bytes": 9724
@@ -345,8 +345,8 @@
    ],
    "gh": null,
    "signals": [
-    "条目数出现: 687 条",
-    "title: 高性价比人生 · HowToLiveBetter — 687 条循证建议的地图",
+    "条目数出现: 699 条",
+    "title: 高性价比人生 · HowToLiveBetter — 699 条循证建议的地图",
     "含「证据」字段"
    ]
   },
@@ -361,26 +361,26 @@
     {
      "ok": true,
      "status": 200,
-     "ms": 1659,
+     "ms": 3194,
      "ip": "206.187.210.63",
      "cdn": "nginx",
-     "bytes": 789
+     "bytes": 1986
     },
     {
      "ok": true,
      "status": 200,
-     "ms": 380,
+     "ms": 447,
      "ip": "206.187.210.63",
      "cdn": "nginx",
-     "bytes": 789
+     "bytes": 1986
     },
     {
      "ok": true,
      "status": 200,
-     "ms": 384,
+     "ms": 1942,
      "ip": "206.187.210.63",
      "cdn": "nginx",
-     "bytes": 789
+     "bytes": 1986
     }
    ],
    "gh": null,
@@ -399,30 +399,80 @@
     {
      "ok": true,
      "status": 200,
-     "ms": 2201,
+     "ms": 2214,
      "ip": "8.45.176.136",
      "cdn": "Tengine",
-     "bytes": 22532
+     "bytes": 23181
     },
     {
      "ok": true,
      "status": 200,
-     "ms": 439,
+     "ms": 762,
      "ip": "8.45.176.136",
      "cdn": "Tengine",
-     "bytes": 22532
+     "bytes": 23181
     },
     {
      "ok": true,
      "status": 200,
-     "ms": 493,
+     "ms": 447,
      "ip": "8.45.176.136",
      "cdn": "Tengine",
-     "bytes": 22532
+     "bytes": 23181
     }
    ],
    "gh": null,
    "signals": []
+  },
+  {
+   "id": "parveen0029/The-Evidence-Based-Life",
+   "name": "The Evidence-Based Life",
+   "author": "parveen0029",
+   "kind": "网站",
+   "url": "https://parveen0029.github.io/The-Evidence-Based-Life/",
+   "ghRepo": "parveen0029/The-Evidence-Based-Life",
+   "note": "全书的英文对照阅读站：34 节条目英文阅读与检索，保留成本标签、收益量级与原始文献出处；仓库里另带一个给 Claude Code / Codex 用的 AI 决策助手 Skill；不用注册、没有广告（非官方翻译）",
+   "probes": [
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 2507,
+     "ip": "185.199.110.153",
+     "cdn": "GitHub.com",
+     "bytes": 79346
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 1967,
+     "ip": "185.199.110.153",
+     "cdn": "GitHub.com",
+     "bytes": 79346
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 1339,
+     "ip": "185.199.110.153",
+     "cdn": "GitHub.com",
+     "bytes": 79346
+    }
+   ],
+   "gh": {
+    "stars": 8,
+    "forks": 3,
+    "pushed_at": "2026-10-13T03:24:14Z",
+    "created_at": "2026-09-29T16:16:59Z",
+    "archived": false,
+    "license": "CC-BY-4.0",
+    "desc": "📖 The Evidence-Based Life: 649 science-backed, empirical rules on health, finance, personal safety, legal rights, and life decisions. Sourced exclusively from ",
+    "lastCommitAt": "2026-10-13T03:23:34Z",
+    "lastCommitMsg": "Merge PR #9: chore(docs): synchronize repository statistics, badges, and cross-references "
+   },
+   "signals": [
+    "title: The Evidence-Based Life · Reclaim lifespan, wealth, and freedom with minimal cost and effort",
+    "含「证据」字段"
+   ]
   },
   {
    "id": "HuiTurn/HowToLiveBetter",
@@ -435,43 +485,43 @@
     {
      "ok": true,
      "status": 200,
-     "ms": 5203,
+     "ms": 6257,
      "ip": "172.182.252.133",
      "cdn": "github.com",
-     "bytes": 327798
+     "bytes": 327957
     },
     {
      "ok": true,
      "status": 200,
-     "ms": 1970,
+     "ms": 4409,
      "ip": "172.182.252.133",
      "cdn": "github.com",
-     "bytes": 327798
+     "bytes": 327957
     },
     {
      "ok": true,
      "status": 200,
-     "ms": 2428,
+     "ms": 4385,
      "ip": "172.182.252.133",
      "cdn": "github.com",
-     "bytes": 327798
+     "bytes": 327957
     }
    ],
    "gh": {
-    "stars": 115,
-    "forks": 8,
-    "pushed_at": "2026-10-12T08:30:23Z",
+    "stars": 124,
+    "forks": 9,
+    "pushed_at": "2026-10-14T12:08:22Z",
     "created_at": "2026-09-29T10:23:45Z",
     "archived": false,
     "license": "CC-BY-4.0",
-    "desc": "人生指南库 · 高性价比人生指南小程序版；收录《高性价比人生指南》687 条循证建议，支持全文搜索、收藏、离线阅读、每日一读",
-    "lastCommitAt": "2026-10-12T08:29:33Z",
-    "lastCommitMsg": "chore(mine): 隐藏赞助小程序入口（tip-panel / pay 逻辑保留，便于日后恢复）"
+    "desc": "人生指南库 · 高性价比人生指南小程序版；收录《高性价比人生指南》699 条循证建议，支持全文搜索、收藏、离线阅读、每日一读",
+    "lastCommitAt": "2026-10-14T12:08:21Z",
+    "lastCommitMsg": "docs: README 条数同步为 34 章 699 条"
    },
    "signals": [
-    "条目数出现: 687 条",
+    "条目数出现: 699 条",
     "页面日期: 2026-09-29",
-    "title: GitHub - HuiTurn/HowToLiveBetter: 人生指南库 · 高性价比人生指南小程序版；收录《高性价比人生指南》687 条循证建议，支持全文搜索、收藏、离线阅读、每日一读 · GitHub",
+    "title: GitHub - HuiTurn/HowToLiveBetter: 人生指南库 · 高性价比人生指南小程序版；收录《高性价比人生指南》699 条循证建议，支持全文搜索、收藏、离线阅读、每日一读 · GitHub",
     "含「证据」字段"
    ]
   },
@@ -486,26 +536,26 @@
     {
      "ok": true,
      "status": 200,
-     "ms": 7663,
-     "ip": "151.101.3.6",
-     "cdn": "daiquiri/5",
-     "bytes": 423221
-    },
-    {
-     "ok": true,
-     "status": 200,
-     "ms": 7368,
-     "ip": "151.101.3.6",
+     "ms": 39113,
+     "ip": "151.101.195.6",
      "cdn": "daiquiri/5",
      "bytes": 409600
     },
     {
      "ok": true,
      "status": 200,
-     "ms": 5874,
-     "ip": "151.101.3.6",
+     "ms": 6505,
+     "ip": "23.199.0.27",
      "cdn": "daiquiri/5",
-     "bytes": 418368
+     "bytes": 425086
+    },
+    {
+     "ok": true,
+     "status": 200,
+     "ms": 33926,
+     "ip": "23.199.0.27",
+     "cdn": "daiquiri/5",
+     "bytes": 409600
     }
    ],
    "gh": null,
@@ -526,26 +576,26 @@
     {
      "ok": true,
      "status": 200,
-     "ms": 10180,
+     "ms": 6678,
      "ip": "172.182.252.133",
      "cdn": "github.com",
-     "bytes": 297915
+     "bytes": 298079
     },
     {
      "ok": true,
      "status": 200,
-     "ms": 5557,
+     "ms": 3643,
      "ip": "172.182.252.133",
      "cdn": "github.com",
-     "bytes": 297915
+     "bytes": 298079
     },
     {
      "ok": true,
      "status": 200,
-     "ms": 5444,
+     "ms": 4258,
      "ip": "172.182.252.133",
      "cdn": "github.com",
-     "bytes": 297915
+     "bytes": 298079
     }
    ],
    "gh": {
@@ -576,26 +626,26 @@
     {
      "ok": true,
      "status": 200,
-     "ms": 6336,
+     "ms": 4750,
      "ip": "172.182.252.133",
      "cdn": "github.com",
-     "bytes": 291442
+     "bytes": 291606
     },
     {
      "ok": true,
      "status": 200,
-     "ms": 5450,
+     "ms": 5052,
      "ip": "172.182.252.133",
      "cdn": "github.com",
-     "bytes": 291442
+     "bytes": 291606
     },
     {
      "ok": true,
      "status": 200,
-     "ms": 4612,
+     "ms": 5438,
      "ip": "172.182.252.133",
      "cdn": "github.com",
-     "bytes": 291442
+     "bytes": 291606
     }
    ],
    "gh": {
@@ -626,30 +676,30 @@
     {
      "ok": true,
      "status": 200,
-     "ms": 5950,
+     "ms": 24956,
      "ip": "172.182.252.133",
      "cdn": "github.com",
-     "bytes": 320919
+     "bytes": 321083
     },
     {
      "ok": true,
      "status": 200,
-     "ms": 3961,
+     "ms": 26937,
      "ip": "172.182.252.133",
      "cdn": "github.com",
-     "bytes": 320919
+     "bytes": 321083
     },
     {
      "ok": true,
      "status": 200,
-     "ms": 1496,
+     "ms": 18912,
      "ip": "172.182.252.133",
      "cdn": "github.com",
-     "bytes": 320919
+     "bytes": 321087
     }
    ],
    "gh": {
-    "stars": 3,
+    "stars": 4,
     "forks": 0,
     "pushed_at": "2026-10-09T03:20:31Z",
     "created_at": "2026-10-08T06:35:03Z",
@@ -676,38 +726,38 @@
     {
      "ok": true,
      "status": 200,
-     "ms": 2029,
+     "ms": 23869,
      "ip": "172.182.252.133",
      "cdn": "github.com",
-     "bytes": 296145
+     "bytes": 296309
     },
     {
      "ok": true,
      "status": 200,
-     "ms": 1796,
+     "ms": 18947,
      "ip": "172.182.252.133",
      "cdn": "github.com",
-     "bytes": 296145
+     "bytes": 296309
     },
     {
      "ok": true,
      "status": 200,
-     "ms": 2675,
+     "ms": 19722,
      "ip": "172.182.252.133",
      "cdn": "github.com",
-     "bytes": 296145
+     "bytes": 296309
     }
    ],
    "gh": {
     "stars": 2,
     "forks": 0,
-    "pushed_at": "2026-10-13T03:45:40Z",
+    "pushed_at": "2026-10-14T01:12:29Z",
     "created_at": "2026-10-08T10:10:19Z",
     "archived": false,
     "license": "NOASSERTION",
     "desc": "《高性价比人生指南》全量结构化数据集：JSON / CSV / SQLite，每日自动同步上游，作为所有衍生工具的统一数据源",
-    "lastCommitAt": "2026-10-13T03:45:31Z",
-    "lastCommitMsg": "fix: 成本标签正则容忍口径后的附加键（人群=），适配上游 #122"
+    "lastCommitAt": "2026-10-14T01:12:27Z",
+    "lastCommitMsg": "chore: 同步上游 cf90fd0"
    },
    "signals": [
     "条目数出现: 672 条",
@@ -727,26 +777,26 @@
     {
      "ok": true,
      "status": 200,
-     "ms": 5324,
+     "ms": 26694,
      "ip": "172.182.252.133",
      "cdn": "github.com",
-     "bytes": 425980
+     "bytes": 425979
     },
     {
      "ok": true,
      "status": 200,
-     "ms": 5584,
+     "ms": 28683,
      "ip": "172.182.252.133",
      "cdn": "github.com",
-     "bytes": 425980
+     "bytes": 425979
     },
     {
      "ok": true,
      "status": 200,
-     "ms": 5496,
+     "ms": 29128,
      "ip": "172.182.252.133",
      "cdn": "github.com",
-     "bytes": 425980
+     "bytes": 425979
     }
    ],
    "gh": {

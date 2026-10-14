@@ -201,6 +201,7 @@ const STRATEGIES = {
   'howtolivebetter-92110.app.workbuddy.host': { kind: 'artifact', page: true },
   'www.howtolivebetter.cn': { kind: 'artifact', page: true },
   'life.hcju.com': { kind: 'artifact', page: true },
+  'parveen0029/The-Evidence-Based-Life': { kind: 'artifact', repo: 'parveen0029/The-Evidence-Based-Life', page: true },
   'HuiTurn/HowToLiveBetter': { kind: 'artifact', repo: 'HuiTurn/HowToLiveBetter', files: ['data/match-index.js'] },
   'apps.apple.com/id6818596108': { kind: 'store', page: true },
   'llzx373/BetterLifeApp': { kind: 'artifact', repo: 'llzx373/BetterLifeApp', files: ['app/src/main/assets/entries.json'] },
@@ -615,6 +616,41 @@ const ARTIFACT_PARSERS = {
     } else {
       out.ev(`sources.js 里上游地址=${upRaw}、fetch=${hasFetch}，需人工复核`);
     }
+    return out;
+  },
+  async 'parveen0029/The-Evidence-Based-Life'(out) {
+    // 它是本书的**英文对照翻译**，但 GitHub 上 `fork: false`（是另建的独立仓库），
+    // 且 book/ 下用的是英文文件名（`book/01-avoiding-premature-death.md`），跟上游的中文名
+    // （`book/01-不要早死.md`）完全对不上 → **不能沿用 BOOK_FILES**，得先列它自己的 book/ 目录，
+    // 再按同一个官方口径（`### ` 标题数）逐文件数。34 个文件。
+    const REPO = 'parveen0029/The-Evidence-Based-Life';
+    const t = await get(`https://api.github.com/repos/${REPO}/git/trees/main?recursive=1`, { timeout: 25000, cap: 4 * 1024 * 1024 });
+    if (!t.ok) return out.ev('目录树取不到: HTTP ' + t.status + (t.err ? ' ' + t.err : ''));
+    const files = [...t.text.matchAll(/"path":\s*"([^"]+)"/g)].map((m) => m[1]).filter((p) => /^book\/.*\.md$/.test(p));
+    if (!files.length) return out.ev('它自己的 book/ 下没找到 .md（仓库结构可能改了）');
+    let total = 0;
+    let okN = 0;
+    const bad = [];
+    for (const f of files) {
+      const r = await get(RAW(REPO, f), { timeout: 30000, cap: 3 * 1024 * 1024 });
+      if (r.ok) {
+        okN++;
+        total += countHeadings(r.text);
+      } else bad.push(f);
+    }
+    if (!okN) return out.ev(`book/ 里 ${files.length} 个文件全都没取到，无法实测`);
+    out.actualEntries = total;
+    out.method = 'artifact';
+    out.ev(`读它自己的 book/（${files.length} 个英文文件，取到 ${okN} 个）按官方口径数出 ### 标题 ${total} 条`);
+    if (bad.length) out.ev(`${bad.length} 个文件没取到：${bad.slice(0, 4).join('、')}${bad.length > 4 ? '…' : ''}`);
+    // 交叉信号：它工作流自动生成的 README 徽章（与逐文件实测互为独立证据）
+    const rd = await get(RAW(REPO, 'README.md'), { timeout: 25000, cap: 2 * 1024 * 1024 });
+    const b = rd.ok ? (rd.text.match(/badge\/Rules-(\d+)/) || [])[1] : null;
+    if (b)
+      out.ev(
+        `它 README 里自动生成的徽章写 Rules-${b} → ` +
+          (Number(b) === total ? `与逐文件实测（${total}）完全一致，两条独立信号闭环` : `与实测（${total}）不一致，需复核`)
+      );
     return out;
   },
   async 'robiNeo2045/comics'(out) {

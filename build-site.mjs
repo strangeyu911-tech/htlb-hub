@@ -47,6 +47,7 @@ const CURATED = {
   'howtolivebetter-92110.app.workbuddy.host': { tags: ['不用注册', '能搜索', '能分享'], gate: '不登录也能用 · 微信登录可把清单存到云端', note: '把全书摊成一张可探索的地图：词云 + 条目关系图，挑中的条目能生成分享卡片。' },
   'www.howtolivebetter.cn': { tags: ['不用注册', '能搜索'], gate: '不用注册 · 记录存在浏览器里，可导出备份', note: '按主题或原书章节读，能把想试的建议写成小行动、按周回顾。' },
   'life.hcju.com': { tags: ['不用注册', '无广告', '能搜索'], gate: '不用注册 · 没有广告 · 外语版为非官方翻译', note: '每条一个网址的阅读站，另配 6 个语言版；外语版按当地情况补了急救、劳动、租房、医保等要点。' },
+  'parveen0029/The-Evidence-Based-Life': { tags: ['不用注册', '无广告', '能搜索', '给 AI 用'], gate: '不用注册 · 没有广告 · 非官方英文翻译', note: '全书的英文对照阅读版，另带一个能给 Claude Code / Codex 用的 AI 决策助手。' },
   'HuiTurn/HowToLiveBetter': { tags: ['手机端', '能搜索', '能离线'], gate: '微信内访问，无需注册', note: '微信小程序：全文搜索、收藏、离线、每日一读。' },
   'apps.apple.com/id6818596108': { tags: ['手机端', '能离线', '打卡/进度'], gate: '免费版清单/打卡有数量限制', note: 'iOS 行动版，条目 + 打卡一体。' },
   'llzx373/BetterLifeApp': { tags: ['手机端', '打卡/进度', '给 AI 用'], gate: '测试版 · AI 问答需自填 API Key', note: '安卓测试版，内置 AI 问答。' },
@@ -466,6 +467,29 @@ ${cards}
   <p class="dim" style="margin:8px 0 0">它<b>没有收录、复制或改动原书任何一条正文</b>，是作者依据自己的研究另写的独立作品，与本书并列而非它的某一版。文字与代码以 CC BY-NC-SA 4.0 开源。作者 Strange。</p>
   <a class="cta" style="margin:14px 0 0;max-width:330px" href="https://mirror.strangeyu.xyz/patch" target="_blank" rel="noopener">打开补丁包 →</a>
 </div>
+
+<h2>另见：与本书有关、但还没进上游清单的两件<span class="aside-tag">未被收录进衍生项目清单</span></h2>
+<p class="h2n">本站的收录准绳是<b>只收上游 <code>衍生项目.md</code> 里已经列出的项目</b>。下面这两件不在那份清单里，所以<b>不参与上面的同步对比，也不计入「${stats.total} 个版本」</b>。放在这里只是因为它们确实与本书相关、也确有其用 —— 判断依据是「上游清单里有没有」，不是「它们好不好」。</p>
+<div class="panel">
+  <div class="bmeta">
+    <b><a href="https://nicecao.github.io/HowToWorkBetter/" target="_blank" rel="noopener">高性价比工作指南</a></b>
+    <span class="dim">另一本书（上班篇）· 不含本书任何正文 · 未被收录进衍生项目清单</span>
+  </div>
+  <p class="feat" style="margin:12px 0 0;flex:none">跟着本书那套体例另写的一本「上班篇」：<b>51 章 454 条</b>，从选行业、投简历、谈薪、社保公积金、被裁怎么拿最多、跳槽涨薪，到向上管理、反 PUA、劳动合同与劳动仲裁、工伤、职业转型、商务礼仪。每条同样写明成本、收益、证据等级和原始出处。</p>
+  <p class="dim" style="margin:8px 0 0">它<b>没有收录、复制或改动本书任何一条正文</b>，是与本书并列的独立作品，不是本书的某一版。作者 NiceCao。正文 CC BY 4.0、代码 MIT，<a href="https://github.com/NiceCao/HowToWorkBetter" target="_blank" rel="noopener">仓库里有 PDF / EPUB / 离线单页</a>。</p>
+  <a class="cta" style="margin:14px 0 0;max-width:330px" href="https://nicecao.github.io/HowToWorkBetter/" target="_blank" rel="noopener">打开在线检索页 →</a>
+
+  <hr style="border:0;border-top:1px solid #f2f0ec;margin:20px 0">
+
+  <div class="bmeta">
+    <b><a href="https://shangbanbao.com/" target="_blank" rel="noopener">上班宝</a></b>
+    <span class="dim">把本书与《工作指南》放一起的检索/问答工具 · 未被收录进衍生项目清单</span>
+  </div>
+  <p class="feat" style="margin:12px 0 0;flex:none">同一位作者做的小工具：<b>每天推 3 条</b>（标明出自哪一本）、可按关键词和章节搜、也可以直接提问 —— 答案只依据两本书里的条目，并列出依据是第几章第几条；书里查不到的会直说答不上来。免费、无广告。</p>
+  <p class="dim" style="margin:8px 0 0">⚠️ 它<b>确实会读到本书条目</b>，但页面上没有标注自己同步到了哪一版，本站<b>核实不出它的内容版本</b>，所以没有把它放进上表参与同步对比 —— 这是「测不出来」，不是「它旧」。作者同样把它的出处与许可写明在<a href="https://github.com/NiceCao/HowToWorkBetter" target="_blank" rel="noopener">自己的仓库</a>里。</p>
+  <a class="cta" style="margin:14px 0 0;max-width:330px" href="https://shangbanbao.com/" target="_blank" rel="noopener">打开上班宝 →</a>
+</div>
+<p class="dim" style="margin:12px 0 0">这两件的作者曾向本书提交过收录申请，维护者以「第三方工具栏已经列得比较长了」为由暂未收进清单 —— 所以上表里没有它们。原申请与答复可在上游仓库查到。</p>
 
 <details class="more">
 <summary>逐项查证依据 · badge 接口 · GitHub 墙内实测 · 测不到什么<span class="sm">（技术细节，默认收起）</span></summary>

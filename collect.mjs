@@ -126,6 +126,7 @@ const DERIVED = [
   { id: 'howtolivebetter-92110.app.workbuddy.host', name: '循证建议地图', author: 'felixlee0608', kind: '网站', url: 'https://howtolivebetter-92110.app.workbuddy.host/', note: '有词云和条目关系图，挑条目进清单，能生成分享卡片图；不登录也能用，用微信登录可以把清单存到云端' },
   { id: 'www.howtolivebetter.cn', name: '渐好', author: 'Fitem', kind: '网站', url: 'https://www.howtolivebetter.cn/', note: '按生活主题或原书章节读、全文搜索、收藏和记笔记；把想试的建议写成小行动，再按周回顾有没有用；不用注册，记录存在浏览器里，能导出备份' },
   { id: 'life.hcju.com', name: '阅读版（7 语言）', author: 'fantadust', kind: '网站', url: 'https://life.hcju.com/', note: '每条一个网址，按节、按生活场景和适用人群浏览，支持拼音搜索；另有繁体、英、日、韩、西、德 6 个语言版，外语版按当地官方资料补了急救电话、劳动、租房、医保等当地要点' },
+  { id: 'parveen0029/The-Evidence-Based-Life', name: 'The Evidence-Based Life', author: 'parveen0029', kind: '网站', url: 'https://parveen0029.github.io/The-Evidence-Based-Life/', ghRepo: 'parveen0029/The-Evidence-Based-Life', note: '全书的英文对照阅读站：34 节条目英文阅读与检索，保留成本标签、收益量级与原始文献出处；仓库里另带一个给 Claude Code / Codex 用的 AI 决策助手 Skill；不用注册、没有广告（非官方翻译）' },
   { id: 'HuiTurn/HowToLiveBetter', name: '微信小程序版', author: 'HuiTurn', kind: '小程序', ghRepo: 'HuiTurn/HowToLiveBetter', note: '分类、收藏、每日一读、全文搜索，离线可用' },
   { id: 'apps.apple.com/id6818596108', name: '行动版 iOS App', author: 'GUGU VITALITY LIMITED', kind: 'iOS App', url: 'https://apps.apple.com/cn/app/id6818596108', note: '左右滑卡片决定做不做，做一次的进清单，要重复的设打卡，离线可用；免费版清单/打卡有数量限制' },
   { id: 'llzx373/BetterLifeApp', name: 'BetterLifeApp', author: 'llzx373', kind: 'Android App', ghRepo: 'llzx373/BetterLifeApp', note: '按个人情况推荐、每日打卡、条目库；AI 问答要自填 API Key；测试版，内置条目较早' },
