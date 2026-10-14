@@ -11,3 +11,8 @@ deploy/worker.js
 node_modules/
 *.log
 .DS_Store
+
+# 截图流水线的中间产物（可重跑生成，见 tools/shot/README.md）
+tools/shot/raw/
+tools/shot/contact.png
+tools/shot/_crops-log.json

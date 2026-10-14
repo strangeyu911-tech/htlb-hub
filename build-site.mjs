@@ -262,6 +262,7 @@ const cards = rows
               : `<span class="lag warn">⚠️ 落后 ${r.lag} 条<span class="dim">（${r.declared}/${UP_COUNT}）</span></span>`;
     const dn = r.lagDays == null ? '' : r.lagDays <= 0.05 ? ' · 内容时间 ≈ 上游最新' : ` · 内容大约停在 ${Math.round(r.lagDays * 10) / 10} 天前`;
     return `<article class="card" data-tags="${r.tags.join(',')}" data-lag="${r.lag === null ? -1 : r.lag}" data-speed="${r.avg}" data-type="${r.typeIdx}">
+  <a class="shot" href="${r.url}" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="${SITE_ORIGIN}/shot/${r.slug}.webp" alt="" width="1200" height="750" loading="lazy" decoding="async"></a>
   <div class="chead">
     <h3><a href="${r.url}" target="_blank" rel="noopener">${r.name}</a></h3>
     <span class="kind">${r.kind}</span>
@@ -388,7 +389,13 @@ h2{font-size:20px;font-weight:600;margin:44px 0 8px}
    3 列只需 962px，配合 1300px 断点刚好不掉列。顺带让 1024–1240px 的
    视口也能排 3 列（原来只能 2 列）。 */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:16px;margin-top:18px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:19px 20px;display:flex;flex-direction:column}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:19px 20px;display:flex;flex-direction:column;overflow:hidden}
+/* 卡片顶部实拍截图：卡片本身有 19px/20px 内边距，靠负 margin 让图贴到圆角边上。
+   16:10 是量出来的 —— 卡片在 1440 下宽 361px、390 下宽 346px，
+   16:10 出图高约 216px，一排卡片高度不至于失控，又够看清页面骨架。 */
+.shot{position:relative;display:block;margin:-19px -20px 15px;background:#efece6;line-height:0}
+.shot img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top center}
+@media(max-width:620px){.card{padding:15px 16px}.shot{margin:-15px -16px 13px}}
 .chead{display:flex;align-items:baseline;gap:9px;margin-bottom:3px}
 .chead h3{margin:0;font-size:16.5px;font-weight:600}
 .chead h3 a{color:var(--tx);text-decoration:none}
@@ -815,6 +822,12 @@ ${ghRows}
 const outDir = path.join(DIR, 'site');
 fs.mkdirSync(outDir, { recursive: true });
 fs.writeFileSync(path.join(outDir, 'index.html'), html, 'utf8');
+
+// 卡片缩略图预检 —— 缺图不会让构建失败，但会让卡片开天窗，先喊出来。
+// 图是从各项目真实页面截的，见 README「卡片截图是怎么来的」。
+const shotDir = path.join(outDir, 'shot');
+const shotMissing = rows.filter((r) => !fs.existsSync(path.join(shotDir, r.slug + '.webp'))).map((r) => r.slug);
+if (shotMissing.length) console.warn(`⚠️  缺卡片截图 ${shotMissing.length}/${rows.length}：${shotMissing.join(', ')}`);
 
 const badgeDir = path.join(outDir, 'badge');
 fs.mkdirSync(badgeDir, { recursive: true });

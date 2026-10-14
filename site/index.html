@@ -57,7 +57,13 @@ h2{font-size:20px;font-weight:600;margin:44px 0 8px}
    3 列只需 962px，配合 1300px 断点刚好不掉列。顺带让 1024–1240px 的
    视口也能排 3 列（原来只能 2 列）。 */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:16px;margin-top:18px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:19px 20px;display:flex;flex-direction:column}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:19px 20px;display:flex;flex-direction:column;overflow:hidden}
+/* 卡片顶部实拍截图：卡片本身有 19px/20px 内边距，靠负 margin 让图贴到圆角边上。
+   16:10 是量出来的 —— 卡片在 1440 下宽 361px、390 下宽 346px，
+   16:10 出图高约 216px，一排卡片高度不至于失控，又够看清页面骨架。 */
+.shot{position:relative;display:block;margin:-19px -20px 15px;background:#efece6;line-height:0}
+.shot img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top center}
+@media(max-width:620px){.card{padding:15px 16px}.shot{margin:-15px -16px 13px}}
 .chead{display:flex;align-items:baseline;gap:9px;margin-bottom:3px}
 .chead h3{margin:0;font-size:16.5px;font-weight:600}
 .chead h3 a{color:var(--tx);text-decoration:none}
@@ -178,7 +184,7 @@ html{scroll-behavior:smooth}
   <span class="sp"></span>
   <a class="official" href="https://eternity4719.github.io/HowToLiveBetter/" target="_blank" rel="noopener">📖 官方原站 <em>原书全文</em> ↗</a>
   <span class="sp"></span>
-  <span class="src">上游 <b id="upn">699</b> 条<span class="hs"> · <code>4540c90a</code></span><span class="dt"><br>数据 2026/10/15 02:02:39（可实时刷新）</span></span>
+  <span class="src">上游 <b id="upn">699</b> 条<span class="hs"> · <code>4540c90a</code></span><span class="dt"><br>数据 2026/10/15 02:27:02（可实时刷新）</span></span>
 </div></header>
 
 <div class="wrap">
@@ -236,6 +242,7 @@ html{scroll-behavior:smooth}
 </div>
 <div class="grid" id="grid">
 <article class="card" data-tags="桌面端,最省时间,能分享" data-lag="-1" data-speed="5080" data-type="5">
+  <a class="shot" href="https://github.com/mittsommer/daily-life-tip/releases/latest" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="https://htlb.strangeyu.xyz/shot/mittsommer-daily-life-tip.webp" alt="" width="1200" height="750" loading="lazy" decoding="async"></a>
   <div class="chead">
     <h3><a href="https://github.com/mittsommer/daily-life-tip/releases/latest" target="_blank" rel="noopener">今日一条</a></h3>
     <span class="kind">macOS 小组件</span>
@@ -256,6 +263,7 @@ html{scroll-behavior:smooth}
   </div>
 </article>
 <article class="card" data-tags="桌面端,最省时间,不用注册" data-lag="-1" data-speed="23602" data-type="6">
+  <a class="shot" href="https://chromewebstore.google.com/detail/%E6%8B%BE%E9%A1%B5-%C2%B7-shiye-tab/fkkcecjdalionkdjbpdhgigpcimopfmg?hl=zh" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="https://htlb.strangeyu.xyz/shot/sinyu1012-shiye-tab.webp" alt="" width="1200" height="750" loading="lazy" decoding="async"></a>
   <div class="chead">
     <h3><a href="https://chromewebstore.google.com/detail/%E6%8B%BE%E9%A1%B5-%C2%B7-shiye-tab/fkkcecjdalionkdjbpdhgigpcimopfmg?hl=zh" target="_blank" rel="noopener">拾页 Shiye Tab</a></h3>
     <span class="kind">Chrome 插件</span>
@@ -276,6 +284,7 @@ html{scroll-behavior:smooth}
   </div>
 </article>
 <article class="card" data-tags="不用注册,无广告,能搜索,给 AI 用" data-lag="0" data-speed="1199" data-type="0">
+  <a class="shot" href="https://better.aigcwei.cn/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="https://htlb.strangeyu.xyz/shot/better-aigcwei-cn.webp" alt="" width="1200" height="750" loading="lazy" decoding="async"></a>
   <div class="chead">
     <h3><a href="https://better.aigcwei.cn/" target="_blank" rel="noopener">better.aigcwei.cn + MCP</a></h3>
     <span class="kind">网站+MCP</span>
@@ -296,6 +305,7 @@ html{scroll-behavior:smooth}
   </div>
 </article>
 <article class="card" data-tags="不用注册,能搜索,能分享" data-lag="0" data-speed="2591" data-type="1">
+  <a class="shot" href="https://howtolivebetter-92110.app.workbuddy.host/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="https://htlb.strangeyu.xyz/shot/howtolivebetter-92110-app-workbuddy-host.webp" alt="" width="1200" height="750" loading="lazy" decoding="async"></a>
   <div class="chead">
     <h3><a href="https://howtolivebetter-92110.app.workbuddy.host/" target="_blank" rel="noopener">循证建议地图</a></h3>
     <span class="kind">网站</span>
@@ -316,6 +326,7 @@ html{scroll-behavior:smooth}
   </div>
 </article>
 <article class="card" data-tags="不用注册,无广告,能搜索" data-lag="0" data-speed="1141" data-type="1">
+  <a class="shot" href="https://life.hcju.com/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="https://htlb.strangeyu.xyz/shot/life-hcju-com.webp" alt="" width="1200" height="750" loading="lazy" decoding="async"></a>
   <div class="chead">
     <h3><a href="https://life.hcju.com/" target="_blank" rel="noopener">阅读版（7 语言）</a></h3>
     <span class="kind">网站</span>
@@ -336,6 +347,7 @@ html{scroll-behavior:smooth}
   </div>
 </article>
 <article class="card" data-tags="打卡/进度" data-lag="9" data-speed="5464" data-type="1">
+  <a class="shot" href="https://howtolivebetter.net/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="https://htlb.strangeyu.xyz/shot/howtolivebetter-net.webp" alt="" width="1200" height="750" loading="lazy" decoding="async"></a>
   <div class="chead">
     <h3><a href="https://howtolivebetter.net/" target="_blank" rel="noopener">打勾清单</a></h3>
     <span class="kind">网站</span>
@@ -356,6 +368,7 @@ html{scroll-behavior:smooth}
   </div>
 </article>
 <article class="card" data-tags="给 AI 用,数据源" data-lag="9" data-speed="20846" data-type="7">
+  <a class="shot" href="https://github.com/sin0317/htlb-dataset" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="https://htlb.strangeyu.xyz/shot/sin0317-htlb-dataset.webp" alt="" width="1200" height="750" loading="lazy" decoding="async"></a>
   <div class="chead">
     <h3><a href="https://github.com/sin0317/htlb-dataset" target="_blank" rel="noopener">结构化数据集</a></h3>
     <span class="kind">数据集</span>
@@ -376,6 +389,7 @@ html{scroll-behavior:smooth}
   </div>
 </article>
 <article class="card" data-tags="不用注册,无广告,能搜索,给 AI 用" data-lag="10" data-speed="1938" data-type="1">
+  <a class="shot" href="https://parveen0029.github.io/The-Evidence-Based-Life/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="https://htlb.strangeyu.xyz/shot/parveen0029-the-evidence-based-life.webp" alt="" width="1200" height="750" loading="lazy" decoding="async"></a>
   <div class="chead">
     <h3><a href="https://parveen0029.github.io/The-Evidence-Based-Life/" target="_blank" rel="noopener">The Evidence-Based Life</a></h3>
     <span class="kind">网站</span>
@@ -396,6 +410,7 @@ html{scroll-behavior:smooth}
   </div>
 </article>
 <article class="card" data-tags="不用注册,无广告,打卡/进度" data-lag="22" data-speed="1252" data-type="1">
+  <a class="shot" href="https://qingdan.lazyso.com/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="https://htlb.strangeyu.xyz/shot/qingdan-lazyso-com.webp" alt="" width="1200" height="750" loading="lazy" decoding="async"></a>
   <div class="chead">
     <h3><a href="https://qingdan.lazyso.com/" target="_blank" rel="noopener">懒人性价性清单</a></h3>
     <span class="kind">网站</span>
@@ -416,6 +431,7 @@ html{scroll-behavior:smooth}
   </div>
 </article>
 <article class="card" data-tags="不用注册,能搜索" data-lag="22" data-speed="1861" data-type="1">
+  <a class="shot" href="https://www.howtolivebetter.cn/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="https://htlb.strangeyu.xyz/shot/www-howtolivebetter-cn.webp" alt="" width="1200" height="750" loading="lazy" decoding="async"></a>
   <div class="chead">
     <h3><a href="https://www.howtolivebetter.cn/" target="_blank" rel="noopener">渐好</a></h3>
     <span class="kind">网站</span>
@@ -436,6 +452,7 @@ html{scroll-behavior:smooth}
   </div>
 </article>
 <article class="card" data-tags="能搜索,能分享" data-lag="23" data-speed="2303" data-type="1">
+  <a class="shot" href="https://life.xfun.fun/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="https://htlb.strangeyu.xyz/shot/life-xfun-fun.webp" alt="" width="1200" height="750" loading="lazy" decoding="async"></a>
   <div class="chead">
     <h3><a href="https://life.xfun.fun/" target="_blank" rel="noopener">手绘地图版</a></h3>
     <span class="kind">网站</span>
@@ -456,6 +473,7 @@ html{scroll-behavior:smooth}
   </div>
 </article>
 <article class="card" data-tags="手机端,能搜索,能离线" data-lag="23" data-speed="5017" data-type="2">
+  <a class="shot" href="https://github.com/HuiTurn/HowToLiveBetter" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="https://htlb.strangeyu.xyz/shot/huiturn-howtolivebetter.webp" alt="" width="1200" height="750" loading="lazy" decoding="async"></a>
   <div class="chead">
     <h3><a href="https://github.com/HuiTurn/HowToLiveBetter" target="_blank" rel="noopener">微信小程序版</a></h3>
     <span class="kind">小程序</span>
@@ -476,6 +494,7 @@ html{scroll-behavior:smooth}
   </div>
 </article>
 <article class="card" data-tags="手机端,打卡/进度,给 AI 用" data-lag="27" data-speed="4860" data-type="4">
+  <a class="shot" href="https://github.com/llzx373/BetterLifeApp/releases/latest" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="https://htlb.strangeyu.xyz/shot/llzx373-betterlifeapp.webp" alt="" width="1200" height="750" loading="lazy" decoding="async"></a>
   <div class="chead">
     <h3><a href="https://github.com/llzx373/BetterLifeApp/releases/latest" target="_blank" rel="noopener">BetterLifeApp</a></h3>
     <span class="kind">Android App</span>
@@ -496,6 +515,7 @@ html{scroll-behavior:smooth}
   </div>
 </article>
 <article class="card" data-tags="手机端,能离线,打卡/进度" data-lag="29" data-speed="26515" data-type="3">
+  <a class="shot" href="https://apps.apple.com/cn/app/id6818596108" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="https://htlb.strangeyu.xyz/shot/apps-apple-com-id6818596108.webp" alt="" width="1200" height="750" loading="lazy" decoding="async"></a>
   <div class="chead">
     <h3><a href="https://apps.apple.com/cn/app/id6818596108" target="_blank" rel="noopener">行动版 iOS App</a></h3>
     <span class="kind">iOS App</span>
@@ -516,6 +536,7 @@ html{scroll-behavior:smooth}
   </div>
 </article>
 <article class="card" data-tags="不用注册,能搜索" data-lag="36" data-speed="2090" data-type="1">
+  <a class="shot" href="https://life.warpnav.com/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="https://htlb.strangeyu.xyz/shot/life-warpnav-com.webp" alt="" width="1200" height="750" loading="lazy" decoding="async"></a>
   <div class="chead">
     <h3><a href="https://life.warpnav.com/" target="_blank" rel="noopener">WarpNav 人生手册</a></h3>
     <span class="kind">网站</span>
@@ -536,6 +557,7 @@ html{scroll-behavior:smooth}
   </div>
 </article>
 <article class="card" data-tags="不用注册,无广告,游戏化" data-lag="41" data-speed="3172" data-type="1">
+  <a class="shot" href="https://livebetter101.com/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="https://htlb.strangeyu.xyz/shot/livebetter101-com.webp" alt="" width="1200" height="750" loading="lazy" decoding="async"></a>
   <div class="chead">
     <h3><a href="https://livebetter101.com/" target="_blank" rel="noopener">LiveBetter 101</a></h3>
     <span class="kind">网站</span>
@@ -556,6 +578,7 @@ html{scroll-behavior:smooth}
   </div>
 </article>
 <article class="card" data-tags="阶段自测,打卡/进度,能搜索" data-lag="45" data-speed="1421" data-type="1">
+  <a class="shot" href="https://how2livebetter.net/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="https://htlb.strangeyu.xyz/shot/how2livebetter-net.webp" alt="" width="1200" height="750" loading="lazy" decoding="async"></a>
   <div class="chead">
     <h3><a href="https://how2livebetter.net/" target="_blank" rel="noopener">人生阶段指南</a></h3>
     <span class="kind">网站</span>
@@ -576,6 +599,7 @@ html{scroll-behavior:smooth}
   </div>
 </article>
 <article class="card" data-tags="能离线,娱乐" data-lag="23" data-speed="28168" data-type="8">
+  <a class="shot" href="https://github.com/robiNeo2045/HowToLiveBetter/releases/latest" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="https://htlb.strangeyu.xyz/shot/robineo2045-comics.webp" alt="" width="1200" height="750" loading="lazy" decoding="async"></a>
   <div class="chead">
     <h3><a href="https://github.com/robiNeo2045/HowToLiveBetter/releases/latest" target="_blank" rel="noopener">四格漫画 PDF</a></h3>
     <span class="kind">漫画</span>
@@ -917,8 +941,8 @@ html{scroll-behavior:smooth}
 
 <footer>
 上游：<a href="https://github.com/eternity4719/HowToLiveBetter" target="_blank" rel="noopener">eternity4719/HowToLiveBetter</a> · CC BY 4.0 · 62,780 ★ / 5,291 forks · 最新提交 <code>4540c90a</code>（2026/10/14 17:16:24）<br>
-本站由 <code>fetch-upstream.sh</code>（取上游 git 历史）→ <code>verify-upstream.mjs</code> / <code>verify-ecosystem.mjs</code>（查证）→ <code>build-site.mjs</code>（渲染）→ <code>deploy.mjs</code>（部署到 Cloudflare Worker）串成，生成于 2026/10/15 02:02:39。<br>
-逐项重算由 GitHub Actions 每日自动执行并回灌本站数据层；本页构建于：<b id="crawlAt">2026/10/15 02:02:39</b>。聚合与查证由 Strange 维护。
+本站由 <code>fetch-upstream.sh</code>（取上游 git 历史）→ <code>verify-upstream.mjs</code> / <code>verify-ecosystem.mjs</code>（查证）→ <code>build-site.mjs</code>（渲染）→ <code>deploy.mjs</code>（部署到 Cloudflare Worker）串成，生成于 2026/10/15 02:27:02。<br>
+逐项重算由 GitHub Actions 每日自动执行并回灌本站数据层；本页构建于：<b id="crawlAt">2026/10/15 02:27:02</b>。聚合与查证由 Strange 维护。
 </footer>
 </div>
 
