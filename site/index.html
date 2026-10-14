@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>高性价比人生指南 · 墙内聚合入口</title>
-<meta name="description" content="把 HowToLiveBetter 的 18 个衍生项目聚在一处，并逐一查证每个同步到了哪一版。">
+<title>高性价比人生指南 · 18 个衍生项目墙内聚合（逐个核实同步到哪一版）</title>
+<meta name="description" content="《高性价比人生指南》的 18 个衍生项目聚在一处，逐个实测同步到了哪一版、墙内打开多快、要不要注册、有没有广告。民间自建、非官方。">
 <style>
 :root{--bg:#faf9f7;--card:#fff;--line:#e6e3dc;--tx:#2c2c2a;--tx2:#5f5e5a;--tx3:#8a8880;
 --g:#0f6e56;--gbg:#e1f5ee;--a:#8a5300;--abg:#faeeda;--r:#a32d2d;--rbg:#fcebeb;--b:#185fa5;--bbg:#e6f1fb}
@@ -27,10 +27,18 @@ header.top{background:#fff;border-bottom:1px solid var(--line);position:sticky;t
 .officialbar .dim{flex:1;font-size:13px}
 .officialbar .go{color:var(--b);font-weight:600;font-size:14px;white-space:nowrap}
 .hero{padding:52px 0 34px}
-h1{font-size:31px;line-height:1.32;font-weight:600;margin:0 0 14px;letter-spacing:-.01em}
+h1{font-size:31px;line-height:1.32;font-weight:600;margin:0 0 10px;letter-spacing:-.01em}
+/* 副标题：一行小字，只承担「卖点 + 信任声明」。放在 h1 紧邻处是刻意的 ——
+   读者第一眼就要知道这不是官方站，别等滚到段尾才看见。
+   用 --tx2 而非 --tx3：这句要真被读到，浅灰（3.4:1）只够当提示，不够当声明。 */
+.sub{font-size:13.5px;color:var(--tx2);margin:0 0 20px;line-height:1.6}
+.sub b{color:var(--tx);font-weight:600}
 .lede{font-size:16px;color:var(--tx2);max-width:790px;margin:0 0 26px}
 .lede b{color:var(--tx)}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:12px;margin-bottom:34px}
+/* minmax 阈值 152px（原 178px）：178px 时桌面 1160px 容器刚好只能排 5 张，第 6 张会独自占一行；
+   更要紧的是 iPhone 逻辑宽 390px 下 178px 只够单列，6 张统计卡会堆成整整一屏。
+   降到 152px 后桌面 6 张一行（1fr 撑满，每张实际仍 ~176px），390px 也能排 2 列。 */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(152px,1fr));gap:12px;margin-bottom:34px}
 .stat{background:#fff;border:1px solid var(--line);border-radius:12px;padding:15px 17px}
 .stat .k{font-size:12.5px;color:var(--tx3);margin-bottom:5px}
 .stat .v{font-size:23px;font-weight:600;line-height:1.25}
@@ -105,24 +113,25 @@ footer{margin-top:56px;border-top:1px solid var(--line);padding:22px 0 60px;colo
 </head>
 <body>
 <header class="top"><div class="in wrap">
-  <span class="brand">高性价比人生指南 · 墙内聚合</span>
+  <span class="brand">高性价比人生指南 · 衍生项目聚合</span>
   <span class="sp"></span>
   <a class="official" href="https://eternity4719.github.io/HowToLiveBetter/" target="_blank" rel="noopener">📖 官方原站 <em>本书正文</em> ↗</a>
   <span class="sp"></span>
-  <span class="src">上游 <b id="upn">699</b> 条 · <code>4540c90a</code><br>数据 2026/10/15 00:42:17（可实时刷新）</span>
+  <span class="src">上游 <b id="upn">699</b> 条 · <code>4540c90a</code><br>数据 2026/10/15 01:35:55（可实时刷新）</span>
 </div></header>
 
 <div class="wrap">
 
 <section class="hero">
-  <h1>想读《高性价比人生指南》？<br>这 18 个入口，每个都核实过同步到了哪一版。</h1>
-  <p class="lede">《高性价比人生指南》是一本 <b>CC BY 4.0</b> 开源的循证生活建议书，<b>目前 699 条，而且一直在加</b>（最近半个月就从 614 条长到 699 条）—— 所以下面每个版本都会或快或慢地落后一点，差别只在于落后多少。读者们自发做出了 18 个衍生版本：网站、微信小程序、iPhone / Android App、浏览器插件、数据集、四格漫画。<br>但它们<b>散在 18 个不同的地方</b>，唯一的汇总点只有 GitHub 上的源仓库 —— 而 GitHub 网页在国内中位要等 <b>5.3 秒</b>、最坏 <b>18.5 秒</b>。更麻烦的是：<b>没有任何地方告诉你「哪个版本是新的」</b> —— 有的站已经停更几个月，看上去却完全正常。<br>这个页面就是<b>衍生项目的墙内聚合</b>（民间自建、非官方，不收正文、不接广告）：把散在各处的 18 个版本聚到一处，逐个查证它们<b>同步到了哪一版</b>，并给出每个版本最省事的打开方式 —— 不用翻墙，一次看完。</p>
+  <h1>《高性价比人生指南》的 18 个衍生项目，都在这儿</h1>
+  <p class="sub">每个都核实了同步到哪一版 · <b>民间自建、非官方</b>，不收正文、不接广告</p>
+  <p class="lede">《高性价比人生指南》是一本开源、还在持续更新的循证生活建议书。读者自发做出了 18 个衍生项目（网站、小程序、App、浏览器插件），散在各处，唯一的汇总点只有作者的 GitHub 仓库 —— 墙内访问不稳定，而且没人告诉你哪个是新的。它们有的会比上游落后一些。本页把它们聚到一处，逐个测出谁新谁旧，给出最省事的打开方式。</p>
 
   <div class="stats">
-    <div class="stat"><div class="k">已收录的衍生版本</div><div class="v b">18</div><div class="n">来自上游 README 的官方清单</div></div>
+    <div class="stat"><div class="k">已收录的衍生项目</div><div class="v b">18</div><div class="n">来自上游 README 的官方清单</div></div>
     <div class="stat"><div class="k">墙内可达</div><div class="v g">54/54</div><div class="n">18 项 × 3 轮探活全通（含未开梯子时）</div></div>
     <div class="stat"><div class="k">已核实同步到哪一版</div><div class="v g">16/18</div><div class="n">其中 15 项读的是实测产物；另 2 项运行时自动跟进、无需版本号</div></div>
-    <div class="stat"><div class="k">最接近最新版</div><div class="v g">落后 0 条</div><div class="n">打勾清单（699/699）</div></div>
+    <div class="stat"><div class="k">最接近最新版</div><div class="v g">落后 9 条</div><div class="n">打勾清单（690/699）</div></div>
     <div class="stat"><div class="k">落后最多</div><div class="v a">45 条</div><div class="n">人生阶段指南</div></div>
     <div class="stat"><div class="k">运行时自动跟进</div><div class="v g">2 项</div><div class="n">每次打开直接拉上游，不存快照</div></div>
   </div>
@@ -131,7 +140,7 @@ footer{margin-top:56px;border-top:1px solid var(--line);padding:22px 0 60px;colo
 
 </section>
 
-<a class="officialbar" href="https://eternity4719.github.io/HowToLiveBetter/" target="_blank" rel="noopener"><b>📖 官方原站</b><span class="dim">本书正文本身，不是衍生版本</span><span class="go">打开 →</span></a>
+<a class="officialbar" href="https://eternity4719.github.io/HowToLiveBetter/" target="_blank" rel="noopener"><b>📖 官方原站</b><span class="dim">本书正文本身，不是衍生项目</span><span class="go">打开 →</span></a>
 
 <h2>选一个用</h2>
 <p class="h2n">点标签筛选，或按同步新鲜度 / 访问速度排序。共 <span id="cnt">18</span> 项，每张卡都能直接点开。</p>
@@ -528,7 +537,7 @@ footer{margin-top:56px;border-top:1px solid var(--line);padding:22px 0 60px;colo
 </div>
 
 <h2>另见：本站维护者自己的两个站点<span class="aside-tag">与本书无关 · 未被上游清单收录</span></h2>
-<div class="warnbox" style="border-style:dashed;border-color:#e0dcd2;background:#fbfaf6"><b>先把话说清楚：</b>下面两条是<b>本站维护者 Strange 自己的作品</b>，与《高性价比人生指南》<b>没有任何内容或版本关系</b>，也不在上游 <code>衍生项目.md</code> 的收录范围里。它们<b>不参与任何同步对比，也不计入上面这 18 个版本</b> —— 列在这里只是因为主题相邻、读者可能感兴趣。（想判断衍生站谁更新，请看上面的卡片。）</div>
+<div class="warnbox" style="border-style:dashed;border-color:#e0dcd2;background:#fbfaf6"><b>先把话说清楚：</b>下面两条是<b>本站维护者 Strange 自己的作品</b>，与《高性价比人生指南》<b>没有任何内容或版本关系</b>，也不在上游 <code>衍生项目.md</code> 的收录范围里。它们<b>不参与任何同步对比，也不计入上面这 18 个项目</b> —— 列在这里只是因为主题相邻、读者可能感兴趣。（想判断衍生站谁更新，请看上面的卡片。）</div>
 <div class="panel" style="border-style:dashed;border-color:#e0dcd2;background:#fcfbf8">
   <div class="bmeta">
     <b><a href="https://mirror.strangeyu.xyz/" target="_blank" rel="noopener">以日为鉴：衰退时代普通人生存指南（增补版）</a></b>
@@ -550,7 +559,7 @@ footer{margin-top:56px;border-top:1px solid var(--line);padding:22px 0 60px;colo
 </div>
 
 <h2>另见：与本书有关、但还没进上游清单的两件<span class="aside-tag">未被收录进衍生项目清单</span></h2>
-<p class="h2n"><b>本站收录的这 18 个衍生项目，准绳是只收上游 <code>衍生项目.md</code> 里已经列出的项目</b>。下面这两件不在那份清单里，所以<b>不参与本页的同步对比，也不计入「18 个版本」</b>。放在这里只是因为它们确实与本书相关、也确有其用。</p>
+<p class="h2n"><b>本站收录的这 18 个衍生项目，准绳是只收上游 <code>衍生项目.md</code> 里已经列出的项目</b>。下面这两件不在那份清单里，所以<b>不参与本页的同步对比，也不计入「18 个项目」</b>。放在这里只是因为它们确实与本书相关、也确有其用。</p>
 <div class="panel">
   <div class="bmeta">
     <b><a href="https://nicecao.github.io/HowToWorkBetter/" target="_blank" rel="noopener">高性价比工作指南</a></b>
@@ -570,7 +579,7 @@ footer{margin-top:56px;border-top:1px solid var(--line);padding:22px 0 60px;colo
   <p class="dim" style="margin:8px 0 0">⚠️ 它<b>确实会读到本书条目</b>，但页面上没有标注自己同步到了哪一版，本站<b>核实不出它的内容版本</b>，所以没有把它放进本站的同步对比里 —— 这是「测不出来」，不是「它旧」。作者同样把它的出处与许可写明在<a href="https://github.com/NiceCao/HowToWorkBetter" target="_blank" rel="noopener">自己的仓库</a>里。</p>
   <a class="cta" style="margin:14px 0 0;max-width:330px" href="https://shangbanbao.com/" target="_blank" rel="noopener">打开上班宝 →</a>
 </div>
-<p class="dim" style="margin:12px 0 0">这两件的作者曾向本书提交过收录申请，维护者以「第三方工具栏已经列得比较长了」为由暂未收进清单 —— 所以本站收录的这 18 个版本里没有它们。原申请与答复可在上游仓库查到。</p>
+<p class="dim" style="margin:12px 0 0">这两件的作者曾向本书提交过收录申请，维护者以「第三方工具栏已经列得比较长了」为由暂未收进清单 —— 所以本站收录的这 18 个项目里没有它们。原申请与答复可在上游仓库查到。</p>
 
 <details class="more">
 <summary>逐项查证依据 · badge 接口 · GitHub 墙内实测 · 测不到什么<span class="sm">（技术细节，默认收起）</span></summary>
@@ -580,7 +589,7 @@ footer{margin-top:56px;border-top:1px solid var(--line);padding:22px 0 60px;colo
 <p class="h2n">每一行都写明了<b>我们是怎么知道的</b>：<b>实测产物</b> = 读该项目自己发布的文件（小程序数据包、App 的 <code>entries.json</code>、数据集的 <code>stats.json</code>…）数出来的真实条数；<b>商店/页面自述</b> = 只有它自己写的数字可参考，属弱信号；<b>运行时拉取</b> = 每次打开都直接向源仓库取最新正文，所以不存在「落后」这个概念。右侧是这台机器抓到的原始证据，可逐条复核。</p>
 <div class="panel" style="overflow-x:auto">
 <table>
-<thead><tr><th>项目</th><th>核实方式</th><th>该版本收录</th><th>落后条数</th><th>抓到的原始证据</th></tr></thead>
+<thead><tr><th>项目</th><th>核实方式</th><th>该项目已收录</th><th>落后条数</th><th>抓到的原始证据</th></tr></thead>
 <tbody>
 <tr>
   <td><b>今日一条</b><div class="dim">macOS 小组件 · mittsommer</div></td>
@@ -713,7 +722,7 @@ footer{margin-top:56px;border-top:1px solid var(--line);padding:22px 0 60px;colo
 </div>
 
 <h2>同步状态 badge（动态接口）</h2>
-<p class="h2n">这是本项目想推给整个生态的东西：一个<b>可机器核验</b>的「我同步到哪一版」标记。<b>18 个版本里已有 5 个自带可核验的版本号</b> —— 比如 better.aigcwei.cn 的 <code>sync/fingerprint.json</code> 直接写了上游 commit 与逐条哈希，BetterLifeApp 的 <code>entries.json</code> 带 <code>contentVersion</code>，htlb-dataset 的 <code>stats.json</code> 带 <code>upstream_commit</code>。这说明<b>「自报版本」的习惯在生态里已经存在，缺的只是统一格式和现成的读取工具</b>。下面每一条都能直接贴进你自己的 README —— 它指向本站的动态接口，上游一更新、数字自动变，不用谁手动改。</p>
+<p class="h2n">这是本项目想推给整个生态的东西：一个<b>可机器核验</b>的「我同步到哪一版」标记。<b>18 个项目里已有 5 个自带可核验的版本号</b> —— 比如 better.aigcwei.cn 的 <code>sync/fingerprint.json</code> 直接写了上游 commit 与逐条哈希，BetterLifeApp 的 <code>entries.json</code> 带 <code>contentVersion</code>，htlb-dataset 的 <code>stats.json</code> 带 <code>upstream_commit</code>。这说明<b>「自报版本」的习惯在生态里已经存在，缺的只是统一格式和现成的读取工具</b>。下面每一条都能直接贴进你自己的 README —— 它指向本站的动态接口，上游一更新、数字自动变，不用谁手动改。</p>
 <div class="panel">
 <div class="brow">
   <div class="bmeta"><b>今日一条</b><span class="dim">挂上说明是运行时跟随</span></div>
@@ -824,7 +833,7 @@ footer{margin-top:56px;border-top:1px solid var(--line);padding:22px 0 60px;colo
 <tr><td>【对照】国内 CDN 站 better.aigcwei.cn</td><td class="num">5/5</td><td class="num ok">974 ms</td><td class="num">2019 ms</td><td class="num ">1216 ms</td></tr>
 </tbody>
 </table>
-<p class="h2n" style="margin:14px 0 0">读法：<b>成功率全是 100%</b> —— 所以问题不是「打不开」，而是<b>「打开要等多久、以及每次都不一样」</b>。网页通道（普通人唯一的入口）中位 5.3 秒、最坏 18.5 秒、波动 14.3 秒；开发者通道（api / raw）反而很快。这就是「能上，但习惯开梯子」的物理原因。</p>
+<p class="h2n" style="margin:14px 0 0">读法：<b>成功率全是 100%</b> —— 所以问题不是「打不开」，而是<b>「打开要等多久、以及每次都不一样」</b>。网页通道（普通人唯一的入口）中位 <b>5.3 秒</b>、最坏 <b>18.5 秒</b>、波动 <b>14.3 秒</b>；开发者通道（api / raw）反而很快。这就是「能上，但习惯开梯子」的物理原因。</p>
 <p class="h2n" style="margin:14px 0 0"><b>本页自己不在上面这一列。</b>本站的静态页放在 <b>GitHub Pages</b>（走 Fastly，<code>*.github.io</code>），跟 <code>github.com</code> 的网页不是同一条链路；动态接口（活的徽章、<code>/api/status.json</code>）留在 <code>htlb-api.strangeyu.xyz</code>。所以下面这些卡片的「打开多快」，取决于各站自己的服务器，而不是本站。</p>
 </div>
 
@@ -832,9 +841,9 @@ footer{margin-top:56px;border-top:1px solid var(--line);padding:22px 0 60px;colo
 <ol>
 <li><b>主证据是「条数」，只用四条能落地的路子。</b>① <b>实测产物</b>：读项目自己发布的文件（小程序数据包、App 的 <code>entries.json</code>、数据集的 <code>stats.json</code>、站点自带的数据文件…），按上游官方口径（<code>book/*.md</code> 里的 <code>###</code> 标题数）数出真实条数；② <b>fork 对比</b>：它若是上游 fork，直接逐文件数它的 <code>book/*.md</code>；③ <b>逐条页清单</b>：很多静态站给每条内容都生成了一个独立页面，数 sitemap 里的逐条页即可；④ <b>运行时</b>：读源码确认它每次打开都直接向上游取最新正文 → 不存在「落后」，从落后名单里剔除。每行用的哪条路子，都写在表里。</li>
 <li><b>为什么不拿「逐字比对正文」当主证据。</b>我们试过用上游条目标题原文去各站做精确匹配，14 项里 13 项 <b>0 命中</b> —— 因为各站普遍会改写标题。真正能比的是站点的<b>数据文件</b>（比如 howtolivebetter.net 把正文完整打在 <code>book-index-*.js</code> 里，对上游标题 <b>684/685 = 99.9% 命中</b>），但每个站的数据文件位置都不一样，得逐站定制，通用性差。所以本页把「条数」作为主证据，逐字比对只在个别站点做交叉验证。</li>
-<li><b>「落后多少条」用上游官方口径复算过。</b>上游条目数由 <code>git log -p -- book/</code> 逐次累积统计得出（本机复算 <b>699 条</b>，共 432 次提交），再与各版本的实测/自述条数相减。两个输入都能独立复核。</li>
+<li><b>「落后多少条」用上游官方口径复算过。</b>上游条目数由 <code>git log -p -- book/</code> 逐次累积统计得出（本机复算 <b>699 条</b>，共 432 次提交），再与各项目的实测/自述条数相减。两个输入都能独立复核。</li>
 <li><b>「落后 N 天」有粒度盲区。</b>699 条是某天某一刻达到的，而当天很多提交只改文档、不改条数。所以我们优先用站点<b>自己声明的构建 / 修订时间</b>（构建产物时间、更新记录页、App 版本发布日期），拿不到才退回 sitemap 的 <code>lastmod</code>，再拿不到才用「该条数首次出现在上游的时间」。准确说法是：<b>「若内容停在达到 N 条的那次提交，则大约落后 N 天」</b>。要更准只能逐站 diff 正文。</li>
-<li><b>「运行时自动跟进」是读了源码得出的，不是我们替它保证的。</b>例如 daily-life-tip 的 <code>RemoteBook.swift</code> 里写着「内置的那份数据是编译时快照，永远能出内容。这里只负责『书更新了，跟上去』」；shiye-tab 的 <code>src/sources.js</code> 每次打开都拉 <code>raw.githubusercontent.com/eternity4719/…</code> 并按 <code>### </code> 解析。这类版本<b>不该被算作「落后」</b>。</li>
+<li><b>「运行时自动跟进」是读了源码得出的，不是我们替它保证的。</b>例如 daily-life-tip 的 <code>RemoteBook.swift</code> 里写着「内置的那份数据是编译时快照，永远能出内容。这里只负责『书更新了，跟上去』」；shiye-tab 的 <code>src/sources.js</code> 每次打开都拉 <code>raw.githubusercontent.com/eternity4719/…</code> 并按 <code>### </code> 解析。这类项目<b>不该被算作「落后」</b>。</li>
 <li><b>「自述」和「实测」在表里是分开的。</b>实测 = 读它自己发布的文件数出来的真数；自述 = 只有它自己写的数字可参考。目前 18 项里有 <b>15 项</b>拿到了实测依据；剩下 1 项是 iOS App，只能读商店页文案 —— <b>App 的条目数不下载安装包就测不了，这是诚实的边界</b>，我们不会拿自述当真数。</li>
 <li>「门槛」一列<b>照抄上游 <code>衍生项目.md</code> 的原文口径</b>，标「未标注」= 原文也没写，<b>非本站核验</b>。可达性、延迟、CDN、条目数为本站实测。</li>
 <li>可达性是<b>单机单时点</b>结论。Cloudflare 站在国内「时通时不通」，探活全通只说明<b>此刻</b>通畅。</li>
@@ -847,8 +856,8 @@ footer{margin-top:56px;border-top:1px solid var(--line);padding:22px 0 60px;colo
 
 <footer>
 上游：<a href="https://github.com/eternity4719/HowToLiveBetter" target="_blank" rel="noopener">eternity4719/HowToLiveBetter</a> · CC BY 4.0 · 62,780 ★ / 5,291 forks · 最新提交 <code>4540c90a</code>（2026/10/14 17:16:24）<br>
-本站由 <code>fetch-upstream.sh</code>（取上游 git 历史）→ <code>verify-upstream.mjs</code> / <code>verify-ecosystem.mjs</code>（查证）→ <code>build-site.mjs</code>（渲染）→ <code>deploy.mjs</code>（部署到 Cloudflare Worker）串成，生成于 2026/10/15 00:42:17。<br>
-逐项重算由 GitHub Actions 每日自动执行并回灌本站数据层；本页构建于：<b id="crawlAt">2026/10/15 00:42:17</b>。聚合与查证由 Strange 维护。
+本站由 <code>fetch-upstream.sh</code>（取上游 git 历史）→ <code>verify-upstream.mjs</code> / <code>verify-ecosystem.mjs</code>（查证）→ <code>build-site.mjs</code>（渲染）→ <code>deploy.mjs</code>（部署到 Cloudflare Worker）串成，生成于 2026/10/15 01:35:55。<br>
+逐项重算由 GitHub Actions 每日自动执行并回灌本站数据层；本页构建于：<b id="crawlAt">2026/10/15 01:35:55</b>。聚合与查证由 Strange 维护。
 </footer>
 </div>
 
