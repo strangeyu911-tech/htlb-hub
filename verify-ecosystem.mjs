@@ -619,7 +619,7 @@ const ARTIFACT_PARSERS = {
     return out;
   },
   async 'parveen0029/The-Evidence-Based-Life'(out) {
-    // 它是本书的**英文对照翻译**，但 GitHub 上 `fork: false`（是另建的独立仓库），
+    // 它是《高性价比人生指南》的**英文对照翻译**，但 GitHub 上 `fork: false`（是另建的独立仓库），
     // 且 book/ 下用的是英文文件名（`book/01-avoiding-premature-death.md`），跟上游的中文名
     // （`book/01-不要早死.md`）完全对不上 → **不能沿用 BOOK_FILES**，得先列它自己的 book/ 目录，
     // 再按同一个官方口径（`### ` 标题数）逐文件数。34 个文件。

@@ -188,7 +188,7 @@
    "kind": "网站+MCP",
    "url": "https://better.aigcwei.cn/",
    "ghRepo": "Helioswei/HowToLiveBetter-Kit",
-   "note": "按节/按场景读、检索全部条目；MCP 装进 Cursor/Claude Code 后助手回答前先查本书并注明第几节第几条，可按性价比/成本/证据等级/收益筛选；不用注册、没有广告",
+   "note": "按节/按场景读、检索全部条目；MCP 装进 Cursor/Claude Code 后助手回答前先查《高性价比人生指南》并注明第几节第几条，可按性价比/成本/证据等级/收益筛选；不用注册、没有广告",
    "probes": [
     {
      "ok": true,
@@ -222,7 +222,7 @@
     "created_at": "2026-10-08T16:57:46Z",
     "archived": false,
     "license": "MIT",
-    "desc": "《高性价比人生指南》的 MCP 服务：让 AI 助手先查这本书的近 700 条循证建议再回答，并注明出自第几节第几条。附国内可访问的静态站工具与自动同步上游。代码 MIT，正文 CC BY 4.0 原样转载（未作改动）。",
+    "desc": "《高性价比人生指南》的 MCP 服务：让 AI 助手先查《高性价比人生指南》的近 700 条循证建议再回答，并注明出自第几节第几条。附国内可访问的静态站工具与自动同步上游。代码 MIT，正文 CC BY 4.0 原样转载（未作改动）。",
     "lastCommitAt": "2026-10-14T09:24:30Z",
     "lastCommitMsg": "chore(deploy): 触发 Makers 重新构建（产物已更新，上游 4540c90a23）"
    },

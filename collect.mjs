@@ -120,7 +120,7 @@ const DERIVED = [
   { id: 'life.warpnav.com', name: 'WarpNav 人生手册', author: 'SatoMini', kind: '网站', url: 'https://life.warpnav.com/', note: '按生活场景进入、搜索筛选、收藏导入导出、接着上次读；不用注册；页面有广告' },
   { id: 'life.xfun.fun', name: '手绘地图版', author: 'sagiriiiiii', kind: '网站', url: 'https://life.xfun.fun/', note: '各节画成可拖动地图，每条是可翻面卡片，支持拼音搜索和生成分享海报' },
   { id: 'how2livebetter.net', name: '人生阶段指南', author: 'marsbuildlog', kind: '网站', url: 'https://how2livebetter.net/', note: '按五个阶段重排；处境自测、行动清单、每日打卡；阅读免费，打卡/复查提醒以后收费' },
-  { id: 'better.aigcwei.cn', name: 'better.aigcwei.cn + MCP', author: 'Helioswei', kind: '网站+MCP', url: 'https://better.aigcwei.cn/', ghRepo: 'Helioswei/HowToLiveBetter-Kit', note: '按节/按场景读、检索全部条目；MCP 装进 Cursor/Claude Code 后助手回答前先查本书并注明第几节第几条，可按性价比/成本/证据等级/收益筛选；不用注册、没有广告' },
+  { id: 'better.aigcwei.cn', name: 'better.aigcwei.cn + MCP', author: 'Helioswei', kind: '网站+MCP', url: 'https://better.aigcwei.cn/', ghRepo: 'Helioswei/HowToLiveBetter-Kit', note: '按节/按场景读、检索全部条目；MCP 装进 Cursor/Claude Code 后助手回答前先查《高性价比人生指南》并注明第几节第几条，可按性价比/成本/证据等级/收益筛选；不用注册、没有广告' },
   { id: 'qingdan.lazyso.com', name: '懒人性价性清单', author: 'lazyvip', kind: '网站', url: 'https://qingdan.lazyso.com/', note: '按「0元、不费毅力、收益大、证据A」组合筛选；打勾记进度、每日一条；不用注册、无广告' },
   { id: 'livebetter101.com', name: 'LiveBetter 101', author: 'PlatoTheOne', kind: '网站', url: 'https://livebetter101.com/', note: '闯关游戏：建议改编成生活场景选择题，分急救/钱包/时间/关系/安全几块练；不用注册、无广告' },
   { id: 'howtolivebetter-92110.app.workbuddy.host', name: '循证建议地图', author: 'felixlee0608', kind: '网站', url: 'https://howtolivebetter-92110.app.workbuddy.host/', note: '有词云和条目关系图，挑条目进清单，能生成分享卡片图；不登录也能用，用微信登录可以把清单存到云端' },
