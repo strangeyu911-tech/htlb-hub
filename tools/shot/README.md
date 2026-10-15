@@ -59,3 +59,35 @@ python contact.py       # → contact.png
 
 > 这些图会过时（项目改版、GitHub 换 UI）。介意的站点按上面流程重跑单个 slug 即可：
 > `node capture.cjs <slug> && python over.py <slug> && python crop.py && python contact.py`
+
+## 五、两张不走 capture.cjs 的图
+
+### 「四格漫画 PDF」——它是 PDF，没有网页可截
+
+原来截的是 GitHub Release 页（能看到「762 页」和 Assets 里的 PDF），但读者真正想看的是**漫画本身长什么样**。
+PDF 没法用 CDP 打开截屏，所以改成：**临时下载 → 渲染 → 截图 → 删掉**。
+
+```bash
+mkdir -p .cache/comics
+curl -L -C - --max-time 2400 -o .cache/comics/comics.pdf \
+  https://github.com/robiNeo2045/HowToLiveBetter/releases/download/comics-2026-10-03/HowToLiveBetter-comics-2026-10-03.pdf
+python comics-pdf.py          # → site/shot/robineo2045-comics.webp
+rm .cache/comics/comics.pdf   # 18 MB，别留在本地
+```
+
+- **为什么是「两页并排」**：单页是 540×770 竖版，裁成 16:10 只剩中间两格，四格漫画被砍一半；
+  两页并排比例 1.40，从顶部裁掉底部脚注后正好是 16:10，而且一眼能看出「这是一本四格漫画书」。
+- 这条**不在 `crops.json` 里**，`crop.py` 不管它 —— 否则下次全量重跑会用旧的 Release 页截图把它覆盖回去。
+  重跑命令见 `comics-pdf.py` 头部注释。
+
+### 「另见」区块的 5 张
+
+那 5 个站点不在 `data/projects.json`（上游官方清单）里，所以用单列的 `capture-extra.cjs`：
+
+```bash
+node capture-extra.cjs && python over.py mirror patch justin-sun-corpus howtoworkbetter shangbanbao
+python crop.py               # 取景规格在 crops.json 里，和其它站同一条流水线
+```
+
+页面那一块是**左图右文**（`.mrow` / `.mshot`），图能放到 ~565px —— 网格卡片里只有 ~346px，
+所以同样 16:10 的图在这一块显得更大，取景时可以比卡片图更"完整"，不必只挑一个特写。
