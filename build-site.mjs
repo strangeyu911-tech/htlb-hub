@@ -611,11 +611,11 @@ ${cards}
     <a class="mshot" href="https://strangeyu911-tech.github.io/justin-sun-corpus/" target="_blank" rel="noopener"><img src="${SITE_ORIGIN}/shot/justin-sun-corpus.webp" alt="「孙割这十年」首屏：左侧目录、大标题「说中了什么，说错了什么」与两卷入口" width="1200" height="750" loading="lazy" decoding="async"></a>
     <div class="mtext">
       <div class="bmeta">
-        <b><a href="https://strangeyu911-tech.github.io/justin-sun-corpus/" target="_blank" rel="noopener">孙割这十年：说中了什么，说错了什么</a></b>
-        <span class="dim">高性价比人生指南（孙割版）· 整理孙宇晨十年公开语料 · 本站维护者自己的作品</span>
+        <b><a href="https://strangeyu911-tech.github.io/justin-sun-corpus/" target="_blank" rel="noopener">高性价比人生指南（孙割版）</a></b>
+        <span class="dim">孙割这十年：说中了什么，说错了什么 · 整理孙宇晨十年公开语料 · 本站维护者自己的作品</span>
       </div>
       <p class="feat" style="margin:12px 0 0;flex:none">把<b>孙宇晨</b>跨度约十年的两套公开材料放在一起：2016–2017 年的付费音频专栏《财富自由革命之路》全 156 集，与 2026 年的一次 4 小时 22 分长访谈。按年份分卷、逐板块标注证据等级，另附一张逐条的十年对照表。</p>
-      <p class="dim" style="margin:8px 0 0">它<b>不下判断，只做转述与来源定级</b> —— 每条引语标明「离原话有多远」，精确到讲号或时间码。「高性价比人生指南（孙割版）」是给它起的一句顺口别名；内容全部整理自孙宇晨的公开语料，与《高性价比人生指南》没有内容关系。作者 Strange。</p>
+      <p class="dim" style="margin:8px 0 0">它<b>不下判断，只做转述与来源定级</b> —— 每条引语标明「离原话有多远」，精确到讲号或时间码。「高性价比人生指南（孙割版）」是一句顺口别名；内容全部整理自孙宇晨的公开语料，与《高性价比人生指南》没有内容关系。作者 Strange。</p>
       <a class="cta" style="margin:14px 0 0;max-width:330px" href="https://strangeyu911-tech.github.io/justin-sun-corpus/" target="_blank" rel="noopener">打开孙割版人生指南 →</a>
     </div>
   </div>
