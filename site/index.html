@@ -52,10 +52,9 @@ h2{font-size:20px;font-weight:600;margin:44px 0 8px}
 .chip:hover{border-color:#c9c5bc}
 .chip.on{background:var(--tx);color:#fff;border-color:var(--tx)}
 .sorts{display:flex;gap:6px;margin-left:auto}
-/* minmax 310px（原 330px）：目录侧栏会吃掉 224px 横向空间，330px 阈值下
-   3 列需要 1022px 可用宽，视口要 1300px 以上才排得下；降到 310px 后
-   3 列只需 962px，配合 1300px 断点刚好不掉列。顺带让 1024–1240px 的
-   视口也能排 3 列（原来只能 2 列）。 */
+/* minmax 310px（原 330px）：目录侧栏会吃掉 224px 横向空间。降到 310px 后
+   3 列只需 962px 可用宽，配合 1024px 的侧栏断点 —— 1024–1300px 区间侧栏
+   常驻、卡片 2 列，1300px 以上两者兼得。 */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:16px;margin-top:18px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:19px 20px;display:flex;flex-direction:column;overflow:hidden}
 /* 卡片顶部实拍截图：卡片本身有 19px/20px 内边距，靠负 margin 让图贴到圆角边上。
@@ -120,13 +119,15 @@ footer{margin-top:56px;border-top:1px solid var(--line);padding:22px 0 60px;colo
 @media(max-width:760px){.top .official{display:none}}
 
 /* ── 页面目录 ──────────────────────────────────────────────────────────
-   窄屏（<1300px）：左滑抽屉 + 遮罩 + 顶栏按钮。手机版整页约 14 屏，
+   窄屏（<1024px）：左滑抽屉 + 遮罩 + 顶栏按钮。手机版整页约 14 屏，
      导航缺口在手机上最大 —— 只做桌面常驻侧栏，恰好避开了最需要它的地方。
-   ≥1300px：常驻左侧栏，正文列连同顶栏内容一起右移、并在「侧栏之外的剩余
+   ≥1024px：常驻左侧栏，正文列连同顶栏内容一起右移、并在「侧栏之外的剩余
      空间」里居中（排法照 mirror-guide 的 #toc / .wrap 那套）。
-   为什么断点是 1300 而不是 1024：卡片网格是 minmax(310px,1fr)，
-     3 列至少要 310×3+16×2 = 962px 可用宽；再加 224px 侧栏与 44px 内边距，
-     视口低于 1300px 时卡片会掉成 2 列 —— 页面反而更长，得不偿失。 */
+   断点原来定在 1300px（理由是「低于它卡片会从 3 列掉成 2 列」），实测这个
+     阈值太保守：1280×800、1366 缩放 150%（逻辑宽 910）、PC 微信内置浏览器
+     这类最常见的桌面视口都落在 1024–1300 区间 —— 读者看到的就只有顶栏那个
+     「☰ 目录」按钮，等于没有目录。现在改成 1024px：1024–1300 之间侧栏常驻、
+     卡片落成 2 列，多滚一点，但目录是看得见的。 */
 :root{--toc-w:224px;--bar-h:56px}
 #toc{position:fixed;top:var(--bar-h);left:0;width:var(--toc-w);max-width:84vw;height:calc(100vh - var(--bar-h));height:calc(100dvh - var(--bar-h));background:var(--card);border-right:1px solid var(--line);overflow:auto;overscroll-behavior:contain;padding:14px 12px 28px;transform:translateX(-103%);transition:transform .25s;z-index:950}
 #toc.open{transform:translateX(0)}
@@ -147,7 +148,7 @@ footer{margin-top:56px;border-top:1px solid var(--line);padding:22px 0 60px;colo
 #pick,#mine,#related,#verify,#badge,#probe,#source,details.more{scroll-margin-top:calc(var(--bar-h) + 14px)}
 html{scroll-behavior:smooth}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}#toc{transition:none}}
-@media(min-width:1300px){
+@media(min-width:1024px){
   /* 桌面让它一路顶到最上面：白色与顶栏连成一片、右边框是一条不断开的竖线，
      目录项则靠 padding-top 让到顶栏下面 */
   #toc{transform:none;top:0;height:100vh;height:100dvh;padding-top:calc(var(--bar-h) + 18px)}
@@ -184,7 +185,7 @@ html{scroll-behavior:smooth}
   <span class="sp"></span>
   <a class="official" href="https://eternity4719.github.io/HowToLiveBetter/" target="_blank" rel="noopener">📖 官方原站 <em>原书全文</em> ↗</a>
   <span class="sp"></span>
-  <span class="src">上游 <b id="upn">699</b> 条<span class="hs"> · <code>4540c90a</code></span><span class="dt"><br>数据 2026/10/15 06:19:32（可实时刷新）</span></span>
+  <span class="src">上游 <b id="upn">699</b> 条<span class="hs"> · <code>4540c90a</code></span><span class="dt"><br>数据 2026/10/15 20:22:13（可实时刷新）</span></span>
 </div></header>
 
 <div class="wrap">
@@ -621,11 +622,11 @@ html{scroll-behavior:smooth}
 </article>
 </div>
 
-<h2 id="mine">另见：本站维护者自己的两个站点<span class="aside-tag">与本书无关 · 未被上游清单收录</span></h2>
-<div class="warnbox" style="border-style:dashed;border-color:#e0dcd2;background:#fbfaf6"><b>先把话说清楚：</b>下面两条是<b>本站维护者 Strange 自己的作品</b>，与《高性价比人生指南》<b>没有任何内容或版本关系</b>，也不在上游 <code>衍生项目.md</code> 的收录范围里。它们<b>不参与任何同步对比，也不计入上面这 18 个项目</b> —— 列在这里只是因为主题相邻、读者可能感兴趣。（想判断衍生站谁更新，请看上面的卡片。）</div>
+<h2 id="mine">另见：本站维护者自己的两个站点<span class="aside-tag">未被上游清单收录 · 不计入同步对比</span></h2>
+<div class="warnbox" style="border-style:dashed;border-color:#e0dcd2;background:#fbfaf6"><b>先把话说清楚：</b>下面两条都是<b>本站维护者 Strange 自己的作品</b>，都不在上游 <code>衍生项目.md</code> 的收录范围里，也<b>不参与上面的同步对比、不计入这 18 个项目</b>。但两条的性质不一样：第一条讲的是<b>另一本书</b>（Boden《以日为鉴》），与本书<b>没有任何内容或版本关系</b>；第二条是<b>本书的独立增补</b> —— 照本书体例另写、与本书并列，但<b>不收录、不复制本书任何一条正文</b>。列在这里只是因为主题相邻、读者可能感兴趣。（想判断衍生站谁更新，请看上面的卡片。）</div>
 <div class="panel" style="border-style:dashed;border-color:#e0dcd2;background:#fcfbf8">
   <div class="bmeta">
-    <b><a href="https://mirror.strangeyu.xyz/" target="_blank" rel="noopener">以日为鉴：衰退时代普通人生存指南（增补版）</a></b>
+    <b><a href="https://mirror.strangeyu.xyz/" target="_blank" rel="noopener">以日为镜：衰退时代普通人生存指南（以日为鉴 增补版）</a></b>
     <span class="dim">讲的是另一本书 · 与本书无任何内容交集 · 本站维护者自己的作品</span>
   </div>
   <p class="feat" style="margin:12px 0 0;flex:none">灵感源自 Boden《以日为鉴》，以日本「失去三十年」为镜，综合 20 余位中日与国际学者的观点与 2026 年最新数据，直接给出结论、置信度与分人群行动。</p>
@@ -635,11 +636,11 @@ html{scroll-behavior:smooth}
   <hr style="border:0;border-top:1px solid #f2f0ec;margin:20px 0">
 
   <div class="bmeta">
-    <b><a href="https://mirror.strangeyu.xyz/patch" target="_blank" rel="noopener">衰退时代补丁包：33 条下行周期要改的账</a></b>
-    <span class="dim">《以日为鉴》的独立增补 · 不含该书正文 · 本站维护者自己的作品</span>
+    <b><a href="https://mirror.strangeyu.xyz/patch" target="_blank" rel="noopener">衰退时代补丁包：41 条下行周期要改的账</a></b>
+    <span class="dim">《高性价比人生指南》的独立增补 · 不含该书正文 · 本站维护者自己的作品</span>
   </div>
-  <p class="feat" style="margin:12px 0 0;flex:none">《以日为鉴》讲的是「正常时代怎么活」，这份只讲<b>衰退期哪些账会变</b>：升级 / 反转 / 新增 / 降级四类，每条写明成本、换回什么、证据档和适用人群，另按「情形档位」与证伪信号决定要不要加码。</p>
-  <p class="dim" style="margin:8px 0 0">它<b>没有收录、复制或改动《以日为鉴》任何一条正文</b>，是作者依据自己的研究另写的独立作品，与那本书并列而非它的某一版。文字与代码以 CC BY-NC-SA 4.0 开源。作者 Strange。</p>
+  <p class="feat" style="margin:12px 0 0;flex:none">《高性价比人生指南》讲的是「正常时代怎么活」，这份只讲<b>衰退期哪些账会变</b>：升级 / 反转 / 新增 / 降级四类，每条写明成本、换回什么、证据档和适用人群，另按「情形档位」与证伪信号决定要不要加码。</p>
+  <p class="dim" style="margin:8px 0 0">它<b>没有收录、复制或改动《高性价比人生指南》任何一条正文</b>，是作者依据自己的研究另写的独立作品，与那本书并列而非它的某一版。文字与代码以 CC BY-NC-SA 4.0 开源。作者 Strange。</p>
   <a class="cta" style="margin:14px 0 0;max-width:330px" href="https://mirror.strangeyu.xyz/patch" target="_blank" rel="noopener">打开补丁包 →</a>
 </div>
 
@@ -941,8 +942,8 @@ html{scroll-behavior:smooth}
 
 <footer>
 上游：<a href="https://github.com/eternity4719/HowToLiveBetter" target="_blank" rel="noopener">eternity4719/HowToLiveBetter</a> · CC BY 4.0 · 62,780 ★ / 5,291 forks · 最新提交 <code>4540c90a</code>（2026/10/14 17:16:24）<br>
-本站由 <code>fetch-upstream.sh</code>（取上游 git 历史）→ <code>verify-upstream.mjs</code> / <code>verify-ecosystem.mjs</code>（查证）→ <code>build-site.mjs</code>（渲染）→ <code>deploy.mjs</code>（部署到 Cloudflare Worker）串成，生成于 2026/10/15 06:19:32。<br>
-逐项重算由 GitHub Actions 每日自动执行并回灌本站数据层；本页构建于：<b id="crawlAt">2026/10/15 06:19:32</b>。聚合与查证由 Strange 维护。
+本站由 <code>fetch-upstream.sh</code>（取上游 git 历史）→ <code>verify-upstream.mjs</code> / <code>verify-ecosystem.mjs</code>（查证）→ <code>build-site.mjs</code>（渲染）→ <code>deploy.mjs</code>（部署到 Cloudflare Worker）串成，生成于 2026/10/15 20:22:13。<br>
+逐项重算由 GitHub Actions 每日自动执行并回灌本站数据层；本页构建于：<b id="crawlAt">2026/10/15 20:22:13</b>。聚合与查证由 Strange 维护。
 </footer>
 </div>
 
