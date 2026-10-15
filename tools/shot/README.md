@@ -60,7 +60,7 @@ python contact.py       # → contact.png
 > 这些图会过时（项目改版、GitHub 换 UI）。介意的站点按上面流程重跑单个 slug 即可：
 > `node capture.cjs <slug> && python over.py <slug> && python crop.py && python contact.py`
 
-## 五、两张不走 capture.cjs 的图
+## 五、几种不走 capture.cjs 的图
 
 ### 「四格漫画 PDF」——它是 PDF，没有网页可截
 
@@ -91,3 +91,21 @@ python crop.py               # 取景规格在 crops.json 里，和其它站同�
 
 页面那一块是**左图右文**（`.mrow` / `.mshot`），图能放到 ~565px —— 网格卡片里只有 ~346px，
 所以同样 16:10 的图在这一块显得更大，取景时可以比卡片图更"完整"，不必只挑一个特写。
+
+### 两张手工指定的取景（`manual/` + `manual-shots.py`）
+
+`how2livebetter-net`（人生阶段指南）与 `www-howtolivebetter-cn`（渐好）—— 维护者看过自动截的版本后
+认为取景不如他自己截的那一屏，于是**直接给了原图**。原图入库在 `manual/`，由 `manual-shots.py` 裁成 16:10：
+
+```bash
+python manual-shots.py       # manual/*.png → site/shot/<slug>.webp
+```
+
+钳制的理由写在脚本 `SPEC` 里，核心是**两张都不是 16:10，而裁哪边有讲究**：
+
+- 阶段指南 1910×1415（1.35，竖）→ 只能裁高度，**从底部裁**：页头、大标题、阶段入口、右侧示例条目卡全在上半部。
+- 渐好 1910×915（2.09，宽幅屏截的）→ 只能裁宽度，**从右侧裁**：左侧功能栏是站点标识、
+  「眼前的处境」三张卡是这一站的核心，都得留住；裁完差的 6% 高度**用边缘色补齐**，不再切内容。
+
+这两个 slug 也已从 `crops.json` 移除（否则 `crop.py` 会用 CDP 截的旧图覆盖回去）。
+要换成新的手工图：把 PNG 放进 `manual/`、改脚本里的 `box`、重跑一次即可。
