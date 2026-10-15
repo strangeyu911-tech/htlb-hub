@@ -335,7 +335,7 @@ const html = `<!DOCTYPE html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>高性价比人生指南 · 18 个衍生项目墙内聚合（逐个核实同步到哪一版）</title>
+<title>高性价比人生指南 · ${stats.total} 个衍生项目墙内聚合（逐个核实同步到哪一版）</title>
 <meta name="description" content="《高性价比人生指南》的 ${stats.total} 个衍生项目聚在一处，逐个实测同步到了哪一版、墙内打开多快、要不要注册、有没有广告。民间自建、非官方。">
 <style>
 :root{--bg:#faf9f7;--card:#fff;--line:#e6e3dc;--tx:#2c2c2a;--tx2:#5f5e5a;--tx3:#8a8880;
