@@ -188,11 +188,20 @@ rows.sort((a, b) => {
   }
   return a.typeIdx - b.typeIdx;
 });
-/** 「尚未追平、落后最少」的那批项目 —— minLag 与 minLagName 必须共用这一个数组。
- *  ⚠️ 原来 minLag 用 `lag != null`（把已追平项目的 0 也算了进去），minLagName 用 `lag > 0`，
- *     于是首屏那张卡显示成「最接近最新版 落后 0 条 · 打勾清单（699/699）」——
- *     名字取的是落后 9 条的项目，数字却按 0 算，自相矛盾。 */
-const lagging = rows.filter((r) => r.lag != null && r.lag > 0);
+/** 参与「落后」排名的项目 —— minLag/minLagName 与 maxLag/maxLagName 共用这一个数组。
+ *
+ *  ⚠️ 这个口径已经踩过两次、方向正好相反，别再来第三次：
+ *   ① 最早 minLag 用 `lag != null`（把已追平的 0 也算进去）、minLagName 用 `lag > 0`
+ *      → 名字取落后 9 条的项目、数字却按 0 算，首屏显示「落后 0 条 · 打勾清单（699/699）」。
+ *   ② 于是改成两者都用 `lag > 0`：数字和名字是自洽了，却把「已追平」的项目排除在候选之外 ——
+ *      明明有 4 个项目落后 0 条，首屏仍写「最接近最新版 落后 66 条 · 渐好（699/765）」，
+ *      和下方卡片的「✅ 追平上游 765 条」当场对不上（2026-10-16 用户报的 bug）。
+ *  正解 = **一个数组、含 0**：数字和名字都从它算，显示层再看 minLag 是否为 0 决定文案。
+ *
+ *  另外排除 `fixed`（固定快照）：「落后」对它是作者的设计选择、不是缺陷，卡片和明细表
+ *  都不显示落后条数，排名里自然也不该出现 —— 否则会选出「落后最多 = 四格漫画（快照）」
+ *  这种与卡片自相矛盾的结论。 */
+const ranked = rows.filter((r) => r.lag != null && r.verdict !== 'fixed');
 
 const stats = {
   total: rows.length,
@@ -207,10 +216,11 @@ const stats = {
   selfDeclaredOnly: rows.filter((r) => r.actualEntries == null && r.selfDeclared != null).length,
   withOwnVersion: rows.filter((r) => r.ownVersion).length,
   hasCount: rows.filter((r) => r.declared != null).length,
-  maxLag: rows.filter((r) => r.lag != null).length ? Math.max(...rows.filter((r) => r.lag != null).map((r) => r.lag)) : 0,
-  maxLagName: rows.filter((r) => r.lag != null).sort((a, b) => b.lag - a.lag)[0]?.name || '',
-  minLag: lagging.length ? Math.min(...lagging.map((r) => r.lag)) : 0,
-  minLagName: [...lagging].sort((a, b) => a.lag - b.lag)[0]?.name || '',
+  maxLag: ranked.length ? Math.max(...ranked.map((r) => r.lag)) : 0,
+  maxLagName: [...ranked].sort((a, b) => b.lag - a.lag)[0]?.name || '',
+  minLag: ranked.length ? Math.min(...ranked.map((r) => r.lag)) : 0,
+  minLagName: [...ranked].sort((a, b) => a.lag - b.lag)[0]?.name || '',
+  syncedCount: ranked.filter((r) => r.lag === 0).length,
   cf: rows.filter((r) => r.cdn === 'Cloudflare').length,
   domestic: rows.filter((r) => r.domestic).length,
   platforms: new Set(rows.map((r) => r.kind)).size,
@@ -248,7 +258,7 @@ const CONF_LABEL = { high: '高', medium: '中', low: '低', none: '无' };
 
 // ── 卡片 ──
 const cards = rows
-  .map((r) => {
+  .map((r, i) => {
     const v = V[r.verdict];
     const lagBadge =
       r.verdict === 'fixed'
@@ -261,7 +271,11 @@ const cards = rows
               ? `<span class="lag ok">✅ 追平上游 ${UP_COUNT} 条</span>`
               : `<span class="lag warn">⚠️ 落后 ${r.lag} 条<span class="dim">（${r.declared}/${UP_COUNT}）</span></span>`;
     const dn = r.lagDays == null ? '' : r.lagDays <= 0.05 ? ' · 内容时间 ≈ 上游最新' : ` · 内容大约停在 ${Math.round(r.lagDays * 10) / 10} 天前`;
-    return `<article class="card" data-tags="${r.tags.join(',')}" data-lag="${r.lag === null ? -1 : r.lag}" data-speed="${r.avg}" data-type="${r.typeIdx}">
+    // data-idx = 构建期排好的位次，「同步最新」排序直接还原它，避免加载后卡片顺序跳动；
+    // data-lag：只有真正「落后 N 条」的项目才是正数，其余（运行时 / 已追平 / 无信号 /
+    //           固定快照）一律 -1 —— 它们都不该参与「落后最多」的排名，否则排序结果
+    //           会和卡片上「♻️ 不存在落后 / ✅ 追平 / 快照」的文案打架。
+    return `<article class="card" data-tags="${r.tags.join(',')}" data-idx="${i}" data-lag="${r.lag != null && r.verdict !== 'fixed' ? r.lag : -1}" data-speed="${r.avg}" data-type="${r.typeIdx}">
   <a class="shot" href="${r.url}" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="${SITE_ORIGIN}/shot/${r.slug}.webp" alt="" width="1200" height="750" loading="lazy" decoding="async"></a>
   <div class="chead">
     <h3><a href="${r.url}" target="_blank" rel="noopener">${r.name}</a></h3>
@@ -540,7 +554,7 @@ html{scroll-behavior:smooth}
     <div class="stat"><div class="k">已收录的衍生项目</div><div class="v b">${stats.total}</div><div class="n">来自上游 README 的官方清单</div></div>
     <div class="stat"><div class="k">墙内可达</div><div class="v g">${stats.okProbes}/${stats.probes}</div><div class="n">${stats.total} 项 × 3 轮探活全通（含未开梯子时）</div></div>
     <div class="stat"><div class="k">已核实同步到哪一版</div><div class="v g">${stats.hasCount}/${stats.total}</div><div class="n">其中 ${stats.measured} 项读的是实测产物；另 ${stats.runtime} 项运行时自动跟进、无需版本号</div></div>
-    <div class="stat"><div class="k">最接近最新版</div><div class="v g">落后 ${stats.minLag} 条</div><div class="n">${stats.minLagName}（${UP_COUNT - stats.minLag}/${UP_COUNT}）</div></div>
+    <div class="stat"><div class="k">最接近最新版</div><div class="v g">${stats.minLag === 0 ? '已追平' : '落后 ' + stats.minLag + ' 条'}</div><div class="n">${stats.minLag === 0 && stats.syncedCount > 1 ? stats.minLagName + ' 等 ' + stats.syncedCount + ' 个' : stats.minLagName}（${UP_COUNT - stats.minLag}/${UP_COUNT}）</div></div>
     <div class="stat"><div class="k">落后最多</div><div class="v a">${stats.maxLag} 条</div><div class="n">${stats.maxLagName}</div></div>
     <div class="stat"><div class="k">运行时自动跟进</div><div class="v g">${stats.runtime} 项</div><div class="n">每次打开直接拉上游，不存快照</div></div>
   </div>
@@ -734,10 +748,11 @@ ${ghRows}
     var vis=cards.slice().sort(function(a,b){
       if(sortKey==='speed')return (+a.dataset.speed)-(+b.dataset.speed);
       if(sortKey==='type')return (+a.dataset.type)-(+b.dataset.type);
-      if(sortKey==='lag'){var x=+a.dataset.lag,y=+b.dataset.lag;if(x<0)x=-2;if(y<0)y=-2;return y-x;}
-      var x=+a.dataset.lag,y=+b.dataset.lag;
-      if(x<0)x=9999;if(y<0)y=9999;
-      return x-y;
+      if(sortKey==='lag'){var x=+a.dataset.lag,y=+b.dataset.lag;if(x<0)x=-1;if(y<0)y=-1;return y-x;}
+      /* 「同步最新」= 还原构建期位次（构建期已按「运行时跟随 → 已追平 → 落后由少到多」排过）。
+         ⚠️ 别改回按 data-lag 升序 —— 那样运行时项目（data-lag=-1）会被甩到最末，
+            和用户一眼看到的首屏卡片顺序打架。 */
+      return (+a.dataset.idx)-(+b.dataset.idx);
     });
     vis.forEach(function(c){grid.appendChild(c);});
   }
