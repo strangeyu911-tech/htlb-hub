@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-18T21:32:28.693Z",
+ "generatedAt": "2026-10-19T22:55:04.010Z",
  "upstream": {
   "repo": "eternity4719/HowToLiveBetter",
   "readmeRaw": "https://raw.githubusercontent.com/eternity4719/HowToLiveBetter/main/README.md",
@@ -143,14 +143,14 @@
    "ownVersionShort": "5f210ca9",
    "ownVersionDate": "2026-10-15 17:37:50 +0800",
    "ownGeneratedAt": null,
-   "sitemapLastmod": "2026-10-18T00:00:00.000Z",
+   "sitemapLastmod": "2026-10-19T00:00:00.000Z",
    "sitemapUrls": 814,
    "carriedFrom": null,
    "evidence": [
     "sync/fingerprint.json 自带 commit=5f210ca9、count=765，另有逐条哈希 765 条",
     "仓库同时带 tools/check_drift.py 与 tools/check_verbatim.py —— 该项目自带上游漂移检测与逐字校验",
     "产物文件：sync/fingerprint.json",
-    "sitemap（/sitemap.xml）：814 个 URL，lastmod 最新 2026-10-18（共 814 个 lastmod，已取最大值）",
+    "sitemap（/sitemap.xml）：814 个 URL，lastmod 最新 2026-10-19（共 814 个 lastmod，已取最大值）",
     "页面文案自述 765 条（全文出现的其他数字：765 / 122）—— 仅作交叉参考，不是实测"
    ],
    "ok": 3,
@@ -370,14 +370,14 @@
    "ownVersion": "5f210ca953b7b538c042ad8515d5c355b766a194",
    "ownVersionShort": "5f210ca9",
    "ownVersionDate": "2026-10-15 17:37:50 +0800",
-   "ownGeneratedAt": "2026-10-18T00:01:01Z",
+   "ownGeneratedAt": "2026-10-19T00:12:03Z",
    "sitemapLastmod": null,
    "sitemapUrls": null,
    "carriedFrom": null,
    "evidence": [
-    "data/stats.json 自带 upstream_commit=5f210ca9、synced_at=2026-10-18T00:01:01Z、entries=765（34 节）",
+    "data/stats.json 自带 upstream_commit=5f210ca9、synced_at=2026-10-19T00:12:03Z、entries=765（34 节）",
     "产物文件：data/stats.json",
-    "仓库最后提交 2026-10-18T00:01",
+    "仓库最后提交 2026-10-19T00:12",
     "该条数首次出现在上游是 92ee0409（2026-10-14 19:12）"
    ],
    "ok": 3,
@@ -552,11 +552,11 @@
    "ownGeneratedAt": null,
    "sitemapLastmod": null,
    "sitemapUrls": null,
-   "carriedFrom": "2026-10-17T21:29:23.705Z",
+   "carriedFrom": "2026-10-18T21:32:28.572Z",
    "evidence": [
     "首页取不到: HTTP 403",
     "页面取不到: HTTP 403",
-    "⚠️ 本轮探针被挡（WAF / 网络），**沿用上次实测值 676 条**（来自 2026-10-17T21:29:23 那次运行）",
+    "⚠️ 本轮探针被挡（WAF / 网络），**沿用上次实测值 676 条**（来自 2026-10-18T21:32:28 那次运行）",
     "该条数首次出现在上游是 5a36eaf8（2026-10-09 19:40）"
    ],
    "ok": 3,
