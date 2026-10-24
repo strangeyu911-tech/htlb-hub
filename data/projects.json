@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-23T22:13:04.934Z",
+ "generatedAt": "2026-10-24T21:37:41.845Z",
  "upstream": {
   "repo": "eternity4719/HowToLiveBetter",
   "readmeRaw": "https://raw.githubusercontent.com/eternity4719/HowToLiveBetter/main/README.md",
@@ -17,8 +17,8 @@
   "selfDeclaredOnly": 1,
   "withOwnVersion": 5,
   "runtime": 2,
-  "sync": 6,
-  "lagging": 9,
+  "sync": 7,
+  "lagging": 8,
   "unknown": 0
  },
  "projects": [
@@ -143,7 +143,7 @@
    "ownVersionShort": "e2605d3e",
    "ownVersionDate": "2026-10-21 15:18:00 +0800",
    "ownGeneratedAt": null,
-   "sitemapLastmod": "2026-10-23T00:00:00.000Z",
+   "sitemapLastmod": "2026-10-24T00:00:00.000Z",
    "sitemapUrls": 816,
    "carriedFrom": null,
    "evidence": [
@@ -151,7 +151,7 @@
     "它的 commit 与上游当前 HEAD（e2605d3e）完全一致 → 逐条内容已对齐，不存在「落后」",
     "仓库同时带 tools/check_drift.py 与 tools/check_verbatim.py —— 该项目自带上游漂移检测与逐字校验",
     "产物文件：sync/fingerprint.json",
-    "sitemap（/sitemap.xml）：816 个 URL，lastmod 最新 2026-10-23（共 816 个 lastmod，已取最大值）"
+    "sitemap（/sitemap.xml）：816 个 URL，lastmod 最新 2026-10-24（共 816 个 lastmod，已取最大值）"
    ],
    "ok": 3,
    "total": 3,
@@ -238,10 +238,10 @@
    "carriedFrom": null,
    "evidence": [
     "sitemap（/sitemap.xml）共 830 个 URL，其中「条目 /q/<id>/」逐条页 767 个",
-    "首页自述「767 条建议分 34 章」",
-    "与 sitemap 逐条页计数 767 一致 → 两条独立信号吻合",
     "页面自述「非官方衍生站」、内容按 CC BY 4.0 使用",
-    "sitemap（/sitemap.xml）：830 个 URL（无 lastmod）"
+    "sitemap（/sitemap.xml）：830 个 URL（无 lastmod）",
+    "页面文案自述 767 条（全文出现的其他数字：767 / 2514）—— 仅作交叉参考，不是实测",
+    "该条数首次出现在上游是 f38cb6ae（2026-10-19 12:55）"
    ],
    "ok": 3,
    "total": 3,
@@ -341,6 +341,52 @@
    "lastEdit": ""
   },
   {
+   "id": "life.hcju.com",
+   "name": "阅读版（7 语言）",
+   "slug": "life-hcju-com",
+   "author": "fantadust",
+   "kind": "网站",
+   "url": "https://life.hcju.com/",
+   "linkLabel": "打开网站",
+   "ghRepo": null,
+   "note": "每条一个网址的阅读站，另配 6 个语言版；外语版按当地情况补了急救、劳动、租房、医保等要点。",
+   "tags": [
+    "不用注册",
+    "无广告",
+    "能搜索"
+   ],
+   "gate": "不用注册 · 没有广告 · 外语版为非官方翻译",
+   "status": "sync",
+   "basis": "measured",
+   "confidence": "high",
+   "actualEntries": 767,
+   "selfDeclared": 677,
+   "selfDeclaredFrom": "页面文案首个「N 条」",
+   "lag": 0,
+   "lagEntries": 0,
+   "lagDays": 0,
+   "runtimeFetch": false,
+   "ownVersion": null,
+   "ownVersionShort": null,
+   "ownVersionDate": null,
+   "ownGeneratedAt": null,
+   "sitemapLastmod": "2026-10-24",
+   "sitemapUrls": 2159,
+   "carriedFrom": null,
+   "evidence": [
+    "sitemap.xml 共 2159 个 URL（含 6 个语言版 + 中文原文）；中文原文不带语言前缀，其中逐条页 /<主题>/<slug> 共 776 个，扣除 /guides/* 的 9 个说明页 = **767 条**",
+    "中文原文一级主题 34 个，与上游 34 节吻合",
+    "页面文案自述 677 条（全文出现的其他数字：677 / 767）—— 仅作交叉参考，不是实测",
+    "该条数首次出现在上游是 f38cb6ae（2026-10-19 12:55）",
+    "该站自己的 lastmod 最新到 2026-10-24 → 「内容时间」以此为准"
+   ],
+   "ok": 3,
+   "total": 3,
+   "avg": 1141,
+   "cdn": "Tengine",
+   "lastEdit": ""
+  },
+  {
    "id": "sin0317/htlb-dataset",
    "name": "结构化数据集",
    "slug": "sin0317-htlb-dataset",
@@ -368,14 +414,14 @@
    "ownVersion": "e2605d3e2242bd6216c9255192b8a8957a08c55a",
    "ownVersionShort": "e2605d3e",
    "ownVersionDate": "2026-10-21 15:18:00 +0800",
-   "ownGeneratedAt": "2026-10-23T00:38:47Z",
+   "ownGeneratedAt": "2026-10-24T00:39:14Z",
    "sitemapLastmod": null,
    "sitemapUrls": null,
    "carriedFrom": null,
    "evidence": [
-    "data/stats.json 自带 upstream_commit=e2605d3e、synced_at=2026-10-23T00:38:47Z、entries=767（34 节）",
+    "data/stats.json 自带 upstream_commit=e2605d3e、synced_at=2026-10-24T00:39:14Z、entries=767（34 节）",
     "产物文件：data/stats.json",
-    "仓库最后提交 2026-10-23T00:38",
+    "仓库最后提交 2026-10-24T00:39",
     "该条数首次出现在上游是 f38cb6ae（2026-10-19 12:55）"
    ],
    "ok": 3,
@@ -430,52 +476,6 @@
    "lastEdit": ""
   },
   {
-   "id": "life.hcju.com",
-   "name": "阅读版（7 语言）",
-   "slug": "life-hcju-com",
-   "author": "fantadust",
-   "kind": "网站",
-   "url": "https://life.hcju.com/",
-   "linkLabel": "打开网站",
-   "ghRepo": null,
-   "note": "每条一个网址的阅读站，另配 6 个语言版；外语版按当地情况补了急救、劳动、租房、医保等要点。",
-   "tags": [
-    "不用注册",
-    "无广告",
-    "能搜索"
-   ],
-   "gate": "不用注册 · 没有广告 · 外语版为非官方翻译",
-   "status": "lag",
-   "basis": "measured",
-   "confidence": "high",
-   "actualEntries": 765,
-   "selfDeclared": 677,
-   "selfDeclaredFrom": "页面文案首个「N 条」",
-   "lag": 2,
-   "lagEntries": 2,
-   "lagDays": 6.3,
-   "runtimeFetch": false,
-   "ownVersion": null,
-   "ownVersionShort": null,
-   "ownVersionDate": null,
-   "ownGeneratedAt": null,
-   "sitemapLastmod": "2026-10-15",
-   "sitemapUrls": 2154,
-   "carriedFrom": null,
-   "evidence": [
-    "sitemap.xml 共 2154 个 URL（含 6 个语言版 + 中文原文）；中文原文不带语言前缀，其中逐条页 /<主题>/<slug> 共 774 个，扣除 /guides/* 的 9 个说明页 = **765 条**",
-    "中文原文一级主题 34 个，与上游 34 节吻合",
-    "页面文案自述 677 条（全文出现的其他数字：677 / 765）—— 仅作交叉参考，不是实测",
-    "该条数首次出现在上游是 92ee0409（2026-10-14 19:12）",
-    "该站自己的 lastmod 最新到 2026-10-15 → 「内容时间」以此为准"
-   ],
-   "ok": 3,
-   "total": 3,
-   "avg": 1141,
-   "cdn": "Tengine",
-   "lastEdit": ""
-  },
-  {
    "id": "parveen0029/The-Evidence-Based-Life",
    "name": "The Evidence-Based Life",
    "slug": "parveen0029-the-evidence-based-life",
@@ -512,7 +512,7 @@
    "evidence": [
     "读它自己的 book/（34 个英文文件，取到 34 个）按官方口径数出 ### 标题 765 条",
     "它 README 里自动生成的徽章写 Rules-765 → 与逐文件实测（765）完全一致，两条独立信号闭环",
-    "仓库最后提交 2026-10-23T07:58",
+    "仓库最后提交 2026-10-24T12:36",
     "该条数首次出现在上游是 92ee0409（2026-10-14 19:12）"
    ],
    "ok": 3,
@@ -643,11 +643,11 @@
    "ownGeneratedAt": null,
    "sitemapLastmod": null,
    "sitemapUrls": null,
-   "carriedFrom": "2026-10-22T22:21:49.720Z",
+   "carriedFrom": "2026-10-23T22:13:04.449Z",
    "evidence": [
     "首页取不到: HTTP 403",
     "页面取不到: HTTP 403",
-    "⚠️ 本轮探针被挡（WAF / 网络），**沿用上次实测值 676 条**（来自 2026-10-22T22:21:49 那次运行）",
+    "⚠️ 本轮探针被挡（WAF / 网络），**沿用上次实测值 676 条**（来自 2026-10-23T22:13:04 那次运行）",
     "该条数首次出现在上游是 5a36eaf8（2026-10-09 19:40）"
    ],
    "ok": 3,
