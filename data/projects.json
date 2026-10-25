@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-24T21:37:41.845Z",
+ "generatedAt": "2026-10-25T21:48:53.601Z",
  "upstream": {
   "repo": "eternity4719/HowToLiveBetter",
   "readmeRaw": "https://raw.githubusercontent.com/eternity4719/HowToLiveBetter/main/README.md",
@@ -143,7 +143,7 @@
    "ownVersionShort": "e2605d3e",
    "ownVersionDate": "2026-10-21 15:18:00 +0800",
    "ownGeneratedAt": null,
-   "sitemapLastmod": "2026-10-24T00:00:00.000Z",
+   "sitemapLastmod": "2026-10-25T00:00:00.000Z",
    "sitemapUrls": 816,
    "carriedFrom": null,
    "evidence": [
@@ -151,7 +151,7 @@
     "它的 commit 与上游当前 HEAD（e2605d3e）完全一致 → 逐条内容已对齐，不存在「落后」",
     "仓库同时带 tools/check_drift.py 与 tools/check_verbatim.py —— 该项目自带上游漂移检测与逐字校验",
     "产物文件：sync/fingerprint.json",
-    "sitemap（/sitemap.xml）：816 个 URL，lastmod 最新 2026-10-24（共 816 个 lastmod，已取最大值）"
+    "sitemap（/sitemap.xml）：816 个 URL，lastmod 最新 2026-10-25（共 816 个 lastmod，已取最大值）"
    ],
    "ok": 3,
    "total": 3,
@@ -414,14 +414,14 @@
    "ownVersion": "e2605d3e2242bd6216c9255192b8a8957a08c55a",
    "ownVersionShort": "e2605d3e",
    "ownVersionDate": "2026-10-21 15:18:00 +0800",
-   "ownGeneratedAt": "2026-10-24T00:39:14Z",
+   "ownGeneratedAt": "2026-10-25T00:19:31Z",
    "sitemapLastmod": null,
    "sitemapUrls": null,
    "carriedFrom": null,
    "evidence": [
-    "data/stats.json 自带 upstream_commit=e2605d3e、synced_at=2026-10-24T00:39:14Z、entries=767（34 节）",
+    "data/stats.json 自带 upstream_commit=e2605d3e、synced_at=2026-10-25T00:19:31Z、entries=767（34 节）",
     "产物文件：data/stats.json",
-    "仓库最后提交 2026-10-24T00:39",
+    "仓库最后提交 2026-10-25T00:19",
     "该条数首次出现在上游是 f38cb6ae（2026-10-19 12:55）"
    ],
    "ok": 3,
@@ -643,11 +643,11 @@
    "ownGeneratedAt": null,
    "sitemapLastmod": null,
    "sitemapUrls": null,
-   "carriedFrom": "2026-10-23T22:13:04.449Z",
+   "carriedFrom": "2026-10-24T21:37:41.165Z",
    "evidence": [
     "首页取不到: HTTP 403",
     "页面取不到: HTTP 403",
-    "⚠️ 本轮探针被挡（WAF / 网络），**沿用上次实测值 676 条**（来自 2026-10-23T22:13:04 那次运行）",
+    "⚠️ 本轮探针被挡（WAF / 网络），**沿用上次实测值 676 条**（来自 2026-10-24T21:37:41 那次运行）",
     "该条数首次出现在上游是 5a36eaf8（2026-10-09 19:40）"
    ],
    "ok": 3,
