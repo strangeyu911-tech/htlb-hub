@@ -42,6 +42,10 @@ const UP_COUNT = UP.entries;
 const SITE_ORIGIN = 'https://htlb.strangeyu.xyz';
 const API_ORIGIN = 'https://htlb-api.strangeyu.xyz';
 
+/** Cloudflare Web Analytics beacon token —— 对应 htlb.strangeyu.xyz 这一个站点的统计后台。
+ *  这是公开值（本来就会出现在页面 HTML 里），不是密钥。 */
+const CF_BEACON_TOKEN = '833bbf75096645d5a6dd8fa05fbafa12';
+
 const ECO_BY_ID = Object.fromEntries(eco.projects.map((p) => [p.id, p]));
 
 /**
@@ -518,6 +522,9 @@ html{scroll-behavior:smooth}
   .brand{font-size:13.5px;white-space:nowrap}
 }
 </style>
+<!-- Cloudflare Web Analytics -->
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "${CF_BEACON_TOKEN}"}'></script>
+<!-- End Cloudflare Web Analytics -->
 </head>
 <body>
 <div id="toc-mask"></div>
