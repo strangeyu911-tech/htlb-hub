@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-28T23:15:02.452Z",
+ "generatedAt": "2026-10-29T23:19:06.142Z",
  "upstream": {
   "repo": "eternity4719/HowToLiveBetter",
   "readmeRaw": "https://raw.githubusercontent.com/eternity4719/HowToLiveBetter/main/README.md",
@@ -143,7 +143,7 @@
    "ownVersionShort": "e2605d3e",
    "ownVersionDate": "2026-10-21 15:18:00 +0800",
    "ownGeneratedAt": null,
-   "sitemapLastmod": "2026-10-28T00:00:00.000Z",
+   "sitemapLastmod": "2026-10-29T00:00:00.000Z",
    "sitemapUrls": 816,
    "carriedFrom": null,
    "evidence": [
@@ -151,7 +151,7 @@
     "它的 commit 与上游当前 HEAD（e2605d3e）完全一致 → 逐条内容已对齐，不存在「落后」",
     "仓库同时带 tools/check_drift.py 与 tools/check_verbatim.py —— 该项目自带上游漂移检测与逐字校验",
     "产物文件：sync/fingerprint.json",
-    "sitemap（/sitemap.xml）：816 个 URL，lastmod 最新 2026-10-28（共 816 个 lastmod，已取最大值）"
+    "sitemap（/sitemap.xml）：816 个 URL，lastmod 最新 2026-10-29（共 816 个 lastmod，已取最大值）"
    ],
    "ok": 3,
    "total": 3,
@@ -423,7 +423,7 @@
    "evidence": [
     "读它自己的 book/（34 个英文文件，取到 34 个）按官方口径数出 ### 标题 767 条",
     "它 README 里自动生成的徽章写 Rules-767 → 与逐文件实测（767）完全一致，两条独立信号闭环",
-    "仓库最后提交 2026-10-27T03:24",
+    "仓库最后提交 2026-10-29T16:33",
     "该条数首次出现在上游是 f38cb6ae（2026-10-19 12:55）"
    ],
    "ok": 3,
@@ -506,14 +506,14 @@
    "ownVersion": "e2605d3e2242bd6216c9255192b8a8957a08c55a",
    "ownVersionShort": "e2605d3e",
    "ownVersionDate": "2026-10-21 15:18:00 +0800",
-   "ownGeneratedAt": "2026-10-28T01:18:41Z",
+   "ownGeneratedAt": "2026-10-29T01:47:29Z",
    "sitemapLastmod": null,
    "sitemapUrls": null,
    "carriedFrom": null,
    "evidence": [
-    "data/stats.json 自带 upstream_commit=e2605d3e、synced_at=2026-10-28T01:18:41Z、entries=767（34 节）",
+    "data/stats.json 自带 upstream_commit=e2605d3e、synced_at=2026-10-29T01:47:29Z、entries=767（34 节）",
     "产物文件：data/stats.json",
-    "仓库最后提交 2026-10-28T01:18",
+    "仓库最后提交 2026-10-29T01:47",
     "该条数首次出现在上游是 f38cb6ae（2026-10-19 12:55）"
    ],
    "ok": 3,
@@ -689,11 +689,11 @@
    "ownGeneratedAt": null,
    "sitemapLastmod": null,
    "sitemapUrls": null,
-   "carriedFrom": "2026-10-27T22:57:57.102Z",
+   "carriedFrom": "2026-10-28T23:15:02.341Z",
    "evidence": [
     "首页取不到: HTTP 403",
     "页面取不到: HTTP 403",
-    "⚠️ 本轮探针被挡（WAF / 网络），**沿用上次实测值 676 条**（来自 2026-10-27T22:57:57 那次运行）",
+    "⚠️ 本轮探针被挡（WAF / 网络），**沿用上次实测值 676 条**（来自 2026-10-28T23:15:02 那次运行）",
     "该条数首次出现在上游是 5a36eaf8（2026-10-09 19:40）"
    ],
    "ok": 3,
