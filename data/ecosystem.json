@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-30T22:59:26.203Z",
+ "generatedAt": "2026-10-31T22:30:13.842Z",
  "definition": "条目数 = book/*.md 里的 ### 标题数（上游 tools/sync-stats.mjs 官方口径）；实际条数优先取该项目自己的产物文件，其次 sitemap/页面自述。",
  "upstream": {
   "repo": "eternity4719/HowToLiveBetter",
@@ -22,9 +22,9 @@
   "carried": 1,
   "withOwnVersion": 5,
   "runtime": 2,
-  "sync": 9,
-  "lagging": 7,
-  "unknown": 0,
+  "sync": 10,
+  "lagging": 5,
+  "unknown": 1,
   "highConfidence": 16,
   "hasSitemapLastmod": 5
  },
@@ -84,7 +84,7 @@
    "url": "https://life.warpnav.com/",
    "ghRepo": null,
    "method": "artifact",
-   "actualEntries": 765,
+   "actualEntries": 767,
    "selfDeclared": null,
    "selfDeclaredFrom": null,
    "basis": "measured",
@@ -93,28 +93,28 @@
    "ownVersion": null,
    "ownVersionShort": null,
    "ownGeneratedAt": null,
-   "ownBuildTime": "2026-10-17",
+   "ownBuildTime": "2026-10-31",
    "ownBuildTimeFrom": "更新记录页最新一条",
    "carriedFrom": null,
    "sitemapLastmod": "2026-10-16T00:00:00.000Z",
-   "sitemapLastmodCount": 790,
-   "sitemapUrls": 810,
+   "sitemapLastmodCount": 10,
+   "sitemapUrls": 812,
    "contentMatch": null,
    "runtimeFetch": false,
    "evidence": [
-    "sitemap-0.xml 共 810 个 URL：逐条页 /tips/tip-<hash>/ 756 个 + 具名条页 9 个 = **765 条**；另有 34 个章节页（与上游 34 节吻合）",
-    "更新记录页最新一条是 2026-10-17 → 「内容时间」以此为准",
+    "sitemap-0.xml 共 812 个 URL：逐条页 /tips/tip-<hash>/ 758 个 + 具名条页 9 个 = **767 条**；另有 34 个章节页（与上游 34 节吻合）",
+    "更新记录页最新一条是 2026-10-31 → 「内容时间」以此为准",
     "sitemap 是索引（在 /sitemap-index.xml），跟进第一个子 sitemap：/sitemap-0.xml",
-    "sitemap（/sitemap-0.xml）：810 个 URL，lastmod 最新 2026-10-16（共 790 个 lastmod，已取最大值）",
-    "该条数首次出现在上游是 92ee0409（2026-10-14 19:12）",
-    "站点自己的构建/修订时间 2026-10-17（来源：更新记录页最新一条）→ 「内容时间」以此为准"
+    "sitemap（/sitemap-0.xml）：812 个 URL，lastmod 最新 2026-10-16（共 10 个 lastmod，已取最大值）",
+    "该条数首次出现在上游是 f38cb6ae（2026-10-19 12:55）",
+    "站点自己的构建/修订时间 2026-10-31（来源：更新记录页最新一条）→ 「内容时间」以此为准"
    ],
    "ownVersionDate": null,
-   "lagEntries": 2,
-   "lagEntriesFrom": 765,
-   "lagDays": 4.3,
+   "lagEntries": 0,
+   "lagEntriesFrom": 767,
+   "lagDays": 0,
    "lagDaysFrom": "更新记录页最新一条",
-   "status": "lag"
+   "status": "sync"
   },
   {
    "id": "life.xfun.fun",
@@ -135,7 +135,7 @@
    "ownGeneratedAt": null,
    "ownBuildTime": null,
    "ownBuildTimeFrom": null,
-   "carriedFrom": "2026-10-29T23:19:05.751Z",
+   "carriedFrom": "2026-10-30T22:59:26.203Z",
    "sitemapLastmod": null,
    "sitemapLastmodCount": null,
    "sitemapUrls": null,
@@ -144,7 +144,7 @@
    "evidence": [
     "首页取不到: HTTP 403",
     "页面取不到: HTTP 403",
-    "⚠️ 本轮探针被挡（WAF / 网络），**沿用上次实测值 676 条**（来自 2026-10-29T23:19:05 那次运行）",
+    "⚠️ 本轮探针被挡（WAF / 网络），**沿用上次实测值 676 条**（来自 2026-10-30T22:59:26 那次运行）",
     "该条数首次出现在上游是 5a36eaf8（2026-10-09 19:40）"
    ],
    "ownVersionDate": null,
@@ -220,7 +220,7 @@
    "ownBuildTime": null,
    "ownBuildTimeFrom": null,
    "carriedFrom": null,
-   "sitemapLastmod": "2026-10-30T00:00:00.000Z",
+   "sitemapLastmod": "2026-10-31T00:00:00.000Z",
    "sitemapLastmodCount": 816,
    "sitemapUrls": 816,
    "contentMatch": null,
@@ -230,11 +230,11 @@
     "它的 commit 与上游当前 HEAD（e2605d3e）完全一致 → 逐条内容已对齐，不存在「落后」",
     "仓库同时带 tools/check_drift.py 与 tools/check_verbatim.py —— 该项目自带上游漂移检测与逐字校验",
     "产物文件：sync/fingerprint.json",
-    "sitemap（/sitemap.xml）：816 个 URL，lastmod 最新 2026-10-30（共 816 个 lastmod，已取最大值）",
+    "sitemap（/sitemap.xml）：816 个 URL，lastmod 最新 2026-10-31（共 816 个 lastmod，已取最大值）",
     "页面文案自述 767 条（全文出现的其他数字：767 / 123）—— 仅作交叉参考，不是实测",
-    "仓库最后提交 2026-10-30T02:06",
+    "仓库最后提交 2026-10-31T01:44",
     "该条数首次出现在上游是 f38cb6ae（2026-10-19 12:55）",
-    "该站自己的 lastmod 最新到 2026-10-30 → 「内容时间」以此为准"
+    "该站自己的 lastmod 最新到 2026-10-31 → 「内容时间」以此为准"
    ],
    "ownVersionDate": "2026-10-21 15:18:00 +0800",
    "lagEntries": 0,
@@ -476,7 +476,7 @@
    "evidence": [
     "读它自己的 book/（34 个英文文件，取到 34 个）按官方口径数出 ### 标题 767 条",
     "它 README 里自动生成的徽章写 Rules-767 → 与逐文件实测（767）完全一致，两条独立信号闭环",
-    "仓库最后提交 2026-10-29T16:33",
+    "仓库最后提交 2026-10-31T15:11",
     "该条数首次出现在上游是 f38cb6ae（2026-10-19 12:55）"
    ],
    "ownVersionDate": null,
@@ -535,13 +535,11 @@
    "ghRepo": null,
    "method": "page",
    "actualEntries": null,
-   "selfDeclared": 670,
-   "selfDeclaredFrom": "页面文案首个「N 条」",
-   "basis": "self-declared",
-   "confidence": "low",
-   "pageCounts": [
-    670
-   ],
+   "selfDeclared": null,
+   "selfDeclaredFrom": null,
+   "basis": "none",
+   "confidence": "none",
+   "pageCounts": [],
    "ownVersion": "1.0.4",
    "ownVersionShort": "1.0.4",
    "ownGeneratedAt": "2026-10-09T19:45:44Z",
@@ -556,17 +554,12 @@
    "evidence": [
     "App Store 官方接口：当前版本 v1.0.4，2026-10-09 发布（首次上架 2026-10-07）",
     "更新说明：• 清单里长按一条，可以在「坚持做」和「做一次」之间拖动，也能调整顺序 • 可以自己加一条每天要做的目标 • 右滑的建议都能放进清单。同时能坚持 3 个，做一次能放 5 条 • 这一版里滑动满 50 次，或做完 5 次「做一次」，或打卡满 3 次，会请你给个系统评分…",
-    "商店页自述「建议随 App 安装，没网也能看」→ 内容随包打包，属静态快照",
-    "页面文案自述 670 条（全文出现的其他数字：670）—— 仅作交叉参考，不是实测",
-    "该条数首次出现在上游是 72927368（2026-10-07 15:43）",
-    "站点自己的构建/修订时间 2026-10-09T19:45（来源：App Store 当前版本发布日期）→ 「内容时间」以此为准"
+    "商店页自述「建议随 App 安装，没网也能看」→ 内容随包打包，属静态快照"
    ],
    "ownVersionDate": null,
-   "lagEntries": 97,
-   "lagEntriesFrom": 670,
-   "lagDays": 11.5,
-   "lagDaysFrom": "App Store 当前版本发布日期",
-   "status": "lag"
+   "lagEntries": null,
+   "lagDays": null,
+   "status": "unknown"
   },
   {
    "id": "llzx373/BetterLifeApp",
@@ -696,7 +689,7 @@
    "pageCounts": [],
    "ownVersion": "e2605d3e2242bd6216c9255192b8a8957a08c55a",
    "ownVersionShort": "e2605d3e",
-   "ownGeneratedAt": "2026-10-30T01:56:41Z",
+   "ownGeneratedAt": "2026-10-31T01:34:29Z",
    "ownBuildTime": null,
    "ownBuildTimeFrom": null,
    "carriedFrom": null,
@@ -706,9 +699,9 @@
    "contentMatch": null,
    "runtimeFetch": false,
    "evidence": [
-    "data/stats.json 自带 upstream_commit=e2605d3e、synced_at=2026-10-30T01:56:41Z、entries=767（34 节）",
+    "data/stats.json 自带 upstream_commit=e2605d3e、synced_at=2026-10-31T01:34:29Z、entries=767（34 节）",
     "产物文件：data/stats.json",
-    "仓库最后提交 2026-10-30T01:56",
+    "仓库最后提交 2026-10-31T01:34",
     "该条数首次出现在上游是 f38cb6ae（2026-10-19 12:55）"
    ],
    "ownVersionDate": "2026-10-21 15:18:00 +0800",
