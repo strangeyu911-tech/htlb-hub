@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-03T01:36:53.148Z",
+ "generatedAt": "2026-11-04T00:00:21.333Z",
  "upstream": {
   "repo": "eternity4719/HowToLiveBetter",
   "readmeRaw": "https://raw.githubusercontent.com/eternity4719/HowToLiveBetter/main/README.md",
@@ -143,7 +143,7 @@
    "ownVersionShort": "e2605d3e",
    "ownVersionDate": "2026-10-21 15:18:00 +0800",
    "ownGeneratedAt": null,
-   "sitemapLastmod": "2026-11-02T00:00:00.000Z",
+   "sitemapLastmod": "2026-11-03T00:00:00.000Z",
    "sitemapUrls": 816,
    "carriedFrom": null,
    "evidence": [
@@ -151,7 +151,7 @@
     "它的 commit 与上游当前 HEAD（e2605d3e）完全一致 → 逐条内容已对齐，不存在「落后」",
     "仓库同时带 tools/check_drift.py 与 tools/check_verbatim.py —— 该项目自带上游漂移检测与逐字校验",
     "产物文件：sync/fingerprint.json",
-    "sitemap（/sitemap.xml）：816 个 URL，lastmod 最新 2026-11-02（共 816 个 lastmod，已取最大值）"
+    "sitemap（/sitemap.xml）：816 个 URL，lastmod 最新 2026-11-03（共 816 个 lastmod，已取最大值）"
    ],
    "ok": 3,
    "total": 3,
@@ -188,13 +188,13 @@
    "ownVersionDate": null,
    "ownGeneratedAt": null,
    "sitemapLastmod": "2026-10-21T00:00:00.000Z",
-   "sitemapUrls": 436,
+   "sitemapUrls": 442,
    "carriedFrom": null,
    "evidence": [
     "首页 SSR 内联数据自带 total=767、chapterCount=34（TanStack Start 的 hydration payload）",
     "数据 chunk book-index-cc36Hu-0.js（196 KB）逐条比对上游标题：765/765 = 100.0% → 正文是**构建期全量打包**，不是运行时拉取",
     "全站 JS 里没有任何 raw.githubusercontent / api.github.com 引用，也没有 /api/book、/api/entries 这类正文接口（404）→ 排除「运行时拉上游」",
-    "sitemap（/sitemap.xml）：436 个 URL，lastmod 最新 2026-10-21（共 68 个 lastmod，已取最大值）",
+    "sitemap（/sitemap.xml）：442 个 URL，lastmod 最新 2026-10-21（共 74 个 lastmod，已取最大值）",
     "页面文案自述 767 条（全文出现的其他数字：767）—— 仅作交叉参考，不是实测"
    ],
    "ok": 3,
@@ -468,7 +468,7 @@
    "evidence": [
     "读它自己的 book/（34 个英文文件，取到 34 个）按官方口径数出 ### 标题 767 条",
     "它 README 里自动生成的徽章写 Rules-767 → 与逐文件实测（767）完全一致，两条独立信号闭环",
-    "仓库最后提交 2026-10-31T15:11",
+    "仓库最后提交 2026-11-03T09:24",
     "该条数首次出现在上游是 f38cb6ae（2026-10-19 12:55）"
    ],
    "ok": 3,
@@ -551,14 +551,14 @@
    "ownVersion": "e2605d3e2242bd6216c9255192b8a8957a08c55a",
    "ownVersionShort": "e2605d3e",
    "ownVersionDate": "2026-10-21 15:18:00 +0800",
-   "ownGeneratedAt": "2026-11-02T01:29:28Z",
+   "ownGeneratedAt": "2026-11-03T03:28:45Z",
    "sitemapLastmod": null,
    "sitemapUrls": null,
    "carriedFrom": null,
    "evidence": [
-    "data/stats.json 自带 upstream_commit=e2605d3e、synced_at=2026-11-02T01:29:28Z、entries=767（34 节）",
+    "data/stats.json 自带 upstream_commit=e2605d3e、synced_at=2026-11-03T03:28:45Z、entries=767（34 节）",
     "产物文件：data/stats.json",
-    "仓库最后提交 2026-11-02T01:29",
+    "仓库最后提交 2026-11-03T03:28",
     "该条数首次出现在上游是 f38cb6ae（2026-10-19 12:55）"
    ],
    "ok": 3,
@@ -689,11 +689,11 @@
    "ownGeneratedAt": null,
    "sitemapLastmod": null,
    "sitemapUrls": null,
-   "carriedFrom": "2026-11-01T22:50:45.962Z",
+   "carriedFrom": "2026-11-03T01:36:53.048Z",
    "evidence": [
     "首页取不到: HTTP 403",
     "页面取不到: HTTP 403",
-    "⚠️ 本轮探针被挡（WAF / 网络），**沿用上次实测值 676 条**（来自 2026-11-01T22:50:45 那次运行）",
+    "⚠️ 本轮探针被挡（WAF / 网络），**沿用上次实测值 676 条**（来自 2026-11-03T01:36:53 那次运行）",
     "该条数首次出现在上游是 5a36eaf8（2026-10-09 19:40）"
    ],
    "ok": 3,
