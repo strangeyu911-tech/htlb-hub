@@ -1,12 +1,17 @@
 {
- "generatedAt": "2026-11-06T00:16:31.928Z",
+ "generatedAt": "2026-11-06T23:43:35.364Z",
  "source": "本地克隆上游仓库 + book/ 全量历史 diff 累积统计",
  "definition": "条目数 = book/*.md 里的 ### 标题数（上游 tools/sync-stats.mjs 官方口径）",
- "headSha": "e2edc2e2ea80635412aac1b0c4f5b465c0fa3133",
+ "headSha": "5e5294f90e1a284c3711e4d574b48ac1355d2c3f",
  "headEntries": 772,
- "totalCommits": 494,
- "totalCommitsAll": 494,
+ "totalCommits": 499,
+ "totalCommitsAll": 499,
  "allCommits": {
+  "21ad9068a207fb5f99d7ae60a9ef9a814a45ba20": "2026-11-06 16:59:15 +0800",
+  "295d39735ad8e61f1274144d02d52ada244e1fde": "2026-11-06 16:59:02 +0800",
+  "363da5b48f03ebf25ccfe6be0c001f778f0cc1fa": "2026-11-06 16:59:02 +0800",
+  "5e5294f90e1a284c3711e4d574b48ac1355d2c3f": "2026-11-05 20:01:26 -0500",
+  "8a4412646205eb9acba6e35fdd3f074b018a1de0": "2026-11-05 08:34:34 -0800",
   "e2edc2e2ea80635412aac1b0c4f5b465c0fa3133": "2026-11-05 15:21:46 +0800",
   "0c7dd69ed1fe78c6fba97db2b4ac13b479404cb1": "2026-11-05 14:04:54 +0800",
   "74b10d0e2fc4eecf8f205713bce3c2ca34dcd987": "2026-11-05 14:00:20 +0800",
@@ -502,7 +507,7 @@
   "2af75f4ab1509289bd3353e22e789c16d89909a9": "2026-09-07 09:52:53 +0800",
   "c03a8ab30ce0c7f1e5c811c302ec1c7e8b840f49": "2026-09-07 09:32:18 +0800"
  },
- "commitsTouchingBook": 269,
+ "commitsTouchingBook": 270,
  "bookFiles": [
   "book/01-不要早死.md",
   "book/02-不要慢慢死.md",
@@ -2422,6 +2427,13 @@
    "entries": 772,
    "added": 1,
    "msg": "第 2 节第 26 条咖啡：标题加孕妇、骨折风险高的女性和喝了心慌、焦虑、失眠的人除外，收益栏补喝下当天早搏变多、高血压病人血压升高和长期心律失常不增加，备注争议补心慌血压高的人自己少喝带来的反向因果"
+  },
+  {
+   "sha": "5e5294f9",
+   "date": "2026-11-05 20:01:26 -0500",
+   "entries": 772,
+   "added": 0,
+   "msg": "第 3、20、31 节：换掉三条已失效的来源链接"
   }
  ],
  "probes": [
