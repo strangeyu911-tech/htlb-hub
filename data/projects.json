@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-06T23:44:19.556Z",
+ "generatedAt": "2026-11-07T22:46:34.605Z",
  "upstream": {
   "repo": "eternity4719/HowToLiveBetter",
   "readmeRaw": "https://raw.githubusercontent.com/eternity4719/HowToLiveBetter/main/README.md",
@@ -143,14 +143,14 @@
    "ownVersionShort": "21ad9068",
    "ownVersionDate": "2026-11-06 16:59:15 +0800",
    "ownGeneratedAt": null,
-   "sitemapLastmod": "2026-11-06T00:00:00.000Z",
+   "sitemapLastmod": "2026-11-07T00:00:00.000Z",
    "sitemapUrls": 821,
    "carriedFrom": null,
    "evidence": [
     "sync/fingerprint.json 自带 commit=21ad9068、count=772，另有逐条哈希 772 条",
     "仓库同时带 tools/check_drift.py 与 tools/check_verbatim.py —— 该项目自带上游漂移检测与逐字校验",
     "产物文件：sync/fingerprint.json",
-    "sitemap（/sitemap.xml）：821 个 URL，lastmod 最新 2026-11-06（共 821 个 lastmod，已取最大值）",
+    "sitemap（/sitemap.xml）：821 个 URL，lastmod 最新 2026-11-07（共 821 个 lastmod，已取最大值）",
     "页面文案自述 772 条（全文出现的其他数字：772 / 123）—— 仅作交叉参考，不是实测"
    ],
    "ok": 3,
@@ -274,17 +274,17 @@
    "lagEntries": 0,
    "lagDays": 1.8,
    "runtimeFetch": false,
-   "ownVersion": "e2edc2e2ea80635412aac1b0c4f5b465c0fa3133",
-   "ownVersionShort": "e2edc2e2",
-   "ownVersionDate": "2026-11-05 15:21:46 +0800",
-   "ownGeneratedAt": "2026-11-06T02:23:48Z",
+   "ownVersion": "21ad9068a207fb5f99d7ae60a9ef9a814a45ba20",
+   "ownVersionShort": "21ad9068",
+   "ownVersionDate": "2026-11-06 16:59:15 +0800",
+   "ownGeneratedAt": "2026-11-07T01:53:52Z",
    "sitemapLastmod": null,
    "sitemapUrls": null,
    "carriedFrom": null,
    "evidence": [
-    "data/stats.json 自带 upstream_commit=e2edc2e2、synced_at=2026-11-06T02:23:48Z、entries=772（34 节）",
+    "data/stats.json 自带 upstream_commit=21ad9068、synced_at=2026-11-07T01:53:52Z、entries=772（34 节）",
     "产物文件：data/stats.json",
-    "仓库最后提交 2026-11-06T02:23",
+    "仓库最后提交 2026-11-07T01:53",
     "该条数首次出现在上游是 d2de3fc8（2026-11-04 14:29）"
    ],
    "ok": 3,
@@ -643,11 +643,11 @@
    "ownGeneratedAt": null,
    "sitemapLastmod": null,
    "sitemapUrls": null,
-   "carriedFrom": "2026-11-06T00:17:14.767Z",
+   "carriedFrom": "2026-11-06T23:44:19.473Z",
    "evidence": [
     "首页取不到: HTTP 403",
     "页面取不到: HTTP 403",
-    "⚠️ 本轮探针被挡（WAF / 网络），**沿用上次实测值 676 条**（来自 2026-11-06T00:17:14 那次运行）",
+    "⚠️ 本轮探针被挡（WAF / 网络），**沿用上次实测值 676 条**（来自 2026-11-06T23:44:19 那次运行）",
     "该条数首次出现在上游是 5a36eaf8（2026-10-09 19:40）"
    ],
    "ok": 3,
@@ -739,8 +739,8 @@
     "sitemap（/sitemap.xml）共 43 个 URL，其中「条目 /q/<id>/」逐条页 0 个",
     "页面自述「非官方衍生站」、内容按 CC BY 4.0 使用",
     "sitemap（/sitemap.xml）：43 个 URL（无 lastmod）",
-    "页面文案自述 772 条（全文出现的其他数字：772 / 2573）—— 仅作交叉参考，不是实测",
-    "站点自己的构建/修订时间 Fri, 06 Nov 2026（来源：首页 HTTP Last-Modified）→ 「内容时间」以此为准"
+    "页面文案自述 772 条（全文出现的其他数字：772 / 2578）—— 仅作交叉参考，不是实测",
+    "站点自己的构建/修订时间 Sat, 07 Nov 2026（来源：首页 HTTP Last-Modified）→ 「内容时间」以此为准"
    ],
    "ok": 3,
    "total": 3,
