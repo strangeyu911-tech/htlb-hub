@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-07T22:46:34.505Z",
+ "generatedAt": "2026-11-08T22:54:09.329Z",
  "definition": "条目数 = book/*.md 里的 ### 标题数（上游 tools/sync-stats.mjs 官方口径）；实际条数优先取该项目自己的产物文件，其次 sitemap/页面自述。",
  "upstream": {
   "repo": "eternity4719/HowToLiveBetter",
@@ -135,7 +135,7 @@
    "ownGeneratedAt": null,
    "ownBuildTime": null,
    "ownBuildTimeFrom": null,
-   "carriedFrom": "2026-11-06T23:44:19.473Z",
+   "carriedFrom": "2026-11-07T22:46:34.505Z",
    "sitemapLastmod": null,
    "sitemapLastmodCount": null,
    "sitemapUrls": null,
@@ -144,7 +144,7 @@
    "evidence": [
     "首页取不到: HTTP 403",
     "页面取不到: HTTP 403",
-    "⚠️ 本轮探针被挡（WAF / 网络），**沿用上次实测值 676 条**（来自 2026-11-06T23:44:19 那次运行）",
+    "⚠️ 本轮探针被挡（WAF / 网络），**沿用上次实测值 676 条**（来自 2026-11-07T22:46:34 那次运行）",
     "该条数首次出现在上游是 5a36eaf8（2026-10-09 19:40）"
    ],
    "ownVersionDate": null,
@@ -219,7 +219,7 @@
    "ownBuildTime": null,
    "ownBuildTimeFrom": null,
    "carriedFrom": null,
-   "sitemapLastmod": "2026-11-07T00:00:00.000Z",
+   "sitemapLastmod": "2026-11-08T00:00:00.000Z",
    "sitemapLastmodCount": 821,
    "sitemapUrls": 821,
    "contentMatch": null,
@@ -228,11 +228,11 @@
     "sync/fingerprint.json 自带 commit=21ad9068、count=772，另有逐条哈希 772 条",
     "仓库同时带 tools/check_drift.py 与 tools/check_verbatim.py —— 该项目自带上游漂移检测与逐字校验",
     "产物文件：sync/fingerprint.json",
-    "sitemap（/sitemap.xml）：821 个 URL，lastmod 最新 2026-11-07（共 821 个 lastmod，已取最大值）",
+    "sitemap（/sitemap.xml）：821 个 URL，lastmod 最新 2026-11-08（共 821 个 lastmod，已取最大值）",
     "页面文案自述 772 条（全文出现的其他数字：772 / 123）—— 仅作交叉参考，不是实测",
-    "仓库最后提交 2026-11-07T02:13",
+    "仓库最后提交 2026-11-08T01:43",
     "该条数首次出现在上游是 d2de3fc8（2026-11-04 14:29）",
-    "该站自己的 lastmod 最新到 2026-11-07 → 「内容时间」以此为准"
+    "该站自己的 lastmod 最新到 2026-11-08 → 「内容时间」以此为准"
    ],
    "ownVersionDate": "2026-11-06 16:59:15 +0800",
    "lagEntries": 0,
@@ -300,7 +300,7 @@
    "ownVersion": null,
    "ownVersionShort": null,
    "ownGeneratedAt": null,
-   "ownBuildTime": "Mon, 12 Oct 2026 16:44:45 GMT",
+   "ownBuildTime": "Sun, 08 Nov 2026 03:14:51 GMT",
    "ownBuildTimeFrom": "首页 HTTP Last-Modified",
    "carriedFrom": null,
    "sitemapLastmod": "2026-10-05T00:00:00.000Z",
@@ -314,12 +314,12 @@
     "题库覆盖 34 节（与上游 34 节吻合）；文件头注明 “Generated from eternity4719/HowToLiveBetter (CC BY 4.0)”",
     "sitemap（/sitemap.xml）：1 个 URL，lastmod 最新 2026-10-05",
     "该条数首次出现在上游是 dcccdd96（2026-10-05 09:32）",
-    "站点自己的构建/修订时间 Mon, 12 Oct 2026（来源：首页 HTTP Last-Modified）→ 「内容时间」以此为准"
+    "站点自己的构建/修订时间 Sun, 08 Nov 2026（来源：首页 HTTP Last-Modified）→ 「内容时间」以此为准"
    ],
    "ownVersionDate": null,
    "lagEntries": 114,
    "lagEntriesFrom": 658,
-   "lagDays": 24.3,
+   "lagDays": 0,
    "lagDaysFrom": "首页 HTTP Last-Modified",
    "status": "lag"
   },
@@ -687,7 +687,7 @@
    "pageCounts": [],
    "ownVersion": "21ad9068a207fb5f99d7ae60a9ef9a814a45ba20",
    "ownVersionShort": "21ad9068",
-   "ownGeneratedAt": "2026-11-07T01:53:52Z",
+   "ownGeneratedAt": "2026-11-08T01:25:49Z",
    "ownBuildTime": null,
    "ownBuildTimeFrom": null,
    "carriedFrom": null,
@@ -697,9 +697,9 @@
    "contentMatch": null,
    "runtimeFetch": false,
    "evidence": [
-    "data/stats.json 自带 upstream_commit=21ad9068、synced_at=2026-11-07T01:53:52Z、entries=772（34 节）",
+    "data/stats.json 自带 upstream_commit=21ad9068、synced_at=2026-11-08T01:25:49Z、entries=772（34 节）",
     "产物文件：data/stats.json",
-    "仓库最后提交 2026-11-07T01:53",
+    "仓库最后提交 2026-11-08T01:25",
     "该条数首次出现在上游是 d2de3fc8（2026-11-04 14:29）"
    ],
    "ownVersionDate": "2026-11-06 16:59:15 +0800",
