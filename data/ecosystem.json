@@ -1,12 +1,12 @@
 {
- "generatedAt": "2026-11-08T22:54:09.329Z",
+ "generatedAt": "2026-11-10T02:09:52.444Z",
  "definition": "条目数 = book/*.md 里的 ### 标题数（上游 tools/sync-stats.mjs 官方口径）；实际条数优先取该项目自己的产物文件，其次 sitemap/页面自述。",
  "upstream": {
   "repo": "eternity4719/HowToLiveBetter",
-  "headSha": "5e5294f90e1a284c3711e4d574b48ac1355d2c3f",
-  "headDate": "2026-11-06T01:01:26.000Z",
+  "headSha": "dff814dcbb0a2e968acc0af48e418814655ba1df",
+  "headDate": "2026-11-09T00:26:08.000Z",
   "entries": 772,
-  "totalCommits": 499,
+  "totalCommits": 529,
   "bookFiles": 34
  },
  "methods": {
@@ -55,14 +55,14 @@
    "sitemapLastmodCount": 74,
    "sitemapUrls": 442,
    "contentMatch": {
-    "hit": 769,
+    "hit": 766,
     "gold": 770,
     "chunk": "book-index-BD772Mkb.js"
    },
    "runtimeFetch": false,
    "evidence": [
     "首页 SSR 内联数据自带 total=772、chapterCount=34（TanStack Start 的 hydration payload）",
-    "数据 chunk book-index-BD772Mkb.js（198 KB）逐条比对上游标题：769/770 = 99.9% → 正文是**构建期全量打包**，不是运行时拉取",
+    "数据 chunk book-index-BD772Mkb.js（198 KB）逐条比对上游标题：766/770 = 99.5% → 正文是**构建期全量打包**，不是运行时拉取",
     "全站 JS 里没有任何 raw.githubusercontent / api.github.com 引用，也没有 /api/book、/api/entries 这类正文接口（404）→ 排除「运行时拉上游」",
     "sitemap（/sitemap.xml）：442 个 URL，lastmod 最新 2026-11-05（共 74 个 lastmod，已取最大值）",
     "页面文案自述 772 条（全文出现的其他数字：772）—— 仅作交叉参考，不是实测",
@@ -72,7 +72,7 @@
    "ownVersionDate": null,
    "lagEntries": 0,
    "lagEntriesFrom": 772,
-   "lagDays": 1,
+   "lagDays": 4,
    "lagDaysFrom": "sitemap-lastmod",
    "status": "sync"
   },
@@ -112,7 +112,7 @@
    "ownVersionDate": null,
    "lagEntries": 5,
    "lagEntriesFrom": 767,
-   "lagDays": 6,
+   "lagDays": 9,
    "lagDaysFrom": "更新记录页最新一条",
    "status": "lag"
   },
@@ -135,7 +135,7 @@
    "ownGeneratedAt": null,
    "ownBuildTime": null,
    "ownBuildTimeFrom": null,
-   "carriedFrom": "2026-11-07T22:46:34.505Z",
+   "carriedFrom": "2026-11-08T22:54:09.329Z",
    "sitemapLastmod": null,
    "sitemapLastmodCount": null,
    "sitemapUrls": null,
@@ -144,13 +144,13 @@
    "evidence": [
     "首页取不到: HTTP 403",
     "页面取不到: HTTP 403",
-    "⚠️ 本轮探针被挡（WAF / 网络），**沿用上次实测值 676 条**（来自 2026-11-07T22:46:34 那次运行）",
+    "⚠️ 本轮探针被挡（WAF / 网络），**沿用上次实测值 676 条**（来自 2026-11-08T22:54:09 那次运行）",
     "该条数首次出现在上游是 5a36eaf8（2026-10-09 19:40）"
    ],
    "ownVersionDate": null,
    "lagEntries": 96,
    "lagEntriesFrom": 676,
-   "lagDays": 27.6,
+   "lagDays": 30.5,
    "lagDaysFrom": "count-first-seen",
    "status": "lag"
   },
@@ -174,7 +174,7 @@
    "ownVersion": null,
    "ownVersionShort": null,
    "ownGeneratedAt": null,
-   "ownBuildTime": "Sat, 07 Nov 2026 01:02:40 GMT",
+   "ownBuildTime": "Mon, 09 Nov 2026 01:06:58 GMT",
    "ownBuildTimeFrom": "首页 HTTP Last-Modified",
    "carriedFrom": null,
    "sitemapLastmod": null,
@@ -187,7 +187,7 @@
     "页面自述「非官方衍生站」、内容按 CC BY 4.0 使用",
     "sitemap（/sitemap.xml）：43 个 URL（无 lastmod）",
     "页面文案自述 772 条（全文出现的其他数字：772 / 2578）—— 仅作交叉参考，不是实测",
-    "站点自己的构建/修订时间 Sat, 07 Nov 2026（来源：首页 HTTP Last-Modified）→ 「内容时间」以此为准"
+    "站点自己的构建/修订时间 Mon, 09 Nov 2026（来源：首页 HTTP Last-Modified）→ 「内容时间」以此为准"
    ],
    "ownVersionDate": null,
    "lagEntries": 772,
@@ -213,28 +213,29 @@
     772,
     123
    ],
-   "ownVersion": "21ad9068a207fb5f99d7ae60a9ef9a814a45ba20",
-   "ownVersionShort": "21ad9068",
+   "ownVersion": "dff814dcbb0a2e968acc0af48e418814655ba1df",
+   "ownVersionShort": "dff814dc",
    "ownGeneratedAt": null,
    "ownBuildTime": null,
    "ownBuildTimeFrom": null,
    "carriedFrom": null,
-   "sitemapLastmod": "2026-11-08T00:00:00.000Z",
+   "sitemapLastmod": "2026-11-09T00:00:00.000Z",
    "sitemapLastmodCount": 821,
    "sitemapUrls": 821,
    "contentMatch": null,
    "runtimeFetch": false,
    "evidence": [
-    "sync/fingerprint.json 自带 commit=21ad9068、count=772，另有逐条哈希 772 条",
+    "sync/fingerprint.json 自带 commit=dff814dc、count=772，另有逐条哈希 772 条",
+    "它的 commit 与上游当前 HEAD（dff814dc）完全一致 → 逐条内容已对齐，不存在「落后」",
     "仓库同时带 tools/check_drift.py 与 tools/check_verbatim.py —— 该项目自带上游漂移检测与逐字校验",
     "产物文件：sync/fingerprint.json",
-    "sitemap（/sitemap.xml）：821 个 URL，lastmod 最新 2026-11-08（共 821 个 lastmod，已取最大值）",
+    "sitemap（/sitemap.xml）：821 个 URL，lastmod 最新 2026-11-09（共 821 个 lastmod，已取最大值）",
     "页面文案自述 772 条（全文出现的其他数字：772 / 123）—— 仅作交叉参考，不是实测",
-    "仓库最后提交 2026-11-08T01:43",
+    "仓库最后提交 2026-11-09T01:51",
     "该条数首次出现在上游是 d2de3fc8（2026-11-04 14:29）",
-    "该站自己的 lastmod 最新到 2026-11-08 → 「内容时间」以此为准"
+    "该站自己的 lastmod 最新到 2026-11-09 → 「内容时间」以此为准"
    ],
-   "ownVersionDate": "2026-11-06 16:59:15 +0800",
+   "ownVersionDate": "2026-11-09 08:26:08 +0800",
    "lagEntries": 0,
    "lagEntriesFrom": 772,
    "lagDays": 0,
@@ -279,7 +280,7 @@
    "ownVersionDate": null,
    "lagEntries": 95,
    "lagEntriesFrom": 677,
-   "lagDays": 26.6,
+   "lagDays": 29.6,
    "lagDaysFrom": "count-first-seen",
    "status": "lag"
   },
@@ -319,7 +320,7 @@
    "ownVersionDate": null,
    "lagEntries": 114,
    "lagEntriesFrom": 658,
-   "lagDays": 0,
+   "lagDays": 0.9,
    "lagDaysFrom": "首页 HTTP Last-Modified",
    "status": "lag"
   },
@@ -352,7 +353,7 @@
    "runtimeFetch": false,
    "evidence": [
     "读它自己的构建产物 data/home.json（78 KB）：stats.items = 772、stats.sections = 34（章节数与上游 34 节吻合）",
-    "同一文件另给：stats.sources = 1993 条原始出处、stats.who = 97 条标了「适用人群」",
+    "同一文件另给：stats.sources = 1997 条原始出处、stats.who = 97 条标了「适用人群」",
     "首页 title / meta 描述 / 正文首段三处都自述同一个数 → 与产物文件一致",
     "页面文案自述 772 条（全文出现的其他数字：772）—— 仅作交叉参考，不是实测",
     "该条数首次出现在上游是 d2de3fc8（2026-11-04 14:29）"
@@ -360,7 +361,7 @@
    "ownVersionDate": null,
    "lagEntries": 0,
    "lagEntriesFrom": 772,
-   "lagDays": 1.8,
+   "lagDays": 4.7,
    "lagDaysFrom": "count-first-seen",
    "status": "sync"
   },
@@ -400,7 +401,7 @@
    "ownVersionDate": "2026-10-21 15:18:00 +0800",
    "lagEntries": 5,
    "lagEntriesFrom": 767,
-   "lagDays": 14.5,
+   "lagDays": 17.5,
    "lagDaysFrom": "content.json 的 manifest.importedAt",
    "status": "lag"
   },
@@ -442,7 +443,7 @@
    "ownVersionDate": null,
    "lagEntries": 5,
    "lagEntriesFrom": 767,
-   "lagDays": 13,
+   "lagDays": 16,
    "lagDaysFrom": "sitemap-lastmod",
    "status": "lag"
   },
@@ -480,7 +481,7 @@
    "ownVersionDate": null,
    "lagEntries": 5,
    "lagEntriesFrom": 767,
-   "lagDays": 17.8,
+   "lagDays": 20.8,
    "lagDaysFrom": "count-first-seen",
    "status": "lag"
   },
@@ -520,7 +521,7 @@
    "ownVersionDate": null,
    "lagEntries": 5,
    "lagEntriesFrom": 767,
-   "lagDays": 17.8,
+   "lagDays": 20.8,
    "lagDaysFrom": "count-first-seen",
    "status": "lag"
   },
@@ -593,7 +594,7 @@
    "ownVersionDate": "2026-10-15 17:37:50 +0800",
    "lagEntries": 7,
    "lagEntriesFrom": 765,
-   "lagDays": 22.6,
+   "lagDays": 25.6,
    "lagDaysFrom": "count-first-seen",
    "status": "lag"
   },
@@ -663,7 +664,7 @@
     "src/sources.js 里 LIFE_REPO 指向 raw.githubusercontent.com/eternity4719/HowToLiveBetter，fetchText() 运行时拉正文并按 `### ` 解析 → 不存在「落后」",
     "该仓库 docs/VERIFICATION.md 自证：「真实网络曾读取 HowToLiveBetter 原文」（按需拉订阅章节，非全量）",
     "产物文件：src/sources.js",
-    "仓库最后提交 2026-10-23T09:20"
+    "仓库最后提交 2026-11-09T02:45"
    ],
    "ownVersionDate": null,
    "status": "runtime",
@@ -685,9 +686,9 @@
    "basis": "measured",
    "confidence": "high",
    "pageCounts": [],
-   "ownVersion": "21ad9068a207fb5f99d7ae60a9ef9a814a45ba20",
-   "ownVersionShort": "21ad9068",
-   "ownGeneratedAt": "2026-11-08T01:25:49Z",
+   "ownVersion": "dff814dcbb0a2e968acc0af48e418814655ba1df",
+   "ownVersionShort": "dff814dc",
+   "ownGeneratedAt": "2026-11-09T01:42:57Z",
    "ownBuildTime": null,
    "ownBuildTimeFrom": null,
    "carriedFrom": null,
@@ -697,15 +698,15 @@
    "contentMatch": null,
    "runtimeFetch": false,
    "evidence": [
-    "data/stats.json 自带 upstream_commit=21ad9068、synced_at=2026-11-08T01:25:49Z、entries=772（34 节）",
+    "data/stats.json 自带 upstream_commit=dff814dc、synced_at=2026-11-09T01:42:57Z、entries=772（34 节）",
     "产物文件：data/stats.json",
-    "仓库最后提交 2026-11-08T01:25",
+    "仓库最后提交 2026-11-09T01:42",
     "该条数首次出现在上游是 d2de3fc8（2026-11-04 14:29）"
    ],
-   "ownVersionDate": "2026-11-06 16:59:15 +0800",
+   "ownVersionDate": "2026-11-09 08:26:08 +0800",
    "lagEntries": 0,
    "lagEntriesFrom": 772,
-   "lagDays": 1.8,
+   "lagDays": 4.7,
    "lagDaysFrom": "count-first-seen",
    "status": "sync"
   },
@@ -741,7 +742,7 @@
    "ownVersionDate": null,
    "lagEntries": 96,
    "lagEntriesFrom": 676,
-   "lagDays": 27.6,
+   "lagDays": 30.5,
    "lagDaysFrom": "count-first-seen",
    "status": "lag"
   }
