@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-14T00:21:47.865Z",
+ "generatedAt": "2026-11-14T23:00:18.944Z",
  "definition": "条目数 = book/*.md 里的 ### 标题数（上游 tools/sync-stats.mjs 官方口径）；实际条数优先取该项目自己的产物文件，其次 sitemap/页面自述。",
  "upstream": {
   "repo": "eternity4719/HowToLiveBetter",
@@ -51,28 +51,28 @@
    "ownBuildTime": null,
    "ownBuildTimeFrom": null,
    "carriedFrom": null,
-   "sitemapLastmod": "2026-11-05T00:00:00.000Z",
+   "sitemapLastmod": "2026-11-15T00:00:00.000Z",
    "sitemapLastmodCount": 74,
-   "sitemapUrls": 442,
+   "sitemapUrls": 477,
    "contentMatch": {
-    "hit": 766,
+    "hit": 769,
     "gold": 770,
-    "chunk": "book-index-BD772Mkb.js"
+    "chunk": "book-index-koKdvi0t.js"
    },
    "runtimeFetch": false,
    "evidence": [
     "首页 SSR 内联数据自带 total=772、chapterCount=34（TanStack Start 的 hydration payload）",
-    "数据 chunk book-index-BD772Mkb.js（198 KB）逐条比对上游标题：766/770 = 99.5% → 正文是**构建期全量打包**，不是运行时拉取",
+    "数据 chunk book-index-koKdvi0t.js（198 KB）逐条比对上游标题：769/770 = 99.9% → 正文是**构建期全量打包**，不是运行时拉取",
     "全站 JS 里没有任何 raw.githubusercontent / api.github.com 引用，也没有 /api/book、/api/entries 这类正文接口（404）→ 排除「运行时拉上游」",
-    "sitemap（/sitemap.xml）：442 个 URL，lastmod 最新 2026-11-05（共 74 个 lastmod，已取最大值）",
+    "sitemap（/sitemap.xml）：477 个 URL，lastmod 最新 2026-11-15（共 74 个 lastmod，已取最大值）",
     "页面文案自述 772 条（全文出现的其他数字：772）—— 仅作交叉参考，不是实测",
     "该条数首次出现在上游是 d2de3fc8（2026-11-04 14:29）",
-    "该站自己的 lastmod 最新到 2026-11-05 → 「内容时间」以此为准"
+    "该站自己的 lastmod 最新到 2026-11-15 → 「内容时间」以此为准"
    ],
    "ownVersionDate": null,
    "lagEntries": 0,
    "lagEntriesFrom": 772,
-   "lagDays": 4,
+   "lagDays": 0,
    "lagDaysFrom": "sitemap-lastmod",
    "status": "sync"
   },
@@ -135,7 +135,7 @@
    "ownGeneratedAt": null,
    "ownBuildTime": null,
    "ownBuildTimeFrom": null,
-   "carriedFrom": "2026-11-13T00:26:41.200Z",
+   "carriedFrom": "2026-11-14T00:21:47.865Z",
    "sitemapLastmod": null,
    "sitemapLastmodCount": null,
    "sitemapUrls": null,
@@ -144,7 +144,7 @@
    "evidence": [
     "首页取不到: HTTP 403",
     "页面取不到: HTTP 403",
-    "⚠️ 本轮探针被挡（WAF / 网络），**沿用上次实测值 676 条**（来自 2026-11-13T00:26:41 那次运行）",
+    "⚠️ 本轮探针被挡（WAF / 网络），**沿用上次实测值 676 条**（来自 2026-11-14T00:21:47 那次运行）",
     "该条数首次出现在上游是 5a36eaf8（2026-10-09 19:40）"
    ],
    "ownVersionDate": null,
@@ -219,7 +219,7 @@
    "ownBuildTime": null,
    "ownBuildTimeFrom": null,
    "carriedFrom": null,
-   "sitemapLastmod": "2026-11-13T00:00:00.000Z",
+   "sitemapLastmod": "2026-11-14T00:00:00.000Z",
    "sitemapLastmodCount": 821,
    "sitemapUrls": 821,
    "contentMatch": null,
@@ -228,11 +228,11 @@
     "sync/fingerprint.json 自带 commit=36c78569、count=772，另有逐条哈希 772 条",
     "仓库同时带 tools/check_drift.py 与 tools/check_verbatim.py —— 该项目自带上游漂移检测与逐字校验",
     "产物文件：sync/fingerprint.json",
-    "sitemap（/sitemap.xml）：821 个 URL，lastmod 最新 2026-11-13（共 821 个 lastmod，已取最大值）",
+    "sitemap（/sitemap.xml）：821 个 URL，lastmod 最新 2026-11-14（共 821 个 lastmod，已取最大值）",
     "页面文案自述 772 条（全文出现的其他数字：772 / 123）—— 仅作交叉参考，不是实测",
-    "仓库最后提交 2026-11-13T02:50",
+    "仓库最后提交 2026-11-14T02:37",
     "该条数首次出现在上游是 d2de3fc8（2026-11-04 14:29）",
-    "该站自己的 lastmod 最新到 2026-11-13 → 「内容时间」以此为准"
+    "该站自己的 lastmod 最新到 2026-11-14 → 「内容时间」以此为准"
    ],
    "ownVersionDate": "2026-11-12 11:48:44 +0800",
    "lagEntries": 0,
@@ -302,7 +302,7 @@
    "ownGeneratedAt": null,
    "ownBuildTime": null,
    "ownBuildTimeFrom": null,
-   "carriedFrom": "2026-11-13T00:26:41.200Z",
+   "carriedFrom": "2026-11-14T00:21:47.865Z",
    "sitemapLastmod": null,
    "sitemapLastmodCount": null,
    "sitemapUrls": null,
@@ -312,7 +312,7 @@
     "首页取不到: HTTP 0",
     "sitemap: 常见路径都试过，没找到可用的 sitemap（404 或 HTML 兜底）",
     "页面取不到: HTTP 0",
-    "⚠️ 本轮探针被挡（WAF / 网络），**沿用上次实测值 658 条**（来自 2026-11-13T00:26:41 那次运行）",
+    "⚠️ 本轮探针被挡（WAF / 网络），**沿用上次实测值 658 条**（来自 2026-11-14T00:21:47 那次运行）",
     "该条数首次出现在上游是 dcccdd96（2026-10-05 09:32）"
    ],
    "ownVersionDate": null,
@@ -341,7 +341,7 @@
    "ownGeneratedAt": null,
    "ownBuildTime": null,
    "ownBuildTimeFrom": null,
-   "carriedFrom": "2026-11-13T00:26:41.200Z",
+   "carriedFrom": "2026-11-14T00:21:47.865Z",
    "sitemapLastmod": null,
    "sitemapLastmodCount": null,
    "sitemapUrls": null,
@@ -350,7 +350,7 @@
    "evidence": [
     "data/home.json 取不到: HTTP 403",
     "页面取不到: HTTP 403",
-    "⚠️ 本轮探针被挡（WAF / 网络），**沿用上次实测值 772 条**（来自 2026-11-13T00:26:41 那次运行）",
+    "⚠️ 本轮探针被挡（WAF / 网络），**沿用上次实测值 772 条**（来自 2026-11-14T00:21:47 那次运行）",
     "该条数首次出现在上游是 d2de3fc8（2026-11-04 14:29）"
    ],
    "ownVersionDate": null,
@@ -683,7 +683,7 @@
    "pageCounts": [],
    "ownVersion": "36c78569a8d21f26c7c650d2993c7103832ca4b5",
    "ownVersionShort": "36c78569",
-   "ownGeneratedAt": "2026-11-13T02:36:47Z",
+   "ownGeneratedAt": "2026-11-14T02:24:58Z",
    "ownBuildTime": null,
    "ownBuildTimeFrom": null,
    "carriedFrom": null,
@@ -693,9 +693,9 @@
    "contentMatch": null,
    "runtimeFetch": false,
    "evidence": [
-    "data/stats.json 自带 upstream_commit=36c78569、synced_at=2026-11-13T02:36:47Z、entries=772（34 节）",
+    "data/stats.json 自带 upstream_commit=36c78569、synced_at=2026-11-14T02:24:58Z、entries=772（34 节）",
     "产物文件：data/stats.json",
-    "仓库最后提交 2026-11-13T02:36",
+    "仓库最后提交 2026-11-14T02:24",
     "该条数首次出现在上游是 d2de3fc8（2026-11-04 14:29）"
    ],
    "ownVersionDate": "2026-11-12 11:48:44 +0800",
