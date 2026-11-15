@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-14T23:00:19.048Z",
+ "generatedAt": "2026-11-15T23:24:29.985Z",
  "upstream": {
   "repo": "eternity4719/HowToLiveBetter",
   "readmeRaw": "https://raw.githubusercontent.com/eternity4719/HowToLiveBetter/main/README.md",
@@ -143,14 +143,14 @@
    "ownVersionShort": "36c78569",
    "ownVersionDate": "2026-11-12 11:48:44 +0800",
    "ownGeneratedAt": null,
-   "sitemapLastmod": "2026-11-14T00:00:00.000Z",
+   "sitemapLastmod": "2026-11-15T00:00:00.000Z",
    "sitemapUrls": 821,
    "carriedFrom": null,
    "evidence": [
     "sync/fingerprint.json 自带 commit=36c78569、count=772，另有逐条哈希 772 条",
     "仓库同时带 tools/check_drift.py 与 tools/check_verbatim.py —— 该项目自带上游漂移检测与逐字校验",
     "产物文件：sync/fingerprint.json",
-    "sitemap（/sitemap.xml）：821 个 URL，lastmod 最新 2026-11-14（共 821 个 lastmod，已取最大值）",
+    "sitemap（/sitemap.xml）：821 个 URL，lastmod 最新 2026-11-15（共 821 个 lastmod，已取最大值）",
     "页面文案自述 772 条（全文出现的其他数字：772 / 123）—— 仅作交叉参考，不是实测"
    ],
    "ok": 3,
@@ -280,11 +280,11 @@
    "ownGeneratedAt": null,
    "sitemapLastmod": null,
    "sitemapUrls": null,
-   "carriedFrom": "2026-11-14T00:21:47.865Z",
+   "carriedFrom": "2026-11-14T23:00:18.944Z",
    "evidence": [
     "data/home.json 取不到: HTTP 403",
     "页面取不到: HTTP 403",
-    "⚠️ 本轮探针被挡（WAF / 网络），**沿用上次实测值 772 条**（来自 2026-11-14T00:21:47 那次运行）",
+    "⚠️ 本轮探针被挡（WAF / 网络），**沿用上次实测值 772 条**（来自 2026-11-14T23:00:18 那次运行）",
     "该条数首次出现在上游是 d2de3fc8（2026-11-04 14:29）"
    ],
    "ok": 3,
@@ -321,14 +321,14 @@
    "ownVersion": "36c78569a8d21f26c7c650d2993c7103832ca4b5",
    "ownVersionShort": "36c78569",
    "ownVersionDate": "2026-11-12 11:48:44 +0800",
-   "ownGeneratedAt": "2026-11-14T02:24:58Z",
+   "ownGeneratedAt": "2026-11-15T01:52:04Z",
    "sitemapLastmod": null,
    "sitemapUrls": null,
    "carriedFrom": null,
    "evidence": [
-    "data/stats.json 自带 upstream_commit=36c78569、synced_at=2026-11-14T02:24:58Z、entries=772（34 节）",
+    "data/stats.json 自带 upstream_commit=36c78569、synced_at=2026-11-15T01:52:04Z、entries=772（34 节）",
     "产物文件：data/stats.json",
-    "仓库最后提交 2026-11-14T02:24",
+    "仓库最后提交 2026-11-15T01:52",
     "该条数首次出现在上游是 d2de3fc8（2026-11-04 14:29）"
    ],
    "ok": 3,
@@ -642,11 +642,11 @@
    "ownGeneratedAt": null,
    "sitemapLastmod": null,
    "sitemapUrls": null,
-   "carriedFrom": "2026-11-14T00:21:47.865Z",
+   "carriedFrom": "2026-11-14T23:00:18.944Z",
    "evidence": [
     "首页取不到: HTTP 403",
     "页面取不到: HTTP 403",
-    "⚠️ 本轮探针被挡（WAF / 网络），**沿用上次实测值 676 条**（来自 2026-11-14T00:21:47 那次运行）",
+    "⚠️ 本轮探针被挡（WAF / 网络），**沿用上次实测值 676 条**（来自 2026-11-14T23:00:18 那次运行）",
     "该条数首次出现在上游是 5a36eaf8（2026-10-09 19:40）"
    ],
    "ok": 3,
@@ -687,12 +687,12 @@
    "ownGeneratedAt": null,
    "sitemapLastmod": null,
    "sitemapUrls": null,
-   "carriedFrom": "2026-11-14T00:21:47.865Z",
+   "carriedFrom": "2026-11-14T23:00:18.944Z",
    "evidence": [
     "首页取不到: HTTP 0",
     "sitemap: 常见路径都试过，没找到可用的 sitemap（404 或 HTML 兜底）",
     "页面取不到: HTTP 0",
-    "⚠️ 本轮探针被挡（WAF / 网络），**沿用上次实测值 658 条**（来自 2026-11-14T00:21:47 那次运行）",
+    "⚠️ 本轮探针被挡（WAF / 网络），**沿用上次实测值 658 条**（来自 2026-11-14T23:00:18 那次运行）",
     "该条数首次出现在上游是 dcccdd96（2026-10-05 09:32）"
    ],
    "ok": 3,
