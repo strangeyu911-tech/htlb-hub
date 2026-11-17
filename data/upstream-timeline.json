@@ -1,12 +1,15 @@
 {
- "generatedAt": "2026-11-15T23:23:25.176Z",
+ "generatedAt": "2026-11-17T02:28:20.668Z",
  "source": "本地克隆上游仓库 + book/ 全量历史 diff 累积统计",
  "definition": "条目数 = book/*.md 里的 ### 标题数（上游 tools/sync-stats.mjs 官方口径）",
- "headSha": "dff814dcbb0a2e968acc0af48e418814655ba1df",
+ "headSha": "089c6c1e0b4e8ee125e64e1c066a0c3cf75ea9bb",
  "headEntries": 772,
- "totalCommits": 530,
- "totalCommitsAll": 530,
+ "totalCommits": 533,
+ "totalCommitsAll": 533,
  "allCommits": {
+  "49fceab4254c8c2df0f7cdb1b2959cab6c451b96": "2026-11-16 17:44:06 +0800",
+  "a58a9dbb2e1cd35e588be9580f3c97f0ab3cc2cd": "2026-11-16 17:43:50 +0800",
+  "089c6c1e0b4e8ee125e64e1c066a0c3cf75ea9bb": "2026-11-14 10:26:52 +0800",
   "36c78569a8d21f26c7c650d2993c7103832ca4b5": "2026-11-12 11:48:44 +0800",
   "dff814dcbb0a2e968acc0af48e418814655ba1df": "2026-11-09 08:26:08 +0800",
   "d77dbd93a88ecf6dffcef44e759b9a2da9ebbd0c": "2026-11-09 08:18:00 +0800",
@@ -538,7 +541,7 @@
   "2af75f4ab1509289bd3353e22e789c16d89909a9": "2026-09-07 09:52:53 +0800",
   "c03a8ab30ce0c7f1e5c811c302ec1c7e8b840f49": "2026-09-07 09:32:18 +0800"
  },
- "commitsTouchingBook": 292,
+ "commitsTouchingBook": 293,
  "bookFiles": [
   "book/01-不要早死.md",
   "book/02-不要慢慢死.md",
@@ -2619,6 +2622,13 @@
    "entries": 772,
    "added": 0,
    "msg": "合并 PR #172：修正 25 处政策条件、统计解释、标题与来源链接（#171）"
+  },
+  {
+   "sha": "089c6c1e",
+   "date": "2026-11-14 10:26:52 +0800",
+   "entries": 772,
+   "added": 0,
+   "msg": "修正 7 处笔误与前后不一致（第 5、6、7、9、22、27 节）"
   }
  ],
  "probes": [
