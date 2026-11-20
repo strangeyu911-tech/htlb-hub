@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-19T01:14:41.906Z",
+ "generatedAt": "2026-11-20T01:17:33.856Z",
  "upstream": {
   "repo": "eternity4719/HowToLiveBetter",
   "readmeRaw": "https://raw.githubusercontent.com/eternity4719/HowToLiveBetter/main/README.md",
@@ -17,8 +17,8 @@
   "selfDeclaredOnly": 0,
   "withOwnVersion": 5,
   "runtime": 2,
-  "sync": 5,
-  "lagging": 9,
+  "sync": 6,
+  "lagging": 8,
   "unknown": 1
  },
  "projects": [
@@ -143,14 +143,14 @@
    "ownVersionShort": "49fceab4",
    "ownVersionDate": "2026-11-16 17:44:06 +0800",
    "ownGeneratedAt": null,
-   "sitemapLastmod": "2026-11-18T00:00:00.000Z",
+   "sitemapLastmod": "2026-11-19T00:00:00.000Z",
    "sitemapUrls": 821,
    "carriedFrom": null,
    "evidence": [
     "sync/fingerprint.json 自带 commit=49fceab4、count=772，另有逐条哈希 772 条",
     "仓库同时带 tools/check_drift.py 与 tools/check_verbatim.py —— 该项目自带上游漂移检测与逐字校验",
     "产物文件：sync/fingerprint.json",
-    "sitemap（/sitemap.xml）：821 个 URL，lastmod 最新 2026-11-18（共 821 个 lastmod，已取最大值）",
+    "sitemap（/sitemap.xml）：821 个 URL，lastmod 最新 2026-11-19（共 821 个 lastmod，已取最大值）",
     "页面文案自述 772 条（全文出现的其他数字：772 / 123）—— 仅作交叉参考，不是实测"
    ],
    "ok": 3,
@@ -249,6 +249,50 @@
    "lastEdit": ""
   },
   {
+   "id": "life.xfun.fun",
+   "name": "手绘地图版",
+   "slug": "life-xfun-fun",
+   "author": "sagiriiiiii",
+   "kind": "网站",
+   "url": "https://life.xfun.fun/",
+   "linkLabel": "打开网站",
+   "ghRepo": null,
+   "note": "把每条建议画成一张生活卡片，可滑动浏览。",
+   "tags": [
+    "能搜索",
+    "能分享"
+   ],
+   "gate": "未标注",
+   "status": "sync",
+   "basis": "measured",
+   "confidence": "high",
+   "actualEntries": 772,
+   "selfDeclared": null,
+   "selfDeclaredFrom": null,
+   "lag": 0,
+   "lagEntries": 0,
+   "lagDays": 9.8,
+   "runtimeFetch": false,
+   "ownVersion": null,
+   "ownVersionShort": null,
+   "ownVersionDate": null,
+   "ownGeneratedAt": null,
+   "sitemapLastmod": null,
+   "sitemapUrls": null,
+   "carriedFrom": null,
+   "evidence": [
+    "首页自述「772 张人生卡片」；逐关张数相加（15 关）= 319",
+    "自述与逐关合计不一致，仅采信自述",
+    "全站只有 5 个 Astro 小 chunk（合计 <10 KB），HTML/JS 里没有任何 raw.githubusercontent、api.github.com 或上游拉取代码，逐条内容已在构建期预渲染 → 属静态快照，不是运行时拉取",
+    "该条数首次出现在上游是 d2de3fc8（2026-11-04 14:29）"
+   ],
+   "ok": 3,
+   "total": 3,
+   "avg": 2303,
+   "cdn": "Cloudflare",
+   "lastEdit": ""
+  },
+  {
    "id": "howtolivebetter-92110.app.workbuddy.host",
    "name": "循证建议地图",
    "slug": "howtolivebetter-92110-app-workbuddy-host",
@@ -280,11 +324,11 @@
    "ownGeneratedAt": null,
    "sitemapLastmod": null,
    "sitemapUrls": null,
-   "carriedFrom": "2026-11-18T01:38:46.977Z",
+   "carriedFrom": "2026-11-19T01:14:41.794Z",
    "evidence": [
     "data/home.json 取不到: HTTP 403",
     "页面取不到: HTTP 403",
-    "⚠️ 本轮探针被挡（WAF / 网络），**沿用上次实测值 772 条**（来自 2026-11-18T01:38:46 那次运行）",
+    "⚠️ 本轮探针被挡（WAF / 网络），**沿用上次实测值 772 条**（来自 2026-11-19T01:14:41 那次运行）",
     "该条数首次出现在上游是 d2de3fc8（2026-11-04 14:29）"
    ],
    "ok": 3,
@@ -321,14 +365,14 @@
    "ownVersion": "49fceab4254c8c2df0f7cdb1b2959cab6c451b96",
    "ownVersionShort": "49fceab4",
    "ownVersionDate": "2026-11-16 17:44:06 +0800",
-   "ownGeneratedAt": "2026-11-18T03:41:56Z",
+   "ownGeneratedAt": "2026-11-19T03:22:21Z",
    "sitemapLastmod": null,
    "sitemapUrls": null,
    "carriedFrom": null,
    "evidence": [
-    "data/stats.json 自带 upstream_commit=49fceab4、synced_at=2026-11-18T03:41:56Z、entries=772（34 节）",
+    "data/stats.json 自带 upstream_commit=49fceab4、synced_at=2026-11-19T03:22:21Z、entries=772（34 节）",
     "产物文件：data/stats.json",
-    "仓库最后提交 2026-11-18T03:41",
+    "仓库最后提交 2026-11-19T03:22",
     "该条数首次出现在上游是 d2de3fc8（2026-11-04 14:29）"
    ],
    "ok": 3,
@@ -612,50 +656,6 @@
    "lastEdit": ""
   },
   {
-   "id": "life.xfun.fun",
-   "name": "手绘地图版",
-   "slug": "life-xfun-fun",
-   "author": "sagiriiiiii",
-   "kind": "网站",
-   "url": "https://life.xfun.fun/",
-   "linkLabel": "打开网站",
-   "ghRepo": null,
-   "note": "把每条建议画成一张生活卡片，可滑动浏览。",
-   "tags": [
-    "能搜索",
-    "能分享"
-   ],
-   "gate": "未标注",
-   "status": "lag",
-   "basis": "carried",
-   "confidence": "medium",
-   "actualEntries": 676,
-   "selfDeclared": null,
-   "selfDeclaredFrom": null,
-   "lag": 96,
-   "lagEntries": 96,
-   "lagDays": 35.6,
-   "runtimeFetch": false,
-   "ownVersion": null,
-   "ownVersionShort": null,
-   "ownVersionDate": null,
-   "ownGeneratedAt": null,
-   "sitemapLastmod": null,
-   "sitemapUrls": null,
-   "carriedFrom": "2026-11-18T01:38:46.977Z",
-   "evidence": [
-    "首页取不到: HTTP 403",
-    "页面取不到: HTTP 403",
-    "⚠️ 本轮探针被挡（WAF / 网络），**沿用上次实测值 676 条**（来自 2026-11-18T01:38:46 那次运行）",
-    "该条数首次出现在上游是 5a36eaf8（2026-10-09 19:40）"
-   ],
-   "ok": 3,
-   "total": 3,
-   "avg": 2303,
-   "cdn": "Cloudflare",
-   "lastEdit": ""
-  },
-  {
    "id": "livebetter101.com",
    "name": "LiveBetter 101",
    "slug": "livebetter101-com",
@@ -687,12 +687,12 @@
    "ownGeneratedAt": null,
    "sitemapLastmod": null,
    "sitemapUrls": null,
-   "carriedFrom": "2026-11-18T01:38:46.977Z",
+   "carriedFrom": "2026-11-19T01:14:41.794Z",
    "evidence": [
     "首页取不到: HTTP 0",
     "sitemap: 常见路径都试过，没找到可用的 sitemap（404 或 HTML 兜底）",
     "页面取不到: HTTP 0",
-    "⚠️ 本轮探针被挡（WAF / 网络），**沿用上次实测值 658 条**（来自 2026-11-18T01:38:46 那次运行）",
+    "⚠️ 本轮探针被挡（WAF / 网络），**沿用上次实测值 658 条**（来自 2026-11-19T01:14:41 那次运行）",
     "该条数首次出现在上游是 dcccdd96（2026-10-05 09:32）"
    ],
    "ok": 3,
