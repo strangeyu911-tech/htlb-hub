@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-21T23:48:18.096Z",
+ "generatedAt": "2026-11-23T00:18:57.277Z",
  "source": "本地克隆上游仓库 + book/ 全量历史 diff 累积统计",
  "definition": "条目数 = book/*.md 里的 ### 标题数（上游 tools/sync-stats.mjs 官方口径）",
  "headSha": "089c6c1e0b4e8ee125e64e1c066a0c3cf75ea9bb",
