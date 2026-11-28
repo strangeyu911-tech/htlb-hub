@@ -1,12 +1,16 @@
 {
- "generatedAt": "2026-11-27T02:10:36.996Z",
+ "generatedAt": "2026-11-28T01:59:42.019Z",
  "source": "本地克隆上游仓库 + book/ 全量历史 diff 累积统计",
  "definition": "条目数 = book/*.md 里的 ### 标题数（上游 tools/sync-stats.mjs 官方口径）",
- "headSha": "6f1dd6ba49627b40697a788608923ac4d2260456",
+ "headSha": "4716d91bed6c2410c74737aee3c03cce65830366",
  "headEntries": 774,
- "totalCommits": 534,
- "totalCommitsAll": 534,
+ "totalCommits": 538,
+ "totalCommitsAll": 538,
  "allCommits": {
+  "2e130ee6f9ff4d60bba9d55f78d7b7acfe57f467": "2026-11-28 09:13:46 +0800",
+  "eb8cf50f81b99bf48858ce11206b9cdf99b2e9c6": "2026-11-28 09:13:31 +0800",
+  "4716d91bed6c2410c74737aee3c03cce65830366": "2026-11-27 16:48:27 +0800",
+  "d001bea20905c194e682eb2ad18572de8929d7b2": "2026-11-27 05:49:25 +0700",
   "6f1dd6ba49627b40697a788608923ac4d2260456": "2026-11-25 18:21:19 +0800",
   "49fceab4254c8c2df0f7cdb1b2959cab6c451b96": "2026-11-16 17:44:06 +0800",
   "a58a9dbb2e1cd35e588be9580f3c97f0ab3cc2cd": "2026-11-16 17:43:50 +0800",
@@ -542,7 +546,7 @@
   "2af75f4ab1509289bd3353e22e789c16d89909a9": "2026-09-07 09:52:53 +0800",
   "c03a8ab30ce0c7f1e5c811c302ec1c7e8b840f49": "2026-09-07 09:32:18 +0800"
  },
- "commitsTouchingBook": 294,
+ "commitsTouchingBook": 295,
  "bookFiles": [
   "book/01-不要早死.md",
   "book/02-不要慢慢死.md",
@@ -2637,6 +2641,13 @@
    "entries": 774,
    "added": 2,
    "msg": "第 1 节补饭菜两小时内进冰箱与冻肉解冻，第 27 节补孕期熟食和剩菜热透再吃（李斯特菌）（#181）"
+  },
+  {
+   "sha": "4716d91b",
+   "date": "2026-11-27 16:48:27 +0800",
+   "entries": 774,
+   "added": 0,
+   "msg": "第 2 节第 10 条补定期洗牙：牙周炎不重的人按时洗牙两三年牙龈炎几乎没差别、只少些牙结石（Cochrane Lamont 2018），备注写明和卫健委「最好每年一次洁牙」对不上；删去备注里单点圆头"
   }
  ],
  "probes": [
